@@ -7,6 +7,8 @@ function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -16,11 +18,11 @@ function Login() {
             if (response.data === "exists") {
                 navigate("/home", { state: { id: email } }); // Navigate to home page
             } else if (response.data === "notexist") {
-                alert("User not found or password incorrect");
+                setMessage("User not found or password incorrect");
             }
         } catch (error) {
-            console.error("Login error", error);
-            alert("Error during login");
+            console.error("Login error", error.message);
+            setMessage("Error during login");
         }
     }
 
@@ -45,6 +47,7 @@ function Login() {
           />
           <button type="submit">Sign in</button>
         </form>
+        {message && <p className={`message error-message`}>{message}</p>}
         <p className="helper-text">
           New to our service? <Link to="/signup">Create an account</Link>.
         </p>

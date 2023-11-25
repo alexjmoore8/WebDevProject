@@ -12,7 +12,9 @@ function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState(''); 
     const [confirmPassword, setConfirm] = useState('');    
-    const [role, setRole] = useState('');    
+    const [role, setRole] = useState('applicant');
+    const [message, setMessage] = useState('');
+    
 
    
 
@@ -36,7 +38,7 @@ function Signup() {
           }
 
           if (!helper.validateRole(role)) {
-            throw new Error('Role must be either "admin" or "user" ');
+            throw new Error('Invalid role');
           }
 
           role.toLowerCase();
@@ -47,14 +49,14 @@ function Signup() {
 
             const response = await axios.post("http://localhost:3000/signup", {firstName, lastName, email, password, role});
             if (response.data === "exists") {
-                alert("User already exists");
+                setMessage("User already exists");
             } else if (response.data === "signup_success") {
-                alert("Signup successful");
+                setMessage("Signup successful");
                 navigate("/"); // Navigate to login page
             }
         } catch (error) {
             console.error("Signup error", error);
-            alert(error);
+            setMessage(error.message || "An error occurred");
         }
     }
 
@@ -98,15 +100,17 @@ function Signup() {
             placeholder="Confirm Password" 
             required 
           />
-          <input 
-            type="role" 
+          <select 
             value={role}
             onChange={(e) => setRole(e.target.value)} 
-            placeholder="Admin or User" 
             required 
-          />
+          >
+            <option value="employer">Employer</option>
+            <option value="applicant">Applicant</option>
+          </select>
           <button type="submit">Create account</button>
         </form>
+        {message && <p className={`message error-message`}>{message}</p>}
         <p className="helper-text">
           Already have an account? <Link to="/">Sign in</Link>.
         </p>

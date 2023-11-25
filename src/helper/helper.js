@@ -16,6 +16,6 @@ export const validatePassword = (password) => {
 };
 
 export const validateRole = (role) => {
-    const validRoles = ['admin', 'user'];
+    const validRoles = ['applicant', 'employer'];
     return validRoles.includes(role.toLowerCase());
 };
