@@ -1,38 +1,39 @@
-.App {
-  text-align: center;
+.navbar {
+  background-color: #fafbfc; /* Light gray background */
+  border-bottom: 1px solid #e1e4e8; /* Light border at the bottom */
+  padding: 10px 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.nav-links {
+  list-style: none;
+  padding: 0;
+  display: flex; /* Align items in a row */
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-links li {
+  margin-right: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-links a {
+  color: #24292e; /* Dark text for contrast */
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600; /* Slightly bolder font */
+}
+
+.nav-links a:hover {
+  color: #0366d6; /* GitHub uses blue for hover states */
+  text-decoration: underline;
+}
+
+/* Additional styling for other elements */
+.form-box, .homepage {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(225,228,232,0.5);
+  margin: 20px;
+  width: auto;
 }
