@@ -1,0 +1,44 @@
+{{! 
+	"contact": {
+		"section_heading": "Contact",
+		"name": "Your Name",
+		"email": "youremail@gmail.com",
+		"job": "Your Job Title",
+		"location": {
+			"address": "123 Your Street",
+			"city": "City",
+            "state": "State",
+			"country": "US",
+			"zip": 12345
+		},
+		"phone": "+123-456-7890"
+	}
+ }}
+<section class="contact-section">
+  <h1 class="name">{{contact.name}}</h1>
+  {{#if contact.socials}}
+    <h3>{{contact.location.city}},
+      {{contact.location.state}}
+      |
+      {{contact.phone}}
+      |
+      {{contact.email}}
+      {{#each contact.socials.profile}}
+        |
+        <a href="{{this.link}}" target="_blank">{{this.link}}</a>
+      {{/each}}
+    </h3>
+  {{else}}
+    <h3>{{contact.location.city}},
+      {{contact.location.state}}
+      |
+      {{contact.phone}}
+      |
+      {{contact.email}}
+    </h3>
+  {{/if}}
+  <div class="line-container">
+    <div class="bold-line"></div>
+  </div>
+
+</section>

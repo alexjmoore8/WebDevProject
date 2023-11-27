@@ -1,0 +1,23 @@
+{{! If courses follow this schema:
+	"courses": {
+		"section_heading": "Courses",
+		"course": [
+			{
+				"name": "Name of course here",
+				"school": "Name of school here"
+			}
+		]
+	}
+ }}
+
+{{#if courses}}
+  <section class="courses-section">
+    <h2 class="section-title">{{courses.section_heading}}</h2>
+    <ul>
+      {{#each courses.course}}
+        <li>{{name}}
+          {{#if school}} - {{school}} {{/if}}</li>
+      {{/each}}
+    </ul>
+  </section>
+{{/if}}

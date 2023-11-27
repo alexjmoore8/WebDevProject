@@ -1,0 +1,30 @@
+{{!
+  "skills": {
+      "section_heading": "Skills",
+      "skill": [
+        {
+          "name": "skill",
+          "level": 5 
+        }
+      ]
+    }
+ }}
+
+{{#if skills}}
+  <section class="skills-section">
+    <h2 class="section-title">{{skills.section_heading}}</h2>
+    <ul>
+      {{#each skills.skill}}
+        {{#if this.level}}
+          <li>
+            {{name}}
+            -
+            {{level}}
+          </li>
+        {{else}}
+          <li>{{name}}</li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  </section>
+{{/if}}

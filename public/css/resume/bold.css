@@ -1,0 +1,134 @@
+/* General */
+body {
+  font-family: "Arial", sans-serif;
+  margin: 10%;
+  padding: 0;
+  color: #000;
+}
+
+h1 {
+  font-size: 40px;
+  margin-top: 40px;
+  margin-bottom: 3px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+h3,
+h4 {
+  font-size: 15px;
+}
+
+h5,
+h6 {
+  font-size: 15px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+li {
+  margin-left: 8px;
+  font-family: arial, sans-serif;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+p {
+  margin: 5px 0;
+  margin-left: 8px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+/* Special Items */
+
+a {
+  text-decoration: none;
+  color: #000;
+  font-size: 15px;
+  margin-left: 8px;
+}
+
+.line-container {
+  padding: 0;
+}
+
+.bold-line {
+  width: 99%;
+  height: 2px;
+  background-color: #000;
+  margin: 0 auto;
+}
+
+/* About Section */
+
+
+/* Certifications Section */
+
+
+/* Contact Section */
+
+.contact-section h3 {
+  font-size: 15px;
+  flex-grow: auto;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.contact-section a {
+  font-size: 15px;
+}
+
+/* Courses Section */
+
+
+
+/* Education Section */
+
+
+
+/* Languages Section */
+
+
+
+/* Projects Section */
+
+
+
+/* Publications */
+
+
+
+/* Skills Section */
+
+
+
+/* Volunteer Experience Section */
+
+
+
+/* Work Experience Section */
+
+

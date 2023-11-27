@@ -1,0 +1,63 @@
+{{! 
+	"work_experience": {
+		"section_heading": "Experience",
+		"job":[	
+			{
+				"company": "Company Name",
+				"position": "Your Title",
+				"start_date": "Jan 1, 2020",
+				"end_date": "Present",
+				"detail": [
+					 "Bulleted job details",
+					 "You can add more details here"
+				],
+
+				"link": "https://company.com/",
+				"tags": [
+					"add",
+					"skills",
+					"or",
+					"technologies",
+					"here"
+				]
+			}
+		]
+	}
+ }}
+
+{{#if work_experience}}
+  <section class="work-experience-section">
+    <h2 class="section-title">{{work_experience.section_heading}}</h2>
+    <ul>
+      {{#each work_experience.job}}
+        <li>
+          {{#if link}}
+            <a href="{{link}}" target="_blank">{{company}}</a>
+          {{else}}
+            <h3>{{company}}</h3>
+          {{/if}}
+          <h4>{{position}}</h4>
+          {{#if start_date}}
+            {{#if end_date}}
+              <p>{{start_date}}
+                -
+                {{end_date}}</p>
+            {{/if}}
+          {{/if}}
+          <ul>
+            {{#each detail}}
+              <li>{{this}}</li>
+            {{/each}}
+          </ul>
+          {{#if tags}}
+            <ul>
+              {{#each tags}}
+                <li>{{this}}</li>
+              {{/each}}
+            </ul>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+{{/if}}

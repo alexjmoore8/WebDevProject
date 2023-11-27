@@ -1,0 +1,32 @@
+{{!
+	"education": {
+		"section_heading": "Education",
+		"school": [
+			{
+				"degree": "Your Degree",
+				"start_date": "May 2022",
+				"end_date": "December 2023",
+				"institution": "Stevens Institute of Technology",
+				"link": "https://www.stevens.edu/"
+			}
+		]
+	}
+ }}
+{{#if education}}
+  <section class="education-section">
+    <h2 class="section-title">{{education.section_heading}}</h2>
+    <ul>
+      {{#each education.school}}
+        <h3>{{degree}}</h3>
+        <h4>{{institution}}</h4>
+        {{#if start_date}}
+          {{#if end_date}}
+            <h5>{{start_date}}
+              -
+              {{end_date}}</h5>
+          {{/if}}
+        {{/if}}
+      {{/each}}
+    </ul>
+  </section>
+{{/if}}

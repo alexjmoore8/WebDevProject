@@ -4,8 +4,18 @@
   "description": "Resume building and job finder app",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "Aaliyah Demitro, Alden Park, Alex Moore, JiaHui Lian, Zachary Duva",
-  "license": "ISC"
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "7.1.2",
+    "handlebars": "4.7.8",
+    "jquery": "3.7.1",
+    "path": "^0.12.7",
+    "promises": "*",
+    "fs": "*"
+  }
 }

@@ -1,0 +1,44 @@
+{{! if projects:
+     "projects": {
+		"section_heading": "Projects",
+		"project": [
+			{
+				"name": "Name of your project",
+				"description": "Describe your project here",
+				"link": "github.com/yourProject",
+				"tags": [
+					"add",
+					"skills",
+					"or",
+					"technologies",
+					"here"
+				]
+			}
+		]
+	}
+ }}
+
+{{#if projects}}
+  <section class="projects-section">
+    <h2 class="section-title">{{projects.section_heading}}</h2>
+    <ul>
+      {{#each projects.project}}
+        <li>
+          {{#if link}}
+            <a href="{{link}}" target="_blank">{{name}}</a>
+          {{else}}
+            <h3>{{name}}</h3>
+          {{/if}}
+          <p>{{description}}</p>
+          {{#if tags}}
+            <ul class="tags">
+              {{#each tags}}
+                <li>{{this}}</li>
+              {{/each}}
+            </ul>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+{{/if}}

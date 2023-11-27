@@ -1,0 +1,21 @@
+{{!
+	"languages": {
+		"section_heading": "Languages",
+		"language": [
+			{
+				"name": "English",
+				"level": "Native"
+			}
+		]
+	}
+ }}
+{{#if languages}}
+  <section class="languages-section">
+    <h2 class="section-title">{{languages.section_heading}}</h2>
+    <ul>
+      {{#each languages.language}}
+        <li>{{name}} - {{level}}</li>
+      {{/each}}
+    </ul>
+  </section>
+{{/if}}

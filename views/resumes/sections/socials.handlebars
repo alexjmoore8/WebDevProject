@@ -1,0 +1,26 @@
+{{! 
+  "socials": {
+      "section_heading": "Social",
+      "profile": [
+        {
+          "name": "LinkedIn",
+          "link": "https://www.linkedin.com/in/yourname/",
+          "icon": "icon-linkedin"
+        }
+      ]
+  }
+ }}
+
+{{#if socials}}
+  <section class="socials-section">
+    <h2 class="section-title">{{socials.section_heading}}</h2>
+    <ul>
+      {{#each socials.profile}}
+        <li>
+          <img class="social-icon" src="images/socials/{{this.icon}}.png" alt=""></img>
+          <a href="{{this.link}}" target="_blank">{{this.link}}</a>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+{{/if}}

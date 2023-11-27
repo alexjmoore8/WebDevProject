@@ -1,0 +1,60 @@
+<!-- handlebars main template that will accommodate contacts, social, education, at least one of work_experience, volunteer_experience, and projects, and up to 3 other section templates -->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/resume/bold.css" />
+    <script id="resume-template" type="text/x-handlebars-template">
+    </script>
+    <title>{{contact.name}}</title>
+  </head>
+
+  <body>
+    <div class="resume-container">
+      {{> contact}}
+      {{#if about}}
+        {{> about}}
+      {{/if}}
+      {{#if education}}
+        {{> education}}
+      {{/if}}
+      {{#if work_experience}}
+        {{> work_experience}}
+      {{/if}}
+      {{#if volunteer_experience}}
+        {{> volunteer_experience}}
+      {{/if}}
+      {{#if projects}}
+        {{> projects}}
+      {{/if}}
+      {{#if certifications}}
+        {{> certifications}}
+      {{/if}}
+      {{#if skills}}
+        {{> skills}}
+      {{/if}}
+      {{#if courses}}
+        {{> courses}}
+      {{/if}}
+      {{#if publications}}
+        {{> publications}}  
+      {{/if}}
+      {{#if languages}}
+        {{> languages}}
+      {{/if}}
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <script
+      src="....../data/resume1.js"
+    ></script>
+
+
+  </body>
+</html>

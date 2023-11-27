@@ -1,0 +1,27 @@
+{{! if:
+  "publications": {
+      "section_heading": "Publications",
+      "publications": [
+        {
+          "name": "Name of publication",
+          "publisher": "Publisher",
+          "date": "Jan 2020",
+          "link": "https://www.coursera.org/"
+        }
+      ]
+  }
+ }}
+
+{{#if publications}}
+  <section class="publications-section">
+    <h2 class="section-title">{{publications.section_heading}}</h2>
+    <ul>
+      {{#each publications.publications}}
+        <li>
+          <a href="{{link}}" target="_blank">{{name}}</a>
+          <p>{{publisher}} - {{date}}</p>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+{{/if}}

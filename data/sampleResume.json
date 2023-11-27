@@ -1,0 +1,157 @@
+{
+  "contact": {
+    "section_heading": "Contact",
+    "name": "Jen Doe",
+    "email": "jendoe@gmail.com",
+    "job": "Software Developer",
+    "location": {
+      "address": "123 Main Street",
+      "city": "Cityville",
+      "state": "ST",
+      "country": "US",
+      "zip": 12345
+    },
+    "phone": "+123-456-7890",
+    "socials": {
+      "profile": [
+        {
+          "name": "LinkedIn",
+          "link": "linkedin.com/in/jendoe",
+          "icon": "icon-linkedin"
+        },
+        {
+          "name": "GitHub",
+          "link": "github.com/jendoe",
+          "icon": "icon-github"
+        },
+        {
+          "name": "Twitter",
+          "link": "twitter.com/jendoe",
+          "icon": "icon-twitter"
+        }
+      ]
+    }
+  },
+  "about": {
+    "section_heading": "About Me",
+    "summary": "I am a passionate software developer with a strong background in web development and a keen interest in new technologies."
+  },
+  "education": {
+    "section_heading": "Education",
+    "school": [
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "start_date": "May 2022",
+        "end_date": "December 2023",
+        "institution": "Stevens Institute of Technology"
+      }
+    ]
+  },
+  "work_experience": {
+    "section_heading": "Experience",
+    "job": [
+      {
+        "company": "Tech Solutions Inc.",
+        "position": "Software Developer",
+        "start_date": "Jan 1, 2020",
+        "end_date": "Present",
+        "detail": [
+          "Developed and maintained the company's link.",
+          "Implemented new features and fixed bugs."
+        ],
+        "link": "https://techsolutions.com/",
+        "tags": ["JavaScript", "React", "Node.js"]
+      }
+    ]
+  },
+  "volunteer_experience": {
+    "section_heading": "Volunteer Experience",
+    "job": [
+      {
+        "organization": "Charity Foundation",
+        "position": "Web Developer Volunteer",
+        "start_date": "Jan 1, 2020",
+        "end_date": "Present",
+        "summary": "Contributed to the development of the foundation's link.",
+        "link": "https://charityfoundation.com/",
+        "tags": ["HTML", "CSS", "JavaScript"]
+      }
+    ]
+  },
+  "projects": {
+    "section_heading": "Projects",
+    "project": [
+      {
+        "name": "Portfolio link",
+        "description": "Personal portfolio link showcasing my skills and projects.",
+        "link": "github.com/johndoe/portfolio",
+        "tags": ["HTML", "CSS", "JavaScript"]
+      }
+    ]
+  },
+  "certifications": {
+    "section_heading": "Certifications",
+    "certification": [
+      {
+        "name": "Web Development Certification",
+        "authority": "Codecademy",
+        "date": "Jan 2020",
+        "link": "https://www.codecademy.com/"
+      }
+    ]
+  },
+  "skills": {
+    "section_heading": "Skills",
+    "skill": [
+      {
+        "name": "JavaScript",
+        "level": 5
+      },
+      {
+        "name": "React",
+        "level": 4
+      },
+      {
+        "name": "Node.js",
+        "level": 3
+      }
+    ]
+  },
+  "courses": {
+    "section_heading": "Courses",
+    "course": [
+      {
+        "name": "Advanced Web Development",
+        "school": ""
+      },
+      {
+        "name": "Introduction to Machine Learning",
+        "school": ""
+      },
+      {
+        "name": "Introduction to Artificial Intelligence",
+        "school": ""
+      }
+    ]
+  },
+  "publications": {
+    "section_heading": "Publications",
+    "publications": [
+      {
+        "name": "Tech Trends 2020",
+        "publisher": "Tech Publications",
+        "date": "Jan 2020",
+        "link": "https://www.techpublications.com/"
+      }
+    ]
+  },
+  "languages": {
+    "section_heading": "Languages",
+    "language": [
+      {
+        "name": "English",
+        "level": "Native"
+      }
+    ]
+  }
+}

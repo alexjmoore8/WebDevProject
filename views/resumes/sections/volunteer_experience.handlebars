@@ -1,0 +1,55 @@
+{{! 
+	"volunteer_experience": {
+		"section_heading": "Volunteer Experience",
+		"job":[	
+			{
+				"organization": "Organization Name",
+				"position": "Your Title",
+				"start_date": "Jan 1, 2020",
+				"end_date": "Present",
+				"summary": "Job details",
+				"link": "https://company.com/",
+				"tags": [
+					"add",
+					"skills",
+					"or",
+					"technologies",
+					"here"
+				]
+			}
+		]
+	}
+ }}
+
+{{#if volunteer_experience}}
+  <section class="volunteer-experience-section">
+    <h2 class="section-title">{{volunteer_experience.section_heading}}</h2>
+    <ul>
+      {{#each volunteer_experience.job}}
+        <li>
+          {{#if link}}
+            <a href="{{link}}" target="_blank">{{organization}}</a>
+          {{else}}
+            <h3>{{organization}}</h3>
+          {{/if}}
+          <h4>{{position}}</h4>
+          {{#if start_date}}
+            {{#if end_date}}
+              <p>{{start_date}}
+                -
+                {{end_date}}</p>
+            {{/if}}
+          {{/if}}
+          {{#if summary}}
+            <p>{{summary}}</p>
+          {{/if}}
+          <ul>
+            {{#each tags}}
+              <li>{{this}}</li>
+            {{/each}}
+          </ul>
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+{{/if}}

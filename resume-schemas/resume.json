@@ -1,0 +1,130 @@
+{
+  "contact": {
+    "section_heading": "Contact",
+    "name": "Your Name",
+    "email": "youremail@gmail.com",
+    "job": "Your Job Title",
+    "location": {
+      "address": "123 Your Street",
+      "city": "City",
+      "state": "State",
+      "country": "US",
+      "zip": 12345
+    },
+    "phone": "+123-456-7890"
+  },
+  "socials": {
+    "section_heading": "Social",
+    "profile": [
+      {
+        "name": "LinkedIn",
+        "link": "https://www.linkedin.com/in/yourname/",
+        "icon": "icon-linkedin"
+      }
+    ]
+  },
+  "about": {
+    "section_heading": "About Me",
+    "summary": "Your summary here"
+  },
+  "education": {
+    "section_heading": "Education",
+    "school": [
+      {
+        "degree": "Your Degree",
+        "start_date": "May 2022",
+        "end_date": "December 2023",
+        "institution": "Stevens Institute of Technology"
+      }
+    ]
+  },
+  "work_experience": {
+    "section_heading": "Experience",
+    "job": [
+      {
+        "company": "Company Name",
+        "position": "Your Title",
+        "start_date": "Jan 1, 2020",
+        "end_date": "Present",
+        "detail": ["Bulleted job details", "You can add more details here"],
+
+        "link": "https://company.com/",
+        "tags": ["add", "skills", "or", "technologies", "here"]
+      }
+    ]
+  },
+  "volunteer_experience": {
+    "section_heading": "Volunteer Experience",
+    "job": [
+      {
+        "organization": "Organization Name",
+        "position": "Your Title",
+        "start_date": "Jan 1, 2020",
+        "end_date": "Present",
+        "summary": "Job details",
+        "link": "https://company.com/",
+        "tags": ["add", "skills", "or", "technologies", "here"]
+      }
+    ]
+  },
+  "projects": {
+    "section_heading": "Projects",
+    "project": [
+      {
+        "name": "Name of your project",
+        "description": "Describe your project here",
+        "link": "github.com/yourProject",
+        "tags": ["add", "skills", "or", "technologies", "here"]
+      }
+    ]
+  },
+  "certifications": {
+    "section_heading": "Certifications",
+    "certification": [
+      {
+        "name": "Name of certification",
+        "authority": "Authority",
+        "date": "Jan 2020",
+        "link": "https://www.coursera.org/"
+      }
+    ]
+  },
+  "skills": {
+    "section_heading": "Skills",
+    "skill": [
+      {
+        "name": "skill",
+        "level": 5
+      }
+    ]
+  },
+  "courses": {
+    "section_heading": "Courses",
+    "course": [
+      {
+        "name": "Name of course here",
+        "school": "Name of school here"
+      }
+    ]
+  },
+  "publications": {
+    "section_heading": "Publications",
+    "publications": [
+      {
+        "name": "Name of publication",
+        "publisher": "Publisher",
+        "date": "Jan 2020",
+        "link": "https://www.coursera.org/"
+      }
+    ]
+  },
+  "languages": {
+    "section_heading": "Languages",
+    "language": [
+      {
+        "name": "English",
+        "level": "Native"
+      }
+    ]
+  }
+}
