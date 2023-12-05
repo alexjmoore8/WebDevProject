@@ -1,3 +1,10 @@
+body{
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+}
+
+
 .navbar {
   background-color: #fafbfc; /* Light gray background */
   border-bottom: 1px solid #e1e4e8; /* Light border at the bottom */

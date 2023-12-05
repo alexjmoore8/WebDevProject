@@ -1,0 +1,16 @@
+h1{
+    text-decoration: underline 3px;
+}
+
+.about-us-container{
+    border: 3px solid black;
+}
+
+body{
+    padding: 10px;
+    margin: 10px;
+}
+
+div{
+    border: 1px #d8d7d7 solid;
+}
