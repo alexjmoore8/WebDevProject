@@ -66,7 +66,6 @@ function ResumeForm() {
 
   const handleSubmit = async () => {
      try {
-      // Perform form submission to your server
       const response = await fetch('/resume-form', {
         method: 'POST',
         headers: {
@@ -77,7 +76,6 @@ function ResumeForm() {
 
       if (response.ok) {
         console.log('Resume submitted successfully!');
-        // Optionally, you can reset the form state or redirect the user
       } else {
         console.error('Error submitting resume');
       }
@@ -86,45 +84,62 @@ function ResumeForm() {
     }
   };
 
-    const renderForm = () => {
-      switch (currentStep) {
-        case 1:
-          return (
-            <ResumeSelections
-              handleChange={handleChange}
-              data={formData.ResumeSelections}
-            />
-          );
-        case 2:
+  const renderForm = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <ResumeSelections
+            handleChange={handleChange}
+            data={formData.ResumeSelections}
+          />
+        );
+      case 2:
+        if (formData.ResumeSelections.contact) {
           return (
             <ResumeContactInfo
               handleChange={handleChange}
-              data={formData.ResumeContactInfo}  
+              data={formData.ResumeContactInfo}
             />
-
           );
-        case 3:
+        }
+        // If contact section is not selected, skip to the next step
+        return renderNextStep();
+
+      case 3:
+        if (formData.ResumeSelections.socials) {
           return (
             <ResumeSocialMedia
               handleChange={handleChange}
               data={formData.ResumeSocialMedia}
             />
           );
+        }
+        // If socials section is not selected, skip to the next step
+        return renderNextStep();
 
-        default:
-          return null;
-      }
-    };
+      default:
+        return null;
+    }
+  };
 
-    return (
-        <div>
-          {renderForm()}
-          <button onClick={handlePrev} disabled={currentStep === 1}>Back</button>
-          {currentStep < 3 && <button onClick={handleNext}>Next</button>}
-          {currentStep === 3 && <button onClick={handleSubmit}>Submit</button>}
-        </div>
-    );
-}
+  const renderNextStep = () => {
+    const nextStep = currentStep + 1;
+    if (nextStep <= 3) {
+      setCurrentStep(nextStep);
+    }
+  };
+
+  return (
+    <div>
+      {renderForm()}
+      <button onClick={handlePrev} disabled={currentStep === 1}>
+        Back
+      </button>
+      {currentStep < 3 && <button onClick={handleNext}>Next</button>}
+      {currentStep === 3 && <button onClick={handleSubmit}>Submit</button>}
+    </div>
+  );
+  }
 
 export default ResumeForm;
 
