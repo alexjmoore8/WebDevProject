@@ -1,25 +1,33 @@
-//define routes for the app to use
 import React from 'react';
-import Home from './components/Home.js';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './components/AuthContext.js'; // Import AuthProvider
+import ProtectedRoute from './components/ProtectedRoute.js'; // Import ProtectedRoute
 import Login from './components/loginRegister/Login.js';
 import Signup from './components/loginRegister/Signup.js';
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
-
+import Home from './components/Home.js'; // Import Home component for applicants
+import HomeA from './components/HomeA.js'; // Import HomeA component for employers
 
 function App() {
   return (
-    <div className="App">
-      <h1>Resume Builder</h1>
-
-        <Router>
-          <Routes>
-            <Route path = "/" element={<Login/>}/>
-            <Route path = "/signup" element={<Signup/>}/>
-            <Route path = "/home" element={<Home/>}/>
-          </Routes>
-        </Router>
-
-    </div>
+    <AuthProvider> {/* Wrap the application with AuthProvider */}
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/Home" element={
+            <ProtectedRoute role="applicant">
+              <Home />
+            </ProtectedRoute>
+          } />
+          <Route path="/HomeA" element={
+            <ProtectedRoute role="employer">
+              <HomeA />
+            </ProtectedRoute>
+          } />
+          {/* Define other routes here */}
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
