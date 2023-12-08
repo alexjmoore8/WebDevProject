@@ -3,6 +3,7 @@ import express, { json, urlencoded } from 'express';
 import {userCollection, resumeCollection} from './mongo.js';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
+import { createResume } from './resumeController.js';
 
 const app = express();
 app.use(json());
@@ -51,6 +52,19 @@ app.post("/", async (req, res) => {
         }
     } catch (e) {
         res.status(500).json("error");
+    }
+});
+
+app.post("/resume-form", async (req, res) => {
+    const userId = req.body.userId; 
+    const formData = req.body.formData;
+
+    try {
+        const savedResume = await createResume(userId, formData);
+        res.status(201).json({ message: 'Resume submitted successfully!', resumeId: savedResume._id });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 });
 

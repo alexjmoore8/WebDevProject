@@ -170,7 +170,7 @@ export const coursesSchema = new mongoose.Schema({
         required: true,
     },
     course: {
-        name: {
+        title: {
             type: String,
             required: true,
         },
@@ -243,7 +243,7 @@ export const languagesSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    language: {
+    languages: {
         language: {
             type: String,
             required: true,
@@ -356,8 +356,8 @@ export const skillsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    skill: {
-        name: {
+    skills: {
+        skill: {
             type: String,
             required: true,
         },

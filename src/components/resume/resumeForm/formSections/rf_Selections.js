@@ -9,6 +9,8 @@ function ResumeSelections({data, handleChange, handleSectionSelection}) {
 
     return (
         <div>
+            <h2>Resume Selections</h2>
+            
             <label>ResumeTitle:</label>
             <input
                 type="text"

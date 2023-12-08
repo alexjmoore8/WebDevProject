@@ -18,7 +18,9 @@ function ResumeSocialMedia({data, handleChange}) {
 
     return (
         <div>
-            <label>Social Media Profiles</label>
+            <h2>Social Media Profiles</h2>
+            
+            <label>Section Title</label>
             <input
                 type="text"
                 name="sectionHeading"
