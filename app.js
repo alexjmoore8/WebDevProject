@@ -55,19 +55,6 @@ app.post("/", async (req, res) => {
     }
 });
 
-app.post("/resume-form", async (req, res) => {
-    const userId = req.body.userId; 
-    const formData = req.body.formData;
-
-    try {
-        const savedResume = await createResume(userId, formData);
-        res.status(201).json({ message: 'Resume submitted successfully!', resumeId: savedResume._id });
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
-    }
-});
-
 
 app.listen(3000, () => {
     console.log("port listening");

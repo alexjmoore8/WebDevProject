@@ -21,15 +21,8 @@ function ResumeSocialMedia({data, handleChange}) {
             <h2>Social Media Profiles</h2>
             
             <label>Section Title</label>
-            <input
-                type="text"
-                name="sectionHeading"
-                value={data.sectionHeading}
-                placeholder="Section title to display on resume" 
-                onChange={(e) => handleChange('ResumeSocialMedia', e.target.name, e.target.value)}
-            />
 
-            <label>Name???</label>
+            <label>Name</label>
             <input
                 type="text"
                 name="name"

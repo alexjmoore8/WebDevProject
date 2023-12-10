@@ -16,17 +16,17 @@ function ResumeWorkExperience({ data, handleChange }) {
             <label>Job Title</label>
             <input
                 type="text"
-                name="job.title"
-                value={data.job.title}
-                placeholder="Job Title"
+                name="job.position"
+                value={data.job.position}
+                placeholder="Job position"
                 onChange={(e) => handleChange('ResumeWorkExperience', 'job.title', e.target.value)}
             />
 
             <label>Company</label>
             <input
                 type="text"
-                name="job.company"
-                value={data.job.company}
+                name="job.organization"
+                value={data.job.organization}
                 placeholder="Company"
                 onChange={(e) => handleChange('ResumeWorkExperience', 'job.company', e.target.value)}
             />

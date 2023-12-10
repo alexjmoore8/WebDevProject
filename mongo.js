@@ -1,6 +1,6 @@
 //db setup
 import mongoose from 'mongoose';
-import * as subSchema from './src/components/resume/resumeForm/resumeSubSchemas.js';
+import * as subSchema from './src/components/resume/forms/resumeSubSchemas.js';
 
 mongoose.connect("mongodb://localhost:27017/react-login")
 .then(()=>{
@@ -37,7 +37,7 @@ const userSchema=new mongoose.Schema({
 const userCollection = mongoose.model("users", userSchema)
 
 const resumeSchema = new mongoose.Schema({
-    selections: subSchema.selectionsSchema,
+    controller: subSchema.controllerSchema,
     contact: subSchema.contactInfoSchema,
     socials: subSchema.socialsSchema,
     about: subSchema.aboutSchema,

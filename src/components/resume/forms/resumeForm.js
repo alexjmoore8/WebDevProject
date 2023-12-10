@@ -42,7 +42,6 @@ function ResumeForm() {
         volunteerExperience: true,
       },
       ResumeContactInfo: {
-        sectionHeading: '',
         firstName: '',
         lastName: '',
         email: '',
@@ -51,10 +50,11 @@ function ResumeForm() {
         pronouns: '',
       },
       ResumeSocialMedia: {
-        sectionHeading: '',
-        name: '',
-        link: '',
-        platformType: ''
+        profile: {
+          name: '',
+          link: '',
+          platformType: ''
+        }
       },
       ResumeAbout: {
         sectionHeading: '',
@@ -118,8 +118,8 @@ function ResumeForm() {
       ResumeWorkExperience: {
         sectionHeading: '',
         job: {
-          title: '',
-          company: '',
+          position: '',
+          organization: '',
           location: '',
           startDate: '',
           endDate: '',

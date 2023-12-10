@@ -21,15 +21,6 @@ function ResumeContactInfo({data, handleChange}) {
     return (
         <div>
         <h2>Contact Info</h2>
-        
-        <label>Section Title</label>
-        <input
-            type="text"
-            name="sectionHeading"
-            value={data.sectionHeading}
-            placeholder="Section title to display on resume"
-            onChange={(e) => handleChange('ResumeContactInfo', e.target.name, e.target.value)}
-        />
 
         <label>First Name</label>
         <input

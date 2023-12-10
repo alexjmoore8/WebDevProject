@@ -1,10 +1,23 @@
 import mongoose from 'mongoose';
 
-export const selectionsSchema = new mongoose.Schema({
+export const controllerSchema = new mongoose.Schema({
     resumeTitle: {
         type: String,
         required: true,
     },
+    layout: {
+        type: String,
+        required: true,
+    },
+    style: {
+        type: String,
+        required: true,
+    },
+    sections:  sectionsSchema
+})
+
+export const sectionsSchema = new mongoose.Schema({
+
     contact: {
         type: Boolean,
         required: true,
@@ -52,22 +65,10 @@ export const selectionsSchema = new mongoose.Schema({
     volunteerExperience: {
         type: Boolean,
         required: true,
-    },
-    layout: {
-        type: String,
-        required: true,
-    },
-    style: {
-        type: String,
-        required: true,
     }
 })
 
 export const contactInfoSchema = new mongoose.Schema({
-    sectionHeading: {
-        type: String,
-        required: true,
-    },
     firstName: {
         type: String,
         required: true,
@@ -103,10 +104,6 @@ export const contactInfoSchema = new mongoose.Schema({
 })
 
 export const socialsSchema = new mongoose.Schema({
-    sectionHeading: {
-        type: String,
-        required: true,
-    },
     name: {
         type: String,
         required: true,
