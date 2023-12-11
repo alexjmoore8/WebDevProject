@@ -13,9 +13,14 @@ import ResumeProjects from './formSections/rf_Projects.js';
 import ResumeExperience from './formSections/rf_Experience.js';
 import ResumeSkills from './formSections/rf_Skills.js';
 import './css/form.css';
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import './css/form.css';
+
+
 
 function ResumeForm() {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({ 
       ResumeSelections: {
         resumeTitle: '',
@@ -148,15 +153,16 @@ function ResumeForm() {
 
   const [currentStep, setCurrentStep] = useState(1);
 
-  const handleChange = (step, field, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [step]: {
-        ...prevData[step],
-        [field]: value,
-      },
+  const handleChange = (section, field, value) => {
+    setFormData(prevData => ({
+        ...prevData,
+        [section]: {
+            ...prevData[section],
+            [field]: value,
+        }
     }));
-  };
+};
+
     
   const handleNext = () => {
     setCurrentStep((prevStep) => prevStep + 1);
@@ -167,67 +173,76 @@ function ResumeForm() {
   };
 
   const transformFormDataForMongoDB = (formData) => {
-    return {
-      controller: {
-        resumeTitle: formData.ResumeSelections.resumeTitle,
-        layout: formData.ResumeSelections.layout,
-        style: formData.ResumeSelections.style,
-        sections: {
-          // Add all section booleans here
-          contact: formData.ResumeSelections.contact,
-          socials: formData.ResumeSelections.socials,
-          // ... other sections
+    const selections = formData.ResumeSelections;
+    const transformedData = { 
+        controller: {
+            resumeTitle: selections.resumeTitle,
+            layout: selections.layout,
+            style: selections.style,
+            sections: selections
         }
-      },
-      contactInfo: {
-        firstName: formData.ResumeContactInfo.firstName,
-        lastName: formData.ResumeContactInfo.lastName,
-        email: formData.ResumeContactInfo.email,
-        location: {
-          city: formData.ResumeContactInfo.location, // Assuming city is stored here
-          state: '', // TODO: Add state to your form or handle it here
-          country: '' // TODO: Add country to your form or handle it here
-        },
-        phone: formData.ResumeContactInfo.phone,
-        pronouns: formData.ResumeContactInfo.pronouns,
-      },
-      socials: [
-        // Assuming multiple social media profiles can be added
-        ...formData.ResumeSocialMedia.profile.map(profile => ({
-          name: profile.name,
-          link: profile.link,
-          platformType: profile.platformType
-        }))
-      ],
-      // ... Similar transformations for other sections
     };
-  };
-  
-  
-  const handleSubmit = async () => {
-    try {
-      const transformedData = transformFormDataForMongoDB(formData);
-  
-      const response = await fetch('/resume-form', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(transformedData),
-      });
-  
-      if (response.ok) {
-        console.log('Resume submitted successfully!');
-        // Additional success handling
-      } else {
-        console.error('Error submitting resume:', response.statusText);
-        // Additional error handling
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      // Additional error handling
+
+    if (selections.contact) {
+        transformedData.contact = { ...formData.ResumeContactInfo };
     }
-  };
+    if (selections.socials) {
+        transformedData.socials = formData.ResumeSocialMedia.profile;
+    }
+    if (selections.about) {
+        transformedData.about = formData.ResumeAbout;
+    }
+    if (selections.education) {
+        transformedData.education = formData.ResumeEducation;
+    }
+    if (selections.courses) {
+        transformedData.courses = formData.ResumeCourses.course;
+    }
+    if (selections.certifications) {
+        transformedData.certifications = formData.ResumeCertifications.certification;
+    }
+    if (selections.publications) {
+        transformedData.publications = formData.ResumePublications.publication;
+    }
+    if (selections.languages) {
+        transformedData.languages = formData.ResumeLanguages.language;
+    }
+    if (selections.projects) {
+        transformedData.projects = formData.ResumeProjects.project;
+    }
+    if (selections.experience) {
+        transformedData.experience = formData.ResumeExperience.job;
+    }
+    if (selections.skills) {
+        transformedData.skills = formData.ResumeSkills.skill;
+    }
+
+    return transformedData;
+};
+  
+  
+  
+  
+  const [message, setMessage] = useState(''); // For displaying error messages
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+        const transformedData = transformFormDataForMongoDB(formData);
+        const response = await axios.post("http://localhost:3000/resume/form", transformedData);
+
+        if (response.data === "Resume submission successful") {
+            navigate("/home"); // Replace "/home" with the actual path of your homepage
+        } else {
+            setMessage("Error submitting resume");
+        }
+    } catch (error) {
+        console.error("Resume submission error", error.message);
+        setMessage("Error during resume submission");
+    }
+}
+  
   
 
   const renderForm = () => {
