@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
+import StateDropdown from './sectionComponents/state.js';
 
 function ResumeEducation({ data, handleChange }) {
   const [educations, setEducations] = useState(data.educations || [{}]);
+
+  const [selectedState, setSelectedState] = useState('');
+
+  const handleStateChange = (e) => {
+    setSelectedState(e.target.value);
+  };
 
   const handleAddEducation = () => {
     if (educations.length < 5) {
@@ -45,14 +52,19 @@ function ResumeEducation({ data, handleChange }) {
             onChange={(e) => handleInputChange(index, 'institution', e.target.value)}
           />
 
-          <label>Location</label>
-          <input
+        <label>City</label>
+        <input
             type="text"
-            name={`educations[${index}].location`}
-            value={education.location || ''}
-            placeholder="Location"
-            onChange={(e) => handleInputChange(index, 'location', e.target.value)}
-          />
+            name="location.city"
+            value={data.location.city}
+            placeholder="City"
+            onChange={(e) => handleChange('ResumeContactInfo', e.target.name, e.target.value)}
+        />
+
+        <label>State</label>
+        <div>
+            <StateDropdown value={selectedState} handleChange={handleStateChange} />
+        </div>
 
           <label>Degree</label>
           <input

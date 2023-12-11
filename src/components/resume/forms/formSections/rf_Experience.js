@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
+import StateDropdown from './sectionComponents/state.js';
 
 function ResumeExperience({ data, handleChange }) {
   const initialExperience = data.experience || [{}]; // Ensure it's initialized as an array
   const [experience, setExperience] = useState(initialExperience);
+
+  const [selectedState, setSelectedState] = useState('');
+
+  const handleStateChange = (e) => {
+    setSelectedState(e.target.value);
+  };
+
 
   const handleAddExperience = () => {
     if (experience.length < 10) {
@@ -34,13 +42,13 @@ function ResumeExperience({ data, handleChange }) {
         onChange={(e) => handleChange('ResumeExperience', e.target.name, e.target.value)}
       />
 
-      {experience.map((exp, index) => (
+      {experience.map((data, index) => (
         <div key={index}>
           <label>Job Title</label>
           <input
             type="text"
             name={`experience[${index}].position`}
-            value={exp.position || ''}
+            value={data.position || ''}
             placeholder="Job position"
             onChange={(e) => handleInputChange(index, 'position', e.target.value)}
           />
@@ -49,34 +57,30 @@ function ResumeExperience({ data, handleChange }) {
           <input
             type="text"
             name={`experience[${index}].organization`}
-            value={exp.organization || ''}
+            value={data.organization || ''}
             placeholder="Company"
             onChange={(e) => handleInputChange(index, 'organization', e.target.value)}
           />
 
-          <label>Location</label>
+          <label>City</label>
           <input
-            type="text"
-            name={`experience[${index}].location`}
-            value={exp.location || ''}
-            placeholder="Location"
-            onChange={(e) => handleInputChange(index, 'location', e.target.value)}
+              type="text"
+              name="location.city"
+              value={data.location.city}
+              placeholder="City"
+              onChange={(e) => handleChange('ResumeContactInfo', e.target.name, e.target.value)}
           />
 
-          <label>Start Date</label>
-          <input
-            type="text"
-            name={`experience[${index}].startDate`}
-            value={exp.startDate || ''}
-            placeholder="Start Date"
-            onChange={(e) => handleInputChange(index, 'startDate', e.target.value)}
-          />
+          <label>State</label>
+          <div>
+              <StateDropdown value={selectedState} handleChange={handleStateChange} />
+          </div>
 
           <label>End Date</label>
           <input
             type="text"
             name={`experience[${index}].endDate`}
-            value={exp.endDate || ''}
+            value={data.endDate || ''}
             placeholder="End Date"
             onChange={(e) => handleInputChange(index, 'endDate', e.target.value)}
           />
@@ -84,7 +88,7 @@ function ResumeExperience({ data, handleChange }) {
           <label>Bullets</label>
           <textarea
             name={`experience[${index}].bullets`}
-            value={exp.bullets ? exp.bullets.join('\n') : ''}
+            value={data.bullets ? data.bullets.join('\n') : ''}
             placeholder="Job Bullets (one per line)"
             onChange={(e) => handleInputChange(index, 'bullets', e.target.value.split('\n'))}
           />
@@ -93,7 +97,7 @@ function ResumeExperience({ data, handleChange }) {
           <input
             type="text"
             name={`experience[${index}].tags`}
-            value={exp.tags ? exp.tags.join(', ') : ''}
+            value={data.tags ? data.tags.join(', ') : ''}
             placeholder="Tags (comma-separated)"
             onChange={(e) => handleInputChange(index, 'tags', e.target.value.split(', '))}
           />

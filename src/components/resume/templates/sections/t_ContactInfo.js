@@ -22,7 +22,7 @@ const ContactSection = ({ contact, socialsData }) => {
     return (
       <div>
         {socialsData.profile.map((profile, index) => (
-          <div key={index}>{`${profile.name}: ${profile.link}`}</div>
+          <div key={index}>{`${profile.name}`}</div>
         ))}
       </div>
     );

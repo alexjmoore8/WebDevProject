@@ -52,20 +52,28 @@
     "school": [
       {
         "institution": "University of Fakeville",
-        "location": "Cityville, Stateville",
         "degree": "Bachelor of Science in Computer Science",
         "major": "Computer Science",
         "startDate": "2018-09",
         "endDate": "2022-05",
+        "location": {
+          "city": "Cityville",
+          "state": "Stateville",
+          "country": "Countryland"
+        },
         "gpa": "3.8"
       },
       {
         "institution": "University of Fakeville",
-        "location": "Cityville, Stateville",
         "degree": "Bachelor of Science in Computer Science",
         "major": "Computer Science",
         "startDate": "2018-09",
         "endDate": "2022-05",
+        "location": {
+          "city": "Cityville",
+          "state": "Stateville",
+          "country": "Countryland"
+        },
         "gpa": "3.8"
       }
     ]
@@ -74,22 +82,22 @@
     "sectionHeading": "Courses",
     "course": [
       {
-        "title": "Advanced Web Development",
+        "title": "Advanced Web Development1",
         "school": "Online Course Platform",
         "tags": ["Web Development", "Programming"]
       },
       {
-        "title": "Advanced Web Development",
+        "title": "Advanced Web Development2",
         "school": "Online Course Platform",
         "tags": ["Web Development", "Programming"]
       },
       {
-        "title": "Advanced Web Development",
+        "title": "Advanced Web Development3",
         "school": "Online Course Platform",
         "tags": ["Web Development", "Programming"]
       },
       {
-        "title": "Advanced Web Development",
+        "title": "Advanced Web Development4",
         "school": "Online Course Platform",
         "tags": ["Web Development", "Programming"]
       }
@@ -105,19 +113,19 @@
         "tags": ["Web Development", "Certification"]
       },
       {
-        "name": "Certified Web Developer",
+        "name": "Certified Web Developer1",
         "organization": "Tech Certification Institute",
         "date": "2023-01-15",
         "tags": ["Web Development", "Certification"]
       },
       {
-        "name": "Certified Web Developer",
+        "name": "Certified Web Developer2",
         "organization": "Tech Certification Institute",
         "date": "2023-01-15",
         "tags": ["Web Development", "Certification"]
       },
       {
-        "name": "Certified Web Developer",
+        "name": "Certified Web Developer3",
         "organization": "Tech Certification Institute",
         "date": "2023-01-15",
         "tags": ["Web Development", "Certification"]
@@ -128,28 +136,28 @@
     "sectionHeading": "Publications",
     "publication": [
       {
-        "title": "Exploring New Frontiers in Technology",
+        "title": "Exploring New Frontiers in Technology1",
         "publisher": "Tech Journal",
         "date": "2022-12-01",
         "link": "https://example.com/article",
         "tags": ["Technology", "Innovation"]
       },
       {
-        "title": "Exploring New Frontiers in Technology",
+        "title": "Exploring New Frontiers in Technology2",
         "publisher": "Tech Journal",
         "date": "2022-12-01",
         "link": "https://example.com/article",
         "tags": ["Technology", "Innovation"]
       },
       {
-        "title": "Exploring New Frontiers in Technology",
+        "title": "Exploring New Frontiers in Technology3",
         "publisher": "Tech Journal",
         "date": "2022-12-01",
         "link": "https://example.com/article",
         "tags": ["Technology", "Innovation"]
       },
       {
-        "title": "Exploring New Frontiers in Technology",
+        "title": "Exploring New Frontiers in Technology4",
         "publisher": "Tech Journal",
         "date": "2022-12-01",
         "link": "https://example.com/article",
@@ -193,7 +201,11 @@
       {
         "position": "Software Engineer",
         "organization": "Tech Innovators",
-        "location": "Tech City",
+        "location": {
+          "city": "Cityville",
+          "state": "Stateville",
+          "country": "Countryland"
+        },
         "startDate": "2022-06",
         "endDate": "Present",
         "bullets": [
@@ -205,7 +217,11 @@
       {
         "position": "Other Software Engineer",
         "organization": "Other Tech Innovators",
-        "location": "Tech City",
+        "location": {
+          "city": "Cityville",
+          "state": "Stateville",
+          "country": "Countryland"
+        },
         "startDate": "2021-06",
         "endDate": "2022-06",
         "bullets": [
@@ -217,7 +233,11 @@
       {
         "position": "Community Volunteer",
         "organization": "Local Community Organization",
-        "location": "Communityville",
+        "location": {
+          "city": "Cityville",
+          "state": "Stateville",
+          "country": "Countryland"
+        },
         "startDate": "2020-01",
         "endDate": "2022-05",
         "link": "https://example.com/community",
@@ -228,9 +248,13 @@
         "tags": ["Community Service", "Volunteering"]
       },
       {
-        "position": "Community Volunteer",
+        "position": "Other Community Volunteer",
         "organization": "Local Community Organization",
-        "location": "Communityville",
+        "location": {
+          "city": "Cityville",
+          "state": "Stateville",
+          "country": "Countryland"
+        },
         "startDate": "2020-01",
         "endDate": "2022-05",
         "link": "https://example.com/community",

@@ -136,8 +136,17 @@ export const educationSchema = new mongoose.Schema({
             required: true,
         },
         location: {
-            type: String,
-            required: true,
+            city: {
+                type: String,
+                required:true,
+            },
+            state: {
+                type: String,
+                required:true,  
+            },
+            country: {
+                type: String,
+            }
         },
         degree: {
             type: String,
@@ -287,8 +296,17 @@ export const experienceSchema = new mongoose.Schema({
             required: true,
         },
         location: {
-            type: String,
-            required: true,
+            city: {
+                type: String,
+                required:true,
+            },
+            state: {
+                type: String,
+                required:true,  
+            },
+            country: {
+                type: String,
+            }
         },
         startDate: {
             type: String,
