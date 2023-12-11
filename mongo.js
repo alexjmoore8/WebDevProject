@@ -47,8 +47,7 @@ const resumeSchema = new mongoose.Schema({
     publications: subSchema.publicationsSchema,
     languages: subSchema.languagesSchema,
     projects: subSchema.projectsSchema,
-    workExperience: subSchema.workExperienceSchema,
-    volunteerExperience: subSchema.volunteerExperienceSchema,
+    experience: subSchema.experienceSchema,
     skills: subSchema.skillsSchema,
 });
 

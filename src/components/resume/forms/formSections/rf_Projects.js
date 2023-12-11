@@ -1,55 +1,87 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function ResumeProjects({ data, handleChange }) {
-    return (
-        <div>
-            <h2>Projects</h2>
-            
-            <label>Section Title</label>
-            <input
-                type="text"
-                name="sectionHeading"
-                value={data.sectionHeading}
-                placeholder="Section title to display on resume"
-                onChange={(e) => handleChange('ResumeProjects', e.target.name, e.target.value)}
-            />
+  const initialProjects = data.projects || [{}]; // Ensure it's initialized as an array
+  const [projects, setProjects] = useState(initialProjects);
 
-            <label>Project Title</label>
-            <input
-                type="text"
-                name="project.title"
-                value={data.project.title}
-                placeholder="Project Title"
-                onChange={(e) => handleChange('ResumeProjects', 'project.title', e.target.value)}
-            />
+  const handleAddProject = () => {
+    if (projects.length < 6) {
+      setProjects([...projects, {}]);
+    }
+  };
 
-            <label>Description</label>
-            <textarea
-                name="project.description"
-                value={data.project.description}
-                placeholder="Project Description"
-                onChange={(e) => handleChange('ResumeProjects', 'project.description', e.target.value)}
-            />
+  const handleRemoveProject = (index) => {
+    const updatedProjects = [...projects];
+    updatedProjects.splice(index, 1);
+    setProjects(updatedProjects);
+  };
 
-            <label>Link</label>
-            <input
-                type="text"
-                name="project.link"
-                value={data.project.link}
-                placeholder="Link"
-                onChange={(e) => handleChange('ResumeProjects', 'project.link', e.target.value)}
-            />
+  const handleInputChange = (index, field, value) => {
+    const updatedProjects = [...projects];
+    updatedProjects[index][field] = value;
+    setProjects(updatedProjects);
+  };
 
-            <label>Tags</label>
-            <input
-                type="text"
-                name="project.tags"
-                value={data.project.tags.join(', ')} // Join array elements into a string
-                placeholder="Tags (comma-separated)"
-                onChange={(e) => handleChange('ResumeProjects', 'project.tags', e.target.value.split(', '))}
-            />
+  return (
+    <div>
+      <h2>Projects</h2>
+      <label>Section Title</label>
+      <input
+        type="text"
+        name="sectionHeading"
+        value={data.sectionHeading}
+        placeholder="Section title to display on resume"
+        onChange={(e) => handleChange('ResumeProjects', e.target.name, e.target.value)}
+      />
+
+      {projects.map((project, index) => (
+        <div key={index}>
+          <label>Project Title</label>
+          <input
+            type="text"
+            name={`projects[${index}].title`}
+            value={project.title || ''}
+            placeholder="Project Title"
+            onChange={(e) => handleInputChange(index, 'title', e.target.value)}
+          />
+
+          <label>Description</label>
+          <textarea
+            name={`projects[${index}].description`}
+            value={project.description || ''}
+            placeholder="Project Description"
+            onChange={(e) => handleInputChange(index, 'description', e.target.value)}
+          />
+
+          <label>Link</label>
+          <input
+            type="text"
+            name={`projects[${index}].link`}
+            value={project.link || ''}
+            placeholder="Link"
+            onChange={(e) => handleInputChange(index, 'link', e.target.value)}
+          />
+
+          <label>Tags</label>
+          <input
+            type="text"
+            name={`projects[${index}].tags`}
+            value={project.tags ? project.tags.join(', ') : ''}
+            placeholder="Tags (comma-separated)"
+            onChange={(e) => handleInputChange(index, 'tags', e.target.value.split(', '))}
+          />
+
+          {projects.length > 1 && (
+            <button onClick={() => handleRemoveProject(index)}>Remove</button>
+          )}
         </div>
-    );
+      ))}
+
+      {projects.length < 6 && (
+        <button onClick={handleAddProject}>Add Project</button>
+      )}
+    </div>
+  );
 }
 
 export default ResumeProjects;

@@ -1,21 +1,5 @@
 import mongoose from 'mongoose';
 
-export const controllerSchema = new mongoose.Schema({
-    resumeTitle: {
-        type: String,
-        required: true,
-    },
-    layout: {
-        type: String,
-        required: true,
-    },
-    style: {
-        type: String,
-        required: true,
-    },
-    sections:  sectionsSchema
-})
-
 export const sectionsSchema = new mongoose.Schema({
 
     contact: {
@@ -58,14 +42,26 @@ export const sectionsSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
     },
-    workExperience: {
-        type: Boolean,
-        required: true,
-    },
-    volunteerExperience: {
+    experience: {
         type: Boolean,
         required: true,
     }
+})
+
+export const controllerSchema = new mongoose.Schema({
+    resumeTitle: {
+        type: String,
+        required: true,
+    },
+    layout: {
+        type: String,
+        required: true,
+    },
+    style: {
+        type: String,
+        required: true,
+    },
+    sections:  sectionsSchema
 })
 
 export const contactInfoSchema = new mongoose.Schema({
@@ -276,7 +272,7 @@ export const projectsSchema = new mongoose.Schema({
     }
 })
 
-export const workExperienceSchema = new mongoose.Schema({
+export const experienceSchema = new mongoose.Schema({
     sectionHeading: {
         type: String,
         required: true,
@@ -303,43 +299,6 @@ export const workExperienceSchema = new mongoose.Schema({
         bullets: {
             type: Array,
             required: true,
-        },
-        tags:
-        {
-            type: Array
-        }
-    }
-})
-
-export const volunteerExperienceSchema = new mongoose.Schema({
-    sectionHeading: {
-        type: String,
-        required: true,
-    },
-    job: {
-        position: {
-            type: String,
-            required: true,
-        },
-        organization: {
-            type: String,
-            required: true,
-        },
-        location: {
-            type: String,
-            required: true,
-        },
-        startDate: {
-            type: String,
-        },
-        endDate: {
-            type: String,
-        },
-        link: {
-            type: String,
-        },
-        bullets: {
-            type: Array,
         },
         tags:
         {

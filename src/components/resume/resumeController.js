@@ -27,8 +27,7 @@ const Controller = () => {
         publications,
         languages,
         projects,
-        workExperience,
-        volunteerExperience,
+        experience,
         skills
      } = resumeData;
 
@@ -48,8 +47,7 @@ const Controller = () => {
                     publications,
                     languages,
                     projects,
-                    workExperience,
-                    volunteerExperience,
+                    experience,
                     skills
             }}
             />

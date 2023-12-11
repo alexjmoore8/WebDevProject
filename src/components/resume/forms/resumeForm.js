@@ -1,12 +1,5 @@
-// TODO: Fix navigation issues
-// TODO: Fix fields that aren't working (subsection fields not working)
-// TODO: Make field inputs more user friendly
-// TODO: Get selection process working properly
-
+// TODO: fix back button when section is removed
 import React, { useState } from 'react';
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
-// import * as helper from '../../helper/helper.js';
 import ResumeSelections from './formSections/rf_Selections.js';
 import ResumeContactInfo from './formSections/rf_ContactInfo.js';
 import ResumeSocialMedia from './formSections/rf_Socials.js';
@@ -17,9 +10,9 @@ import ResumeCertifications from './formSections/rf_Certifications.js';
 import ResumePublications from './formSections/rf_Publications.js';
 import ResumeLanguages from './formSections/rf_Languages.js';
 import ResumeProjects from './formSections/rf_Projects.js';
-import ResumeWorkExperience from './formSections/rf_WorkExperience.js';
-import ResumeVolunteerExperience from './formSections/rf_VolunteerExperience.js';
+import ResumeExperience from './formSections/rf_Experience.js';
 import ResumeSkills from './formSections/rf_Skills.js';
+import './css/form.css';
 
 function ResumeForm() {
     // const navigate = useNavigate();
@@ -38,8 +31,7 @@ function ResumeForm() {
         publications: true,
         languages: true,
         projects: true,
-        workExperience: true,
-        volunteerExperience: true,
+        experience: true,
       },
       ResumeContactInfo: {
         firstName: '',
@@ -101,7 +93,7 @@ function ResumeForm() {
       },
       ResumeLanguages: {
         sectionHeading: '',
-        languages: {
+        language: {
             language: '',
             level: '',
         }
@@ -115,7 +107,7 @@ function ResumeForm() {
           tags: []
         }
       },
-      ResumeWorkExperience: {
+      ResumeExperience: {
         sectionHeading: '',
         job: {
           position: '',
@@ -123,26 +115,13 @@ function ResumeForm() {
           location: '',
           startDate: '',
           endDate: '',
-          bullets: [],
-          tags: []
-        }
-      },
-      ResumeVolunteerExperience: {
-        sectionHeading: '',
-        job: {
-          position: '',
-          organization: '',
-          location: '',
-          startDate: '',
-          endDate: '',
-          link: '',
           bullets: [],
           tags: []
         }
       },
       ResumeSkills: {
         sectionHeading: '',
-        skills: {
+        skill: {
           skill: '',
           level: '',
       }
@@ -160,6 +139,12 @@ function ResumeForm() {
       );
     }
   };
+
+  const handleSelectionChange = (sectionName, isSelected) => {
+    handleChange('ResumeSelections', sectionName, isSelected);
+    handleSectionSelection(sectionName, isSelected);
+  };
+
 
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -310,28 +295,17 @@ function ResumeForm() {
       return renderNextStep();
 
     case 11:
-      if (formData.ResumeSelections.workExperience) {
+      if (formData.ResumeSelections.experience) {
         return (
-          <ResumeWorkExperience
+          <ResumeExperience
             handleChange={handleChange}
-            data={formData.ResumeWorkExperience}
+            data={formData.ResumeExperience}
           />
         );
       }
       return renderNextStep();
 
     case 12:
-      if (formData.ResumeSelections.volunteerExperience) {
-        return (
-          <ResumeVolunteerExperience
-            handleChange={handleChange}
-            data={formData.ResumeVolunteerExperience}
-          />
-        );
-      }
-      return renderNextStep();
-
-    case 13:
       if (formData.ResumeSelections.skills) { 
         return (
           <ResumeSkills
@@ -350,9 +324,7 @@ function ResumeForm() {
 
   const renderNextStep = () => {
     const nextStep = currentStep + 1;
-    if (nextStep <= 3) {
       setCurrentStep(nextStep);
-    }
   };
 
   return (

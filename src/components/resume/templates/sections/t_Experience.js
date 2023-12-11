@@ -1,7 +1,7 @@
 import React from 'react';
 
-const WorkExperienceSection = ({ workExperience }) => {
-  if (!workExperience || !workExperience.job || !Array.isArray(workExperience.job)) {
+const ExperienceSection = ({ experience }) => {
+  if (!experience || !experience.job || !Array.isArray(experience.job)) {
     // Return some default content or a message indicating the data is not available
     return <div>No work experience data available.</div>;
   }
@@ -21,10 +21,10 @@ const WorkExperienceSection = ({ workExperience }) => {
 
   return (
     <div>
-      <div>{workExperience.sectionHeading}</div>
-      {workExperience.job.map((job, index) => renderJob(job))}
+      <div>{experience.sectionHeading}</div>
+      {experience.job.map((job, index) => renderJob(job))}
     </div>
   );
 }
 
-export default WorkExperienceSection;
+export default ExperienceSection;

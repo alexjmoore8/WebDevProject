@@ -2,7 +2,7 @@ import React from "react";
 // import axios from "axios";
 // import { useNavigate, Link } from "react-router-dom";
 
-function ResumeSelections({data, handleChange, handleSectionSelection}) {
+function ResumeSelections({data, handleChange, handleSectionChange}) {
     const handleCheckboxChange = (name) => {
         handleChange('ResumeSelections', name, !data[name]);
     };
@@ -136,22 +136,13 @@ function ResumeSelections({data, handleChange, handleSectionSelection}) {
                 <label>
                 <input
                     type="checkbox"
-                    name="workExperience"
-                    checked={data.workExperience}
-                    onChange={() => handleCheckboxChange('workExperience')}
+                    name="experience"
+                    checked={data.experience}
+                    onChange={() => handleCheckboxChange('experience')}
                 />
-                Work Experience
+                Experience
                 </label>
 
-                <label>
-                <input
-                    type="checkbox"
-                    name="volunteerExperience"
-                    checked={data.volunteerExperience}
-                    onChange={() => handleCheckboxChange('volunteerExperience')}
-                />
-                Volunteer Experience
-                </label>
 
                 <label>
                 <input

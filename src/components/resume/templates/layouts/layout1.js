@@ -1,10 +1,8 @@
 import React from 'react';
 import ContactSection from '../sections/t_ContactInfo.js';
-import WorkExperienceSection from '../sections/t_WorkExperience.js';
-import VolunteerExperienceSection from '../sections/t_VolunteerExperience.js';
+import ExperienceSection from '../sections/t_Experience.js';
 import DynamicResume from '../dynamicResume.js';
 import DynamicSection from '../sections/dynamicSection.js';
-import ExperienceContainer from '../sections/ExperienceContainer.js';
 
 
 const ResumeLayout1 = ({ layout, style, selectedSections, sectionData }) => {
@@ -22,7 +20,7 @@ const ResumeLayout1 = ({ layout, style, selectedSections, sectionData }) => {
 
           {selectedSections &&
             selectedSections.map((section, index) => (
-            <ExperienceContainer key={index} section={section} data={sectionData[section]} />
+            <ExperienceSection key={index} section={section} data={sectionData[section]} />
           ))}
   
           {selectedSections &&

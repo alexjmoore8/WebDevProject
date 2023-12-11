@@ -1,47 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function ResumeCourses({ data, handleChange }) {
-    return (
-        <div>
-            <h2>Courses</h2>
-            
-            <label>Section Title</label>
-            <input
-                type="text"
-                name="sectionHeading"
-                value={data.sectionHeading}
-                placeholder="Section title to display on resume"
-                onChange={(e) => handleChange('ResumeCourses', e.target.name, e.target.value)}
-            />
+  const [courses, setCourses] = useState(data.courses || [{}]);
 
-            <label>Course Name</label>
-            <input
-                type="text"
-                name="course.title"
-                value={data.course.title}
-                placeholder="Course Name"
-                onChange={(e) => handleChange('ResumeCourses', 'course.name', e.target.value)}
-            />
+  const handleAddCourse = () => {
+    if (courses.length < 12) {
+      setCourses([...courses, {}]);
+    }
+  };
 
-            <label>School</label>
-            <input
-                type="text"
-                name="course.school"
-                value={data.course.school}
-                placeholder="School"
-                onChange={(e) => handleChange('ResumeCourses', 'course.school', e.target.value)}
-            />
+  const handleRemoveCourse = (index) => {
+    const updatedCourses = [...courses];
+    updatedCourses.splice(index, 1);
+    setCourses(updatedCourses);
+  };
 
-            <label>Tags</label>
-            <input
-                type="text"
-                name="course.tags"
-                value={data.course.tags.join(', ')} // Join array elements into a string
-                placeholder="Tags (comma-separated)"
-                onChange={(e) => handleChange('ResumeCourses', 'course.tags', e.target.value.split(', '))}
-            />
+  const handleInputChange = (index, field, value) => {
+    const updatedCourses = [...courses];
+    updatedCourses[index][field] = value;
+    setCourses(updatedCourses);
+  };
+
+  return (
+    <div>
+      <h2>Courses</h2>
+      <label>Section Title</label>
+      <input
+        type="text"
+        name="sectionHeading"
+        value={data.sectionHeading}
+        placeholder="Section title to display on resume"
+        onChange={(e) => handleChange('ResumeCourses', e.target.name, e.target.value)}
+      />
+
+      {courses.map((course, index) => (
+        <div key={index}>
+          <label>Course Name</label>
+          <input
+            type="text"
+            name={`courses[${index}].title`}
+            value={course.title || ''}
+            placeholder="Course Name"
+            onChange={(e) => handleInputChange(index, 'title', e.target.value)}
+          />
+
+          <label>School</label>
+          <input
+            type="text"
+            name={`courses[${index}].school`}
+            value={course.school || ''}
+            placeholder="School"
+            onChange={(e) => handleInputChange(index, 'school', e.target.value)}
+          />
+
+          <label>Tags</label>
+          <input
+            type="text"
+            name={`courses[${index}].tags`}
+            value={course.tags ? course.tags.join(', ') : ''}
+            placeholder="Tags (comma-separated)"
+            onChange={(e) => {
+              const tagsArray = e.target.value.split(', ').filter((tag) => tag.trim() !== '');
+              handleInputChange(index, 'tags', tagsArray);
+            }}
+          />
+
+          <button onClick={() => handleRemoveCourse(index)}>Remove</button>
         </div>
-    );
+      ))}
+
+      {courses.length < 12 && (
+        <button onClick={handleAddCourse}>Add Course</button>
+      )}
+    </div>
+  );
 }
 
 export default ResumeCourses;

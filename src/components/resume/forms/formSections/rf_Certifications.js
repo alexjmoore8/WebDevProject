@@ -1,56 +1,88 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function ResumeCertifications({ data, handleChange }) {
-    return (
-        <div>
-            <h2>Certifications</h2>
-            
-            <label>Section Title</label>
-            <input
-                type="text"
-                name="sectionHeading"
-                value={data.sectionHeading}
-                placeholder="Section title to display on resume"
-                onChange={(e) => handleChange('ResumeCertifications', e.target.name, e.target.value)}
-            />
+  const [certifications, setCertifications] = useState(data.certifications || [{}]);
 
-            <label>Certification Name</label>
-            <input
-                type="text"
-                name="certification.name"
-                value={data.certification.name}
-                placeholder="Certification Name"
-                onChange={(e) => handleChange('ResumeCertifications', 'certification.name', e.target.value)}
-            />
+  const handleAddCertification = () => {
+    if (certifications.length < 10) {
+      setCertifications([...certifications, {}]);
+    }
+  };
 
-            <label>Organization</label>
-            <input
-                type="text"
-                name="certification.organization"
-                value={data.certification.organization}
-                placeholder="Organization"
-                onChange={(e) => handleChange('ResumeCertifications', 'certification.organization', e.target.value)}
-            />
+  const handleRemoveCertification = (index) => {
+    const updatedCertifications = [...certifications];
+    updatedCertifications.splice(index, 1);
+    setCertifications(updatedCertifications);
+  };
 
-            <label>Date</label>
-            <input
-                type="text"
-                name="certification.date"
-                value={data.certification.date}
-                placeholder="Date"
-                onChange={(e) => handleChange('ResumeCertifications', 'certification.date', e.target.value)}
-            />
+  const handleInputChange = (index, field, value) => {
+    const updatedCertifications = [...certifications];
+    updatedCertifications[index][field] = value;
+    setCertifications(updatedCertifications);
+  };
 
-            <label>Tags</label>
-            <input
-                type="text"
-                name="certification.tags"
-                value={data.certification.tags.join(', ')} // Join array elements into a string
-                placeholder="Tags (comma-separated)"
-                onChange={(e) => handleChange('ResumeCertifications', 'certification.tags', e.target.value.split(', '))}
-            />
+  return (
+    <div>
+      <h2>Certifications</h2>
+      <label>Section Title</label>
+      <input
+        type="text"
+        name="sectionHeading"
+        value={data.sectionHeading}
+        placeholder="Section title to display on resume"
+        onChange={(e) => handleChange('ResumeCertifications', e.target.name, e.target.value)}
+      />
+
+      {certifications.map((certification, index) => (
+        <div key={index}>
+          <label>Certification Name</label>
+          <input
+            type="text"
+            name={`certifications[${index}].name`}
+            value={certification.name || ''}
+            placeholder="Certification Name"
+            onChange={(e) => handleInputChange(index, 'name', e.target.value)}
+          />
+
+          <label>Organization</label>
+          <input
+            type="text"
+            name={`certifications[${index}].organization`}
+            value={certification.organization || ''}
+            placeholder="Organization"
+            onChange={(e) => handleInputChange(index, 'organization', e.target.value)}
+          />
+
+          <label>Date</label>
+          <input
+            type="text"
+            name={`certifications[${index}].date`}
+            value={certification.date || ''}
+            placeholder="Date"
+            onChange={(e) => handleInputChange(index, 'date', e.target.value)}
+          />
+
+          <label>Tags</label>
+          <input
+            type="text"
+            name={`certifications[${index}].tags`}
+            value={certification.tags ? certification.tags.join(', ') : ''}
+            placeholder="Tags (comma-separated)"
+            onChange={(e) => {
+              const tagsArray = e.target.value.split(', ').filter((tag) => tag.trim() !== '');
+              handleInputChange(index, 'tags', tagsArray);
+            }}
+          />
+
+          <button onClick={() => handleRemoveCertification(index)}>Remove</button>
         </div>
-    );
+      ))}
+
+      {certifications.length < 10 && (
+        <button onClick={handleAddCertification}>Add Certification</button>
+      )}
+    </div>
+  );
 }
 
 export default ResumeCertifications;
