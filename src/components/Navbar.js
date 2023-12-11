@@ -20,9 +20,10 @@ const Navbar = () => {
             <ul className="nav-links">
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
+                <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
             </ul>
 
-            <button onClick={handleLogout}>Logout</button>
+            
 
         </nav>
     );

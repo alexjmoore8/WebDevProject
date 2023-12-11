@@ -82,6 +82,7 @@ app.get('/logout', (req, res) => {
         res.status(400).send('Unable to log out')
       } else {
         res.send('Logout successful')
+
       }
     });
   } else {
