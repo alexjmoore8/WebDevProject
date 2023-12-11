@@ -38,6 +38,7 @@ const Controller = () => {
                 // style={controller.style}
                 selectedSections={Object.keys(controller.sections || {}).filter((section) => controller.sections[section])}
                 sectionData={{
+                    controller,
                     contact,
                     socials,
                     about,

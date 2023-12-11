@@ -10,11 +10,14 @@ import CoursesSection from '../sections/t_Courses.js';
 import SkillsSection from '../sections/t_Skills.js';
 import ProjectsSection from '../sections/t_Projects.js';
 import DynamicResume from '../dynamicResume.js';
+// import `../styles/{style}.css`;
 // import DynamicSection from '../sections/dynamicSection.js';
 
 
 const ResumeLayout1 = ({ layout, style, selectedSections, sectionData }) => {
   console.log('Rendering ResumeLayout1 with props:', { layout, style, selectedSections, sectionData });
+  const cssFile = `${sectionData.controller.style}.css`;
+  import(`../styles/${cssFile}`);
 
   return (
     <div layout={layout} style={style} >

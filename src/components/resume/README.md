@@ -15,6 +15,7 @@ The idea for this is that this first section of the form allows the user to dete
   - This is also where the spelling and grammar check should be implemented
 - Add more comprehensive rules for user selections once layouts are complete and the constraints for each section are clear
 - Style form with the same/similar styling as the login/signup forms
+- Fix dropdown boxes
 
 ### Files
 
