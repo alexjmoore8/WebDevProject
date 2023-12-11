@@ -9,7 +9,7 @@ const AboutSection = ({ about }) => {
 
   return (
     <div>
-      <div>{sectionHeading}</div>
+      <div><h2>{sectionHeading}</h2></div>
       <div>{summary}</div>
     </div>
   );

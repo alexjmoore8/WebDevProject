@@ -1,41 +1,24 @@
 import React from 'react';
-import SocialsSection from './t_Socials.js';
 
-const ContactSection = ({ contact, socialsData }) => {
-  const renderContact = () => {
-    const { location, phone, email } = contact;
-
-    return (
-      <div>
-        <div>{`${location.city}, ${location.state}`}</div>
-        <div>{phone}</div>
-        <div>{email}</div>
-      </div>
-    );
-  };
-
-  const renderSocials = () => {
-    if (!socialsData || !socialsData.profile || !Array.isArray(socialsData.profile)) {
-      return null;
-    }
-
-    return (
-      <div>
-        {socialsData.profile.map((profile, index) => (
-          <div key={index}>{`${profile.name}`}</div>
-        ))}
-      </div>
-    );
-  };
-
+const ContactInfoSection = ({ contact, socialsData }) => {
+  const { location, phone, email } = contact;
+  const profiles = socialsData?.profile || [];
 
   return (
     <div>
-      {renderContact()}
-      {renderSocials()}
+      <div>
+        {`${location.city}, ${location.state}`} | {phone} | {email} |{' '}
+        {profiles.map((profile, index) => (
+          <span key={index}>
+            <a href={profile.link} target="_blank" rel="">
+              {profile.name}
+            </a>
+            {index !== profiles.length - 1 && ' | '}
+          </span>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default ContactSection;
-
+export default ContactInfoSection;

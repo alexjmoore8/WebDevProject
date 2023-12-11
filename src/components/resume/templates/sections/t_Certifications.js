@@ -7,7 +7,7 @@ const CertificationsSection = ({ certifications }) => {
 
   return (
     <div>
-      <div>{certifications.sectionHeading}</div>
+      <div><h2>{certifications.sectionHeading}</h2></div>
       {certifications.certification.map((cert, index) => (
         <div key={index}>
           <div>{cert.name}</div>

@@ -10,18 +10,17 @@ const EducationSection = ({ education }) => {
 
     return (
       <div key={`${institution}-${degree}`}>
-        <div>{institution}</div>
+        <div>{degree}, {major}</div>
+        <div>{institution}{gpa ? ` / GPA ${gpa}` : ''}</div>
         <div>{`${location.city}, ${location.state}`}</div>
-        <div>{`${degree} in ${major}`}</div>
-        <div>{`Dates: ${startDate} - ${endDate}`}</div>
-        <div>{`GPA: ${gpa}`}</div>
+        <div>{`${startDate} - ${endDate}`}</div>
       </div>
     );
   };
 
   return (
     <div>
-      <div>{education.sectionHeading}</div>
+      <div><h2>{education.sectionHeading}</h2></div>
       {education.school.map((school, index) => renderSchool(school))}
     </div>
   );

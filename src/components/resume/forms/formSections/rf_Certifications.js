@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import MonthDropdown from './sectionComponents/month.js';
+import YearDropdown from './sectionComponents/year.js';
 
 function ResumeCertifications({ data, handleChange }) {
   const [certifications, setCertifications] = useState(data.certifications || [{}]);
@@ -20,6 +22,18 @@ function ResumeCertifications({ data, handleChange }) {
     updatedCertifications[index][field] = value;
     setCertifications(updatedCertifications);
   };
+
+
+    const [selectedMonth, setSelectedMonth] = useState('');
+    const [selectedYear, setSelectedYear] = useState('');
+
+    const handleMonthChange = (e) => {
+      setSelectedMonth(e.target.value);
+    };
+    
+    const handleYearChange = (e) => {
+      setSelectedYear(e.target.value);
+    };
 
   return (
     <div>
@@ -54,13 +68,10 @@ function ResumeCertifications({ data, handleChange }) {
           />
 
           <label>Date</label>
-          <input
-            type="text"
-            name={`certifications[${index}].date`}
-            value={certification.date || ''}
-            placeholder="Date"
-            onChange={(e) => handleInputChange(index, 'date', e.target.value)}
-          />
+          <div>
+          <MonthDropdown value={selectedMonth} onChange={handleMonthChange} />
+          <YearDropdown value={selectedYear} onChange={handleYearChange} startYear={2000} endYear={2030} />
+          </div>
 
           <label>Tags</label>
           <input

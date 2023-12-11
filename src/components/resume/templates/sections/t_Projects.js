@@ -7,13 +7,13 @@ const ProjectsSection = ({ projects }) => {
 
   return (
     <div>
-      <div>{projects.sectionHeading}</div>
+      <div><h2>{projects.sectionHeading}</h2></div>
       {projects.project.map((project, index) => (
         <div key={index}>
           <div>{project.title}</div>
           <div>{project.description}</div>
           <div>
-            <a href={project.link} target="_blank" rel="noopener noreferrer">
+            <a href={project.link} target="_blank" rel="">
               {project.link}
             </a>
           </div>

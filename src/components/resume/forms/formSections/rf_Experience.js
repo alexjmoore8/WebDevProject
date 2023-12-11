@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import StateDropdown from './sectionComponents/state.js';
+import MonthDropdown from './sectionComponents/month.js';
+import YearDropdown from './sectionComponents/year.js';
 
 function ResumeExperience({ data, handleChange }) {
   const initialExperience = data.experience || [{}]; // Ensure it's initialized as an array
@@ -11,10 +13,12 @@ function ResumeExperience({ data, handleChange }) {
     setSelectedState(e.target.value);
   };
 
-
   const handleAddExperience = () => {
     if (experience.length < 10) {
-      setExperience([...experience, {}]);
+      setExperience([
+        ...experience,
+        { location: { selectedState: '' } }
+      ]);
     }
   };
 
@@ -25,10 +29,14 @@ function ResumeExperience({ data, handleChange }) {
   };
 
   const handleInputChange = (index, field, value) => {
-    const updatedExperience = [...experience];
+  const updatedExperience = [...experience];
+    if (!updatedExperience[index].location) {
+      updatedExperience[index].location = {}; 
+    }
     updatedExperience[index][field] = value;
     setExperience(updatedExperience);
   };
+
 
   return (
     <div>
@@ -64,26 +72,40 @@ function ResumeExperience({ data, handleChange }) {
 
           <label>City</label>
           <input
-              type="text"
-              name="location.city"
-              value={data.location.city}
-              placeholder="City"
-              onChange={(e) => handleChange('ResumeContactInfo', e.target.name, e.target.value)}
+            type="text"
+            name={`experiences[${index}].location.city`} // Use the correct name
+            value={data.location ? data.location.city || '' : ''}
+            placeholder="City"
+            onChange={(e) => handleInputChange(index, 'location.city', e.target.value)} // Update the field path
           />
 
           <label>State</label>
           <div>
-              <StateDropdown value={selectedState} handleChange={handleStateChange} />
+              <StateDropdown value={selectedState} onChange={handleStateChange} />
+          </div>
+
+          <div>
+            <MonthDropdown
+              value={data.startDateMonth || ''}
+              onChange={(e) => handleInputChange(index, 'startDateMonth', e.target.value)}
+            />
+            <YearDropdown
+              value={data.startDateYear || ''}
+              onChange={(e) => handleInputChange(index, 'startDateYear', e.target.value)}
+            />
           </div>
 
           <label>End Date</label>
-          <input
-            type="text"
-            name={`experience[${index}].endDate`}
-            value={data.endDate || ''}
-            placeholder="End Date"
-            onChange={(e) => handleInputChange(index, 'endDate', e.target.value)}
-          />
+          <div>
+            <MonthDropdown
+              value={data.endDateMonth || ''}
+              onChange={(e) => handleInputChange(index, 'endDateMonth', e.target.value)}
+            />
+            <YearDropdown
+              value={data.endDateYear || ''}
+              onChange={(e) => handleInputChange(index, 'endDateYear', e.target.value)}
+            />
+          </div>
 
           <label>Bullets</label>
           <textarea

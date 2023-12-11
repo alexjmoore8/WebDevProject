@@ -7,14 +7,14 @@ const PublicationsSection = ({ publications }) => {
 
   return (
     <div>
-      <div>{publications.sectionHeading}</div>
+      <div><h2>{publications.sectionHeading}</h2></div>
       {publications.publication.map((publication, index) => (
         <div key={index}>
           <div>{publication.title}</div>
           <div>{publication.publisher}</div>
           <div>{`Date: ${publication.date}`}</div>
           <div>
-            <a href={publication.link} target="_blank" rel="noopener noreferrer">
+            <a href={publication.link} target="_blank" rel="">
               {publication.link}
             </a>
           </div>

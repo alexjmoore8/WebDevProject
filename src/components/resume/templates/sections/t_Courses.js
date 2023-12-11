@@ -7,7 +7,7 @@ const CoursesSection = ({ courses }) => {
 
   return (
     <div>
-      <div>{courses.sectionHeading}</div>
+      <div><h2>{courses.sectionHeading}</h2></div>
       {courses.course.map((course, index) => (
         <div key={index}>
           <div>{course.title}</div>

@@ -7,7 +7,7 @@ const WorkExperienceSection = ({ experience }) => {
 
   return (
     <div>
-      <div>{experience.sectionHeading}</div>
+      <div><h2>{experience.sectionHeading}</h2></div>
       {experience.job.map((job, index) => (
         <div key={index}>
           <div>{job.position}</div>

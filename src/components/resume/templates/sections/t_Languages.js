@@ -7,7 +7,7 @@ const LanguagesSection = ({ languages }) => {
 
   return (
     <div>
-      <div>{languages.sectionHeading}</div>
+      <div><h2>{languages.sectionHeading}</h2></div>
       {languages.languages.map((language, index) => (
         <div key={index}>
           <div>{language.language}</div>
