@@ -3,7 +3,6 @@ import express, { json, urlencoded } from 'express';
 import {userCollection, resumeCollection} from './mongo.js';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
-import { createResume } from './resumeController.js';
 
 const app = express();
 app.use(json());

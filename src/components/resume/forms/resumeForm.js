@@ -166,25 +166,69 @@ function ResumeForm() {
     setCurrentStep((prevStep) => prevStep - 1);
   };
 
+  const transformFormDataForMongoDB = (formData) => {
+    return {
+      controller: {
+        resumeTitle: formData.ResumeSelections.resumeTitle,
+        layout: formData.ResumeSelections.layout,
+        style: formData.ResumeSelections.style,
+        sections: {
+          // Add all section booleans here
+          contact: formData.ResumeSelections.contact,
+          socials: formData.ResumeSelections.socials,
+          // ... other sections
+        }
+      },
+      contactInfo: {
+        firstName: formData.ResumeContactInfo.firstName,
+        lastName: formData.ResumeContactInfo.lastName,
+        email: formData.ResumeContactInfo.email,
+        location: {
+          city: formData.ResumeContactInfo.location, // Assuming city is stored here
+          state: '', // TODO: Add state to your form or handle it here
+          country: '' // TODO: Add country to your form or handle it here
+        },
+        phone: formData.ResumeContactInfo.phone,
+        pronouns: formData.ResumeContactInfo.pronouns,
+      },
+      socials: [
+        // Assuming multiple social media profiles can be added
+        ...formData.ResumeSocialMedia.profile.map(profile => ({
+          name: profile.name,
+          link: profile.link,
+          platformType: profile.platformType
+        }))
+      ],
+      // ... Similar transformations for other sections
+    };
+  };
+  
+  
   const handleSubmit = async () => {
-     try {
+    try {
+      const transformedData = transformFormDataForMongoDB(formData);
+  
       const response = await fetch('/resume-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(transformedData),
       });
-
+  
       if (response.ok) {
         console.log('Resume submitted successfully!');
+        // Additional success handling
       } else {
-        console.error('Error submitting resume');
+        console.error('Error submitting resume:', response.statusText);
+        // Additional error handling
       }
     } catch (error) {
       console.error('Error:', error);
+      // Additional error handling
     }
   };
+  
 
   const renderForm = () => {
     switch (currentStep) {
