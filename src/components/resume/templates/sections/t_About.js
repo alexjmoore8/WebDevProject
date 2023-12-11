@@ -1,7 +1,7 @@
 const AboutSection = ({ about }) => {
   return (
     <div>
-        <h2>About</h2>
+        <h2>about.sectionHeading</h2>
     </div>
   );
 }

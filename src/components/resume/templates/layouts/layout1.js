@@ -18,10 +18,11 @@ const ResumeLayout1 = ({ layout, style, selectedSections, sectionData }) => {
             />
           )}
 
-          {selectedSections &&
-            selectedSections.map((section, index) => (
-            <ExperienceSection key={index} section={section} data={sectionData[section]} />
-          ))}
+          {selectedSections && selectedSections.includes('experience') && (
+            <ExperienceSection
+              experience={sectionData.experience}
+            />
+          )}
   
           {selectedSections &&
             selectedSections.map((section, index) => (

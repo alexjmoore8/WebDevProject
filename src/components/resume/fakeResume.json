@@ -8,12 +8,12 @@
       "socials": true,
       "about": true,
       "education": true,
-      "courses": false,
+      "courses": true,
       "certifications": true,
-      "skills": false,
-      "publications": false,
-      "languages": false,
-      "projects": false,
+      "skills": true,
+      "publications": true,
+      "languages": true,
+      "projects": true,
       "experience": true
     }
   },

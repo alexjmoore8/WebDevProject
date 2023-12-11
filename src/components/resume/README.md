@@ -70,5 +70,10 @@ The idea for this is that each potential section of the resume has it's own file
   - This directory holds all of the files that control the layout of the individual sections
 
 - `./resume/templates/styles ...`
+
   - This directory holds all of the css files that control the style of the layout
   - Still need to figure out how to pass these into the layout without errors
+
+- `fakeResume.json`
+  - Hold fake resume info for testing
+  - To change which sections have been chosen to be displayed, change to booleans in the controller object of this file
