@@ -18,6 +18,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+
+### `npm run seed`
+
+Runs the seed file to populate the database with some sample data. Please go through and create a new user from the start to fully test the capabilities of the application.
+
+To add more collections to the seed file, please copy over the schema and follow the format of the "users" collection already in the file.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
