@@ -12,7 +12,6 @@ const DynamicResume = ({ layout, style, selectedSections, sectionData}) => {
                 return (
                     <ResumeLayout1
                         layout={layout}
-                        // style={sectionData.controller.style}
                         selectedSections={selectedSections}
                         sectionData={sectionData}
                     />
@@ -21,7 +20,6 @@ const DynamicResume = ({ layout, style, selectedSections, sectionData}) => {
                 return (
                     <ResumeLayout2
                         layout={layout}
-                        // style={style}
                         selectedSections={selectedSections}
                         sectionData={sectionData}
                     />
@@ -30,7 +28,6 @@ const DynamicResume = ({ layout, style, selectedSections, sectionData}) => {
                 return (
                     <ResumeLayout3
                         layout={layout}
-                        // style={style}
                         selectedSections={selectedSections}
                         sectionData={sectionData}
                     />

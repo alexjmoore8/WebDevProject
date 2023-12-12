@@ -1,39 +1,47 @@
-/* super simple css to turn all the text purple */
-body {
-  color: black;
+/* body {
+  margin: 0;
+}
+.sheet-outer {
+  margin: 0;
+}
+.sheet {
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  page-break-after: always;
 }
 
-h1 {
-  font-weight: bold;
-  color: purple;
+@media screen {
+  body {
+    background: #e0e0e0;
+  }
+
+  .sheet {
+    background: white;
+    box-shadow: 0 0.5mm 2mm rgba(0, 0, 0, 0.3);
+    margin: 5mm auto;
+  }
 }
 
-h2 {
-  color: green;
+.sheet-outer.A4 .sheet {
+  width: 210mm;
+  height: 296mm;
+}
+.sheet.padding-5mm {
+  padding: 5mm;
+}
+.margin {
+  margin: 5mm;
 }
 
-h3 {
-  color: blue;
+@page {
+  size: A4;
+  margin: 0;
 }
-
-h4 {
-  color: red;
-}
-
-h5 {
-  color: orange;
-}
-
-h6 {
-  color: darkgoldenrod;
-}
-
-p {
-  color: gray;
-}
-
-.tags {
-  color: brown;
-}
-
-/*  */
+@media print {
+  .sheet-outer.A4,
+  .sheet-outer.A5.landscape {
+    width: 210mm;
+  }
+} */

@@ -93,3 +93,15 @@ const ResumeLayout2 = ({ layout, selectedSections, sectionData }) => {
 }
 
 export default ResumeLayout2;
+
+// import React from 'react';
+// import {Page, Text, View, Image, Document, StyleSheet} from '@react-pdf/renderer';
+
+// const PDFFile = () => {
+//   <Document>
+//     <Page>
+
+//     </Page>
+//     </Document>
+// };
+// export default PDFFile;
