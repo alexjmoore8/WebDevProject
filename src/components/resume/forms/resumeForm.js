@@ -13,9 +13,14 @@ import ResumeProjects from './formSections/rf_Projects.js';
 import ResumeExperience from './formSections/rf_Experience.js';
 import ResumeSkills from './formSections/rf_Skills.js';
 import './css/form.css';
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import './css/form.css';
+
+
 
 function ResumeForm() {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({ 
       ResumeSelections: {
         resumeTitle: '',
@@ -148,15 +153,16 @@ function ResumeForm() {
 
   const [currentStep, setCurrentStep] = useState(1);
 
-  const handleChange = (step, field, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [step]: {
-        ...prevData[step],
-        [field]: value,
-      },
+  const handleChange = (section, field, value) => {
+    setFormData(prevData => ({
+        ...prevData,
+        [section]: {
+            ...prevData[section],
+            [field]: value,
+        }
     }));
-  };
+};
+
     
   const handleNext = () => {
     setCurrentStep((prevStep) => prevStep + 1);
@@ -166,25 +172,78 @@ function ResumeForm() {
     setCurrentStep((prevStep) => prevStep - 1);
   };
 
-  const handleSubmit = async () => {
-     try {
-      const response = await fetch('/resume-form', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+  const transformFormDataForMongoDB = (formData) => {
+    const selections = formData.ResumeSelections;
+    const transformedData = { 
+        controller: {
+            resumeTitle: selections.resumeTitle,
+            layout: selections.layout,
+            style: selections.style,
+            sections: selections
+        }
+    };
 
-      if (response.ok) {
-        console.log('Resume submitted successfully!');
-      } else {
-        console.error('Error submitting resume');
-      }
-    } catch (error) {
-      console.error('Error:', error);
+    if (selections.contact) {
+        transformedData.contact = { ...formData.ResumeContactInfo };
     }
-  };
+    if (selections.socials) {
+        transformedData.socials = formData.ResumeSocialMedia.profile;
+    }
+    if (selections.about) {
+        transformedData.about = formData.ResumeAbout;
+    }
+    if (selections.education) {
+        transformedData.education = formData.ResumeEducation;
+    }
+    if (selections.courses) {
+        transformedData.courses = formData.ResumeCourses.course;
+    }
+    if (selections.certifications) {
+        transformedData.certifications = formData.ResumeCertifications.certification;
+    }
+    if (selections.publications) {
+        transformedData.publications = formData.ResumePublications.publication;
+    }
+    if (selections.languages) {
+        transformedData.languages = formData.ResumeLanguages.language;
+    }
+    if (selections.projects) {
+        transformedData.projects = formData.ResumeProjects.project;
+    }
+    if (selections.experience) {
+        transformedData.experience = formData.ResumeExperience.job;
+    }
+    if (selections.skills) {
+        transformedData.skills = formData.ResumeSkills.skill;
+    }
+
+    return transformedData;
+};
+  
+  
+  
+  
+  const [message, setMessage] = useState(''); // For displaying error messages
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+        const transformedData = transformFormDataForMongoDB(formData);
+        const response = await axios.post("http://localhost:3000/resume/form", transformedData);
+
+        if (response.data === "Resume submission successful") {
+            navigate("/home"); // Replace "/home" with the actual path of your homepage
+        } else {
+            setMessage("Error submitting resume");
+        }
+    } catch (error) {
+        console.error("Resume submission error", error.message);
+        setMessage("Error during resume submission");
+    }
+}
+  
+  
 
   const renderForm = () => {
     switch (currentStep) {

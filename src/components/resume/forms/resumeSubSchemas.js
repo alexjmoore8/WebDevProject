@@ -1,343 +1,152 @@
 import mongoose from 'mongoose';
 
+// Shared Schema for Section Heading
+const sectionHeadingSchema = { sectionHeading: { type: String, required: true } };
+
+// Sections Schema
 export const sectionsSchema = new mongoose.Schema({
+    contact: Boolean,
+    socials: Boolean,
+    about: Boolean,
+    education: Boolean,
+    courses: Boolean,
+    certifications: Boolean,
+    skills: Boolean,
+    publications: Boolean,
+    languages: Boolean,
+    projects: Boolean,
+    experience: Boolean
+});
 
-    contact: {
-        type: Boolean,
-        required: true,
-    },
-    socials: {
-        type: Boolean,
-        required: true,
-    },
-    about: {
-        type: Boolean,
-        required: true,
-    },
-    education: {
-        type: Boolean,
-        required: true,
-    },
-    courses: {
-        type: Boolean,
-        required: true,
-    },
-    certifications: {
-        type: Boolean,
-        required: true,
-    },
-    skills: {
-        type: Boolean,
-        required: true,
-    },
-    publications: {
-        type: Boolean,
-        required: true,
-    },
-    languages: {
-        type: Boolean,
-        required: true,
-    },
-    projects: {
-        type: Boolean,
-        required: true,
-    },
-    experience: {
-        type: Boolean,
-        required: true,
-    }
-})
-
+// Controller Schema
 export const controllerSchema = new mongoose.Schema({
-    resumeTitle: {
-        type: String,
-        required: true,
-    },
-    layout: {
-        type: String,
-        required: true,
-    },
-    style: {
-        type: String,
-        required: true,
-    },
-    sections:  sectionsSchema
-})
+    resumeTitle: String,
+    layout: String,
+    style: String,
+    sections: sectionsSchema
+});
 
+// Contact Info Schema
 export const contactInfoSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true,
-    },
-    lastName:{
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required:true,
-    },
+    firstName: String,
+    lastName: String,
+    email: String,
     location: {
-        city: {
-            type: String,
-            required:true,
-        },
-        state: {
-            type: String,
-            required:true,  
-        },
-        country: {
-            type: String,
-        }
+        city: String,
+        state: String,
+        country: String
     },
-    phone: {
-        type: String,
-        required:true,
-    },
-    pronouns: {
-        type: String,
-    },
-})
+    phone: String,
+    pronouns: String
+});
 
+// Socials Schema
 export const socialsSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    link: {
-        type: String,
-        required: true,
-    },
-    platformType: {
-        type: String,
-        required: true,
-    }
-})
+    name: String,
+    link: String,
+    platformType: String
+});
 
+// About Schema
 export const aboutSchema = new mongoose.Schema({
-    sectionHeading: {
-        type: String,
-        required: true,
-    },
-    summary: {
-        type: String,
-        required: true,
-    }
-})
+    ...sectionHeadingSchema,
+    summary: String
+});
 
+// Education Schema
 export const educationSchema = new mongoose.Schema({
-    sectionHeading: {
-        type: String,
-        required: true,
-    },
+    ...sectionHeadingSchema,
     school: {
-        institution: {
-            type: String,
-            required: true,
-        },
+        institution: String,
         location: {
-            city: {
-                type: String,
-                required:true,
-            },
-            state: {
-                type: String,
-                required:true,  
-            },
-            country: {
-                type: String,
-            }
+            city: String,
+            state: String,
+            country: String
         },
-        degree: {
-            type: String,
-        },
-        major: {
-            type: String,
-        },
-        startDate: {
-            type: String,
-        },
-        endDate: {
-            type: String,
-        },
-        gpa: {
-            type: String,
-        }
+        degree: String,
+        major: String,
+        startDate: Date,
+        endDate: Date,
+        gpa: String
     }
-})
+});
 
+// Courses Schema
 export const coursesSchema = new mongoose.Schema({
-    sectionHeading: {
-        type: String,
-        required: true,
-    },
+    ...sectionHeadingSchema,
     course: {
-        title: {
-            type: String,
-            required: true,
-        },
-        school: {
-            type: String,
-            required: true,
-        },
-        tags:
-        {
-            type: Array
-        }
+        title: String,
+        school: String,
+        tags: [String]
     }
-})
+});
 
+// Certifications Schema
 export const certificationsSchema = new mongoose.Schema({
-    sectionHeading: {
-        type: String,
-        required: true,
-    },
+    ...sectionHeadingSchema,
     certification: {
-        name: {
-            type: String,
-            required: true,
-        },
-        organization: {
-            type: String,
-            required: true,
-        },
-        date: {
-            type: String,
-            required: true,
-        },
-        tags:
-        {
-            type: Array
-        }
+        name: String,
+        organization: String,
+        date: Date,
+        tags: [String]
     }
-})
+});
 
+// Publications Schema
 export const publicationsSchema = new mongoose.Schema({
-    sectionHeading: {
-        type: String,
-        required: true,
-    },
+    ...sectionHeadingSchema,
     publication: {
-        title: {
-            type: String,
-            required: true,
-        },
-        publisher: {
-            type: String,
-            required: true,
-        },
-        date: {
-            type: String,
-        },
-        link: {
-            type: String,
-        },
-        tags:
-        {
-            type: Array
-        }
-    
+        title: String,
+        publisher: String,
+        date: Date,
+        link: String,
+        tags: [String]
     }
-})
+});
 
+// Languages Schema
 export const languagesSchema = new mongoose.Schema({
-    sectionHeading: {
-        type: String,
-        required: true,
-    },
-    languages: {
-        language: {
-            type: String,
-            required: true,
-        },
-        level: {
-            type: String,
-            required: true,
-        }
-    }
-})
+    ...sectionHeadingSchema,
+    languages: [{
+        language: String,
+        level: String
+    }]
+});
 
+// Projects Schema
 export const projectsSchema = new mongoose.Schema({
-    sectionHeading: {
-        type: String,
-        required: true,
-    },
+    ...sectionHeadingSchema,
     project: {
-        title: {
-            type: String,
-            required: true,
-        },
-        description: {
-            type: String,
-            required: true,
-        },
-        link: {
-            type: String
-        },
-        tags:
-        {
-            type: Array
-        }
+        title: String,
+        description: String,
+        link: String,
+        tags: [String]
     }
-})
+});
 
+// Experience Schema
 export const experienceSchema = new mongoose.Schema({
-    sectionHeading: {
-        type: String,
-        required: true,
-    },
+    ...sectionHeadingSchema,
     job: {
-        title: {
-            type: String,
-            required: true,
-        },
-        company: {
-            type: String,
-            required: true,
-        },
+        title: String,
+        company: String,
         location: {
-            city: {
-                type: String,
-                required:true,
-            },
-            state: {
-                type: String,
-                required:true,  
-            },
-            country: {
-                type: String,
-            }
+            city: String,
+            state: String,
+            country: String
         },
-        startDate: {
-            type: String,
-        },
-        endDate: {
-            type: String,
-        },
-        bullets: {
-            type: Array,
-            required: true,
-        },
-        tags:
-        {
-            type: Array
-        }
+        startDate: Date,
+        endDate: Date,
+        bullets: [String],
+        tags: [String]
     }
-})
+});
 
+// Skills Schema
 export const skillsSchema = new mongoose.Schema({
-    sectionHeading: {
-        type: String,
-        required: true,
-    },
-    skills: {
-        skill: {
-            type: String,
-            required: true,
-        },
-        level: {
-            type: String,
-            required: true,
-        }
-    }
-})
+    ...sectionHeadingSchema,
+    skills: [{
+        skill: String,
+        level: String
+    }]
+});

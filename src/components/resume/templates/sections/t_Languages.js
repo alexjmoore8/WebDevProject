@@ -2,16 +2,16 @@ import React from 'react';
 
 const LanguagesSection = ({ languages }) => {
   if (!languages || !languages.languages || !Array.isArray(languages.languages)) {
-    return <div>No language data available.</div>;
+    return <div className="languages-section">No language data available.</div>;
   }
 
   return (
-    <div>
-      <div><h2>{languages.sectionHeading}</h2></div>
+    <div className="languages-section">
+      <div className="languages-heading"><h2>{languages.sectionHeading}</h2></div>
       {languages.languages.map((language, index) => (
-        <div key={index}>
-          <div>{language.language}</div>
-          <div>{`Level: ${language.level}`}</div>
+        <div key={index} className="language-item">
+          <div className="language-name"><h3>{language.language}</h3></div>
+          <div className="language-level"><h6>{`Level: ${language.level}`}</h6></div>
         </div>
       ))}
     </div>

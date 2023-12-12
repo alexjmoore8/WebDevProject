@@ -1,90 +1,78 @@
 import React from 'react';
-import ContactSection from '../sections/t_ContactInfo.js';
-import ExperienceSection from '../sections/t_Experience.js';
-import EducationSection from '../sections/t_Education.js';
 import AboutSection from '../sections/t_About.js';
 import CertificationSection from '../sections/t_Certifications.js';
-import PublicationsSection from '../sections/t_Publications.js';
-import LanguagesSection from '../sections/t_Languages.js';
+import ContactSection from '../sections/t_ContactInfo.js';
 import CoursesSection from '../sections/t_Courses.js';
-import SkillsSection from '../sections/t_Skills.js';
+import EducationSection from '../sections/t_Education.js';
+import ExperienceSection from '../sections/t_Experience.js';
+import LanguagesSection from '../sections/t_Languages.js';
 import ProjectsSection from '../sections/t_Projects.js';
-import DynamicResume from '../dynamicResume.js';
-// import DynamicSection from '../sections/dynamicSection.js';
+import PublicationsSection from '../sections/t_Publications.js';
+import SkillsSection from '../sections/t_Skills.js';
 
-
-const ResumeLayout1 = ({ layout, style, selectedSections, sectionData }) => {
-  console.log('Rendering ResumeLayout1 with props:', { layout, style, selectedSections, sectionData });
+const ResumeLayout1 = ({ layout, selectedSections, sectionData }) => {
+  const cssFile = `${sectionData.controller.style}.css`;
+  import(`../styles/${cssFile}`);
 
   return (
-    <div layout={layout} style={style} >
-      <h1>{sectionData.contact.firstName} {sectionData.contact.lastName}</h1>
-          {selectedSections && selectedSections.includes('contact') && (
-            <ContactSection
-              contact={sectionData.contact}
-              socialsData={sectionData.socials}
-            />
-          )}
+    <div className="resume-layout" layout={layout}>
+      <h1 className="resume-title">{sectionData.contact.firstName} {sectionData.contact.lastName}</h1>
+      <h6 className="pronouns">{sectionData.contact.pronouns}</h6>
+      <div className="contact-section">
+        <ContactSection contact={sectionData.contact} socialsData={sectionData.socials} />
+      </div>
 
-          {selectedSections && selectedSections.includes('about') && (
-            <AboutSection
-              about={sectionData.about}
-            />
-          )}
+      {selectedSections && selectedSections.includes('about') && (
+        <div className="about-section">
+        <AboutSection about={sectionData.about} />
+        </div>
+      )}
 
-          {selectedSections && selectedSections.includes('education') && (
-            <EducationSection
-              education={sectionData.education}
-            />
-          )}
-          {selectedSections && selectedSections.includes('courses') && (
-            <CoursesSection
-              courses={sectionData.courses}
-            />
-          )}
+      <div className="education-section">
+        <EducationSection education={sectionData.education} />
+      </div>
 
-          {selectedSections && selectedSections.includes('experience') && (
-            <ExperienceSection
-              experience={sectionData.experience}
-            />
-          )}
-  
-          {selectedSections && selectedSections.includes('certifications') && (
-            <CertificationSection
-              certifications={sectionData.certifications}
-            />
-          )}
+      {selectedSections && selectedSections.includes('courses') && (
+        <div className="courses-section">
+          <CoursesSection courses={sectionData.courses} />
+        </div>
+      )}
 
-          {selectedSections && selectedSections.includes('languages') && (
-            <LanguagesSection
-              languages={sectionData.languages}
-            />
-          )}
+      {selectedSections && selectedSections.includes('experience') && (
+        <div className="experience-section">
+          <ExperienceSection experience={sectionData.experience} />
+        </div>
+      )}
 
-          {selectedSections && selectedSections.includes('skills') && (
-            <SkillsSection
-              skills={sectionData.skills}
-            />
-          )}
+      {selectedSections && selectedSections.includes('certifications') && (
+        <div className="certifications-section">
+          <CertificationSection certifications={sectionData.certifications} />
+        </div>
+      )}
 
-          {selectedSections && selectedSections.includes('publications') && (
-            <PublicationsSection
-              publications={sectionData.publications}
-            />
-          )}
+      {selectedSections && selectedSections.includes('languages') && (
+        <div className="languages-section">
+          <LanguagesSection languages={sectionData.languages} />
+        </div>
+      )}
 
-          {selectedSections && selectedSections.includes('projects') && (
-            <ProjectsSection
-              projects={sectionData.projects}
-            />
-          )}
+      {selectedSections && selectedSections.includes('publications') && (
+        <div className="publications-section">
+          <PublicationsSection publications={sectionData.publications} />
+        </div>
+      )}
 
+      {selectedSections && selectedSections.includes('skills') && (
+        <div className="skills-section">
+          <SkillsSection skills={sectionData.skills} />
+        </div>
+      )}
 
-
-          {/* {selectedSections &&
-            selectedSections.map((section, index) => (
-            <DynamicSection key={index} section={section} data={sectionData[section]} />
-          ))} */}
+      {selectedSections && selectedSections.includes('projects') && (
+        <div className="projects-section">
+          <ProjectsSection projects={sectionData.projects} />
+        </div>
+      )}
     </div>
   );
 }

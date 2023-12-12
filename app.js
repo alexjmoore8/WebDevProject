@@ -3,7 +3,6 @@ import express, { json, urlencoded } from 'express';
 import {userCollection, resumeCollection} from './mongo.js';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
-import { createResume } from './resumeController.js';
 
 const app = express();
 app.use(json());
@@ -54,6 +53,18 @@ app.post("/", async (req, res) => {
         res.status(500).json("error");
     }
 });
+
+app.post("/resume/form", async (req, res) => {
+    try {
+        const resumeData = req.body;
+        await resumeCollection.create(resumeData);
+        res.status(200).json("Resume submission successful");
+    } catch (error) {
+        console.error("Error submitting resume:", error);
+        res.status(500).json("Error submitting resume");
+    }
+});
+
 
 
 app.listen(3000, () => {
