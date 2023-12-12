@@ -33,6 +33,6 @@ const newSchema=new mongoose.Schema({
     
 })
 
-const collection = mongoose.model("users", newSchema)
+const collectionUsers = mongoose.model("users", newSchema)
 
 export default collection
