@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from '../AuthContext.js'; // Adjust the path according to your file structure
@@ -10,9 +10,27 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [failedAttempts, setFailedAttempts] = useState(0);
+    const [isLocked, setIsLocked] = useState(false);
+
+    useEffect(() => {
+        let timer;
+        if (isLocked) {
+            timer = setTimeout(() => {
+                setIsLocked(false);
+                setFailedAttempts(0);
+            }, 300000); // Lock for 5 minutes (300000 milliseconds)
+        }
+        return () => clearTimeout(timer);
+    }, [isLocked]);
 
     async function handleSubmit(e) {
         e.preventDefault();
+
+        if (isLocked) {
+            setMessage("Too many failed attempts. Please try again later.");
+            return;
+        }
 
         try {
             const response = await axios.post("http://localhost:3000/", { email, password }, { withCredentials: true });
@@ -29,7 +47,11 @@ function Login() {
                     navigate("/HomeA", { state: { id: email } });
                 }
             } else {
+                setFailedAttempts(prev => prev + 1);
                 setMessage(response.data.message);
+                if (failedAttempts >= 2) { // Lock after 3 failed attempts
+                    setIsLocked(true);
+                }
             }
         } catch (error) {
             console.error("Login error", error.message);
@@ -39,6 +61,8 @@ function Login() {
 
     return (
         <div className="container">
+            {isLocked}
+
             <div className="form-box">
                 <h1>Login</h1>
                 <form onSubmit={handleSubmit}>
