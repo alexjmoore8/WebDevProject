@@ -14,6 +14,14 @@ const WorkExperienceSection = ({ experience }) => {
           <div className="job-organization"><h4>{job.organization}</h4></div>
           <div className="job-location"><h5>{job.location.city}, {job.location.state}</h5></div>
           <div className="job-dates"><h6>{`${job.startDate} - ${job.endDate}`}</h6></div>
+          <div className="job-description">{job.description}</div>
+          <div className="bullets">
+            <ul>
+              {job.bullets.map((bullet, bulletIndex) => (
+                <li key={bulletIndex}>{bullet}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       ))}
     </div>

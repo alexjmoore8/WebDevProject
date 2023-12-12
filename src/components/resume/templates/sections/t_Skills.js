@@ -7,7 +7,7 @@ const SkillsSection = ({ skills }) => {
 
   return (
     <div className="skills-section">
-      <div className="skills-heading">{skills.sectionHeading}</div>
+      <div className="skills-heading"><h2>{skills.sectionHeading}</h2></div>
       {skills.skills.map((skill, index) => (
         <div key={index} className="skill-item">
           <div className="skill-name"><h3>{skill.skill}</h3></div>
