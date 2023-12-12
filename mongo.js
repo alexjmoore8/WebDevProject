@@ -33,6 +33,37 @@ const newSchema=new mongoose.Schema({
     
 })
 
-const collectionUsers = mongoose.model("users", newSchema)
+const jobSchema = new mongoose.Schema({
+    companyName: {
+        type: String,
+        required:true,
+    },
+    title: {
+        type: String,
+        required:true,
+    },
+    description: {
+        type: String,
+        required:true,
+    },
 
-export default collection
+    requirements: {
+        type: Array,
+        required:true,
+    },
+    location: {
+        type: String,
+        required:true,
+    },
+    salary: {
+        type: Number,
+        required:true,
+    }
+    
+})
+
+const collectionUsers = mongoose.model("users", newSchema)
+const collectionPosts = mongoose.model("jobs", jobSchema )
+
+//add collections here and change export 
+export default {collectionUsers, collectionPosts};
