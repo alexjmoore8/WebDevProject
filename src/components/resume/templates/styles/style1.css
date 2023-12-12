@@ -1,47 +1,84 @@
-/* body {
+/* Make this div be the size of a letter size sheet of paper, and shrink it's contents to fit that size
+body {
   margin: 0;
 }
-.sheet-outer {
-  margin: 0;
-}
-.sheet {
-  margin: 0;
+.resume-layout {
+  width: 8.5in;
+  height: 11in;
+  padding: 0.5in;
+  margin: 0.5in;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  font-size: 12pt;
   overflow: hidden;
-  position: relative;
-  box-sizing: border-box;
-  page-break-after: always;
+  transform: 0.5s ease;
+  display: flex;
+  flex-direction: column;
 }
 
-@media screen {
-  body {
-    background: #e0e0e0;
-  }
-
-  .sheet {
-    background: white;
-    box-shadow: 0 0.5mm 2mm rgba(0, 0, 0, 0.3);
-    margin: 5mm auto;
-  }
+.contact-section {
+  flex: 1;
+  width: 100%;
 }
 
-.sheet-outer.A4 .sheet {
-  width: 210mm;
-  height: 296mm;
-}
-.sheet.padding-5mm {
-  padding: 5mm;
-}
-.margin {
-  margin: 5mm;
+.education-section {
+  flex: 2;
 }
 
-@page {
-  size: A4;
-  margin: 0;
+.experience-section {
+  flex: 2;
 }
-@media print {
-  .sheet-outer.A4,
-  .sheet-outer.A5.landscape {
-    width: 210mm;
-  }
+.certifications-section {
+  flex: 1;
 } */
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 1px solid black;
+}
+
+.resume {
+  width: 100%;
+  max-width: 8.5in;
+  max-height: 11in;
+  margin: 0 auto;
+  padding: 0.5in;
+  box-sizing: border-box;
+  display: flex;
+}
+
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 8.5in;
+    margin: 0;
+    padding: 0.5in;
+    box-sizing: border-box;
+    overflow: hidden;
+    transform: 0.5s ease;
+    display: flex;
+  }
+}
+
+.contact-section {
+  flex: 1;
+  width: 100%;
+}
+
+.education-section {
+  flex: 2;
+}
+
+.experience-section {
+  flex: 2;
+}
+
+.certifications-section {
+  flex: 1;
+}

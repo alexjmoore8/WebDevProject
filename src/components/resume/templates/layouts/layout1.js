@@ -16,6 +16,7 @@ const ResumeLayout1 = ({ layout, selectedSections, sectionData }) => {
 
   return (
     <div className="resume-layout" layout={layout}>
+      <div className="page">
       <h1 className="resume-title">{sectionData.contact.firstName} {sectionData.contact.lastName}</h1>
       <h6 className="pronouns">{sectionData.contact.pronouns}</h6>
       <div className="contact-section">
@@ -73,6 +74,7 @@ const ResumeLayout1 = ({ layout, selectedSections, sectionData }) => {
           <ProjectsSection projects={sectionData.projects} />
         </div>
       )}
+    </div>
     </div>
   );
 }
