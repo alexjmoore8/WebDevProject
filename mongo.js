@@ -34,5 +34,5 @@ const newSchema=new mongoose.Schema({
 })
 
 const collectionUsers = mongoose.model("users", newSchema)
-
-export default collection
+//add collections here and change export 
+export default collectionUsers;
