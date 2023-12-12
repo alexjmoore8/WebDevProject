@@ -17,7 +17,7 @@ const ProjectsSection = ({ projects }) => {
               {project.link}
             </a>
           </div>
-          <div className="project-tags">{`Tags: ${project.tags.join(', ')}`}</div>
+          <div className="tags">{`Tags: ${project.tags.join(', ')}`}</div>
         </div>
       ))}
     </div>

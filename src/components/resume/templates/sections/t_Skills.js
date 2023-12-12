@@ -10,8 +10,8 @@ const SkillsSection = ({ skills }) => {
       <div className="skills-heading">{skills.sectionHeading}</div>
       {skills.skills.map((skill, index) => (
         <div key={index} className="skill-item">
-          <div className="skill-name">{skill.skill}</div>
-          <div className="skill-level">{`Level: ${skill.level}`}</div>
+          <div className="skill-name"><h3>{skill.skill}</h3></div>
+          <div className="skill-level"><h6>{`Level: ${skill.level}`}</h6></div>
         </div>
       ))}
     </div>
