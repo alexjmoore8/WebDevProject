@@ -1,4 +1,39 @@
 /* super simple css to turn all the text purple */
 body {
+  color: black;
+}
+
+h1 {
+  font-weight: bold;
   color: purple;
 }
+
+h2 {
+  color: green;
+}
+
+h3 {
+  color: blue;
+}
+
+h4 {
+  color: red;
+}
+
+h5 {
+  color: orange;
+}
+
+h6 {
+  color: darkgoldenrod;
+}
+
+p {
+  color: gray;
+}
+
+.tags {
+  color: brown;
+}
+
+/*  */

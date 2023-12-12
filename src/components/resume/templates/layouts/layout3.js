@@ -13,11 +13,12 @@ import DynamicResume from '../dynamicResume.js';
 // import DynamicSection from '../sections/dynamicSection.js';
 
 
-const ResumeLayout1 = ({ layout, style, selectedSections, sectionData }) => {
-  console.log('Rendering ResumeLayout1 with props:', { layout, style, selectedSections, sectionData });
+const ResumeLayout3 = ({ layout, selectedSections, sectionData }) => {
+  const cssFile = `${sectionData.controller.style}.css`;
+  import(`../styles/${cssFile}`);
 
   return (
-    <div layout={layout} style={style} >
+    <div layout={layout} >
       <h1>{sectionData.contact.firstName} {sectionData.contact.lastName}</h1>
           {selectedSections && selectedSections.includes('contact') && (
             <ContactSection
@@ -91,4 +92,4 @@ const ResumeLayout1 = ({ layout, style, selectedSections, sectionData }) => {
   );
 }
 
-export default ResumeLayout1;
+export default ResumeLayout3;

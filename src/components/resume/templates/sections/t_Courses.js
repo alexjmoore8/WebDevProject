@@ -2,17 +2,17 @@ import React from 'react';
 
 const CoursesSection = ({ courses }) => {
   if (!courses || !courses.course || !Array.isArray(courses.course)) {
-    return <div>No course data available.</div>;
+    return <div className="courses-section">No course data available.</div>;
   }
 
   return (
-    <div>
-      <div><h2>{courses.sectionHeading}</h2></div>
+    <div className="courses-section">
+      <div className="courses-heading"><h2>{courses.sectionHeading}</h2></div>
       {courses.course.map((course, index) => (
-        <div key={index}>
-          <div>{course.title}</div>
-          <div>{course.school}</div>
-          <div>{`Tags: ${course.tags.join(', ')}`}</div>
+        <div key={index} className="course-item">
+          <div className="course-title"><h3>{course.title}</h3></div>
+          <div className="course-school"><h4>{course.school}</h4></div>
+          <div className="tags">{`Tags: ${course.tags.join(', ')}`}</div>
         </div>
       ))}
     </div>

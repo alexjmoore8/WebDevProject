@@ -5,8 +5,8 @@ const ContactInfoSection = ({ contact, socialsData }) => {
   const profiles = socialsData?.profile || [];
 
   return (
-    <div>
-      <div>
+    <div className='contactLine'>
+      <div><h3>
         {`${location.city}, ${location.state}`} | {phone} | {email} |{' '}
         {profiles.map((profile, index) => (
           <span key={index}>
@@ -16,6 +16,7 @@ const ContactInfoSection = ({ contact, socialsData }) => {
             {index !== profiles.length - 1 && ' | '}
           </span>
         ))}
+      </h3>
       </div>
     </div>
   );

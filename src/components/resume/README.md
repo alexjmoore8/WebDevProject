@@ -16,6 +16,7 @@ The idea for this is that this first section of the form allows the user to dete
 - Add more comprehensive rules for user selections once layouts are complete and the constraints for each section are clear
 - Style form with the same/similar styling as the login/signup forms
 - Fix dropdown boxes
+- Have some way to display examples of style and layout
 
 ### Files
 
@@ -44,7 +45,6 @@ The idea for this is that each potential section of the resume has it's own file
 
 ### TODO
 
-- Figure out stylesheet import for layouts
 - Finish all the layout/section files
 - Connect this to mongo
   - When a user wants to see their resume, either when first creating it or on return to the site, their resume object will pass through here to be generated and displayed
