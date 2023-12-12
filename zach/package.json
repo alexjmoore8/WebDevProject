@@ -1,0 +1,17 @@
+{
+  "name": "webdevproject",
+  "version": "1.0.0",
+  "description": "Resume building and job finder app",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Aaliyah Demitro, Alden Park, Alex Moore, JiaHui Lian, Zachary Duva",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0"
+  }
+}
