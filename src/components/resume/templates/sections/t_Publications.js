@@ -12,13 +12,11 @@ const PublicationsSection = ({ publications }) => {
         <div key={index} className="publication-item">
           <div className="publication-title"><h3>{publication.title}</h3></div>
           <div className="publication-publisher"><h4>{publication.publisher}</h4></div>
-          <div className="publication-date"><h6>{`Date: ${publication.date}`}</h6></div>
           <div className="publication-link">
             <a href={publication.link} target="_blank" rel="">
               {publication.link}
             </a>
           </div>
-          <div className="tags">{`Tags: ${publication.tags.join(', ')}`}</div>
         </div>
       ))}
     </div>

@@ -15,67 +15,68 @@ const ResumeLayout1 = ({ layout, selectedSections, sectionData }) => {
   import(`../styles/${cssFile}`);
 
   return (
-    <div className="resume-layout" layout={layout}>
-      <div className="page">
-      <h1 className="resume-title">{sectionData.contact.firstName} {sectionData.contact.lastName}</h1>
-      <h6 className="pronouns">{sectionData.contact.pronouns}</h6>
-      <div className="contact-section">
-        <ContactSection contact={sectionData.contact} socialsData={sectionData.socials} />
-      </div>
+    
+    <body className="resume-layout" layout={layout}>
+            <h1 className="resume-title">{sectionData.contact.firstName} {sectionData.contact.lastName}</h1>
+            <h6 className="pronouns">{sectionData.contact.pronouns}</h6>
+          <div>
+            <ContactSection contact={sectionData.contact} socialsData={sectionData.socials} />
+          </div>
 
-      {selectedSections && selectedSections.includes('about') && (
-        <div className="about-section">
-        <AboutSection about={sectionData.about} />
-        </div>
-      )}
+          <hr className="line" />
 
-      <div className="education-section">
-        <EducationSection education={sectionData.education} />
-      </div>
+          {selectedSections && selectedSections.includes('about') && (
+            <div className="about-section">
+            <AboutSection about={sectionData.about} />
+            </div>
+          )}
 
-      {selectedSections && selectedSections.includes('courses') && (
-        <div className="courses-section">
-          <CoursesSection courses={sectionData.courses} />
-        </div>
-      )}
+          <div class="education-section">
+            <EducationSection education={sectionData.education} />
+          </div>
 
-      {selectedSections && selectedSections.includes('experience') && (
-        <div className="experience-section">
-          <ExperienceSection experience={sectionData.experience} />
-        </div>
-      )}
+          {selectedSections && selectedSections.includes('courses') && (
+            <div className="courses-section">
+              <CoursesSection courses={sectionData.courses} />
+            </div>
+          )}
 
-      {selectedSections && selectedSections.includes('certifications') && (
-        <div className="certifications-section">
-          <CertificationSection certifications={sectionData.certifications} />
-        </div>
-      )}
+          {selectedSections && selectedSections.includes('experience') && (
+            <div className="experience-section">
+              <ExperienceSection experience={sectionData.experience} />
+            </div>
+          )}
 
-      {selectedSections && selectedSections.includes('languages') && (
-        <div className="languages-section">
-          <LanguagesSection languages={sectionData.languages} />
-        </div>
-      )}
+          {selectedSections && selectedSections.includes('certifications') && (
+            <div className="certifications-section">
+              <CertificationSection certifications={sectionData.certifications} />
+            </div>
+          )}
 
-      {selectedSections && selectedSections.includes('publications') && (
-        <div className="publications-section">
-          <PublicationsSection publications={sectionData.publications} />
-        </div>
-      )}
+          {selectedSections && selectedSections.includes('languages') && (
+            <div className="languages-section">
+              <LanguagesSection languages={sectionData.languages} />
+            </div>
+          )}
 
-      {selectedSections && selectedSections.includes('skills') && (
-        <div className="skills-section">
-          <SkillsSection skills={sectionData.skills} />
-        </div>
-      )}
+          {selectedSections && selectedSections.includes('publications') && (
+            <div className="publications-section">
+              <PublicationsSection publications={sectionData.publications} />
+            </div>
+          )}
 
-      {selectedSections && selectedSections.includes('projects') && (
-        <div className="projects-section">
-          <ProjectsSection projects={sectionData.projects} />
-        </div>
-      )}
-    </div>
-    </div>
+          {selectedSections && selectedSections.includes('skills') && (
+            <div className="skills-section">
+              <SkillsSection skills={sectionData.skills} />
+            </div>
+          )}
+
+          {selectedSections && selectedSections.includes('projects') && (
+            <div className="projects-section">
+              <ProjectsSection projects={sectionData.projects} />
+            </div>
+          )}
+    </body>
   );
 }
 

@@ -1,84 +1,151 @@
-/* Make this div be the size of a letter size sheet of paper, and shrink it's contents to fit that size
 body {
-  margin: 0;
-}
-.resume-layout {
-  width: 8.5in;
-  height: 11in;
-  padding: 0.5in;
-  margin: 0.5in;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  font-size: 12pt;
-  overflow: hidden;
-  transform: 0.5s ease;
-  display: flex;
-  flex-direction: column;
+  background-color: white;
 }
 
-.contact-section {
-  flex: 1;
-  width: 100%;
-}
-
-.education-section {
-  flex: 2;
-}
-
-.experience-section {
-  flex: 2;
-}
-.certifications-section {
-  flex: 1;
-} */
-
-body {
+h1 {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 32pt;
+  color: black;
   margin: 0;
   padding: 0;
-  border: 1px solid black;
 }
 
-.resume {
-  width: 100%;
-  max-width: 8.5in;
-  max-height: 11in;
-  margin: 0 auto;
-  padding: 0.5in;
-  box-sizing: border-box;
-  display: flex;
+h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 20pt;
+  color: black;
+  margin: 0;
+  padding: 0;
 }
 
-@media print {
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
-  .page {
-    width: 100%;
-    max-width: 8.5in;
-    margin: 0;
-    padding: 0.5in;
-    box-sizing: border-box;
-    overflow: hidden;
-    transform: 0.5s ease;
-    display: flex;
-  }
+h3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 13pt;
+  color: black;
+  margin: 0;
+  padding: 0;
 }
 
-.contact-section {
-  flex: 1;
-  width: 100%;
+h4 {
+  font-family: "Roboto", sans-serif;
+  font-size: 11pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+  font-style: italic;
+}
+
+h5 {
+  font-family: "Roboto", sans-serif;
+  font-size: 11pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h6 {
+  font-family: "Roboto", sans-serif;
+  font-size: 10pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-size: 11pt;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+ul {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: black;
+  margin-left: 25px;
+  padding: 0;
+}
+
+.pronouns {
+  text-align: center;
+  font-style: italic;
+}
+
+.contact-section,
+.contact-section a {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 13pt;
+  font-weight: 700;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.socials-section {
+  text-align: center;
+}
+
+.line {
+  border: 2px solid black;
+  margin: 0;
+  padding: 0;
+}
+
+.about-section {
+  text-align: left;
 }
 
 .education-section {
-  flex: 2;
+  text-align: left;
 }
 
-.experience-section {
-  flex: 2;
+.courses-section {
+  text-align: left;
 }
 
 .certifications-section {
-  flex: 1;
+  text-align: left;
+}
+
+.publications-section {
+  text-align: left;
+}
+
+.languages-section {
+  text-align: left;
+}
+
+.projects-section {
+  text-align: left;
+}
+
+.experience-section {
+  text-align: left;
+}
+
+.skills-section {
+  text-align: left;
 }

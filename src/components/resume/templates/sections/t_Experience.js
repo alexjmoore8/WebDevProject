@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Segment } from 'semantic-ui-react';
 
 const WorkExperienceSection = ({ experience }) => {
   if (!experience || !experience.job || !Array.isArray(experience.job)) {
@@ -6,6 +7,7 @@ const WorkExperienceSection = ({ experience }) => {
   }
 
   return (
+    <Segment>
     <div className="experience-section">
       <div className="experience-heading"><h2>{experience.sectionHeading}</h2></div>
       {experience.job.map((job, index) => (
@@ -25,6 +27,7 @@ const WorkExperienceSection = ({ experience }) => {
         </div>
       ))}
     </div>
+        </Segment>
   );
 }
 

@@ -1,19 +1,19 @@
 {
   "controller": {
     "resumeTitle": "Internship Resume",
-    "layout": "layout1",
-    "style": "style1",
+    "layout": "layout3",
+    "style": "style3",
     "sections": {
       "contact": true,
       "socials": true,
-      "about": false,
+      "about": true,
       "education": true,
-      "courses": false,
+      "courses": true,
       "certifications": true,
-      "skills": false,
-      "publications": false,
-      "languages": false,
-      "projects": false,
+      "skills": true,
+      "publications": true,
+      "languages": true,
+      "projects": true,
       "experience": true
     }
   },

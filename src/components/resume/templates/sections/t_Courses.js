@@ -12,7 +12,6 @@ const CoursesSection = ({ courses }) => {
         <div key={index} className="course-item">
           <div className="course-title"><h3>{course.title}</h3></div>
           <div className="course-school"><h4>{course.school}</h4></div>
-          <div className="tags">{`Tags: ${course.tags.join(', ')}`}</div>
         </div>
       ))}
     </div>
