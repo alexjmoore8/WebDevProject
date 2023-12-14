@@ -5,6 +5,7 @@ import Login from './components/loginRegister/Login.js';
 import Signup from './components/loginRegister/Signup.js';
 import ResumeForm from './components/resume/forms/resumeForm.js';
 import Controller from './components/resume/resumeController.js';
+import JobSearchEngine from './components/JobSearch.js';
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 
@@ -18,6 +19,7 @@ function App() {
             <Route path = "/home" element={<Home/>}/>
             <Route path = "/resume/form" element={<ResumeForm/>}/>
             <Route path = "/resume/layout" element={<Controller/>}/>
+            <Route path="/jobsearch" element={<JobSearchEngine/>}/>
           </Routes>
         </Router>
 

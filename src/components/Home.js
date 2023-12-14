@@ -1,6 +1,7 @@
 import React from 'react';
 import {useLocation, Link} from 'react-router-dom';
 import Navbar from './Navbar.js';
+import "./loginRegister/css/pretty.css"
 
 function Home(){
     const location=useLocation();
