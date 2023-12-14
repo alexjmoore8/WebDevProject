@@ -1,15 +1,16 @@
 //where you will have the post, get methods
 import express, { json, urlencoded } from 'express';
 import collection from './mongo.js';
-import cors from 'cors';
+import cors from 'cors'
 import bcrypt from 'bcrypt';
 import session from 'express-session'; // Import express-session
+import JobRoutes from './job/jobRoutes.js'
 
 const app = express();
 app.use(json());
-app.use(urlencoded({ extended:true }));
+app.use(urlencoded({ extended: true }));
 app.use(cors({
-    origin: 'http://localhost:3001', // or your client origin
+    origin: 'http://localhost:3002', // or your client origin
     credentials: true
 }));
 const saltRounds = 15;
@@ -19,27 +20,31 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false } // Set to `true` in production with HTTPS
-  }));
+}));
 
-app.get("/", cors(), (req, res) => {
-
+app.get("/", (req, res) => {
+    // res.render
 })
 
 app.post("/signup", async (req, res) => {
     const { firstName, lastName, email, password, role } = req.body;
 
     try {
-        const userExists = await collection.findOne({ email: email });
+        const userExists = await collection.collectionUsers.findOne({ email: email });
+        console.log(userExists)
         if (userExists) {
             res.json("exists");
         } else {
             const hashedPassword = await bcrypt.hash(password, saltRounds);
-            const newUser = { firstName: firstName, lastName: lastName, email: email, password: hashedPassword, role: role};
-            await collection.insertMany([newUser]);
+            const newUser = { firstName: firstName, lastName: lastName, email: email, password: hashedPassword, role: role };
+            await collection.collectionUsers.insertMany([newUser]);
             res.json("signup_success");
         }
     } catch (e) {
-        res.status(500).json("error");
+        console.log(e)
+        res.status(500).json({
+            message: "something happened"
+        });
     }
 });
 
@@ -49,7 +54,7 @@ app.post("/", async (req, res) => {
     console.log("Login attempt for:", email); // Log the email of the login attempt
 
     try {
-        const user = await collection.findOne({ email: email });
+        const user = await collection.collectionUsers.findOne({ email: email });
         console.log("User found:", user); // Log the retrieved user object (be careful with logging sensitive info)
 
         if (user) {
@@ -76,19 +81,21 @@ app.post("/", async (req, res) => {
 
 // Logout endpoint to destroy session
 app.get('/logout', (req, res) => {
-  if (req.session.user) {
-    req.session.destroy(err => {
-      if (err) {
-        res.status(400).send('Unable to log out')
-      } else {
-        res.send('Logout successful')
+    if (req.session.user) {
+        req.session.destroy(err => {
+            if (err) {
+                res.status(400).send('Unable to log out')
+            } else {
+                res.send('Logout successful')
 
-      }
-    });
-  } else {
-    res.end()
-  }
+            }
+        });
+    } else {
+        res.end()
+    }
 });
+
+app.use(JobRoutes)
 
 app.listen(3000, () => {
     console.log("Server is listening on port 3000");

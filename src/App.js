@@ -6,6 +6,8 @@ import Login from './components/loginRegister/Login.js';
 import Signup from './components/loginRegister/Signup.js';
 import Home from './components/Home.js'; // Import Home component for applicants
 import HomeA from './components/HomeA.js'; // Import HomeA component for employers
+import { JobPost } from './components/jobPost.js';
+import { JobPostList } from './components/jobPostList.js';
 
 function App() {
   return (
@@ -25,6 +27,14 @@ function App() {
             </ProtectedRoute>
           } />
           {/* Define other routes here */}
+          <Route path="/jobPost" element={
+            <ProtectedRoute role="employer">
+              <JobPost />
+            </ProtectedRoute>
+          } />
+          <Route path="/jobList" element={
+            <JobPostList />
+          } />
         </Routes>
       </Router>
     </AuthProvider>
