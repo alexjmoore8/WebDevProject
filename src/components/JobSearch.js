@@ -71,7 +71,7 @@ import Navbar from './Navbar.js';
 
       <div id="jobResults">
         {jobResults.length > 0 ? (
-          <ul>
+          <ul id="jobSearchResults">
             {jobResults.map((job, index) => (
               <li key={index}>
                 <a href={job.link} target="_blank" rel="noopener noreferrer">
@@ -85,7 +85,7 @@ import Navbar from './Navbar.js';
           <p>No jobs found.</p>
         )}
       </div>
-    </div>
+</div>
     </>
   );
 }
