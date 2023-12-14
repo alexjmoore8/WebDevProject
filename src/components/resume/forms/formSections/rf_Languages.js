@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import Typo from 'typo-js';
 
 function ResumeLanguages({ data, handleChange }) {
   const initialLanguages = data.languages || [{}];
   const [languages, setLanguages] = useState(initialLanguages);
+  const dictionary = new Typo('en_US');
 
   const handleAddLanguage = () => {
     if (languages.length < 10) {
@@ -23,6 +25,18 @@ function ResumeLanguages({ data, handleChange }) {
   };
 
   const languageLevels = ['Beginner', 'Intermediate', 'Advanced', 'Fluent', 'Native', 'Other'];
+
+  const isLanguageValid = (language) => language.trim() !== '';
+  const isLevelValid = (level) => languageLevels.includes(level) || level === 'Other';
+  const isOtherLevelValid = (level, otherLevel) => level !== 'Other' || (level === 'Other' && otherLevel.trim() !== '');
+
+  const isFormValid = (language, level, otherLevel) => {
+    return isLanguageValid(language) && isLevelValid(level) && isOtherLevelValid(level, otherLevel);
+  };
+
+  const isSpellingValid = (text) => {
+    return dictionary.check(text);
+  };
 
   return (
     <div>
@@ -67,6 +81,14 @@ function ResumeLanguages({ data, handleChange }) {
               value={language.otherLevel || ''}
               onChange={(e) => handleInputChange(index, 'otherLevel', e.target.value)}
             />
+          )}
+
+          {!isFormValid(language.language, language.level, language.otherLevel) && (
+            <div className="error-message">Invalid input. Please check your data.</div>
+          )}
+
+          {!isSpellingValid(language.language) && (
+            <div className="error-message">Spelling error in the language name.</div>
           )}
 
           <button onClick={() => handleRemoveLanguage(index)}>Remove</button>

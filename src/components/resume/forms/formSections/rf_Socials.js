@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PlatformDropdown from './sectionComponents/platform.js';
+import Typo from 'typo-js';
 
 function ResumeSocialMedia({ data, handleChange }) {
   const [profiles, setProfiles] = useState(data.profiles || [{ name: '', link: '', platformType: '' }]);
+  const dictionary = new Typo('en_US');
 
   const handleAddProfile = () => {
     if (profiles.length < 3) {
@@ -22,6 +24,11 @@ function ResumeSocialMedia({ data, handleChange }) {
     setProfiles(updatedProfiles);
   };
 
+  const isNameValid = (name) => name.trim() !== '';
+  const isLinkValid = (link) => link.trim() !== '';
+  const isPlatformTypeValid = (platformType) => platformType.trim() !== '';
+  const isSpellingValid = (text) => dictionary.check(text);
+
   return (
     <div>
       <h2>Social Media Profiles</h2>
@@ -35,6 +42,12 @@ function ResumeSocialMedia({ data, handleChange }) {
             placeholder="Name"
             onChange={(e) => handleInputChange(index, 'name', e.target.value)}
           />
+          {!isNameValid(profile.name) && (
+            <div className="error-message">Name is required.</div>
+          )}
+          {!isSpellingValid(profile.name) && (
+            <div className="error-message">Spelling error in the name.</div>
+          )}
 
           <label>Link</label>
           <input
@@ -44,6 +57,9 @@ function ResumeSocialMedia({ data, handleChange }) {
             placeholder="Profile Link"
             onChange={(e) => handleInputChange(index, 'link', e.target.value)}
           />
+          {!isLinkValid(profile.link) && (
+            <div className="error-message">Link is required.</div>
+          )}
 
           <label>Type</label>
           <div>
@@ -52,6 +68,10 @@ function ResumeSocialMedia({ data, handleChange }) {
               handleChange={(e) => handleInputChange(index, 'platformType', e.target.value)}
             />
           </div>
+          {!isPlatformTypeValid(profile.platformType) && (
+            <div className="error-message">Platform Type is required.</div>
+          )}
+
           <button onClick={() => handleRemoveProfile(index)}>Remove</button>
         </div>
       ))}

@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import Typo from 'typo-js';
 import MonthDropdown from './sectionComponents/month.js';
 import YearDropdown from './sectionComponents/year.js';
 
 function ResumeCertifications({ data, handleChange }) {
   const [certifications, setCertifications] = useState(data.certifications || [{}]);
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [selectedYear, setSelectedYear] = useState('');
+
+  const dictionary = new Typo('en_US'); 
 
   const handleAddCertification = () => {
     if (certifications.length < 10) {
@@ -23,17 +28,33 @@ function ResumeCertifications({ data, handleChange }) {
     setCertifications(updatedCertifications);
   };
 
+  const validateCertificationName = (name) => {
+    return name.length > 0 && dictionary.check(name); 
+  };
 
-    const [selectedMonth, setSelectedMonth] = useState('');
-    const [selectedYear, setSelectedYear] = useState('');
+  const validateDate = (month, year) => {
+    return month !== '' && year !== '';
+  };
 
-    const handleMonthChange = (e) => {
-      setSelectedMonth(e.target.value);
-    };
-    
-    const handleYearChange = (e) => {
-      setSelectedYear(e.target.value);
-    };
+  const handleMonthChange = (e) => {
+    setSelectedMonth(e.target.value);
+  };
+  
+  const handleYearChange = (e) => {
+    setSelectedYear(e.target.value);
+  };
+
+  const handleSaveCertification = (index) => {
+    const certification = certifications[index];
+    const isValidName = validateCertificationName(certification.name);
+    const isValidDate = validateDate(selectedMonth, selectedYear);
+
+    if (isValidName && isValidDate) {
+      console.log('Data is valid:', certification);
+    } else {
+      console.log('Data is not valid');
+    }
+  };
 
   return (
     <div>
@@ -57,6 +78,7 @@ function ResumeCertifications({ data, handleChange }) {
             placeholder="Certification Name"
             onChange={(e) => handleInputChange(index, 'name', e.target.value)}
           />
+          {!validateCertificationName(certification.name) && <div className="error">Certification Name contains spelling errors</div>}
 
           <label>Organization</label>
           <input
@@ -69,8 +91,8 @@ function ResumeCertifications({ data, handleChange }) {
 
           <label>Date</label>
           <div>
-          <MonthDropdown value={selectedMonth} onChange={handleMonthChange} />
-          <YearDropdown value={selectedYear} onChange={handleYearChange} startYear={2000} endYear={2030} />
+            <MonthDropdown value={selectedMonth} onChange={handleMonthChange} />
+            <YearDropdown value={selectedYear} onChange={handleYearChange} startYear={2000} endYear={2030} />
           </div>
 
           <label>Tags</label>
@@ -86,6 +108,7 @@ function ResumeCertifications({ data, handleChange }) {
           />
 
           <button onClick={() => handleRemoveCertification(index)}>Remove</button>
+          <button onClick={() => handleSaveCertification(index)}>Save</button>
         </div>
       ))}
 

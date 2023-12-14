@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import Typo from 'typo-js';
 
 function ResumePublications({ data, handleChange }) {
   const [publications, setPublications] = useState(data.publications || [{}]);
+  const dictionary = new Typo('en_US');
 
   const handleAddPublication = () => {
     if (publications.length < 15) {
@@ -19,6 +21,31 @@ function ResumePublications({ data, handleChange }) {
     const updatedPublications = [...publications];
     updatedPublications[index][field] = value;
     setPublications(updatedPublications);
+  };
+
+  const isTitleValid = (title) => title.trim() !== '';
+  const isPublisherValid = (publisher) => publisher.trim() !== '';
+  const isDateValid = (date) => date.trim() !== '';
+  const isLinkValid = (link) => {
+    return true;
+  };
+  const areTagsValid = (tags) => {
+    const tagArray = tags.split(',').map((tag) => tag.trim());
+    return tagArray.every((tag) => tag.length >= 3);
+  };
+
+  const isFormValid = (title, publisher, date, link, tags) => {
+    return (
+      isTitleValid(title) &&
+      isPublisherValid(publisher) &&
+      isDateValid(date) &&
+      isLinkValid(link) &&
+      areTagsValid(tags)
+    );
+  };
+
+  const isSpellingValid = (text) => {
+    return dictionary.check(text);
   };
 
   return (
@@ -82,6 +109,18 @@ function ResumePublications({ data, handleChange }) {
               handleInputChange(index, 'tags', tagsArray);
             }}
           />
+
+          {!isFormValid(
+            publication.title,
+            publication.publisher,
+            publication.date,
+            publication.link,
+            publication.tags || ''
+          ) && <div className="error-message">Invalid input. Please check your data.</div>}
+
+          {!isSpellingValid(publication.title) && (
+            <div className="error-message">Spelling error in the publication title.</div>
+          )}
 
           <button onClick={() => handleRemovePublication(index)}>Remove</button>
         </div>

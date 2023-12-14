@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import Typo from 'typo-js';
 
 function ResumeCourses({ data, handleChange }) {
   const [courses, setCourses] = useState(data.courses || [{}]);
+  const [errors, setErrors] = useState({});
+  const dictionary = new Typo('en_US');
 
   const handleAddCourse = () => {
     if (courses.length < 12) {
@@ -19,6 +22,46 @@ function ResumeCourses({ data, handleChange }) {
     const updatedCourses = [...courses];
     updatedCourses[index][field] = value;
     setCourses(updatedCourses);
+  };
+
+  const validateTitle = (title) => {
+    return title.trim() !== '' && isSpellingValid(title);
+  };
+
+  const validateSchool = (school) => {
+    return school.trim() !== '' && isSpellingValid(school);
+  };
+
+  const validateTags = (tags) => {
+    const tagsArray = tags.split(',').map((tag) => tag.trim());
+    return tagsArray.every((tag) => tag !== '') && isSpellingValid(tagsArray.join(', '));
+  };
+
+  const isSpellingValid = (text) => {
+    return dictionary.check(text);
+  };
+
+  const handleSubmit = () => {
+    const validationErrors = {};
+
+    courses.forEach((course, index) => {
+      if (!validateTitle(course.title)) {
+        validationErrors[`courses[${index}].title`] = 'Title is required or contains misspelled words';
+      }
+      if (!validateSchool(course.school)) {
+        validationErrors[`courses[${index}].school`] = 'School is required or contains misspelled words';
+      }
+      if (!validateTags(course.tags || '')) {
+        validationErrors[`courses[${index}].tags`] = 'Invalid tags or contains misspelled words';
+      }
+    });
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      setErrors({});
+      console.log('Form submitted:', courses);
+    }
   };
 
   return (
@@ -43,6 +86,9 @@ function ResumeCourses({ data, handleChange }) {
             placeholder="Course Name"
             onChange={(e) => handleInputChange(index, 'title', e.target.value)}
           />
+          {errors[`courses[${index}].title`] && (
+            <div className="error">{errors[`courses[${index}].title`]}</div>
+          )}
 
           <label>School</label>
           <input
@@ -52,6 +98,9 @@ function ResumeCourses({ data, handleChange }) {
             placeholder="School"
             onChange={(e) => handleInputChange(index, 'school', e.target.value)}
           />
+          {errors[`courses[${index}].school`] && (
+            <div className="error">{errors[`courses[${index}].school`]}</div>
+          )}
 
           <label>Tags</label>
           <input
@@ -60,10 +109,13 @@ function ResumeCourses({ data, handleChange }) {
             value={course.tags ? course.tags.join(', ') : ''}
             placeholder="Tags (comma-separated)"
             onChange={(e) => {
-              const tagsArray = e.target.value.split(', ').filter((tag) => tag.trim() !== '');
+              const tagsArray = e.target.value.split(',').map((tag) => tag.trim());
               handleInputChange(index, 'tags', tagsArray);
             }}
           />
+          {errors[`courses[${index}].tags`] && (
+            <div className="error">{errors[`courses[${index}].tags`]}</div>
+          )}
 
           <button onClick={() => handleRemoveCourse(index)}>Remove</button>
         </div>
@@ -72,6 +124,8 @@ function ResumeCourses({ data, handleChange }) {
       {courses.length < 12 && (
         <button onClick={handleAddCourse}>Add Course</button>
       )}
+
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }

@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import StateDropdown from './sectionComponents/state.js';
 import MonthDropdown from './sectionComponents/month.js';
 import YearDropdown from './sectionComponents/year.js';
 
 function ResumeExperience({ data, handleChange }) {
-  const initialExperience = data.experience || [{}]; // Ensure it's initialized as an array
-  const [experience, setExperience] = useState(initialExperience);
+  const initialExperience = useMemo(() => {
+    return data.experience ? [...data.experience] : [{}];
+  }, [data.experience]);
 
+  const [experience, setExperience] = useState(initialExperience);
   const [selectedState, setSelectedState] = useState('');
+  const [errors, setErrors] = useState(Array(initialExperience.length).fill({}));
+
+  useEffect(() => {
+    if (initialExperience.length > 0) {
+      setSelectedState(initialExperience[0]?.location?.selectedState || '');
+    }
+  }, [initialExperience]);
+
 
   const handleStateChange = (e) => {
     setSelectedState(e.target.value);
@@ -17,8 +27,9 @@ function ResumeExperience({ data, handleChange }) {
     if (experience.length < 10) {
       setExperience([
         ...experience,
-        { location: { selectedState: '' } }
+        { location: { selectedState: '' } },
       ]);
+      setErrors([...errors, {}]);
     }
   };
 
@@ -26,17 +37,65 @@ function ResumeExperience({ data, handleChange }) {
     const updatedExperience = [...experience];
     updatedExperience.splice(index, 1);
     setExperience(updatedExperience);
+
+    const updatedErrors = [...errors];
+    updatedErrors.splice(index, 1);
+    setErrors(updatedErrors);
   };
 
-  const handleInputChange = (index, field, value) => {
-  const updatedExperience = [...experience];
+  const handleInputChange = async (index, field, value) => {
+    const updatedExperience = [...experience];
     if (!updatedExperience[index].location) {
-      updatedExperience[index].location = {}; 
+      updatedExperience[index].location = {};
     }
     updatedExperience[index][field] = value;
     setExperience(updatedExperience);
+
+    const validationErrors = await validateField(index, field, value);
+    const updatedErrors = [...errors];
+    updatedErrors[index] = validationErrors;
+    setErrors(updatedErrors);
   };
 
+  const validateField = async (index, field, value) => {
+    if (field === 'position' || field === 'organization') {
+      try {
+        const grammarErrors = await checkGrammar(value);
+        if (grammarErrors.length > 0) {
+          return 'Contains grammar errors';
+        }
+      } catch (error) {
+        console.error(error);
+        return 'Error checking grammar';
+      }
+    }
+    return '';
+  };
+
+  const checkGrammar = async (text) => {
+    try {
+      const response = await fetch('https://api.languagetool.org/v2/check', {
+        method: 'POST',
+        body: JSON.stringify({
+          text: text,
+          language: 'en-US',
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`LanguageTool API request failed with status ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data.matches;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  };
 
   return (
     <div>
@@ -50,47 +109,56 @@ function ResumeExperience({ data, handleChange }) {
         onChange={(e) => handleChange('ResumeExperience', e.target.name, e.target.value)}
       />
 
-      {experience.map((data, index) => (
+      {experience.map((experienceData, index) => (
         <div key={index}>
           <label>Job Title</label>
           <input
             type="text"
             name={`experience[${index}].position`}
-            value={data.position || ''}
+            value={experienceData.position || ''}
             placeholder="Job position"
             onChange={(e) => handleInputChange(index, 'position', e.target.value)}
           />
+          {errors[index] && errors[index].position && (
+            <span className="error">{errors[index].position}</span>
+          )}
 
           <label>Company</label>
           <input
             type="text"
             name={`experience[${index}].organization`}
-            value={data.organization || ''}
+            value={experienceData.organization || ''}
             placeholder="Company"
             onChange={(e) => handleInputChange(index, 'organization', e.target.value)}
           />
+          {errors[index] && errors[index].organization && (
+            <span className="error">{errors[index].organization}</span>
+          )}
 
           <label>City</label>
           <input
             type="text"
-            name={`experiences[${index}].location.city`} // Use the correct name
-            value={data.location ? data.location.city || '' : ''}
+            name={`experience[${index}].location.city`}
+            value={experienceData.location ? experienceData.location.city || '' : ''}
             placeholder="City"
-            onChange={(e) => handleInputChange(index, 'location.city', e.target.value)} // Update the field path
+            onChange={(e) => handleInputChange(index, 'location.city', e.target.value)}
           />
 
           <label>State</label>
           <div>
-              <StateDropdown value={selectedState} onChange={handleStateChange} />
+            <StateDropdown
+              value={selectedState}
+              onChange={handleStateChange}
+            />
           </div>
 
           <div>
             <MonthDropdown
-              value={data.startDateMonth || ''}
+              value={experienceData.startDateMonth || ''}
               onChange={(e) => handleInputChange(index, 'startDateMonth', e.target.value)}
             />
             <YearDropdown
-              value={data.startDateYear || ''}
+              value={experienceData.startDateYear || ''}
               onChange={(e) => handleInputChange(index, 'startDateYear', e.target.value)}
             />
           </div>
@@ -98,11 +166,11 @@ function ResumeExperience({ data, handleChange }) {
           <label>End Date</label>
           <div>
             <MonthDropdown
-              value={data.endDateMonth || ''}
+              value={experienceData.endDateMonth || ''}
               onChange={(e) => handleInputChange(index, 'endDateMonth', e.target.value)}
             />
             <YearDropdown
-              value={data.endDateYear || ''}
+              value={experienceData.endDateYear || ''}
               onChange={(e) => handleInputChange(index, 'endDateYear', e.target.value)}
             />
           </div>
@@ -110,7 +178,7 @@ function ResumeExperience({ data, handleChange }) {
           <label>Bullets</label>
           <textarea
             name={`experience[${index}].bullets`}
-            value={data.bullets ? data.bullets.join('\n') : ''}
+            value={experienceData.bullets ? experienceData.bullets.join('\n') : ''}
             placeholder="Job Bullets (one per line)"
             onChange={(e) => handleInputChange(index, 'bullets', e.target.value.split('\n'))}
           />
@@ -119,7 +187,7 @@ function ResumeExperience({ data, handleChange }) {
           <input
             type="text"
             name={`experience[${index}].tags`}
-            value={data.tags ? data.tags.join(', ') : ''}
+            value={experienceData.tags ? experienceData.tags.join(', ') : ''}
             placeholder="Tags (comma-separated)"
             onChange={(e) => handleInputChange(index, 'tags', e.target.value.split(', '))}
           />

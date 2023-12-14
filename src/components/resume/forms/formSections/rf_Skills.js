@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import Typo from 'typo-js';
 
 function ResumeSkills({ data, handleChange }) {
-    const initialSkills = data.skills || [{}];
+  const initialSkills = data.skills || [{}];
   const [skills, setSkills] = useState(initialSkills);
+
+  const dictionary = new Typo('en_US');
 
   const handleAddSkill = () => {
     if (skills.length < 20) {
@@ -16,14 +19,29 @@ function ResumeSkills({ data, handleChange }) {
     setSkills(updatedSkills);
   };
 
-    const handleInputChange = (index, field, value) => {
-        const updatedSkills = [...skills];
-        updatedSkills[index][field] = value;
-        setSkills(updatedSkills);
-    }
+  const handleInputChange = (index, field, value) => {
+    const updatedSkills = [...skills];
+    updatedSkills[index][field] = value;
+    setSkills(updatedSkills);
+  };
 
   const skillLevels = ['Beginner', 'Intermediate', 'Advanced', 'Other'];
 
+  const isTitleValid = (title) => title.trim() !== '';
+  const isSkillValid = (skill) => skill.trim() !== '';
+  const isLevelValid = (level) => skillLevels.includes(level) || level === 'Other';
+  const isOtherLevelValid = (level, otherLevel) => level !== 'Other' || (level === 'Other' && otherLevel.trim() !== '');
+
+  const isFormValid = (title, skill, level, otherLevel) => {
+    return (
+      isTitleValid(title) &&
+      isSkillValid(skill) &&
+      isLevelValid(level) &&
+      isOtherLevelValid(level, otherLevel)
+    );
+  };
+
+  const isSpellingValid = (text) => dictionary.check(text);
 
   return (
     <div>
@@ -47,6 +65,12 @@ function ResumeSkills({ data, handleChange }) {
             placeholder="Skill"
             onChange={(e) => handleInputChange(index, 'skill', e.target.value)}
           />
+          {!isSkillValid(skill.skill) && (
+            <div className="error-message">Invalid input. Please check your data.</div>
+          )}
+          {!isSpellingValid(skill.skill) && (
+            <div className="error-message">Spelling error in the skill name.</div>
+          )}
 
           <label>Level</label>
           <select
@@ -55,19 +79,23 @@ function ResumeSkills({ data, handleChange }) {
             onChange={(e) => handleInputChange(index, 'level', e.target.value)}
           >
             {skillLevels.map((level) => (
-                <option key={level} value={level}>
-                    {level}
-                </option>
-                ))}
-            </select>
+              <option key={level} value={level}>
+                {level}
+              </option>
+            ))}
+          </select>
 
-            {skill.level === 'Other' && (
+          {skill.level === 'Other' && (
             <input
               type="text"
               placeholder="Other Level"
               value={skill.otherLevel || ''}
               onChange={(e) => handleInputChange(index, 'otherLevel', e.target.value)}
             />
+          )}
+
+          {!isFormValid(data.sectionHeading, skill.skill, skill.level, skill.otherLevel) && (
+            <div className="error-message">Invalid input. Please check your data.</div>
           )}
 
           <button onClick={() => handleRemoveSkill(index)}>Remove</button>
@@ -80,6 +108,5 @@ function ResumeSkills({ data, handleChange }) {
     </div>
   );
 }
-
 
 export default ResumeSkills;
