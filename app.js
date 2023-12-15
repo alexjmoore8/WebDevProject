@@ -5,20 +5,32 @@ import cors from 'cors'
 import bcrypt from 'bcrypt';
 import session from 'express-session'; // Import express-session
 import JobRoutes from './job/jobRoutes.js'
+import helmet from 'helmet';
+import xss from 'xss-clean'
 
 
 const app = express();
+app.use(helmet());
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+    }
+}));
+app.use(xss());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(cors({
-    origin: 'http://localhost:3002', // or your client origin
+    origin: 'http://localhost:3002', 
 
     credentials: true
 }));
 const saltRounds = 15;
 
 app.use(session({
-    secret: 'your_secret_key',
+    secret: 'jVOXDBKTvbgN2CVtS34XoktvuTuUo8c1',
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false } // Set to `true` in production with HTTPS
@@ -56,7 +68,7 @@ app.post("/", async (req, res) => {
 
     try {
         const user = await collection.collectionUsers.findOne({ email: email });
-        console.log("User found:", user); // Log the retrieved user object (be careful with logging sensitive info)
+        console.log("User found:", user);
 
 
         if (user) {
@@ -69,13 +81,13 @@ app.post("/", async (req, res) => {
             const match = await bcrypt.compare(password, user.password);
             if (match) {
                 // Reset failed attempts on successful login
-                await collection.updateOne({ email: email }, { $set: { failedAttempts: 0, lastFailedLogin: null } });
+                await collection.collectionUsers.updateOne({ email: email }, { $set: { failedAttempts: 0, lastFailedLogin: null } });
                 req.session.user = { id: user._id, role: user.role };
                 console.log("Login successful, session initialized:", req.session.user);
                 res.json({ status: "exists", role: user.role });
             } else {
                 // Increment failed attempts
-                await collection.updateOne({ email: email }, { $inc: { failedAttempts: 1 }, $set: { lastFailedLogin: new Date() } });
+                await collection.collectionUsers.updateOne({ email: email }, { $inc: { failedAttempts: 1 }, $set: { lastFailedLogin: new Date() } });
                 console.log("Incorrect password for:", email);
                 res.json({ status: "notexist", message: "Incorrect password or user" });
             }
