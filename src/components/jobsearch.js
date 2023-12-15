@@ -10,7 +10,8 @@ import Navbar from './Navbar.js';
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    
+    // API for job search
     const url = 'https://jooble.org/api/';
     const key = 'b012952b-e896-469e-a4b1-2bffcd6e5af0';
 

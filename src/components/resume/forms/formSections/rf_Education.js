@@ -30,52 +30,45 @@ function ResumeEducation({ data, handleChange }) {
     setEducations(updatedEducations);
   };
 
-  const handleInputChange = (index, field, value) => {
+const handleInputChange = (index, field, value) => {
     const updatedEducations = [...educations];
-    if (!updatedEducations[index].location) {
-      updatedEducations[index].location = {};
+    if (field.includes('location.')) {
+        const locationField = field.split('.')[1];
+        updatedEducations[index].location = {
+            ...updatedEducations[index].location,
+            [locationField]: value
+        };
+    } else {
+        updatedEducations[index][field] = value;
     }
-    updatedEducations[index][field] = value;
     setEducations(updatedEducations);
-  };
+};
 
   const handleGrammarCheck = async () => {
-    try {
-      let textToCheck = educations
-        .map((edu) => `${edu.institution || ''} ${edu.location?.city || ''} ${edu.major || ''} ${edu.gpa || ''}`)
-        .join(' ');
+    let textToCheck = educations
+      .map((edu) => `${edu.institution || ''} ${edu.location?.city || ''} ${edu.major || ''}`)
+      .join(' ');
 
-      const response = await fetch('https://api.languagetool.org/v2/check', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
-      });
+    const response = await fetch('https://api.languagetool.org/v2/check', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
+    });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      setGrammarSuggestions(result.matches);
-    } catch (error) {
-      console.error('Error fetching grammar check data:', error);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
-  };
 
-  // Function to validate GPA input as numbers (integer or floating-point)
-  const validateGPAInput = (value) => {
-    // Use a regular expression to check if the value is a number (integer or floating-point)
-    const isNumber = /^(\d+(\.\d+)?)?$/.test(value);
-    return isNumber;
+    const result = await response.json();
+    setGrammarSuggestions(result.matches);
   };
 
   return (
     <div>
       <h2>Education</h2>
 
-      <label>Section Title</label>
       <input
         type="text"
         name="sectionHeading"
@@ -86,7 +79,6 @@ function ResumeEducation({ data, handleChange }) {
 
       {educations.map((education, index) => (
         <div key={index}>
-          <label>School</label>
           <input
             type="text"
             name={`educations[${index}].institution`}
@@ -95,7 +87,6 @@ function ResumeEducation({ data, handleChange }) {
             onChange={(e) => handleInputChange(index, 'institution', e.target.value)}
           />
 
-          <label>City</label>
           <input
             type="text"
             name={`educations[${index}].location.city`}
@@ -104,17 +95,9 @@ function ResumeEducation({ data, handleChange }) {
             onChange={(e) => handleInputChange(index, 'location.city', e.target.value)}
           />
 
-          <label>State</label>
-          <div>
-            <StateDropdown value={selectedState} onChange={handleStateChange} />
-          </div>
+          <StateDropdown value={selectedState} onChange={handleStateChange} />
+          <DegreeDropdown value={selectedDegree} onChange={handleDegreeChange} />
 
-          <label>Degree</label>
-          <div>
-            <DegreeDropdown value={selectedDegree} onChange={handleDegreeChange} />
-          </div>
-
-          <label>Major</label>
           <input
             type="text"
             name={`educations[${index}].major`}
@@ -123,42 +106,30 @@ function ResumeEducation({ data, handleChange }) {
             onChange={(e) => handleInputChange(index, 'major', e.target.value)}
           />
 
-          <label>Start Date</label>
-          <div>
-            <MonthDropdown
-              value={education.startDateMonth || ''}
-              onChange={(e) => handleInputChange(index, 'startDateMonth', e.target.value)}
-            />
-            <YearDropdown
-              value={education.startDateYear || ''}
-              onChange={(e) => handleInputChange(index, 'startDateYear', e.target.value)}
-            />
-          </div>
+          <MonthDropdown
+            value={education.startDateMonth || ''}
+            onChange={(e) => handleInputChange(index, 'startDateMonth', e.target.value)}
+          />
+          <YearDropdown
+            value={education.startDateYear || ''}
+            onChange={(e) => handleInputChange(index, 'startDateYear', e.target.value)}
+          />
 
-          <label>End Date</label>
-          <div>
-            <MonthDropdown
-              value={education.endDateMonth || ''}
-              onChange={(e) => handleInputChange(index, 'endDateMonth', e.target.value)}
-            />
-            <YearDropdown
-              value={education.endDateYear || ''}
-              onChange={(e) => handleInputChange(index, 'endDateYear', e.target.value)}
-            />
-          </div>
+          <MonthDropdown
+            value={education.endDateMonth || ''}
+            onChange={(e) => handleInputChange(index, 'endDateMonth', e.target.value)}
+          />
+          <YearDropdown
+            value={education.endDateYear || ''}
+            onChange={(e) => handleInputChange(index, 'endDateYear', e.target.value)}
+          />
 
-          <label>GPA</label>
           <input
             type="text"
             name={`educations[${index}].gpa`}
             value={education.gpa || ''}
             placeholder="GPA"
-            onChange={(e) => {
-              // Validate GPA input before updating the state
-              if (validateGPAInput(e.target.value)) {
-                handleInputChange(index, 'gpa', e.target.value);
-              }
-            }}
+            onChange={(e) => handleInputChange(index, 'gpa', e.target.value)}
           />
           <button onClick={() => handleRemoveEducation(index)}>Remove</button>
         </div>

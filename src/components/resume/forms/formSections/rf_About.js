@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 function ResumeAbout({ data, handleChange }) {
     const [grammarSuggestions, setGrammarSuggestions] = useState([]);
 
+      // API call for grammar checking
+
     const handleGrammarCheck = async () => {
         const response = await fetch('https://api.languagetool.org/v2/check', {
             method: 'POST',
@@ -38,6 +40,8 @@ function ResumeAbout({ data, handleChange }) {
             />
 
             <button onClick={handleGrammarCheck}>Check Grammar</button>
+
+      {/* generating the list for grammar and spell checking if needed */}
 
             {grammarSuggestions.length > 0 && (
                 <div>

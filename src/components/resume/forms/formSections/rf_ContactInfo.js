@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import StateDropdown from './sectionComponents/state.js';
 import PronounsDropdown from './sectionComponents/pronouns.js';
 
@@ -31,20 +31,9 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
         handleChange('ResumeContactInfo', name, value);
     };
 
-    useEffect(() => {
-        const requiredFields = ['firstName', 'lastName', 'email', 'location.city', 'phone', 'pronouns'];
-        const isAllFieldsFilled = requiredFields.every(field => field in data && data[field]);
-        const hasErrors = Object.values(errors).some(error => error);
-
-        if (!isAllFieldsFilled || hasErrors) {
-            return;
-        }
-
-        handleNextClick();
-    }, [data, errors, handleNextClick]);
-
     const handleGrammarCheck = async () => {
-        const textToCheck = data.location.city;
+        const textFields = ['firstName', 'lastName', 'email', 'location.city', 'phone'];
+        const textToCheck = textFields.map(field => data[field]).join(' ');
 
         const response = await fetch('https://api.languagetool.org/v2/check', {
             method: 'POST',
@@ -70,7 +59,6 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
                 placeholder="First Name"
                 onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
-            {errors.firstName && <p className="error">{errors.firstName}</p>}
 
             <label>Last Name</label>
             <input
@@ -80,7 +68,6 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
                 placeholder="Last Name"
                 onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
-            {errors.lastName && <p className="error">{errors.lastName}</p>}
 
             <label>Email Address</label>
             <input
@@ -90,7 +77,6 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
                 placeholder="Email Address"
                 onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
-            {errors.email && <p className="error">{errors.email}</p>}
 
             <label>City</label>
             <input
@@ -100,13 +86,9 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
                 placeholder="City"
                 onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
-            {errors['location.city'] && <p className="error">{errors['location.city']}</p>}
 
             <label>State</label>
-            <div>
-                <StateDropdown value={selectedState} handleChange={handleStateChange} />
-            </div>
-            {errors.state && <p className="error">{errors.state}</p>}
+            <StateDropdown value={selectedState} handleChange={handleStateChange} />
 
             <label>Phone</label>
             <input
@@ -123,6 +105,7 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
                 customPronouns={data.customPronouns}
                 onCustomPronounsChange={(value) => handleInputChange('customPronouns', value)}
             />
+
             <button onClick={handleGrammarCheck}>Check Grammar</button>
 
             {grammarSuggestions.length > 0 && (
@@ -138,7 +121,6 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
                     </ul>
                 </div>
             )}
-
         </div>
     );
 }

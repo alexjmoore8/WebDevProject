@@ -10,6 +10,18 @@ function ResumePublications({ data, handleChange }) {
     }
   };
 
+  const handleRemovePublication = (index) => {
+    const updatedPublications = [...publications];
+    updatedPublications.splice(index, 1);
+    setPublications(updatedPublications);
+  };
+
+  const handleInputChange = (index, field, value) => {
+    const updatedPublications = [...publications];
+    updatedPublications[index][field] = value;
+    setPublications(updatedPublications);
+  };
+
   const handleGrammarCheck = async () => {
     try {
       let textToCheck = publications
@@ -42,7 +54,6 @@ function ResumePublications({ data, handleChange }) {
   return (
     <div>
       <h2>Publications</h2>
-      <label>Section Title</label>
       <input
         type="text"
         name="sectionHeading"
@@ -53,7 +64,50 @@ function ResumePublications({ data, handleChange }) {
 
       {publications.map((publication, index) => (
         <div key={index}>
-          {/* ... Rest of your form input fields ... */}
+          <input
+            type="text"
+            name={`publications[${index}].title`}
+            value={publication.title || ''}
+            placeholder="Publication Title"
+            onChange={(e) => handleInputChange(index, 'title', e.target.value)}
+          />
+
+          <input
+            type="text"
+            name={`publications[${index}].publisher`}
+            value={publication.publisher || ''}
+            placeholder="Publisher"
+            onChange={(e) => handleInputChange(index, 'publisher', e.target.value)}
+          />
+
+          <input
+            type="text"
+            name={`publications[${index}].date`}
+            value={publication.date || ''}
+            placeholder="Date"
+            onChange={(e) => handleInputChange(index, 'date', e.target.value)}
+          />
+
+          <input
+            type="text"
+            name={`publications[${index}].link`}
+            value={publication.link || ''}
+            placeholder="Link"
+            onChange={(e) => handleInputChange(index, 'link', e.target.value)}
+          />
+
+          <input
+            type="text"
+            name={`publications[${index}].tags`}
+            value={publication.tags ? publication.tags.join(', ') : ''}
+            placeholder="Tags (comma-separated)"
+            onChange={(e) => {
+              const tagsArray = e.target.value.split(', ').filter((tag) => tag.trim() !== '');
+              handleInputChange(index, 'tags', tagsArray);
+            }}
+          />
+
+          <button onClick={() => handleRemovePublication(index)}>Remove</button>
         </div>
       ))}
 

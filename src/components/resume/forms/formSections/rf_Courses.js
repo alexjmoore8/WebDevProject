@@ -21,31 +21,31 @@ function ResumeCourses({ data, handleChange }) {
     updatedCourses[index][field] = value;
     setCourses(updatedCourses);
   };
+const handleGrammarCheck = async () => {
+  try {
+    let textToCheck = courses.map(course => 
+      `${data.sectionHeading || ''} ${course.title || ''} ${course.school || ''} ${course.tags?.join(', ') || ''}`
+    ).join('. ');
 
-  const handleGrammarCheck = async () => {
-    try {
-      let textToCheck = courses.map(course => 
-        `${course.title || ''} ${course.school || ''} ${course.tags?.join(', ') || ''}`
-      ).join('. ');
+    const response = await fetch('https://api.languagetool.org/v2/check', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
+    });
 
-      const response = await fetch('https://api.languagetool.org/v2/check', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      setGrammarSuggestions(result.matches);
-    } catch (error) {
-      console.error('Error fetching grammar check data:', error);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
-  };
+
+    const result = await response.json();
+    setGrammarSuggestions(result.matches);
+  } catch (error) {
+    console.error('Error fetching grammar check data:', error);
+    alert('Error fetching grammar check data. See console for details.');
+  }
+};
 
   return (
     <div>

@@ -26,27 +26,30 @@ function ResumeSkills({ data, handleChange }) {
     const skillLevels = ['Beginner', 'Intermediate', 'Advanced', 'Other'];
 
     const handleGrammarCheck = async () => {
-        try {
-            let textToCheck = skills.map(skill => skill.skill || '').join('. ');
+    try {
+        let textToCheck = skills
+            .map(skill => `${data.sectionHeading || ''} ${skill.skill || ''} ${skill.level === 'Other' ? skill.otherLevel : skill.level || ''}`)
+            .join('. ');
 
-            const response = await fetch('https://api.languagetool.org/v2/check', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
-            });
+        const response = await fetch('https://api.languagetool.org/v2/check', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
+        });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
-            const result = await response.json();
-            setGrammarSuggestions(result.matches);
-        } catch (error) {
-            console.error('Error fetching grammar check data:', error);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
-    };
+
+        const result = await response.json();
+        setGrammarSuggestions(result.matches);
+    } catch (error) {
+        console.error('Error fetching grammar check data:', error);
+    }
+};
+
 
     return (
         <div>

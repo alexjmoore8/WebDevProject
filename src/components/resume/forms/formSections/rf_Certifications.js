@@ -57,6 +57,7 @@ function ResumeCertifications({ data, handleChange, handleNext }) {
     setGrammarSuggestions(result.matches);
   };
 
+
   return (
     <div>
       <h2>Certifications</h2>
@@ -142,6 +143,8 @@ function ResumeCertifications({ data, handleChange, handleNext }) {
           </ul>
         </div>
       )}
+
+     
     </div>
   );
 }
