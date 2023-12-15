@@ -8,7 +8,7 @@ import { Button, Container } from 'semantic-ui-react';
 const generatePdf = () => {
     const element = document.getElementById('layout');
     const opt = {
-        margin: 0.5,
+        margin: 0.4,
         filename: 'resume.pdf',
         html2canvas: { scale: .9 },
         pagebreak: { mode: 'avoid-all'},

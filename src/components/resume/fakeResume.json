@@ -1,8 +1,8 @@
 {
   "controller": {
     "resumeTitle": "Internship Resume",
-    "layout": "layout3",
-    "style": "style3",
+    "layout": "layout1",
+    "style": "style1",
     "sections": {
       "contact": true,
       "socials": true,
