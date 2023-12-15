@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import MonthDropdown from './sectionComponents/month.js';
 import YearDropdown from './sectionComponents/year.js';
+import "../css/results.css"
+
 
 function ResumeCertifications({ data, handleChange, handleNext }) {
   const initialCertifications = Array.isArray(data.certifications)
@@ -57,6 +59,14 @@ function ResumeCertifications({ data, handleChange, handleNext }) {
     setGrammarSuggestions(result.matches);
   };
 
+     const handleNextClick = () => {
+    // Checking if all required fields are filled out
+    if (!data.sectionHeading || !data.certification.name || !data.certification.organization || !data.certification.tags ) {
+        alert('Please fill out all fields before proceeding.');
+        return;
+    }
+
+};
 
   return (
     <div>
@@ -127,22 +137,31 @@ function ResumeCertifications({ data, handleChange, handleNext }) {
       {certifications.length < 10 && (
         <button onClick={handleAddCertification}>Add Certification</button>
       )}
+
+      <button onClick={handleNextClick}>Next</button>
       
       <button onClick={handleGrammarCheck}>Check Grammar</button>
 
       {grammarSuggestions.length > 0 && (
-        <div>
-          <h3>Grammar Suggestions</h3>
-          <ul>
+    <div className="grammar-suggestions-container">
+        <h3>Grammar Suggestions</h3>
+        <ul className="grammar-suggestions-list">
             {grammarSuggestions.map((suggestion, index) => (
-              <li key={index}>
-                {suggestion.message} - Found: "{suggestion.context.text}"
-                {suggestion.replacements.length > 0 && ` Suggestion: "${suggestion.replacements.map(rep => rep.value).join(', ')}"`}
-              </li>
+                <li key={index}>
+                    <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
+                    {suggestion.replacements.length > 0 && (
+                        <div>
+                            Suggestion: 
+                            <span className="suggestion-replacement"
+                                  dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
+                            </span>
+                        </div>
+                    )}
+                </li>
             ))}
-          </ul>
-        </div>
-      )}
+        </ul>
+    </div>
+)}
 
      
     </div>

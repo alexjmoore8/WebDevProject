@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import StateDropdown from './sectionComponents/state.js';
 import PronounsDropdown from './sectionComponents/pronouns.js';
+import "../css/results.css"
 
 function ResumeContactInfo({ data, handleChange, handleNextClick }) {
     const [grammarSuggestions, setGrammarSuggestions] = useState([]);
@@ -32,7 +33,7 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
     };
 
     const handleGrammarCheck = async () => {
-        const textFields = ['firstName', 'lastName', 'email', 'location.city', 'phone'];
+        const textFields = ['location.city'];
         const textToCheck = textFields.map(field => data[field]).join(' ');
 
         const response = await fetch('https://api.languagetool.org/v2/check', {
@@ -88,7 +89,7 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
             />
 
             <label>State</label>
-            <StateDropdown value={selectedState} handleChange={handleStateChange} />
+            <StateDropdown value={selectedState} onChange={handleStateChange} />
 
             <label>Phone</label>
             <input
@@ -108,19 +109,26 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
 
             <button onClick={handleGrammarCheck}>Check Grammar</button>
 
-            {grammarSuggestions.length > 0 && (
-                <div>
-                    <h3>Grammar Suggestions</h3>
-                    <ul>
-                        {grammarSuggestions.map((suggestion, index) => (
-                            <li key={index}>
-                                {suggestion.message} - Found: "{suggestion.context.text}"
-                                {suggestion.replacements.length > 0 && ` Suggestion: "${suggestion.replacements.map(rep => rep.value).join(', ')}"`}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+          {grammarSuggestions.length > 0 && (
+    <div className="grammar-suggestions-container">
+        <h3>Grammar Suggestions</h3>
+        <ul className="grammar-suggestions-list">
+            {grammarSuggestions.map((suggestion, index) => (
+                <li key={index}>
+                    <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
+                    {suggestion.replacements.length > 0 && (
+                        <div>
+                            Suggestion: 
+                            <span className="suggestion-replacement"
+                                  dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
+                            </span>
+                        </div>
+                    )}
+                </li>
+            ))}
+        </ul>
+    </div>
+)}
         </div>
     );
 }

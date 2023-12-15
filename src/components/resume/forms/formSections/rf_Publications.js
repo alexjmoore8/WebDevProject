@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "../css/results.css"
 
 function ResumePublications({ data, handleChange }) {
   const [publications, setPublications] = useState(data.publications || [{}]);
@@ -25,9 +26,9 @@ function ResumePublications({ data, handleChange }) {
   const handleGrammarCheck = async () => {
     try {
       let textToCheck = publications
-        .map((pub) =>
-          `${pub.title || ''} ${pub.publisher || ''} ${pub.date || ''} ${pub.link || ''} ${
-            pub.tags ? pub.tags.join(', ') : ''
+        .map((publication) =>
+          `${data.sectionHeading || ''} ${publication.title  || ''} ${publication.publisher || ''} ${publication.link || ''} ${
+            publication.tags ? publication.tags.join(', ') : ''
           }`
         )
         .join('. ');
@@ -50,6 +51,15 @@ function ResumePublications({ data, handleChange }) {
       console.error('Error fetching grammar check data:', error);
     }
   };
+
+    const handleNextClick = () => {
+    // Checking if all required fields are filled out
+    if (!data.sectionHeading || !data.publication.title || !data.publication.publisher || !data.publication.date || !data.publication.link) {
+        alert('Please fill out all fields before proceeding.');
+        return;
+    }
+
+};
 
   return (
     <div>
@@ -115,22 +125,31 @@ function ResumePublications({ data, handleChange }) {
         <button onClick={handleAddPublication}>Add Publication</button>
       )}
 
+
+      <button onClick={handleNextClick}>Next</button>
+
       <button onClick={handleGrammarCheck}>Check Grammar</button>
 
       {grammarSuggestions.length > 0 && (
-        <div>
-          <h3>Grammar Suggestions</h3>
-          <ul>
+    <div className="grammar-suggestions-container">
+        <h3>Grammar Suggestions</h3>
+        <ul className="grammar-suggestions-list">
             {grammarSuggestions.map((suggestion, index) => (
-              <li key={index}>
-                {suggestion.message} - Found: "{suggestion.context.text}"
-                {suggestion.replacements.length > 0 &&
-                  ` Suggestion: "${suggestion.replacements.map((rep) => rep.value).join(', ')}"`}
-              </li>
+                <li key={index}>
+                    <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
+                    {suggestion.replacements.length > 0 && (
+                        <div>
+                            Suggestion: 
+                            <span className="suggestion-replacement"
+                                  dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
+                            </span>
+                        </div>
+                    )}
+                </li>
             ))}
-          </ul>
-        </div>
-      )}
+        </ul>
+    </div>
+)}
     </div>
   );
 }

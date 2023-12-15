@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import "../css/results.css"
+
 
 function ResumeAbout({ data, handleChange }) {
     const [grammarSuggestions, setGrammarSuggestions] = useState([]);
@@ -18,6 +20,15 @@ function ResumeAbout({ data, handleChange }) {
         setGrammarSuggestions(result.matches);
     };
 
+    const handleNextClick = () => {
+    // Checking if all required fields are filled out
+    if (!data.sectionHeading || !data.summar) {
+        alert('Please fill out all fields before proceeding.');
+        return;
+    }
+};
+
+   
     return (
         <div>
             <h2>About</h2>
@@ -38,24 +49,31 @@ function ResumeAbout({ data, handleChange }) {
                 placeholder="Write a brief summary about yourself"
                 onChange={(e) => handleChange('ResumeAbout', e.target.name, e.target.value)}
             />
-
+            <button onClick={handleNextClick}>Next</button>
             <button onClick={handleGrammarCheck}>Check Grammar</button>
 
       {/* generating the list for grammar and spell checking if needed */}
 
             {grammarSuggestions.length > 0 && (
-                <div>
-                    <h3>Grammar Suggestions</h3>
-                    <ul>
-                        {grammarSuggestions.map((suggestion, index) => (
-                            <li key={index}>
-                                {suggestion.message} - Found: "{suggestion.context.text}" 
-                                {suggestion.replacements.length > 0 && ` Suggestion: "${suggestion.replacements.map(rep => rep.value).join(', ')}"`}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+    <div className="grammar-suggestions-container">
+        <h3>Grammar Suggestions</h3>
+        <ul className="grammar-suggestions-list">
+            {grammarSuggestions.map((suggestion, index) => (
+                <li key={index}>
+                    <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
+                    {suggestion.replacements.length > 0 && (
+                        <div>
+                            Suggestion: 
+                            <span className="suggestion-replacement"
+                                  dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
+                            </span>
+                        </div>
+                    )}
+                </li>
+            ))}
+        </ul>
+    </div>
+)}
         </div>
     );
 }
