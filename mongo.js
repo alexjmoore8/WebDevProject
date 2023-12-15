@@ -3,38 +3,36 @@ import mongoose from 'mongoose';
 import * as subSchema from './src/components/resume/forms/resumeSubSchemas.js';
 
 mongoose.connect("mongodb://localhost:27017/react-login")
-.then(()=>{
-    console.log("mongodb connected successfully");
-})
-.catch(()=>{
-    console.log("mongodb connection failed");
-})
+    .then(() => {
+        console.log("mongodb connected successfully");
+    })
+    .catch(() => {
+        console.log("mongodb connection failed");
+    })
 
-const userSchema=new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        required:true,
+        required: true,
     },
     lastName: {
         type: String,
-        required:true,
+        required: true,
     },
     email: {
         type: String,
-        required:true,
+        required: true,
     },
 
     password: {
         type: String,
-        required:true,
+        required: true,
     },
     role: {
         type: String,
-        required:true,
+        required: true,
     }
 })
-
-const userCollection = mongoose.model("users", userSchema)
 
 const resumeSchema = new mongoose.Schema({
     controller: subSchema.controllerSchema,
@@ -51,6 +49,46 @@ const resumeSchema = new mongoose.Schema({
     skills: subSchema.skillsSchema,
 });
 
-const resumeCollection = mongoose.model("resumes", resumeSchema)
+const jobSchema = new mongoose.Schema({
+    companyName: {
+        type: String,
+        required: true,
+    },
+    title: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
 
-export {userCollection, resumeCollection}
+    requirements: {
+        type: Array,
+        required: true,
+    },
+    city: {
+        type: String,
+        required: true,
+    },
+    state: {
+        type: String,
+        required: true,
+    },
+    salary: {
+        type: Number,
+        required: true,
+    },
+    tags: {
+        type: Array,
+        required: true,
+    }
+
+})
+
+const collectionUsers = mongoose.model("users", userSchema)
+const collectionResumes = mongoose.model("resumes", resumeSchema)
+const collectionPosts = mongoose.model("jobs", jobSchema)
+
+export default { collectionPosts, collectionUsers, collectionResumes }
+
