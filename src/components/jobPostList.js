@@ -44,3 +44,5 @@ export function JobPostList() {
     );
 
 }
+
+//if login = user make link to /Home, if login = employer make link /HomeA

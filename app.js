@@ -69,13 +69,13 @@ app.post("/", async (req, res) => {
             const match = await bcrypt.compare(password, user.password);
             if (match) {
                 // Reset failed attempts on successful login
-                await collection.updateOne({ email: email }, { $set: { failedAttempts: 0, lastFailedLogin: null } });
+                await collection.collectionUsers.updateOne({ email: email }, { $set: { failedAttempts: 0, lastFailedLogin: null } });
                 req.session.user = { id: user._id, role: user.role };
                 console.log("Login successful, session initialized:", req.session.user);
                 res.json({ status: "exists", role: user.role });
             } else {
                 // Increment failed attempts
-                await collection.updateOne({ email: email }, { $inc: { failedAttempts: 1 }, $set: { lastFailedLogin: new Date() } });
+                await collection.collectionUsers.updateOne({ email: email }, { $inc: { failedAttempts: 1 }, $set: { lastFailedLogin: new Date() } });
                 console.log("Incorrect password for:", email);
                 res.json({ status: "notexist", message: "Incorrect password or user" });
             }

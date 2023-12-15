@@ -21,6 +21,7 @@ const Navbar = () => {
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
                 <li><Link to="/jobPost">Job Post</Link></li>
+                <li><Link to="/myJobs">My Job Posts</Link></li>
                 <li><Link to="/jobList">Job List</Link></li>
 
                 <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
@@ -33,3 +34,5 @@ const Navbar = () => {
 }
 
 export default Navbar;
+
+// make link to jobpost only accessible when login is employer

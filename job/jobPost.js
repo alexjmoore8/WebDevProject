@@ -10,13 +10,17 @@ export const addJobPosting = async (
     requirements,
     city,
     state,
-    salary
+    salary,
+    tags
 ) => {
     checkString(title)
     checkString(requirements)
     checkStringArray(requirements.split(','))
     checkString(city)
+    //check salary
     checkNumber(salary)
+    checkString(tags)
+    checkStringArray(requirements.split(','))
     description = description.trim();
     if (description.length === 0) {
         throw 'Error: Description can not be empty or with just spaces.'
@@ -31,7 +35,8 @@ export const addJobPosting = async (
         requirements: [],
         city: city,
         state: state,
-        salary: salary
+        salary: salary,
+        tags: tags
     }
 
 

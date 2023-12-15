@@ -62,6 +62,10 @@ const jobSchema = new mongoose.Schema({
     salary: {
         type: Number,
         required: true,
+    },
+    tags: {
+        type: Array,
+        required: true,
     }
 
 })

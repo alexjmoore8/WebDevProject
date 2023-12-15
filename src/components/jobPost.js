@@ -16,6 +16,7 @@ export function JobPost() {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [salary, setSalary] = useState('');
+    const [tags, setTags] = useState('');
     const [message, setMessage] = useState('');
 
 
@@ -29,7 +30,8 @@ export function JobPost() {
             requirements,
             city,
             state,
-            salary
+            salary,
+            tags
         }
 
         try {
@@ -168,6 +170,15 @@ export function JobPost() {
             required
             />
         <br /><br />
+
+        <label for="tags">Tags:</label>
+        <input
+            type="text"
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+            placeholder="Tags"
+            required
+        />
         <button type="submit">Submit</button>
     </form>
     {message && <p className={`message error-message`}>{message}</p>}
