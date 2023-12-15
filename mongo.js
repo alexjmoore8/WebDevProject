@@ -1,38 +1,73 @@
 //db setup
 import mongoose from 'mongoose';
 mongoose.connect("mongodb://localhost:27017/react-login")
-.then(()=>{
-    console.log("mongodb connected successfully");
-})
-.catch(()=>{
-    console.log("mongodb connection failed");
-})
+    .then(() => {
+        console.log("mongodb connected successfully");
+    })
+    .catch(() => {
+        console.log("mongodb connection failed");
+    })
 
-const newSchema=new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        required:true,
+        required: true,
     },
     lastName: {
         type: String,
-        required:true,
+        required: true,
     },
     email: {
         type: String,
-        required:true,
+        required: true,
     },
 
     password: {
         type: String,
-        required:true,
+        required: true,
     },
     role: {
         type: String,
-        required:true,
+        required: true,
     }
-    
+
 })
 
-const collectionUsers = mongoose.model("users", newSchema)
-//add collections here and change export 
-export default collectionUsers;
+const jobSchema = new mongoose.Schema({
+    companyName: {
+        type: String,
+        required: true,
+    },
+    title: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+
+    requirements: {
+        type: Array,
+        required: true,
+    },
+    city: {
+        type: String,
+        required: true,
+    },
+    state: {
+        type: String,
+        required: true,
+    },
+    salary: {
+        type: Number,
+        required: true,
+    }
+
+})
+
+const collectionUsers = mongoose.model("users", userSchema)
+const collectionPosts = mongoose.model("jobs", jobSchema)
+
+export default { collectionPosts, collectionUsers }
+
