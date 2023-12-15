@@ -8,6 +8,7 @@ import Home from './components/Home.js'; // Import Home component for applicants
 import HomeA from './components/HomeA.js'; // Import HomeA component for employers
 import { JobPost } from './components/jobPost.js';
 import { JobPostList } from './components/jobPostList.js';
+import { MyJobs } from './components/myJobs.js';
 
 function App() {
   return (
@@ -30,6 +31,11 @@ function App() {
           <Route path="/jobPost" element={
             <ProtectedRoute role="employer">
               <JobPost />
+            </ProtectedRoute>
+          } />
+          <Route path="/myJobs" element={
+            <ProtectedRoute role="employer">
+              <MyJobs />
             </ProtectedRoute>
           } />
           <Route path="/jobList" element={

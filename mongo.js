@@ -38,6 +38,10 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    employerId: {
+        type: String,
+        required: true
+    },
     title: {
         type: String,
         required: true,
@@ -48,7 +52,7 @@ const jobSchema = new mongoose.Schema({
     },
 
     requirements: {
-        type: Array,
+        type: String,
         required: true,
     },
     city: {
@@ -60,7 +64,7 @@ const jobSchema = new mongoose.Schema({
         required: true,
     },
     salary: {
-        type: Number,
+        type: String,
         required: true,
     },
     tags: {
