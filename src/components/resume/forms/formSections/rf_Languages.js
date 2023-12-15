@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 function ResumeLanguages({ data, handleChange }) {
   const initialLanguages = data.languages || [{}];
   const [languages, setLanguages] = useState(initialLanguages);
+  const [grammarSuggestions, setGrammarSuggestions] = useState([]);
 
   const handleAddLanguage = () => {
     if (languages.length < 10) {
@@ -21,6 +22,30 @@ function ResumeLanguages({ data, handleChange }) {
     updatedLanguages[index][field] = value;
     setLanguages(updatedLanguages);
   };
+
+  const handleGrammarCheck = async () => {
+    try {
+      let textToCheck = languages.map(lang => `${lang.language || ''} ${lang.otherLevel || ''}`).join('. ');
+
+      const response = await fetch('https://api.languagetool.org/v2/check', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      setGrammarSuggestions(result.matches);
+    } catch (error) {
+      console.error('Error fetching grammar check data:', error);
+    }
+  };
+
 
   const languageLevels = ['Beginner', 'Intermediate', 'Advanced', 'Fluent', 'Native', 'Other'];
 
@@ -75,6 +100,21 @@ function ResumeLanguages({ data, handleChange }) {
 
       {languages.length < 10 && (
         <button onClick={handleAddLanguage}>Add Language</button>
+      )}
+    <button onClick={handleGrammarCheck}>Check Grammar</button>
+
+      {grammarSuggestions.length > 0 && (
+        <div>
+          <h3>Grammar Suggestions</h3>
+          <ul>
+            {grammarSuggestions.map((suggestion, index) => (
+              <li key={index}>
+                {suggestion.message} - Found: "{suggestion.context.text}"
+                {suggestion.replacements.length > 0 && ` Suggestion: "${suggestion.replacements.map(rep => rep.value).join(', ')}"`}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );

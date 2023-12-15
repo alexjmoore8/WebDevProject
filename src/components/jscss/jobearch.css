@@ -1,0 +1,90 @@
+body {
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input[type='text'] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button[type='submit'] {
+    background-color: #4a4a4a;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#jobSearchResults>li {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    grid-template-rows: repeat(2, 1fr);
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+
+li a {
+    font-weight: bold;
+    color: #000;
+}
+
+li span {
+    color: #777;
+}
+
+p {
+    font-size: 18px;
+    color: #4a4a4a;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 16px;
+    }
+
+    input {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+
+    form {
+        grid-template-columns: 1fr;
+    }
+}

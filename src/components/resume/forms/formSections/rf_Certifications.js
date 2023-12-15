@@ -2,12 +2,38 @@ import React, { useState } from 'react';
 import MonthDropdown from './sectionComponents/month.js';
 import YearDropdown from './sectionComponents/year.js';
 
-function ResumeCertifications({ data, handleChange }) {
-  const [certifications, setCertifications] = useState(data.certifications || [{}]);
+function ResumeCertifications({ data, handleChange, handleNext }) {
+  const initialCertifications = Array.isArray(data.certifications)
+    ? data.certifications.map(cert => ({
+        ...cert,
+        dateMonth: cert.dateMonth || '',
+        dateYear: cert.dateYear || '',
+      }))
+    : [{}];
+
+  const [certifications, setCertifications] = useState(initialCertifications);
+  const [grammarSuggestions, setGrammarSuggestions] = useState([]);
+  const [errors, setErrors] = useState({});
+
+  const validateField = (index, field, value) => {
+    if (!value || (Array.isArray(value) && value.length === 0)) {
+      return 'This field is required';
+    }
+    return '';
+  };
+
+  const handleInputChange = (index, field, value) => {
+    const updatedCertifications = [...certifications];
+    updatedCertifications[index][field] = value;
+    setCertifications(updatedCertifications);
+
+    const error = validateField(index, field, value);
+    setErrors({ ...errors, [`${index}-${field}`]: error });
+  };
 
   const handleAddCertification = () => {
     if (certifications.length < 10) {
-      setCertifications([...certifications, {}]);
+      setCertifications([...certifications, { dateMonth: '', dateYear: '' }]);
     }
   };
 
@@ -17,27 +43,24 @@ function ResumeCertifications({ data, handleChange }) {
     setCertifications(updatedCertifications);
   };
 
-  const handleInputChange = (index, field, value) => {
-    const updatedCertifications = [...certifications];
-    updatedCertifications[index][field] = value;
-    setCertifications(updatedCertifications);
+  const handleGrammarCheck = async () => {
+    let textToCheck = certifications.map(cert => `${cert.name || ''} ${cert.organization || ''} ${cert.tags?.join(', ') || ''}`).join('. ');
+    const response = await fetch('https://api.languagetool.org/v2/check', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
+    });
+
+    const result = await response.json();
+    setGrammarSuggestions(result.matches);
   };
-
-
-    const [selectedMonth, setSelectedMonth] = useState('');
-    const [selectedYear, setSelectedYear] = useState('');
-
-    const handleMonthChange = (e) => {
-      setSelectedMonth(e.target.value);
-    };
-    
-    const handleYearChange = (e) => {
-      setSelectedYear(e.target.value);
-    };
 
   return (
     <div>
       <h2>Certifications</h2>
+
       <label>Section Title</label>
       <input
         type="text"
@@ -57,6 +80,7 @@ function ResumeCertifications({ data, handleChange }) {
             placeholder="Certification Name"
             onChange={(e) => handleInputChange(index, 'name', e.target.value)}
           />
+          {errors[`${index}-name`] && <p className="error">{errors[`${index}-name`]}</p>}
 
           <label>Organization</label>
           <input
@@ -66,11 +90,20 @@ function ResumeCertifications({ data, handleChange }) {
             placeholder="Organization"
             onChange={(e) => handleInputChange(index, 'organization', e.target.value)}
           />
+          {errors[`${index}-organization`] && <p className="error">{errors[`${index}-organization`]}</p>}
 
           <label>Date</label>
           <div>
-          <MonthDropdown value={selectedMonth} onChange={handleMonthChange} />
-          <YearDropdown value={selectedYear} onChange={handleYearChange} startYear={2000} endYear={2030} />
+            <MonthDropdown 
+              value={certification.dateMonth} 
+              onChange={(e) => handleInputChange(index, 'dateMonth', e.target.value)} 
+            />
+            <YearDropdown 
+              value={certification.dateYear} 
+              onChange={(e) => handleInputChange(index, 'dateYear', e.target.value)} 
+              startYear={2000} 
+              endYear={2030} 
+            />
           </div>
 
           <label>Tags</label>
@@ -84,6 +117,7 @@ function ResumeCertifications({ data, handleChange }) {
               handleInputChange(index, 'tags', tagsArray);
             }}
           />
+          {errors[`${index}-tags`] && <p className="error">{errors[`${index}-tags`]}</p>}
 
           <button onClick={() => handleRemoveCertification(index)}>Remove</button>
         </div>
@@ -91,6 +125,22 @@ function ResumeCertifications({ data, handleChange }) {
 
       {certifications.length < 10 && (
         <button onClick={handleAddCertification}>Add Certification</button>
+      )}
+      
+      <button onClick={handleGrammarCheck}>Check Grammar</button>
+
+      {grammarSuggestions.length > 0 && (
+        <div>
+          <h3>Grammar Suggestions</h3>
+          <ul>
+            {grammarSuggestions.map((suggestion, index) => (
+              <li key={index}>
+                {suggestion.message} - Found: "{suggestion.context.text}"
+                {suggestion.replacements.length > 0 && ` Suggestion: "${suggestion.replacements.map(rep => rep.value).join(', ')}"`}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );

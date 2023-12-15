@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
 function ResumeProjects({ data, handleChange }) {
-  const initialProjects = data.projects || [{}]; // Ensure it's initialized as an array
+  const initialProjects = data.projects || [{}];
   const [projects, setProjects] = useState(initialProjects);
+  const [grammarSuggestions, setGrammarSuggestions] = useState([]);
 
   const handleAddProject = () => {
     if (projects.length < 6) {
@@ -20,6 +21,23 @@ function ResumeProjects({ data, handleChange }) {
     const updatedProjects = [...projects];
     updatedProjects[index][field] = value;
     setProjects(updatedProjects);
+  };
+
+  const handleGrammarCheck = async () => {
+    let textToCheck = projects.map(project => 
+      `${project.title || ''} ${project.description || ''} ${project.link || ''} ${project.tags?.join(', ') || ''}`
+    ).join(' ');
+
+    const response = await fetch('https://api.languagetool.org/v2/check', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
+    });
+
+    const result = await response.json();
+    setGrammarSuggestions(result.matches);
   };
 
   return (
@@ -80,8 +98,22 @@ function ResumeProjects({ data, handleChange }) {
       {projects.length < 6 && (
         <button onClick={handleAddProject}>Add Project</button>
       )}
+          <button onClick={handleGrammarCheck}>Check Grammar</button>
+
+      {grammarSuggestions.length > 0 && (
+        <div>
+          <h3>Grammar Suggestions</h3>
+          <ul>
+            {grammarSuggestions.map((suggestion, index) => (
+              <li key={index}>
+                {suggestion.message} - Found: "{suggestion.context.text}"
+                {suggestion.replacements.length > 0 && ` Suggestion: "${suggestion.replacements.map(rep => rep.value).join(', ')}"`}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
-
 export default ResumeProjects;
