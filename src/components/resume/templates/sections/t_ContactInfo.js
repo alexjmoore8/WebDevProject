@@ -7,7 +7,7 @@ const ContactInfoSection = ({ contact, socialsData }) => {
 
   return (
     <div className="contact-section">
-      <div class="contact-line">{`${location.city}, ${location.state}`} | {phone} | {email}</div>
+      <div className="contact-line">{`${location.city}, ${location.state}`} | {phone} | {email}</div>
       {profiles.map((profile, index) => (
         <span key={index}>
           <a href={profile.link} target="_blank" rel="">

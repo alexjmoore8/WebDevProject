@@ -31,7 +31,7 @@ const ResumeLayout1 = ({ layout, selectedSections, sectionData }) => {
             </div>
           )}
 
-          <div class="education-section">
+          <div className="education-section">
             <EducationSection education={sectionData.education} />
           </div>
 
