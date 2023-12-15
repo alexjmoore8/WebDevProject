@@ -8,6 +8,9 @@ import Home from './components/Home.js'; // Import Home component for applicants
 import HomeA from './components/HomeA.js'; // Import HomeA component for employers
 import { JobPost } from './components/jobPost.js';
 import { JobPostList } from './components/jobPostList.js';
+import NotAuthorized from './components/NotAuthorized.js';
+
+
 
 function App() {
   return (
@@ -16,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/not-authorized" element={<NotAuthorized />} />
           <Route path="/Home" element={
             <ProtectedRoute role="applicant">
               <Home />
