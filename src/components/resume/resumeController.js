@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DynamicResume from "./templates/dynamicResume.js";
 import fakeResume from "./fakeResume.json";
-import { Container, Grid } from 'semantic-ui-react';
 
 const Controller = () => {
     const [resumeData, setResumeData] = useState(null);

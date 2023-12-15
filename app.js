@@ -1,7 +1,6 @@
 //where you will have the post, get methods
 import express, { json, urlencoded } from 'express';
 import collection from './mongo.js';
-import {userCollection, resumeCollection} from './mongo.js';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
 import session from 'express-session'; // Import express-session
