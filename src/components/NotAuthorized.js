@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css'; // If you have a separate CSS file
+import '../App.css';
 
 const NotAuthorized = () => {
     return (

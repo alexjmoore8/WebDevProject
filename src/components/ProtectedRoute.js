@@ -13,7 +13,7 @@ const ProtectedRoute = ({ children, role }) => {
       try {
         const response = await axios.get('http://localhost:3000/verify-auth');
         if (response.data && response.data.status === "authenticated") {
-          login(response.data.user.role); // Use login function to set auth state
+          login(response.data.user.role); 
         } else {
           logout();
         }
