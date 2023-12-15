@@ -6,17 +6,19 @@ import bcrypt from 'bcrypt';
 import session from 'express-session'; // Import express-session
 import JobRoutes from './job/jobRoutes.js'
 
+
 const app = express();
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(cors({
     origin: 'http://localhost:3002', // or your client origin
+
     credentials: true
 }));
 const saltRounds = 15;
 
 app.use(session({
-    secret: 'your_secret_key', // Replace 'your_secret_key' with an actual secret key
+    secret: 'your_secret_key',
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false } // Set to `true` in production with HTTPS
@@ -50,33 +52,43 @@ app.post("/signup", async (req, res) => {
 
 app.post("/", async (req, res) => {
     const { email, password } = req.body;
-
-    console.log("Login attempt for:", email); // Log the email of the login attempt
+    console.log("Login attempt for:", email);
 
     try {
         const user = await collection.collectionUsers.findOne({ email: email });
         console.log("User found:", user); // Log the retrieved user object (be careful with logging sensitive info)
 
+
         if (user) {
+            const lockoutTime = 5 * 60 * 1000; // 5 minutes
+            if (user.failedAttempts >= 3 && new Date() - user.lastFailedLogin < lockoutTime) {
+                console.log("User account locked due to multiple failed attempts:", email);
+                return res.status(403).json({ status: "locked", message: "Account locked due to multiple failed login attempts." });
+            }
+
             const match = await bcrypt.compare(password, user.password);
             if (match) {
-                // Initialize user session with their role
+                // Reset failed attempts on successful login
+                await collection.updateOne({ email: email }, { $set: { failedAttempts: 0, lastFailedLogin: null } });
                 req.session.user = { id: user._id, role: user.role };
-                console.log("Login successful, session initialized:", req.session.user); // Log session info
+                console.log("Login successful, session initialized:", req.session.user);
                 res.json({ status: "exists", role: user.role });
             } else {
-                console.log("Incorrect password for:", email); // Log incorrect password attempt
-                res.json({ status: "notexist", message: "Incorrect password" });
+                // Increment failed attempts
+                await collection.updateOne({ email: email }, { $inc: { failedAttempts: 1 }, $set: { lastFailedLogin: new Date() } });
+                console.log("Incorrect password for:", email);
+                res.json({ status: "notexist", message: "Incorrect password or user" });
             }
         } else {
-            console.log("User not found:", email); // Log if the user is not found
-            res.json({ status: "notexist", message: "User not found" });
+            console.log("User not found:", email);
+            res.json({ status: "notexist", message: "User or password incorrect" });
         }
     } catch (e) {
-        console.error("Login error:", e); // Log any server errors
+        console.error("Login error:", e);
         res.status(500).json({ status: "error", message: "An error occurred" });
     }
 });
+
 
 
 // Logout endpoint to destroy session

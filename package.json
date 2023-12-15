@@ -26,6 +26,7 @@
     "server": "node app.js",
     "start": "PORT=3002 react-scripts start",
     "build": "react-scripts build",
+    "seed": "node seed.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -70,3 +70,4 @@ const collectionUsers = mongoose.model("users", userSchema)
 const collectionPosts = mongoose.model("jobs", jobSchema)
 
 export default { collectionPosts, collectionUsers }
+
