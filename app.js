@@ -25,7 +25,7 @@ app.use(xss());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(cors({
-    origin: 'http://localhost:3000', // or your client origin
+    origin: 'http://localhost:3002', // or your client origin
 
     credentials: true
 }));
@@ -36,7 +36,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false }, // Set to `true` in production with HTTPS
-    httpOnly: true, // Prevents client side JS from reading the cookie 
+    httpOnly: true // Prevents client side JS from reading the cookie 
 }));
 
 app.get("/", (req, res) => {

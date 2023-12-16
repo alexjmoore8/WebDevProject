@@ -11,9 +11,7 @@ import DynamicResume from './components/resume/dynamicResume.js';
 import { JobPost } from './components/jobPost.js';
 import { JobPostList } from './components/jobPostList.js';
 import NotAuthorized from './components/NotAuthorized.js';
-
-
-
+import JobSearchEngine from './components/jobsearch.js';
 import SalaryCalculator from './salaryCalculator/salaryCalculator.js';
 import SalaryMetric from './salaryCalculator/salaryMetric.js';
 import { MyJobs } from './components/myJobs.js';
@@ -27,9 +25,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/not-authorized" element={<NotAuthorized />} />
-          <Route path="/Home" element={
-            <ProtectedRoute role="applicant">
-              <Home />
+          
           <Route path="/Home" element={<ProtectedRoute role="applicant"><Home />
             </ProtectedRoute>
           } />

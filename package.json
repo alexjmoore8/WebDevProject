@@ -26,11 +26,10 @@
     "react-router-dom": "^6.19.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
-    "xss-clean": "^0.1.4"
+    "xss-clean": "^0.1.4",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.5",
-    "typo-js": "^1.2.3",
-    "web-vitals": "^2.1.4"
+    "typo-js": "^1.2.3"
   },
   "scripts": {
     "server": "node app.js",
