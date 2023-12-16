@@ -3,16 +3,12 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
-
-
-
 export function JobPost() {
 
     const navigate = useNavigate();
     const [company, setCompany] = useState('');
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
-    const [requirements, setRequirements] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [salary, setSalary] = useState('');
@@ -27,7 +23,6 @@ export function JobPost() {
             company,
             title,
             desc,
-            requirements,
             city,
             state,
             salary,
@@ -38,13 +33,11 @@ export function JobPost() {
             const response = await axios.post("http://localhost:3000/postJob", payload, { withCredentials: true });
             console.log(response.data.status);
 
-            if (response.data.status === "exists") {
-                // Redirect based on the role
-                if (response.data.role === 'applicant') {
-                    navigate("/Home");
-                } else if (response.data.role === 'employer') {
-                    navigate("/HomeA");
-                }
+            if (response.status == 200) {
+                setMessage(response.data.message);
+                setTimeout(() => {
+                    navigate('/HomeA')
+                }, 500);
             } else {
                 setMessage(response.data.message);
             }
@@ -85,14 +78,6 @@ export function JobPost() {
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
             placeholder="Description"
-        /><br /><br />
-
-        <label for="requirements">Requirements:</label><br />
-        <textarea
-            rows="4" cols="50"
-            value={requirements}
-            onChange={(e) => setRequirements(e.target.value)}
-            placeholder="Requirements"
         /><br /><br />
 
         <label for="city">City:</label>

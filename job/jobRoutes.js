@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { addJobPosting, getAllJobs } from './jobPost.js';
+import { addJobPosting, getAllJobs, getMyJobs } from './jobPost.js';
 const router = Router()
 
 // Handling form submission
 router.post('/postJob', async (req, res) => {
   const formData = req.body;
-  const { company, title, desc, requirements, city, state, salary, tags } = formData
+  const { company, title, desc, city, state, salary, tags } = formData
 
   try {
 
@@ -13,11 +13,11 @@ router.post('/postJob', async (req, res) => {
       company,
       title,
       desc,
-      requirements,
       city,
       state,
       salary,
-      tags
+      tags,
+      req.session.user.id
     )
 
     return res.json({
@@ -39,6 +39,24 @@ router.get('/getJobPosts', async (req, res) => {
 
   try {
     const jobs = await getAllJobs()
+    res.json(jobs)
+  } catch (error) {
+    return res.status(500).json({
+      message: error
+    })
+  }
+
+})
+
+
+router.get('/myJobs', async (req, res) => {
+
+  console.log(req.session)
+
+  try {
+    const jobs = await getMyJobs(
+      req.session.user.id
+    )
     res.json(jobs)
   } catch (error) {
     return res.status(500).json({

@@ -27,16 +27,6 @@
   text-decoration: underline;
 }
 
-/* Additional styling for other elements */
-.form-box, .homepage {
-  background: #fff;
-  padding: 20px;
-  border: 1px solid #e1e4e8;
-  border-radius: 6px;
-  box-shadow: 0 1px 0 rgba(225,228,232,0.5);
-  margin: 20px;
-  width: auto;
-}
 
 /* Additional CSS for Navbar Component */
 .navbar .logout-button {
@@ -56,4 +46,18 @@
 
 .navbar .logout-button:hover {
   background-color: #22863a;
+}
+
+.not-authorized-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.not-authorized-container h1 {
+  color: red;
+  margin-bottom: 20px;
+}
+
+.not-authorized-container p {
+  margin-bottom: 20px;
 }

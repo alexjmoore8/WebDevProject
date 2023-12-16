@@ -1,0 +1,381 @@
+[
+  {
+    "controller": {
+      "resumeTitle": "Archaeologist Resume",
+      "layout": "layout2",
+      "style": "style2",
+      "sections": {
+        "contact": true,
+        "socials": true,
+        "about": true,
+        "education": true,
+        "courses": true,
+        "certifications": true,
+        "skills": true,
+        "publications": true,
+        "languages": true,
+        "projects": true,
+        "experience": true
+      }
+    },
+    "contact": {
+      "firstName": "Indiana",
+      "lastName": "Jones",
+      "email": "indy@example.com",
+      "location": {
+        "city": "Adventureville",
+        "state": "Explorationland",
+        "country": "World"
+      },
+      "phone": "+1 987-654-3210",
+      "pronouns": "he/him/his"
+    },
+    "socials": {
+      "profile": [
+        {
+          "name": "https://twitter.com/IndianaJones",
+          "link": "https://twitter.com/IndianaJones",
+          "platformType": "Twitter"
+        },
+        {
+          "name": "https://instagram.com/indy_adventures",
+          "link": "https://instagram.com/indy_adventures",
+          "platformType": "Instagram"
+        }
+      ]
+    },
+    "about": {
+      "sectionHeading": "About Me",
+      "summary": "Passionate archaeologist with a deep love for historical discovery and adventure."
+    },
+    "education": {
+      "sectionHeading": "Education",
+      "school": [
+        {
+          "institution": "University of Archaeology",
+          "degree": "Ph.D. in Archaeology",
+          "major": "Archaeology",
+          "startDate": "2000-09",
+          "endDate": "2005-05",
+          "location": {
+            "city": "Explorer's Town",
+            "state": "Historical Territory",
+            "country": "World"
+          },
+          "gpa": "4.0"
+        },
+        {
+          "institution": "Adventure Academy",
+          "degree": "Bachelor of Adventure",
+          "major": "Historical Exploration",
+          "startDate": "1995-09",
+          "endDate": "1999-05",
+          "location": {
+            "city": "Adventureville",
+            "state": "Explorationland",
+            "country": "World"
+          },
+          "gpa": "3.8"
+        }
+      ]
+    },
+    "courses": {
+      "sectionHeading": "Courses",
+      "course": [
+        {
+          "title": "Ancient Civilizations and Artifacts",
+          "school": "Adventure Academy",
+          "tags": ["Archaeology", "History"]
+        },
+        {
+          "title": "Cultural Heritage Preservation",
+          "school": "University of Archaeology",
+          "tags": ["Heritage", "Preservation"]
+        }
+      ]
+    },
+    "certifications": {
+      "sectionHeading": "Certifications",
+      "certification": [
+        {
+          "name": "Certified Archaeologist",
+          "organization": "World Archaeological Society",
+          "date": "2005-06-15",
+          "tags": ["Archaeology", "Certification"]
+        },
+        {
+          "name": "Advanced Expedition Training",
+          "organization": "Adventure Guild",
+          "date": "2006-02-10",
+          "tags": ["Exploration", "Adventure"]
+        }
+      ]
+    },
+    "publications": {
+      "sectionHeading": "Publications",
+      "publication": [
+        {
+          "title": "Lost Treasures of the Amazon",
+          "publisher": "National Geographic",
+          "date": "2007-08-20",
+          "link": "https://example.com/article1",
+          "tags": ["Archaeology", "Adventure"]
+        },
+        {
+          "title": "Mysteries of the Pyramids",
+          "publisher": "Archaeological Journal",
+          "date": "2009-05-12",
+          "link": "https://example.com/article2",
+          "tags": ["Archaeology", "History"]
+        }
+      ]
+    },
+    "languages": {
+      "sectionHeading": "Languages",
+      "languages": [
+        {
+          "language": "Ancient Egyptian",
+          "level": "Fluent"
+        },
+        {
+          "language": "Mayan",
+          "level": "Intermediate"
+        }
+      ]
+    },
+    "projects": {
+      "sectionHeading": "Expeditions",
+      "project": [
+        {
+          "title": "Quest for the Holy Grail",
+          "description": "Led a team in search of the legendary Holy Grail artifact.",
+          "link": "https://example.com/grail",
+          "tags": ["Adventure", "History"]
+        },
+        {
+          "title": "Unearthing Atlantis",
+          "description": "Explored the mysteries of the lost city of Atlantis.",
+          "link": "https://example.com/atlantis",
+          "tags": ["Archaeology", "Adventure"]
+        }
+      ]
+    },
+    "experience": {
+      "sectionHeading": "Archaeological Expeditions",
+      "job": [
+        {
+          "position": "Lead Archaeologist",
+          "organization": "Worldwide Expeditions",
+          "location": {
+            "city": "Explorer's Town",
+            "state": "Historical Territory",
+            "country": "World"
+          },
+          "startDate": "2005-06",
+          "endDate": "Present",
+          "bullets": [
+            "Discovered ancient artifacts of great historical significance.",
+            "Led excavation teams on various archaeological sites."
+          ],
+          "tags": ["Archaeology", "Exploration"]
+        },
+        {
+          "position": "Field Archaeologist",
+          "organization": "Historical Discoveries Inc.",
+          "location": {
+            "city": "Adventureville",
+            "state": "Explorationland",
+            "country": "World"
+          },
+          "startDate": "2002-01",
+          "endDate": "2005-05",
+          "bullets": [
+            "Participated in the excavation of historic sites.",
+            "Conducted research on ancient civilizations."
+          ],
+          "tags": ["Archaeology", "Research"]
+        }
+      ]
+    },
+    "skills": {
+      "sectionHeading": "Skills",
+      "skills": [
+        {
+          "skill": "Artifact Analysis",
+          "level": "Expert"
+        },
+        {
+          "skill": "Field Excavation",
+          "level": "Expert"
+        },
+        {
+          "skill": "Historical Research",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Cultural Preservation",
+          "level": "Advanced"
+        }
+      ]
+    }
+  },
+  {
+    "controller": {
+      "resumeTitle": "Movie Character Resume",
+      "layout": "layout2",
+      "style": "style1",
+      "sections": {
+        "contact": true,
+        "socials": false,
+        "about": true,
+        "education": true,
+        "courses": false,
+        "certifications": true,
+        "skills": true,
+        "publications": false,
+        "languages": false,
+        "projects": true,
+        "experience": true
+      }
+    },
+    "contact": {
+      "firstName": "Indiana",
+      "lastName": "Jones",
+      "email": "indy@example.com",
+      "location": {
+        "city": "Adventureland",
+        "state": "Archaeologyland",
+        "country": "Explorationia"
+      },
+      "phone": "+1 555-123-4567",
+      "pronouns": "he/him/his"
+    },
+    "about": {
+      "sectionHeading": "About Me",
+      "summary": "Adventurous archaeologist and professor with a passion for ancient artifacts and daring expeditions."
+    },
+    "education": {
+      "sectionHeading": "Education",
+      "school": [
+        {
+          "institution": "Marshall College",
+          "degree": "Ph.D. in Archaeology",
+          "major": "Archaeology",
+          "startDate": "1931-09",
+          "endDate": "1935-05",
+          "location": {
+            "city": "Adventureland",
+            "state": "Archaeologyland",
+            "country": "Explorationia"
+          },
+          "gpa": "4.0"
+        },
+        {
+          "institution": "University of Chicago",
+          "degree": "Master of Arts in Linguistics",
+          "major": "Linguistics",
+          "startDate": "1925-09",
+          "endDate": "1931-05",
+          "location": {
+            "city": "Chicago",
+            "state": "Illinois",
+            "country": "United States"
+          },
+          "gpa": "3.9"
+        }
+      ]
+    },
+    "certifications": {
+      "sectionHeading": "Certifications",
+      "certification": [
+        {
+          "name": "Certified Archaeologist",
+          "organization": "Archaeology Association",
+          "date": "1935-10-15",
+          "tags": ["Archaeology", "Certification"]
+        },
+        {
+          "name": "Whip Handling Expert",
+          "organization": "Adventurer's Guild",
+          "date": "1937-03-20",
+          "tags": ["Adventure", "Certification"]
+        }
+      ]
+    },
+    "experience": {
+      "sectionHeading": "Adventure Experience",
+      "job": [
+        {
+          "position": "Adventurer",
+          "organization": "Various Expeditions",
+          "location": {
+            "city": "Adventureland",
+            "state": "Archaeologyland",
+            "country": "Explorationia"
+          },
+          "startDate": "1936-05",
+          "endDate": "Present",
+          "bullets": [
+            "Recovered the Ark of the Covenant.",
+            "Discovered the Holy Grail."
+          ],
+          "tags": ["Adventure", "Archaeology"]
+        },
+        {
+          "position": "Professor",
+          "organization": "Marshall College",
+          "location": {
+            "city": "Adventureland",
+            "state": "Archaeologyland",
+            "country": "Explorationia"
+          },
+          "startDate": "1925-09",
+          "endDate": "1936-05",
+          "bullets": [
+            "Taught archaeology and ancient civilizations.",
+            "Inspired students to explore history."
+          ],
+          "tags": ["Education", "Archaeology"]
+        }
+      ]
+    },
+    "skills": {
+      "sectionHeading": "Skills",
+      "skills": [
+        {
+          "skill": "Artifact Recovery",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Whip Handling",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Survival Instincts",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Foreign Language Proficiency",
+          "level": "Intermediate"
+        }
+      ]
+    },
+    "projects": {
+      "sectionHeading": "Expedition Projects",
+      "project": [
+        {
+          "title": "Quest for the Lost City",
+          "description": "Led a team on a perilous journey to uncover the secrets of the Lost City of Atlantis.",
+          "link": "https://example.com/lost-city-expedition",
+          "tags": ["Adventure", "Atlantis"]
+        },
+        {
+          "title": "Search for the Sankara Stones",
+          "description": "Embarked on a quest to find the mystical Sankara Stones to prevent their misuse.",
+          "link": "https://example.com/sankara-stones-expedition",
+          "tags": ["Adventure", "Artifacts"]
+        }
+      ]
+    }
+  }
+]

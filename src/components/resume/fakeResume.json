@@ -1,0 +1,177 @@
+{
+  "controller": {
+    "resumeTitle": "Movie Character Resume",
+    "layout": "layout1",
+    "style": "style1",
+    "sections": {
+      "contact": true,
+      "socials": false,
+      "about": true,
+      "education": true,
+      "courses": true,
+      "certifications": true,
+      "skills": true,
+      "publications": false,
+      "languages": false,
+      "projects": true,
+      "experience": true
+    }
+  },
+  "contact": {
+    "firstName": "Jordan",
+    "lastName": "Taylor",
+    "email": "jordan@example.com",
+    "location": {
+      "city": "Hollywood",
+      "state": "California",
+      "country": "United States"
+    },
+    "phone": "+1 123-456-7890",
+    "pronouns": "they/them/theirs"
+  },
+  "about": {
+    "sectionHeading": "About Me",
+    "summary": "Passionate actor and performer with a diverse range of talents and a commitment to representing marginalized voices in cinema."
+  },
+  "education": {
+    "sectionHeading": "Education",
+    "school": [
+      {
+        "institution": "Hollywood Performing Arts School",
+        "degree": "Bachelor of Fine Arts in Acting",
+        "major": "Performing Arts",
+        "startDate": "2016-09",
+        "endDate": "2020-05",
+        "location": {
+          "city": "Hollywood",
+          "state": "California",
+          "country": "United States"
+        },
+        "gpa": "3.9"
+      }
+    ]
+  },
+  "courses": {
+    "sectionHeading": "Acting Courses",
+    "course": [
+      {
+        "title": "Method Acting",
+        "school": "Hollywood Performing Arts School",
+        "tags": ["Acting", "Method"]
+      },
+      {
+        "title": "Character Development",
+        "school": "Hollywood Performing Arts School",
+        "tags": ["Acting", "Character"]
+      },
+      {
+        "title": "Voice and Movement",
+        "school": "Hollywood Performing Arts School",
+        "tags": ["Acting", "Voice"]
+      },
+      {
+        "title": "Improvisation",
+        "school": "Hollywood Performing Arts School",
+        "tags": ["Acting", "Improvisation"]
+      },
+      {
+        "title": "Scene Study",
+        "school": "Hollywood Performing Arts School",
+        "tags": ["Acting", "Scene Study"]
+      }
+    ]
+  },
+  "certifications": {
+    "sectionHeading": "Certifications",
+    "certification": [
+      {
+        "name": "Certified Actor",
+        "organization": "Actors Guild",
+        "date": "2020-07-15",
+        "tags": ["Acting", "Certification"]
+      }
+    ]
+  },
+  "skills": {
+    "sectionHeading": "Skills",
+    "skills": [
+      {
+        "skill": "Acting",
+        "level": "Expert"
+      },
+      {
+        "skill": "Voice Control",
+        "level": "Advanced"
+      },
+      {
+        "skill": "Character Transformation",
+        "level": "Advanced"
+      },
+      {
+        "skill": "Improvisation",
+        "level": "Advanced"
+      },
+      {
+        "skill": "Script Analysis",
+        "level": "Intermediate"
+      }
+    ]
+  },
+  "projects": {
+    "sectionHeading": "Filmography",
+    "project": [
+      {
+        "title": "Breaking Barriers",
+        "description": "Lead role in a groundbreaking film that explores the challenges faced by non-binary individuals.",
+        "tags": ["Drama", "Representation"]
+      },
+      {
+        "title": "The Spotlight",
+        "description": "Supporting role in a critically acclaimed movie that highlights diversity in the entertainment industry.",
+        "tags": ["Drama", "Inclusion"]
+      },
+      {
+        "title": "Finding Identity",
+        "description": "Co-starred in a film that addresses the journey of self-discovery for LGBTQ+ individuals.",
+        "tags": ["Drama", "Identity"]
+      }
+    ]
+  },
+  "experience": {
+    "sectionHeading": "Performance Experience",
+    "job": [
+      {
+        "position": "Stage Actor",
+        "organization": "Hollywood Theater Company",
+        "location": {
+          "city": "Hollywood",
+          "state": "California",
+          "country": "United States"
+        },
+        "startDate": "2021-03",
+        "endDate": "Present",
+        "bullets": [
+          "Performed in various theater productions.",
+          "Advocated for diversity and inclusion in casting."
+        ],
+        "tags": ["Theater", "Diversity"]
+      },
+      {
+        "position": "Film Actor",
+        "organization": "Hollywood Studios",
+        "location": {
+          "city": "Hollywood",
+          "state": "California",
+          "country": "United States"
+        },
+        "startDate": "2020-09",
+        "endDate": "Present",
+        "bullets": [
+          "Acted in films that promote LGBTQ+ representation.",
+          "Collaborated with directors and fellow actors."
+        ],
+        "tags": ["Film", "Representation"]
+      }
+    ]
+  }
+}
