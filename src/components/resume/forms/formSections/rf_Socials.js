@@ -27,12 +27,12 @@ function ResumeSocialMedia({ data, handleChange }) {
       <h2>Social Media Profiles</h2>
       {profiles.map((profile, index) => (
         <div key={index}>
-          <label>Name</label>
+          <label>Display Name or Link</label>
           <input
             type="text"
             name="name"
             value={profile.name}
-            placeholder="Name"
+            placeholder="linkedin.com/in/yourname"
             onChange={(e) => handleInputChange(index, 'name', e.target.value)}
           />
 

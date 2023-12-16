@@ -1,5 +1,7 @@
 import React from 'react';
 import { Container, Segment } from 'semantic-ui-react';
+import { processItems } from '../../../../helper/ComparisonFunctions.js';
+
 
 const CertificationsSection = ({ certifications }) => {
   if (!certifications || !certifications.certification || !Array.isArray(certifications.certification)) {
@@ -16,39 +18,9 @@ const CertificationsSection = ({ certifications }) => {
     'things'
   ];
 
-  function calculateRelevance(certTags, jobTags) {
-    let relevance = 0;
-    certTags.forEach((certTag) => {
-      if (jobTags.includes(certTag)) {
-        relevance++;
-      }
-    });
-    return relevance;
-  }
+  const sortedCertifications = processItems(certifications.certification, jobTags, 'name');
 
-
-  const rankedCertifications = certifications.certification
-    .map((cert) => ({
-      ...cert,
-      relevance: calculateRelevance(cert.tags, jobTags),
-    }))
-    .sort((a, b) => b.relevance - a.relevance);
-
-
-
-  const uniqueCertifications = [];
-  const encounteredCertNames = {};
-
-  rankedCertifications.forEach((cert) => {
-    if (!encounteredCertNames[cert.name]) {
-      encounteredCertNames[cert.name] = true;
-      uniqueCertifications.push(cert);
-    }
-  });
-
-
-  // TODO add tag comparison
-  const limitedCertifications = uniqueCertifications.slice(0, 5);
+  const limitedCertifications = sortedCertifications.slice(0, 5);
 
   return (
         <Segment>

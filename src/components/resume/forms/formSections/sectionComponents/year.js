@@ -2,7 +2,7 @@ import React from 'react';
 
 const YearDropdown = ({ value, onChange }) => {
   const currentYear = new Date().getFullYear();
-  const startYear = 1950;
+  const startYear = 1990;
   const endYear = currentYear + 10;
 
   const years = [];

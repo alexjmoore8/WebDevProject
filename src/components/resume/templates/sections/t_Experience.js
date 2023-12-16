@@ -1,23 +1,26 @@
 import React from 'react';
 import { Container, Segment } from 'semantic-ui-react';
+import { processItems } from '../../../../helper/ComparisonFunctions.js';
+
 
 const WorkExperienceSection = ({ experience }) => {
   if (!experience || !experience.job || !Array.isArray(experience.job)) {
     return <div className="experience-section">No work experience data available.</div>;
   }
 
-  const uniqueNames = {};
-  const filteredExperiences = experience.job.filter((job, index) => {
-    if (!uniqueNames[job.organization]) {
-        uniqueNames[job.organization] = true;
-        return true;
-      }
-      return false;
-    });
+  const jobTags = [
+    'React',
+    'JavaScript',
+    'HTML',
+    'CSS',
+    'otherStuff', 
+    'stuff',
+    'things',
+    'volunteering'
+  ];
 
-
-  // TODO add tag comparison
-  const limitedExperiences = filteredExperiences.slice(0, 5);
+  const sortedExperiences = processItems(experience.job, jobTags, 'organization');
+  const limitedExperiences = sortedExperiences.slice(0, 5);
 
   return (
     <Segment>

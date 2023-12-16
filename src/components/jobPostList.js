@@ -1,7 +1,10 @@
 
+import './loginRegister/css/jobList.css';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from './AuthContext.js';
+
 
 
 export function JobPostList() {
@@ -27,20 +30,29 @@ export function JobPostList() {
     }
 
     return (
-    <><h1> Available Job Listings</h1>
-    <ul>
-            {jobs.map((job, i) => {
-                return <li key={i}>
-                    {job.title}
-                </li>;
-                
-            })}
-            {message && <p className={`message error-message`}>{message}</p>}
-             <p className="helper-text">
-            Want to go back? <Link to="/HomeA">Home</Link>
-             </p>
-        </ul></>
-        
+
+        <div className='jobList'>
+        <><h1> Available Job Listings</h1>
+            <ul>
+                {jobs.map((job, i) => {
+                    return <li key={i}>
+                        <div>
+                            <h1>
+                                {job.title} -  {job.companyName}
+                            </h1>
+                            <p>
+                                {job.description}
+                            </p>
+                        </div>
+                    </li>;
+
+                })}
+                {message && <p className={`message error-message`}>{message}</p>}
+                <p className="helper-text">
+                    Want to go back? <Link to="/HomeA">Home</Link>
+                </p>
+            </ul></>
+            </div>
     );
 
 }

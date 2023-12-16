@@ -5,6 +5,7 @@ function ResumeLanguages({ data, handleChange }) {
   const initialLanguages = data.languages || [{}];
   const [languages, setLanguages] = useState(initialLanguages);
   const [grammarSuggestions, setGrammarSuggestions] = useState([]);
+  const [includeCustomTitle, setIncludeCustomTitle] = useState(false);
 
   const handleAddLanguage = () => {
     if (languages.length < 10) {
@@ -47,28 +48,32 @@ function ResumeLanguages({ data, handleChange }) {
     }
   };
 
-   const handleNextClick = () => {
-    // Checking if all required fields are filled out
-    if (!data.sectionHeading || !data.language.language  ) {
-        alert('Please fill out all fields before proceeding.');
-        return;
-    }
-};
-
-
+  const getDefaultSectionTitle = () => {
+      return includeCustomTitle ? data.sectionHeading || 'Languages' : 'Languages';
+  };
 
   const languageLevels = ['Beginner', 'Intermediate', 'Advanced', 'Fluent', 'Native', 'Other'];
 
   return (
     <div>
       <h2>Languages</h2>
-      <label>Section Title</label>
+     <label>
+        <input
+          type="checkbox"
+          name="includeCustomTitle"
+          checked={includeCustomTitle}
+          onChange={(e) => setIncludeCustomTitle(e.target.checked)}
+        />
+        Include Custom Section Title
+      </label>
+
       <input
         type="text"
         name="sectionHeading"
-        value={data.sectionHeading}
+        value={getDefaultSectionTitle()}
         placeholder="Section title to display on resume"
         onChange={(e) => handleChange('ResumeLanguages', e.target.name, e.target.value)}
+        disabled={!includeCustomTitle}
       />
 
       {languages.map((language, index) => (
@@ -86,8 +91,9 @@ function ResumeLanguages({ data, handleChange }) {
           <select
             name={`languages[${index}].level`}
             value={language.level || ''}
-            onChange={(e) => handleInputChange(index, 'level', e.target.value)}
+            onChange={(e) => handleInputChange(index, 'level', e.target.value)} // Change this line
           >
+          
             {languageLevels.map((level) => (
               <option key={level} value={level}>
                 {level}
@@ -111,9 +117,6 @@ function ResumeLanguages({ data, handleChange }) {
       {languages.length < 10 && (
         <button onClick={handleAddLanguage}>Add Language</button>
       )}
-
-    <button onClick={handleNextClick}>Next</button>
-
     <button onClick={handleGrammarCheck}>Check Grammar</button>
 
       {grammarSuggestions.length > 0 && (

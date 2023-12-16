@@ -56,10 +56,6 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    employerId: {
-        type: String,
-        required: true
-    },
     title: {
         type: String,
         required: true,
@@ -68,7 +64,6 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-
     city: {
         type: String,
         required: true,

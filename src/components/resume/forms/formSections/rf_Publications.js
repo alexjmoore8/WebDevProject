@@ -4,6 +4,7 @@ import "../css/results.css"
 function ResumePublications({ data, handleChange }) {
   const [publications, setPublications] = useState(data.publications || [{}]);
   const [grammarSuggestions, setGrammarSuggestions] = useState([]);
+  const [includeCustomTitle, setIncludeCustomTitle] = useState(false);
 
   const handleAddPublication = () => {
     if (publications.length < 20) {
@@ -52,24 +53,30 @@ function ResumePublications({ data, handleChange }) {
     }
   };
 
-    const handleNextClick = () => {
-    // Checking if all required fields are filled out
-    if (!data.sectionHeading || !data.publication.title || !data.publication.publisher || !data.publication.date || !data.publication.link) {
-        alert('Please fill out all fields before proceeding.');
-        return;
-    }
-
-};
+  const getDefaultSectionTitle = () => {
+      return includeCustomTitle ? data.sectionHeading || 'Publications' : 'Publications';
+  };
 
   return (
     <div>
       <h2>Publications</h2>
+      <label>
+        <input
+          type="checkbox"
+          name="includeCustomTitle"
+          checked={includeCustomTitle}
+          onChange={(e) => setIncludeCustomTitle(e.target.checked)}
+        />
+        Include Custom Section Title
+      </label>
+
       <input
         type="text"
         name="sectionHeading"
-        value={data.sectionHeading}
+        value={getDefaultSectionTitle()}
         placeholder="Section title to display on resume"
         onChange={(e) => handleChange('ResumePublications', e.target.name, e.target.value)}
+        disabled={!includeCustomTitle}
       />
 
       {publications.map((publication, index) => (
@@ -124,9 +131,6 @@ function ResumePublications({ data, handleChange }) {
       {publications.length < 20 && (
         <button onClick={handleAddPublication}>Add Publication</button>
       )}
-
-
-      <button onClick={handleNextClick}>Next</button>
 
       <button onClick={handleGrammarCheck}>Check Grammar</button>
 
