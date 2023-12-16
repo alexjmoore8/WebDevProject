@@ -1,3 +1,4 @@
+
 import './loginRegister/css/jobList.css';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import axios from "axios";
@@ -29,6 +30,7 @@ export function JobPostList() {
     }
 
     return (
+
         <div className='jobList'>
         <><h1> Available Job Listings</h1>
             <ul>

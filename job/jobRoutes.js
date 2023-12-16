@@ -1,10 +1,12 @@
 import { Router } from 'express';
+
 import { addJobPosting, getAllJobs, getMyJobs } from './jobPost.js';
 const router = Router()
 
 // Handling form submission
 router.post('/postJob', async (req, res) => {
   const formData = req.body;
+
   const { company, title, desc, city, state, salary, tags } = formData
 
   try {
@@ -49,6 +51,7 @@ router.get('/getJobPosts', async (req, res) => {
 })
 
 
+
 router.get('/myJobs', async (req, res) => {
 
   console.log(req.session)
@@ -65,6 +68,5 @@ router.get('/myJobs', async (req, res) => {
   }
 
 })
-
 
 export default router

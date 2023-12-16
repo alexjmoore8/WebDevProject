@@ -20,6 +20,7 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <ul className="nav-links">
+
                 <li><Link to="/HomeA">Home</Link></li>
                 <li><Link to="/jobsearch">jobsearch</Link></li>
                 {

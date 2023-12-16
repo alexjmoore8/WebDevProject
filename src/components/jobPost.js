@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-
 export function JobPost() {
 
     const navigate = useNavigate();
@@ -79,7 +78,6 @@ export function JobPost() {
             onChange={(e) => setDesc(e.target.value)}
             placeholder="Description"
         /><br /><br />
-
         <label for="city">City:</label>
         <input
             type="text"

@@ -6,6 +6,7 @@ import Login from './components/loginRegister/Login.js';
 import Signup from './components/loginRegister/Signup.js';
 import Home from './components/Home.js'; // Import Home component for applicants
 import HomeA from './components/HomeA.js'; // Import HomeA component for employers
+import { JobSearchForm } from './components/jobSearchForm.js'; // Import JobSearchForm
 import ResumeForm from './components/resume/forms/resumeForm.js';
 import DynamicResume from './components/resume/dynamicResume.js';
 import { JobPost } from './components/jobPost/jobPost.js';
@@ -16,7 +17,6 @@ import SalaryCalculator from './salaryCalculator/salaryCalculator.js';
 import SalaryMetric from './salaryCalculator/salaryMetric.js';
 import { MyJobs } from './components/jobPost/myJobs.js';
 import RankedJobs from './components/applicant/rankedJobs.js';
-
 
 function App() {
   return (
@@ -41,6 +41,11 @@ function App() {
               <JobPost />
             </ProtectedRoute>
           } />
+          <Route path="/jobList" element={
+            <JobPostList />
+          } />
+          <Route path="/jobSearch" element={<JobSearchForm />} />
+
           <Route path="/myJobs" element={
             <ProtectedRoute role="employer">
               <MyJobs />
