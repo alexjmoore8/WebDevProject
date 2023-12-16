@@ -14,7 +14,7 @@ const sampleUsers = [
   { firstName: 'John', lastName: 'Doe', email: 'applicant@example.com', password: 'Pass0rd123!', role: 'applicant' },
   { firstName: 'Jane', lastName: 'Doe', email: 'employer@example.com', password: 'Passw0rd123!', role: 'employer' },
   // Add more sample users as needed
-  // Passords are not hidden for the seed users. Please make a new user to test full functionality
+  // Passwords are not hidden for the seed users. Please make a new user to test full functionality
 ];
 
 async function seedDatabase() {
