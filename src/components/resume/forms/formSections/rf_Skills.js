@@ -5,7 +5,7 @@ function ResumeSkills({ data, handleChange }) {
   const [skills, setSkills] = useState(initialSkills);
 
   const handleAddSkill = () => {
-    if (skills.length < 20) {
+    if (skills.length < 40) {
       setSkills([...skills, {}]);
     }
   };
@@ -74,7 +74,7 @@ function ResumeSkills({ data, handleChange }) {
         </div>
       ))}
 
-      {skills.length < 10 && (
+      {skills.length < 40 && (
         <button onClick={handleAddSkill}>Add Skill</button>
       )}
     </div>

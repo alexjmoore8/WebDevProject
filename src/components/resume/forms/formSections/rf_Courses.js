@@ -4,7 +4,7 @@ function ResumeCourses({ data, handleChange }) {
   const [courses, setCourses] = useState(data.courses || [{}]);
 
   const handleAddCourse = () => {
-    if (courses.length < 12) {
+    if (courses.length < 25) {
       setCourses([...courses, {}]);
     }
   };
@@ -69,7 +69,7 @@ function ResumeCourses({ data, handleChange }) {
         </div>
       ))}
 
-      {courses.length < 12 && (
+      {courses.length < 25 && (
         <button onClick={handleAddCourse}>Add Course</button>
       )}
     </div>

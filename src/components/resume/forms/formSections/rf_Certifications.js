@@ -6,7 +6,7 @@ function ResumeCertifications({ data, handleChange }) {
   const [certifications, setCertifications] = useState(data.certifications || [{}]);
 
   const handleAddCertification = () => {
-    if (certifications.length < 10) {
+    if (certifications.length < 15) {
       setCertifications([...certifications, {}]);
     }
   };
@@ -89,7 +89,7 @@ function ResumeCertifications({ data, handleChange }) {
         </div>
       ))}
 
-      {certifications.length < 10 && (
+      {certifications.length < 15 && (
         <button onClick={handleAddCertification}>Add Certification</button>
       )}
     </div>

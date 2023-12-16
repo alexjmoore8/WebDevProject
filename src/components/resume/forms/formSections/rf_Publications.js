@@ -4,7 +4,7 @@ function ResumePublications({ data, handleChange }) {
   const [publications, setPublications] = useState(data.publications || [{}]);
 
   const handleAddPublication = () => {
-    if (publications.length < 15) {
+    if (publications.length < 20) {
       setPublications([...publications, {}]);
     }
   };
@@ -87,7 +87,7 @@ function ResumePublications({ data, handleChange }) {
         </div>
       ))}
 
-      {publications.length < 15 && (
+      {publications.length < 20 && (
         <button onClick={handleAddPublication}>Add Publication</button>
       )}
     </div>

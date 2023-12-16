@@ -6,11 +6,24 @@ const WorkExperienceSection = ({ experience }) => {
     return <div className="experience-section">No work experience data available.</div>;
   }
 
+  const uniqueNames = {};
+  const filteredExperiences = experience.job.filter((job, index) => {
+    if (!uniqueNames[job.organization]) {
+        uniqueNames[job.organization] = true;
+        return true;
+      }
+      return false;
+    });
+
+
+  // TODO add tag comparison
+  const limitedExperiences = filteredExperiences.slice(0, 5);
+
   return (
     <Segment>
     <div className="experience-section">
       <div className="experience-heading"><h2>{experience.sectionHeading}</h2></div>
-      {experience.job.map((job, index) => (
+      {limitedExperiences.map((job, index) => (
         <div key={index} className="job-item">
           <div className="job-position"><h3>{job.position}</h3></div>
           <div className="job-organization"><h4>{job.organization}</h4></div>

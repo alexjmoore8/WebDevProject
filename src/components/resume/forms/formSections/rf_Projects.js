@@ -5,7 +5,7 @@ function ResumeProjects({ data, handleChange }) {
   const [projects, setProjects] = useState(initialProjects);
 
   const handleAddProject = () => {
-    if (projects.length < 6) {
+    if (projects.length < 20) {
       setProjects([...projects, {}]);
     }
   };
@@ -77,7 +77,7 @@ function ResumeProjects({ data, handleChange }) {
         </div>
       ))}
 
-      {projects.length < 6 && (
+      {projects.length < 20 && (
         <button onClick={handleAddProject}>Add Project</button>
       )}
     </div>
