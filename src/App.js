@@ -8,13 +8,13 @@ import Home from './components/Home.js'; // Import Home component for applicants
 import HomeA from './components/HomeA.js'; // Import HomeA component for employers
 import ResumeForm from './components/resume/forms/resumeForm.js';
 import DynamicResume from './components/resume/dynamicResume.js';
-import { JobPost } from './components/jobPost.js';
-import { JobPostList } from './components/jobPostList.js';
+import { JobPost } from './components/jobPost/jobPost.js';
+import { JobPostList } from './components/jobPost/jobPostList.js';
 import NotAuthorized from './components/NotAuthorized.js';
 import JobSearchEngine from './components/jobsearch.js';
 import SalaryCalculator from './salaryCalculator/salaryCalculator.js';
 import SalaryMetric from './salaryCalculator/salaryMetric.js';
-import { MyJobs } from './components/myJobs.js';
+import { MyJobs } from './components/jobPost/myJobs.js';
 
 
 function App() {

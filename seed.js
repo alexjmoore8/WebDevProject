@@ -21,27 +21,27 @@ const sampleUsers = [
 const sampleJobs = [
   {
     companyName: "Google",
+    employerId: "12345",  // Replace with an actual employer ID
     title: "Software Engineer",
     description: "Developing and maintaining web applications",
-    requirements: ["JavaScript", "React", "Node.js"],
     city: "New York",
     state: "NY",
-    salary: 80000,
+    salary: "80000",
     tags: ["engineering", "full-time"]
   },
-
   {
     companyName: "Meta",
+    employerId: "67890",  // Replace with an actual employer ID
     title: "Software Engineer",
     description: "Developing and maintaining web applications",
-    requirements: ["Python", "Tailwind", "Ruby"],
     city: "Mountain View",
     state: "CA",
-    salary: 100000,
+    salary: "100000",
     tags: ["engineering", "full-time"]
   },
   // Add more sample jobs as needed
 ];
+
 
 async function seedDatabase() {
   try {

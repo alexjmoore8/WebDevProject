@@ -67,10 +67,6 @@ const jobSchema = new mongoose.Schema({
         required: true,
     },
 
-    requirements: {
-        type: String,
-        required: true,
-    },
     city: {
         type: String,
         required: true,
