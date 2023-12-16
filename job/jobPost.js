@@ -25,6 +25,7 @@ export const addJobPosting = async (
 
     const newPost = {
         _id: new ObjectId(),
+
         employerId: userId,
         companyName: companyName,
         title: title,

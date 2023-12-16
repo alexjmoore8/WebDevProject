@@ -1,5 +1,6 @@
 //db setup
 import mongoose from 'mongoose';
+
 import * as subSchema from './src/components/resume/forms/resumeSubSchemas.js';
 
 mongoose.connect("mongodb://localhost:27017/react-login")
@@ -32,6 +33,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     }
+
 })
 
 const resumeSchema = new mongoose.Schema({

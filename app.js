@@ -1,9 +1,12 @@
 //where you will have the post, get methods
 import express, { json, urlencoded } from 'express';
 import collection from './mongo.js';
-import cors from 'cors';
+import cors from 'cors'
 import bcrypt from 'bcrypt';
 import session from 'express-session'; // Import express-session
+import JobRoutes from './job/jobRoutes.js'
+import jobSearchRoutes from './job/jobSearchRoutes.js';
+
 import helmet from 'helmet';
 import xss from 'xss-clean';
 
@@ -181,6 +184,9 @@ app.get('/logout', (req, res) => {
         res.end()
     }
 });
+
+app.use(JobRoutes);
+app.use(jobSearchRoutes);
 
 
 app.listen(3000, () => {
