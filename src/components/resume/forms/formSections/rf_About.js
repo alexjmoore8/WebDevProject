@@ -3,7 +3,8 @@ import "../css/results.css"
 
 
 function ResumeAbout({ data, handleChange }) {
-    const [grammarSuggestions, setGrammarSuggestions] = useState([]);
+  const [grammarSuggestions, setGrammarSuggestions] = useState([]);
+  const [includeCustomTitle, setIncludeCustomTitle] = useState(false);
 
       // API call for grammar checking
 
@@ -19,27 +20,32 @@ function ResumeAbout({ data, handleChange }) {
         const result = await response.json();
         setGrammarSuggestions(result.matches);
     };
-
-    const handleNextClick = () => {
-    // Checking if all required fields are filled out
-    if (!data.sectionHeading || !data.summar) {
-        alert('Please fill out all fields before proceeding.');
-        return;
-    }
-};
-
    
+  const getDefaultSectionTitle = () => {
+        return includeCustomTitle ? data.sectionHeading || 'About Me' : 'About Me';
+    };
+
     return (
         <div>
             <h2>About</h2>
             
-            <label>Section Title</label>
+        <label>
+                <input
+                type="checkbox"
+                name="includeCustomTitle"
+                checked={includeCustomTitle}
+                onChange={(e) => setIncludeCustomTitle(e.target.checked)}
+                />
+                Include Custom Section Title
+            </label>
+
             <input
                 type="text"
                 name="sectionHeading"
-                value={data.sectionHeading}
+                value={getDefaultSectionTitle()}
                 placeholder="Section title to display on resume"
                 onChange={(e) => handleChange('ResumeAbout', e.target.name, e.target.value)}
+                disabled={!includeCustomTitle}
             />
 
             <label>Summary</label>
@@ -49,7 +55,6 @@ function ResumeAbout({ data, handleChange }) {
                 placeholder="Write a brief summary about yourself"
                 onChange={(e) => handleChange('ResumeAbout', e.target.name, e.target.value)}
             />
-            <button onClick={handleNextClick}>Next</button>
             <button onClick={handleGrammarCheck}>Check Grammar</button>
 
       {/* generating the list for grammar and spell checking if needed */}

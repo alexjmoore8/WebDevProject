@@ -17,8 +17,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import './css/form.css';
 
-
-
 function ResumeForm() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ 
@@ -145,11 +143,17 @@ function ResumeForm() {
     }
   };
 
-  const handleSelectionChange = (sectionName, isSelected) => {
-    handleChange('ResumeSelections', sectionName, isSelected);
-    handleSectionSelection(sectionName, isSelected);
-  };
+const maxSelectedSections = 3;
 
+const handleSelectionChange = (sectionName, isSelected) => {
+  if (isSelected && selectedSections.length < maxSelectedSections) {
+    setSelectedSections((prevSections) => [...prevSections, sectionName]);
+  } else if (!isSelected) {
+    setSelectedSections((prevSections) =>
+      prevSections.filter((section) => section !== sectionName)
+    );
+  }
+};
 
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -220,9 +224,6 @@ function ResumeForm() {
     return transformedData;
 };
   
-  
-  
-  
   const [message, setMessage] = useState(''); // For displaying error messages
 
   async function handleSubmit(e) {
@@ -233,7 +234,7 @@ function ResumeForm() {
         const response = await axios.post("http://localhost:3000/resume/form", transformedData);
 
         if (response.data === "Resume submission successful") {
-            navigate("/home"); // Replace "/home" with the actual path of your homepage
+            navigate("/home");
         } else {
             setMessage("Error submitting resume");
         }
@@ -389,10 +390,15 @@ function ResumeForm() {
   return (
     <div>
       {renderForm()}
-      <button onClick={handlePrev} disabled={currentStep === 1}>
+      {currentStep != 1 && <button onClick={handlePrev} disabled={currentStep === 1}>
         Back
-      </button>
-      {currentStep < 13 && <button onClick={handleNext}>Next</button>}
+      </button>}
+      {currentStep < 13 && <button
+        onClick={handleNext}
+        disabled={currentStep === 1 && formData.ResumeSelections.resumeTitle.trim() === ''}
+      >
+        Next
+      </button>}
       {currentStep === 13 && <button onClick={handleSubmit}>Submit</button>}
     </div>
   );

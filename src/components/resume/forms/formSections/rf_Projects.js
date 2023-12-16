@@ -5,6 +5,7 @@ function ResumeProjects({ data, handleChange }) {
   const initialProjects = data.projects || [{}];
   const [projects, setProjects] = useState(initialProjects);
   const [grammarSuggestions, setGrammarSuggestions] = useState([]);
+  const [includeCustomTitle, setIncludeCustomTitle] = useState(false);
 
   const handleAddProject = () => {
     if (projects.length < 20) {
@@ -41,24 +42,30 @@ function ResumeProjects({ data, handleChange }) {
     setGrammarSuggestions(result.matches);
   };
 
-   const handleNextClick = () => {
-    // Checking if all required fields are filled out
-    if (!data.sectionHeading || !data.project.title  || !data.project.description || !data.project.link  ) {
-        alert('Please fill out all fields before proceeding.');
-        return;
-    }
-};
+  const getDefaultSectionTitle = () => {
+      return includeCustomTitle ? data.sectionHeading || 'Projects' : 'Projects';
+  };
 
   return (
     <div>
       <h2>Projects</h2>
-      <label>Section Title</label>
+      <label>
+        <input
+          type="checkbox"
+          name="includeCustomTitle"
+          checked={includeCustomTitle}
+          onChange={(e) => setIncludeCustomTitle(e.target.checked)}
+        />
+        Include Custom Section Title
+      </label>
+
       <input
         type="text"
         name="sectionHeading"
-        value={data.sectionHeading}
+        value={getDefaultSectionTitle()}
         placeholder="Section title to display on resume"
         onChange={(e) => handleChange('ResumeProjects', e.target.name, e.target.value)}
+        disabled={!includeCustomTitle}
       />
 
       {projects.map((project, index) => (
@@ -108,7 +115,6 @@ function ResumeProjects({ data, handleChange }) {
         <button onClick={handleAddProject}>Add Project</button>
       )}
 
-       <button onClick={handleNextClick}>Next</button>
           <button onClick={handleGrammarCheck}>Check Grammar</button>
 
       {grammarSuggestions.length > 0 && (

@@ -5,6 +5,7 @@ import "../css/results.css"
 
 
 function ResumeCertifications({ data, handleChange, handleNext }) {
+  const [includeCustomTitle, setIncludeCustomTitle] = useState(false);
   const initialCertifications = Array.isArray(data.certifications)
     ? data.certifications.map(cert => ({
         ...cert,
@@ -59,27 +60,33 @@ function ResumeCertifications({ data, handleChange, handleNext }) {
     setGrammarSuggestions(result.matches);
   };
 
-     const handleNextClick = () => {
-    // Checking if all required fields are filled out
-    if (!data.sectionHeading || !data.certification.name || !data.certification.organization || !data.certification.tags ) {
-        alert('Please fill out all fields before proceeding.');
-        return;
-    }
 
-};
+  const getDefaultSectionTitle = () => {
+    return includeCustomTitle ? data.sectionHeading || 'Certifications' : 'Certifications';
+  };
 
   return (
     <div>
       <h2>Certifications</h2>
 
-      <label>Section Title</label>
-      <input
-        type="text"
-        name="sectionHeading"
-        value={data.sectionHeading}
-        placeholder="Section title to display on resume"
-        onChange={(e) => handleChange('ResumeCertifications', e.target.name, e.target.value)}
-      />
+      <label>
+        <input
+        type="checkbox"
+        name="includeCustomTitle"
+        checked={includeCustomTitle}
+        onChange={(e) => setIncludeCustomTitle(e.target.checked)}
+        />
+        Include Custom Section Title
+      </label>
+
+        <input
+          type="text"
+          name="sectionHeading"
+          value={getDefaultSectionTitle()}
+          placeholder="Section title to display on resume"
+          onChange={(e) => handleChange('ResumeCertifications', e.target.name, e.target.value)}
+          disabled={!includeCustomTitle}
+        />
 
       {certifications.map((certification, index) => (
         <div key={index}>
@@ -136,10 +143,7 @@ function ResumeCertifications({ data, handleChange, handleNext }) {
 
       {certifications.length < 15 && (
         <button onClick={handleAddCertification}>Add Certification</button>
-      )}
-
-      <button onClick={handleNextClick}>Next</button>
-      
+      )}      
       <button onClick={handleGrammarCheck}>Check Grammar</button>
 
       {grammarSuggestions.length > 0 && (

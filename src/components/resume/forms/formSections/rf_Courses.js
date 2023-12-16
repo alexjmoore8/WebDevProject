@@ -3,6 +3,7 @@ import "../css/results.css"
 function ResumeCourses({ data, handleChange }) {
   const [courses, setCourses] = useState(data.courses || [{}]);
   const [grammarSuggestions, setGrammarSuggestions] = useState([]);
+  const [includeCustomTitle, setIncludeCustomTitle] = useState(false);
 
   const handleAddCourse = () => {
     if (courses.length < 25) {
@@ -47,17 +48,31 @@ const handleGrammarCheck = async () => {
   }
 };
 
+  const getDefaultSectionTitle = () => {
+    return includeCustomTitle ? data.sectionHeading || 'Courses' : 'Courses';
+  };
+
   return (
     <div>
       <h2>Courses</h2>
-      <label>Section Title</label>
-      <input
-        type="text"
-        name="sectionHeading"
-        value={data.sectionHeading}
-        placeholder="Section title to display on resume"
-        onChange={(e) => handleChange('ResumeCourses', e.target.name, e.target.value)}
-      />
+        <label>
+          <input
+          type="checkbox"
+          name="includeCustomTitle"
+          checked={includeCustomTitle}
+          onChange={(e) => setIncludeCustomTitle(e.target.checked)}
+          />
+          Include Custom Section Title
+        </label>
+
+        <input
+          type="text"
+          name="sectionHeading"
+          value={getDefaultSectionTitle()}
+          placeholder="Section title to display on resume"
+          onChange={(e) => handleChange('ResumeCourses', e.target.name, e.target.value)}
+          disabled={!includeCustomTitle}
+        />
 
       {courses.map((course, index) => (
         <div key={index}>

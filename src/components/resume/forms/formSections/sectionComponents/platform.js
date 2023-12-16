@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PlatformDropdown = ({ value, onChange }) => {
+const PlatformDropdown = ({ value, handleChange }) => {
   const PlatformOptions = [
     'LinkedIn',
     'GitHub',
@@ -13,11 +13,11 @@ const PlatformDropdown = ({ value, onChange }) => {
   ];
 
   return (
-    <select
-      name="socialMedia"
-      value={value}
-      onChange={onChange}
-    >
+  <select
+    name="socialMedia"
+    value={value}
+    onChange={handleChange}
+  >
       <option value="">Select Social Media Platform</option>
       {PlatformOptions.map((platform, index) => (
         <option key={index} value={platform}>
@@ -27,5 +27,6 @@ const PlatformDropdown = ({ value, onChange }) => {
     </select>
   );
 };
+
 
 export default PlatformDropdown;
