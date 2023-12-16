@@ -107,6 +107,26 @@ const sampleJobs = [
     tags: ["Web Development", "Full-time"]
   },
   {
+    companyName: "Google",
+    // employerId: "12345",  // Replace with an actual employer ID
+    title: "Software Engineer",
+    description: "Developing and maintaining web applications",
+    city: "New York",
+    state: "NY",
+    salary: "80000",
+    tags: ["engineering", "full-time"]
+  },
+  {
+    companyName: "Meta",
+    // employerId: "67890",  // Replace with an actual employer ID
+    title: "Software Engineer",
+    description: "Developing and maintaining web applications",
+    city: "Mountain View",
+    state: "CA",
+    salary: "100000",
+    tags: ["engineering", "full-time"]
+  },
+  {
     companyName: "InnovateTech",
     title: "Data Scientist",
     description: "Harness the power of data to drive innovation and insights.",
@@ -179,9 +199,6 @@ const sampleJobs = [
     tags: ["Environmental Science", "Full-time"]
   }
 ];
-
-
-
 
 async function seedDatabase() {
   try {

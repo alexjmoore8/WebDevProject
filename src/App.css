@@ -27,16 +27,6 @@
   text-decoration: underline;
 }
 
-/* Additional styling for other elements */
-.form-box, .homepage {
-  background: #fff;
-  padding: 20px;
-  border: 1px solid #e1e4e8;
-  border-radius: 6px;
-  box-shadow: 0 1px 0 rgba(225,228,232,0.5);
-  margin: 20px;
-  width: auto;
-}
 
 /* Additional CSS for Navbar Component */
 .navbar .logout-button {

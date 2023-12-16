@@ -4,7 +4,6 @@ import collection from './mongo.js';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
 import session from 'express-session'; // Import express-session
-import JobRoutes from './job/jobRoutes.js'
 import helmet from 'helmet';
 import xss from 'xss-clean';
 
@@ -118,6 +117,54 @@ app.post("/", async (req, res) => {
     }
 });
 
+app.post('/jobs', async (req, res) => {
+    if (!req.session || !req.session.user) {
+        return res.status(401).json({ message: 'Unauthorized: No session found' });
+    }
+
+    const { companyName, title, description, city, state, salary, tags } = req.body;
+    const employerId = req.session.user.id; 
+
+    if (!salary || isNaN(Number(salary))) {
+        return res.status(400).json({ message: 'Invalid salary: must be a number.' });
+    }
+
+    if (!Array.isArray(tags) || tags.some(tag => typeof tag !== 'string' || tag.trim() === '')) {
+        return res.status(400).json({ message: 'Invalid tags: must be an array of non-empty strings.' });
+    }
+
+    try {
+        const newJob = new collection.collectionPosts({ companyName, title, description, city, state, salary, tags, employerId });
+        await newJob.save();
+        res.status(201).json(newJob);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
+app.get('/jobs', async (req, res) => {
+    try {
+        const jobs = await collection.collectionPosts.find();
+        res.json(jobs);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+app.get('/myJobs', async (req, res) => {
+    if (!req.session || !req.session.user) {
+        return res.status(401).json({ message: 'Unauthorized: No session found' });
+    }
+
+    const employerId = req.session.user.id;
+
+    try {
+        const myJobs = await collection.collectionPosts.find({ employerId: employerId });
+        res.json(myJobs);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 // Logout endpoint to destroy session
 app.get('/logout', (req, res) => {
@@ -135,9 +182,6 @@ app.get('/logout', (req, res) => {
     }
 });
 
-
-
-app.use(JobRoutes)
 
 app.listen(3000, () => {
     console.log("Server is listening on port 3000");
