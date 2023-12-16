@@ -1,0 +1,171 @@
+body {
+  background-color: white;
+}
+
+h1 {
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-size: 40pt;
+  color: rgb(144, 144, 144);
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  text-align: right;
+  font-family: "Poppins", sans-serif;
+  font-size: 20pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  text-align: right;
+  font-family: "Poppins", sans-serif;
+  font-size: 13pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h4 {
+  text-align: right;
+  font-family: "Poppins", sans-serif;
+  font-size: 11pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+  font-style: italic;
+}
+
+h5 {
+  text-align: right;
+  font-family: "Poppins", sans-serif;
+  font-size: 11pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h6 {
+  text-align: right;
+  font-family: "Poppins", sans-serif;
+  font-size: 10pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  text-align: right;
+  font-family: "Poppins", sans-serif;
+  font-size: 11pt;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+ul {
+  text-align: right;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  font-family: "Poppins", sans-serif;
+  text-align: right;
+  font-size: 1rem;
+  font-weight: 400;
+  color: black;
+  margin-left: 25px;
+  padding: 0;
+}
+
+.pronouns {
+  text-align: left;
+  font-style: italic;
+}
+
+.contact-section,
+.contact-section a {
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-size: 13pt;
+  font-weight: 700;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.socials-section {
+  text-align: right;
+}
+
+.line {
+  /* hide */
+  display: none;
+}
+
+.about-section,
+p {
+  text-align: right;
+}
+
+.education-section {
+  text-align: right;
+}
+
+.courses-section {
+  text-align: right;
+}
+
+.certifications-section {
+  text-align: right;
+}
+
+.publications-section {
+  text-align: right;
+}
+
+.publications-section {
+  text-align: right;
+}
+
+.languages-section {
+  text-align: right;
+}
+
+.projects-section {
+  text-align: right;
+}
+
+.experience-section {
+  text-align: right;
+}
+
+.experience-section .bullets ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.skill-item {
+  text-align: left;
+  font-style: italic;
+  font-weight: 100 !important;
+}

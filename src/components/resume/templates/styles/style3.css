@@ -1,0 +1,188 @@
+body {
+  background-color: white;
+}
+
+h1 {
+  text-align: center;
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 32pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 20pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 13pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h4 {
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 11pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+  font-style: italic;
+}
+
+h5 {
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 11pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h6 {
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 10pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 11pt;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-family: Cambria, "Times New Roman", serif;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+ul {
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: black;
+  margin-left: 25px;
+  padding: 0;
+}
+
+.pronouns {
+  text-align: center;
+  font-style: italic;
+  font-weight: lighter;
+}
+
+.contact-section,
+.contact-section a {
+  text-align: center;
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 13pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-line {
+  text-align: center;
+  font-family: Cambria, "Times New Roman", serif;
+  font-size: 11pt;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.socials-section {
+  font-family: Cambria, "Times New Roman", serif;
+}
+
+.line {
+  border: 1px solid black;
+  margin: 0;
+  padding: 0;
+}
+
+.about-section {
+  text-align: left;
+}
+
+.education-section {
+  text-align: left;
+}
+
+.courses-section {
+  text-align: left;
+}
+
+.certifications-section {
+  text-align: left;
+}
+
+.publications-section {
+  text-align: left;
+  font-weight: lighter;
+}
+
+.publications-section a {
+  display: none;
+}
+.languages-section {
+  text-align: left;
+}
+
+.projects-section {
+  text-align: left;
+}
+
+.experience-section {
+  text-align: left;
+}
+
+.experience-section .bullets ul {
+  list-style-type: square;
+  margin: 0;
+  padding: 0;
+}
+
+.skills-section {
+  text-align: left;
+}
+
+.about-section,
+.education-section,
+.experience-section,
+.projects-section .left {
+  float: left !important;
+  width: 50% !important;
+}
+
+.courses-section,
+.certifications-section,
+.languages-section,
+.publications-section,
+.skills-section .right {
+  float: right !important;
+  width: 50% !important;
+}

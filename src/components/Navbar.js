@@ -32,9 +32,15 @@ const Navbar = () => {
                     )
                 }
 
+
+                <li><Link to="/signup">Signup</Link></li>
+                <li><Link to="/jobsearch">jobsearch</Link></li>
+                <li><Link to="/jobPost">Job Post</Link></li>
+                <li><Link to="/myJobs">My Job Posts</Link></li>
                 <li><Link to="/jobList">Job List</Link></li>
 
                 <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
+
             </ul>
 
 
