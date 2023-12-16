@@ -10,6 +10,9 @@ import ResumeForm from './components/resume/forms/resumeForm.js';
 import DynamicResume from './components/resume/dynamicResume.js';
 import { JobPost } from './components/jobPost.js';
 import { JobPostList } from './components/jobPostList.js';
+import NotAuthorized from './components/NotAuthorized.js';
+
+
 
 import SalaryCalculator from './salaryCalculator/salaryCalculator.js';
 import SalaryMetric from './salaryCalculator/salaryMetric.js';
@@ -23,6 +26,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/not-authorized" element={<NotAuthorized />} />
+          <Route path="/Home" element={
+            <ProtectedRoute role="applicant">
+              <Home />
           <Route path="/Home" element={<ProtectedRoute role="applicant"><Home />
             </ProtectedRoute>
           } />

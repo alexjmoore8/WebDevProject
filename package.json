@@ -17,6 +17,7 @@
     "html2pdf.js": "^0.10.1",
     "jspdf": "^2.5.1",
     "express-session": "^1.17.3",
+    "helmet": "^7.1.0",
     "mongoose": "^8.0.1",
     "nodemon": "^3.0.1",
     "react": "^18.2.0",
@@ -24,6 +25,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.19.0",
     "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4",
+    "xss-clean": "^0.1.4"
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.5",
     "typo-js": "^1.2.3",

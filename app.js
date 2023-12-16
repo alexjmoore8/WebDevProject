@@ -5,9 +5,23 @@ import cors from 'cors';
 import bcrypt from 'bcrypt';
 import session from 'express-session'; // Import express-session
 import JobRoutes from './job/jobRoutes.js'
+import helmet from 'helmet';
+import xss from 'xss-clean';
+
 
 
 const app = express();
+
+app.use(helmet());
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+    }
+}));
+app.use(xss());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(cors({
@@ -21,12 +35,27 @@ app.use(session({
     secret: 'your_secret_key',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false } // Set to `true` in production with HTTPS
+    cookie: { secure: false }, // Set to `true` in production with HTTPS
+    httpOnly: true, // Prevents client side JS from reading the cookie 
 }));
 
 app.get("/", (req, res) => {
     // res.render
 })
+
+app.get("/verify-auth", (req, res) => {
+    if (req.session && req.session.user) {
+        res.json({ 
+            status: "authenticated", 
+            user: {
+                id: req.session.user.id,
+                role: req.session.user.role
+            }
+        });
+    } else {
+        res.status(401).json({ status: "not-authenticated", message: "User is not authenticated" });
+    }
+});
 
 app.post("/signup", async (req, res) => {
     const { firstName, lastName, email, password, role } = req.body;

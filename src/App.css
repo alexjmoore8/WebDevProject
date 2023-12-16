@@ -57,3 +57,17 @@
 .navbar .logout-button:hover {
   background-color: #22863a;
 }
+
+.not-authorized-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.not-authorized-container h1 {
+  color: red;
+  margin-bottom: 20px;
+}
+
+.not-authorized-container p {
+  margin-bottom: 20px;
+}
