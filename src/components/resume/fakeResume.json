@@ -1,0 +1,374 @@
+{
+  "controller": {
+    "resumeTitle": "Internship Resume",
+    "layout": "layout1",
+    "style": "style1",
+    "sections": {
+      "contact": true,
+      "socials": true,
+      "about": true,
+      "education": true,
+      "courses": true,
+      "certifications": true,
+      "skills": true,
+      "publications": true,
+      "languages": true,
+      "projects": true,
+      "experience": true
+    }
+  },
+  "contact": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "location": {
+      "city": "Cityville",
+      "state": "Stateville",
+      "country": "Countryland"
+    },
+    "phone": "+1 123-456-7890",
+    "pronouns": "he/him/his"
+  },
+  "socials": {
+    "profile": [
+      {
+        "name": "https://twitter.com/JohnDoe",
+        "link": "https://twitter.com/JohnDoe",
+        "platformType": "Twitter"
+      },
+      {
+        "name": "https://github.com/JohnDoe",
+        "link": "https://github.com/JohnDoe",
+        "platformType": "GitHub"
+      },
+      {
+        "name": "https://github.com/JohnDoe",
+        "link": "https://github.com/JohnDoe",
+        "platformType": "GitHub"
+      },
+      {
+        "name": "https://notgithub.com/JohnDoe",
+        "link": "https://github.com/JohnDoe",
+        "platformType": "GitHub"
+      },
+      {
+        "name": "https://totallynotgithub.com/JohnDoe",
+        "link": "https://github.com/JohnDoe",
+        "platformType": "GitHub"
+      }
+    ]
+  },
+  "about": {
+    "sectionHeading": "About Me",
+    "summary": "Passionate and dedicated professional seeking exciting opportunities in the tech industry."
+  },
+  "education": {
+    "sectionHeading": "Education",
+    "school": [
+      {
+        "institution": "University of Fakeville",
+        "degree": "Bachelor",
+        "major": "Computer Science",
+        "startDate": "2018-09",
+        "endDate": "2022-05",
+        "location": {
+          "city": "Cityville",
+          "state": "Stateville",
+          "country": "Countryland"
+        },
+        "gpa": "3.8"
+      },
+      {
+        "institution": "University of Fakeville",
+        "degree": "Bachelor",
+        "major": "Computer Science",
+        "startDate": "2018-09",
+        "endDate": "2022-05",
+        "location": {
+          "city": "Cityville",
+          "state": "Stateville",
+          "country": "Countryland"
+        },
+        "gpa": "3.8"
+      }
+    ]
+  },
+  "courses": {
+    "sectionHeading": "Courses",
+    "course": [
+      {
+        "title": "Advanced Web Development1",
+        "school": "Online Course Platform",
+        "tags": ["Web Development", "Programming"]
+      },
+      {
+        "title": "Advanced Web Development2",
+        "school": "Online Course Platform",
+        "tags": ["Web Development", "Programming"]
+      },
+      {
+        "title": "Advanced Web Development3",
+        "school": "Online Course Platform",
+        "tags": ["Web Development", "Programming"]
+      },
+      {
+        "title": "Advanced Web Development2",
+        "school": "Online Course Platform",
+        "tags": ["Web Development", "Programming"]
+      },
+      {
+        "title": "Advanced Web Development4",
+        "school": "Online Course Platform",
+        "tags": ["Web Development", "Programming"]
+      },
+      {
+        "title": "Advanced Web Development2",
+        "school": "Online Course Platform",
+        "tags": ["Web Development", "Programming"]
+      }
+    ]
+  },
+  "certifications": {
+    "sectionHeading": "Certifications",
+    "certification": [
+      {
+        "name": "Certified Web Developer",
+        "organization": "Tech Certification Institute",
+        "date": "2023-01-15",
+        "tags": ["Web Development", "Certification"]
+      },
+      {
+        "name": "Certified Web Developer3",
+        "organization": "Tech Certification Institute",
+        "date": "2023-01-15",
+        "tags": ["Web Development", "Certification"]
+      },
+      {
+        "name": "Certified Web Developer1",
+        "organization": "Tech Certification Institute",
+        "date": "2023-01-15",
+        "tags": ["Web Development", "Certification"]
+      },
+      {
+        "name": "Certified Web Developer2",
+        "organization": "Tech Certification Institute",
+        "date": "2023-01-15",
+        "tags": ["Web Development", "Certification", "things"]
+      },
+      {
+        "name": "Certified Web Developer1",
+        "organization": "Tech Certification Institute",
+        "date": "2023-01-15",
+        "tags": ["Web Development", "Certification", "otherStuff"]
+      },
+      {
+        "name": "Certified Web Developer2",
+        "organization": "Tech Certification Institute",
+        "date": "2023-01-15",
+        "tags": [
+          "Web Development",
+          "Certification",
+          "stuff",
+          "things",
+          "otherStuff"
+        ]
+      },
+      {
+        "name": "Certified Web Developer1",
+        "organization": "Tech Certification Institute",
+        "date": "2023-01-15",
+        "tags": ["Web Development", "Certification"]
+      },
+      {
+        "name": "Certified Web Developer1",
+        "organization": "Tech Certification Institute",
+        "date": "2023-01-15",
+        "tags": ["Web Development", "Certification"]
+      }
+    ]
+  },
+  "publications": {
+    "sectionHeading": "Publications",
+    "publication": [
+      {
+        "title": "Exploring New Frontiers in Technology1",
+        "publisher": "Tech Journal",
+        "date": "2022-12-01",
+        "link": "https://example.com/article",
+        "tags": ["Technology", "Innovation"]
+      },
+      {
+        "title": "Exploring New Frontiers in Technology2",
+        "publisher": "Tech Journal",
+        "date": "2022-12-01",
+        "link": "https://example.com/article",
+        "tags": ["Technology", "Innovation"]
+      },
+      {
+        "title": "Exploring New Frontiers in Technology3",
+        "publisher": "Tech Journal",
+        "date": "2022-12-01",
+        "link": "https://example.com/article",
+        "tags": ["Technology", "Innovation"]
+      },
+      {
+        "title": "Exploring New Frontiers in Technology4",
+        "publisher": "Tech Journal",
+        "date": "2022-12-01",
+        "link": "https://example.com/article",
+        "tags": ["Technology", "Innovation"]
+      },
+      {
+        "title": "Exploring New Frontiers in Technology2",
+        "publisher": "Tech Journal",
+        "date": "2022-12-01",
+        "link": "https://example.com/article",
+        "tags": ["Technology", "Innovation"]
+      }
+    ]
+  },
+  "languages": {
+    "sectionHeading": "Languages",
+    "languages": [
+      {
+        "language": "English",
+        "level": "Native"
+      },
+      {
+        "language": "Spanish",
+        "level": "Fluent"
+      }
+    ]
+  },
+  "projects": {
+    "sectionHeading": "Projects",
+    "project": [
+      {
+        "title": "Smart Home Automation System",
+        "description": "Developed an IoT-based system for home automation.",
+        "link": "https://github.com/johndoe/smart-home",
+        "tags": ["IoT", "Home Automation"]
+      },
+      {
+        "title": "Other Project Title",
+        "description": "Developed an a project for this resume.",
+        "link": "https://github.com/johndoe/-random-project",
+        "tags": ["random", "project"]
+      },
+      {
+        "title": "Smart Home Automation System",
+        "description": "Developed an IoT-based system for home automation.",
+        "link": "https://github.com/johndoe/smart-home",
+        "tags": ["IoT", "Home Automation"]
+      }
+    ]
+  },
+  "experience": {
+    "sectionHeading": "Work Experience",
+    "job": [
+      {
+        "position": "Software Engineer",
+        "organization": "Tech Innovators",
+        "location": {
+          "city": "Cityville",
+          "state": "Stateville",
+          "country": "Countryland"
+        },
+        "startDate": "2022-06",
+        "endDate": "Present",
+        "bullets": [
+          "Developed scalable web applications.",
+          "Collaborated with cross-functional teams."
+        ],
+        "tags": ["Software Engineering", "Web Development"]
+      },
+      {
+        "position": "Other Software Engineer",
+        "organization": "Other Tech Innovators",
+        "location": {
+          "city": "Cityville",
+          "state": "Stateville",
+          "country": "Countryland"
+        },
+        "startDate": "2021-06",
+        "endDate": "2022-06",
+        "bullets": [
+          "Other Developed scalable web applications.",
+          "Other Collaborated with cross-functional teams."
+        ],
+        "tags": ["Software Engineering", "Web Development"]
+      },
+      {
+        "position": "Community Volunteer",
+        "organization": "Local Community Organization",
+        "location": {
+          "city": "Cityville",
+          "state": "Stateville",
+          "country": "Countryland"
+        },
+        "startDate": "2020-01",
+        "endDate": "2022-05",
+        "link": "https://example.com/community",
+        "bullets": [
+          "Organized community events.",
+          "Facilitated workshops on technology awareness."
+        ],
+        "tags": ["Community Service", "Volunteering"]
+      },
+      {
+        "position": "Other Community Volunteer",
+        "organization": "Local Community Organization",
+        "location": {
+          "city": "Cityville",
+          "state": "Stateville",
+          "country": "Countryland"
+        },
+        "startDate": "2020-01",
+        "endDate": "2022-05",
+        "link": "https://example.com/community",
+        "bullets": [
+          "Organized community events.",
+          "Facilitated workshops on technology awareness."
+        ],
+        "tags": ["Community Service", "Volunteering"]
+      }
+    ]
+  },
+  "skills": {
+    "sectionHeading": "Skills",
+    "skills": [
+      {
+        "skill": "JavaScript",
+        "level": "Advanced"
+      },
+      {
+        "skill": "SQL",
+        "level": "Advanced"
+      },
+      {
+        "skill": "Java",
+        "level": "Advanced"
+      },
+      {
+        "skill": "Python",
+        "level": "Advanced"
+      },
+      {
+        "skill": "SQL",
+        "level": "Advanced"
+      },
+      {
+        "skill": "JavaScript",
+        "level": "Advanced"
+      },
+      {
+        "skill": "Java",
+        "level": "Advanced"
+      },
+      {
+        "skill": "Python",
+        "level": "Advanced"
+      }
+    ]
+  }
+}

@@ -11,24 +11,23 @@ export const addJobPosting = async (
     city,
     state,
     salary,
-    tags
+    tags,
+    userId
 ) => {
     checkString(title)
     checkString(requirements)
-    checkStringArray(requirements.split(','))
     checkString(city)
-    //check salary
     checkNumber(salary)
-    checkString(tags)
-    checkStringArray(requirements.split(','))
+    checkStringArray(tags)
+
     description = description.trim();
     if (description.length === 0) {
-        throw 'Error: Description can not be empty or with just spaces.'
+        throw new Error ("Description can not be empty or with just spaces.");
     }
 
     const newPost = {
         _id: new ObjectId(),
-        employerId: new ObjectId(),
+        employerId: userId,
         companyName: companyName,
         title: title,
         description: description,
@@ -51,6 +50,16 @@ export const addJobPosting = async (
 export async function getAllJobs() {
 
     const jobs = await collection.collectionPosts.find()
+
+    return jobs
+
+}
+
+export async function getMyJobs(userId) {
+
+    const jobs = await collection.collectionPosts.find({
+        employerId: userId
+    })
 
     return jobs
 

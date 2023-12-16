@@ -1,7 +1,7 @@
 //where you will have the post, get methods
 import express, { json, urlencoded } from 'express';
 import collection from './mongo.js';
-import cors from 'cors'
+import cors from 'cors';
 import bcrypt from 'bcrypt';
 import session from 'express-session'; // Import express-session
 import JobRoutes from './job/jobRoutes.js'
@@ -25,7 +25,7 @@ app.use(xss());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(cors({
-    origin: 'http://localhost:3002', // or your client origin
+    origin: 'http://localhost:3000', // or your client origin
 
     credentials: true
 }));

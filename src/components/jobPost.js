@@ -3,9 +3,6 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
-
-
-
 export function JobPost() {
 
     const navigate = useNavigate();
@@ -38,13 +35,11 @@ export function JobPost() {
             const response = await axios.post("http://localhost:3000/postJob", payload, { withCredentials: true });
             console.log(response.data.status);
 
-            if (response.data.status === "exists") {
-                // Redirect based on the role
-                if (response.data.role === 'applicant') {
-                    navigate("/Home");
-                } else if (response.data.role === 'employer') {
-                    navigate("/HomeA");
-                }
+            if (response.status == 200) {
+                setMessage(response.data.message);
+                setTimeout(() => {
+                    navigate('/HomeA')
+                }, 500);
             } else {
                 setMessage(response.data.message);
             }

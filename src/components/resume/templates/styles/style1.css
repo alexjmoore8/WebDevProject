@@ -1,0 +1,151 @@
+body {
+  background-color: white;
+}
+
+h1 {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 32pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 20pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 13pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h4 {
+  font-family: "Roboto", sans-serif;
+  font-size: 11pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+  font-style: italic;
+}
+
+h5 {
+  font-family: "Roboto", sans-serif;
+  font-size: 11pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h6 {
+  font-family: "Roboto", sans-serif;
+  font-size: 10pt;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-size: 11pt;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+ul {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: black;
+  margin-left: 25px;
+  padding: 0;
+}
+
+.pronouns {
+  text-align: center;
+  font-style: italic;
+}
+
+.contact-section,
+.contact-section a {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 13pt;
+  font-weight: 700;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.socials-section {
+  text-align: center;
+}
+
+.line {
+  border: 2px solid black;
+  margin: 0;
+  padding: 0;
+}
+
+.about-section {
+  text-align: left;
+}
+
+.education-section {
+  text-align: left;
+}
+
+.courses-section {
+  text-align: left;
+}
+
+.certifications-section {
+  text-align: left;
+}
+
+.publications-section {
+  text-align: left;
+}
+
+.languages-section {
+  text-align: left;
+}
+
+.projects-section {
+  text-align: left;
+}
+
+.experience-section {
+  text-align: left;
+}
+
+.skills-section {
+  text-align: left;
+}
