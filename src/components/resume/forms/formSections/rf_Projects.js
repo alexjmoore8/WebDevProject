@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import "../css/results.css"
 
 function ResumeProjects({ data, handleChange }) {
-  const initialProjects = data.projects || [{}]; // Ensure it's initialized as an array
+  const initialProjects = data.projects || [{}];
   const [projects, setProjects] = useState(initialProjects);
+  const [grammarSuggestions, setGrammarSuggestions] = useState([]);
 
   const handleAddProject = () => {
     if (projects.length < 20) {
@@ -21,6 +23,31 @@ function ResumeProjects({ data, handleChange }) {
     updatedProjects[index][field] = value;
     setProjects(updatedProjects);
   };
+
+  const handleGrammarCheck = async () => {
+    let textToCheck = projects.map(project => 
+      `${project.title || ''} ${project.description || ''} ${project.link || ''} ${data.sectionHeading} ${project.tags?.join(', ') || ''}`
+    ).join(' ');
+
+    const response = await fetch('https://api.languagetool.org/v2/check', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
+    });
+
+    const result = await response.json();
+    setGrammarSuggestions(result.matches);
+  };
+
+   const handleNextClick = () => {
+    // Checking if all required fields are filled out
+    if (!data.sectionHeading || !data.project.title  || !data.project.description || !data.project.link  ) {
+        alert('Please fill out all fields before proceeding.');
+        return;
+    }
+};
 
   return (
     <div>
@@ -80,8 +107,31 @@ function ResumeProjects({ data, handleChange }) {
       {projects.length < 20 && (
         <button onClick={handleAddProject}>Add Project</button>
       )}
+
+       <button onClick={handleNextClick}>Next</button>
+          <button onClick={handleGrammarCheck}>Check Grammar</button>
+
+      {grammarSuggestions.length > 0 && (
+    <div className="grammar-suggestions-container">
+        <h3>Grammar Suggestions</h3>
+        <ul className="grammar-suggestions-list">
+            {grammarSuggestions.map((suggestion, index) => (
+                <li key={index}>
+                    <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
+                    {suggestion.replacements.length > 0 && (
+                        <div>
+                            Suggestion: 
+                            <span className="suggestion-replacement"
+                                  dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
+                            </span>
+                        </div>
+                    )}
+                </li>
+            ))}
+        </ul>
+    </div>
+)}
     </div>
   );
 }
-
 export default ResumeProjects;

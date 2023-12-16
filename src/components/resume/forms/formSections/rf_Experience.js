@@ -2,16 +2,11 @@ import React, { useState } from 'react';
 import StateDropdown from './sectionComponents/state.js';
 import MonthDropdown from './sectionComponents/month.js';
 import YearDropdown from './sectionComponents/year.js';
+import "../css/results.css"
 
 function ResumeExperience({ data, handleChange }) {
-  const initialExperience = data.experience || [{}]; // Ensure it's initialized as an array
-  const [experience, setExperience] = useState(initialExperience);
-
-  const [selectedState, setSelectedState] = useState('');
-
-  const handleStateChange = (e) => {
-    setSelectedState(e.target.value);
-  };
+  const [experience, setExperience] = useState(data.experience || [{}]);
+  const [grammarSuggestions, setGrammarSuggestions] = useState([]);
 
   const handleAddExperience = () => {
     if (experience.length < 20) {
@@ -29,101 +24,55 @@ function ResumeExperience({ data, handleChange }) {
   };
 
   const handleInputChange = (index, field, value) => {
-  const updatedExperience = [...experience];
-    if (!updatedExperience[index].location) {
-      updatedExperience[index].location = {}; 
-    }
-    updatedExperience[index][field] = value;
+    const updatedExperience = [...experience];
+    updatedExperience[index] = {...updatedExperience[index], [field]: value};
     setExperience(updatedExperience);
   };
+
+  const handleGrammarCheck = async () => {
+    let textToCheck = experience
+      .map((exp) => `${exp.position || ''} ${exp.organization || ''} ${exp.city || ''} ${exp.bullets || ''}`)
+      .join('. ');
+
+    const response = await fetch('https://api.languagetool.org/v2/check', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      setGrammarSuggestions(result.matches);
+    }
+  };
+
+     const handleNextClick = () => {
+    // Check if all required fields are filled out for each experience
+    for (const exp of experience) {
+        if (!exp.position || !exp.organization || !exp.city || !exp.bullets) {
+            alert('Please fill out all fields for each experience entry before proceeding.');
+            return;
+        }
+    }
+};
 
 
   return (
     <div>
       <h2>Experience</h2>
-      <label>Section Title</label>
-      <input
-        type="text"
-        name="sectionHeading"
-        value={data.sectionHeading}
-        placeholder="Section title to display on resume"
-        onChange={(e) => handleChange('ResumeExperience', e.target.name, e.target.value)}
-      />
-
-      {experience.map((data, index) => (
+      {experience.map((exp, index) => (
         <div key={index}>
-          <label>Job Title</label>
-          <input
-            type="text"
-            name={`experience[${index}].position`}
-            value={data.position || ''}
-            placeholder="Job position"
-            onChange={(e) => handleInputChange(index, 'position', e.target.value)}
-          />
-
-          <label>Company</label>
-          <input
-            type="text"
-            name={`experience[${index}].organization`}
-            value={data.organization || ''}
-            placeholder="Company"
-            onChange={(e) => handleInputChange(index, 'organization', e.target.value)}
-          />
-
-          <label>City</label>
-          <input
-            type="text"
-            name={`experiences[${index}].location.city`} // Use the correct name
-            value={data.location ? data.location.city || '' : ''}
-            placeholder="City"
-            onChange={(e) => handleInputChange(index, 'location.city', e.target.value)} // Update the field path
-          />
-
-          <label>State</label>
-          <div>
-              <StateDropdown value={selectedState} onChange={handleStateChange} />
-          </div>
-
-          <div>
-            <MonthDropdown
-              value={data.startDateMonth || ''}
-              onChange={(e) => handleInputChange(index, 'startDateMonth', e.target.value)}
-            />
-            <YearDropdown
-              value={data.startDateYear || ''}
-              onChange={(e) => handleInputChange(index, 'startDateYear', e.target.value)}
-            />
-          </div>
-
-          <label>End Date</label>
-          <div>
-            <MonthDropdown
-              value={data.endDateMonth || ''}
-              onChange={(e) => handleInputChange(index, 'endDateMonth', e.target.value)}
-            />
-            <YearDropdown
-              value={data.endDateYear || ''}
-              onChange={(e) => handleInputChange(index, 'endDateYear', e.target.value)}
-            />
-          </div>
-
-          <label>Bullets</label>
-          <textarea
-            name={`experience[${index}].bullets`}
-            value={data.bullets ? data.bullets.join('\n') : ''}
-            placeholder="Job Bullets (one per line)"
-            onChange={(e) => handleInputChange(index, 'bullets', e.target.value.split('\n'))}
-          />
-
-          <label>Tags</label>
-          <input
-            type="text"
-            name={`experience[${index}].tags`}
-            value={data.tags ? data.tags.join(', ') : ''}
-            placeholder="Tags (comma-separated)"
-            onChange={(e) => handleInputChange(index, 'tags', e.target.value.split(', '))}
-          />
-
+          <input type="text" value={exp.position} placeholder="Position" onChange={(e) => handleInputChange(index, 'position', e.target.value)} />
+          <input type="text" value={exp.organization} placeholder="Organization" onChange={(e) => handleInputChange(index, 'organization', e.target.value)} />
+          <input type="text" value={exp.city} placeholder="City" onChange={(e) => handleInputChange(index, 'city', e.target.value)} />
+          <MonthDropdown value={exp.startDateMonth} onChange={(e) => handleInputChange(index, 'startDateMonth', e.target.value)} />
+          <YearDropdown value={exp.startDateYear} onChange={(e) => handleInputChange(index, 'startDateYear', e.target.value)} />
+          <MonthDropdown value={exp.endDateMonth} onChange={(e) => handleInputChange(index, 'endDateMonth', e.target.value)} />
+          <YearDropdown value={exp.endDateYear} onChange={(e) => handleInputChange(index, 'endDateYear', e.target.value)} />
+          <textarea value={exp.bullets} placeholder="Job Bullets (one per line)" onChange={(e) => handleInputChange(index, 'bullets', e.target.value)} />
+          <input type="text" value={exp.tags} placeholder="Tags (comma-separated)" onChange={(e) => handleInputChange(index, 'tags', e.target.value)} />
           {experience.length > 1 && (
             <button onClick={() => handleRemoveExperience(index)}>Remove</button>
           )}
@@ -133,6 +82,29 @@ function ResumeExperience({ data, handleChange }) {
       {experience.length < 20 && (
         <button onClick={handleAddExperience}>Add Experience</button>
       )}
+
+       <button onClick={handleNextClick}>Next</button>
+      <button onClick={handleGrammarCheck}>Check Grammar</button>
+     {grammarSuggestions.length > 0 && (
+    <div className="grammar-suggestions-container">
+        <h3>Grammar Suggestions</h3>
+        <ul className="grammar-suggestions-list">
+            {grammarSuggestions.map((suggestion, index) => (
+                <li key={index}>
+                    <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
+                    {suggestion.replacements.length > 0 && (
+                        <div>
+                            Suggestion: 
+                            <span className="suggestion-replacement"
+                                  dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
+                            </span>
+                        </div>
+                    )}
+                </li>
+            ))}
+        </ul>
+    </div>
+)}
     </div>
   );
 }

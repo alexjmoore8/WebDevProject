@@ -1,29 +1,58 @@
-import React from "react";
-// import axios from "axios";
-// import { useNavigate, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import "../css/results.css"
 
-function ResumeSelections({data, handleChange, handleSectionChange}) {
-    const handleCheckboxChange = (name) => {
-        handleChange('ResumeSelections', name, !data[name]);
+function ResumeSelections({ data, handleChange }) {
+    const [grammarSuggestions, setGrammarSuggestions] = useState([]);
+    
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        handleChange('ResumeSelections', name, value);
     };
+
+  
+    const handleGrammarCheck = async () => {
+        const textToCheck = data.resumeTitle;
+
+        const response = await fetch('https://api.languagetool.org/v2/check', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
+        });
+
+        const result = await response.json();
+        setGrammarSuggestions(result.matches);
+    };
+
+    const handleNextClick = () => {
+    // Checking if all required fields are filled out
+    if (!data.resumeTitle.trim() || !data.layout || !data.style) {
+        alert('Please fill out all fields before proceeding.');
+        return;
+    }
+
+};
+    
 
     return (
         <div>
             <h2>Resume Selections</h2>
-            
-            <label>ResumeTitle:</label>
+
+            <label>Resume Title:</label>
             <input
                 type="text"
                 name="resumeTitle"
                 value={data.resumeTitle}
-                onChange={(e) => handleChange('ResumeSelections', e.target.name, e.target.value)}
+                onChange={handleInputChange}
             />
 
             <label>Layout:</label>
             <select
                 name="layout"
                 value={data.layout}
-                onChange={(e) => handleChange('ResumeSelections', e.target.name, e.target.value)}
+                onChange={handleInputChange}
             >
                 <option value="layout1">Layout 1</option>
                 <option value="layout2">Layout 2</option>
@@ -34,128 +63,39 @@ function ResumeSelections({data, handleChange, handleSectionChange}) {
             <select
                 name="style"
                 value={data.style}
-                onChange={(e) => handleChange('ResumeSelections', e.target.name, e.target.value)}
+                onChange={handleInputChange}
             >
                 <option value="style1">Style 1</option>
                 <option value="style2">Style 2</option>
                 <option value="style3">Style 3</option>
-            </select>
+            </select>   
+            <button onClick={handleNextClick}>Next</button>
 
-            <label>Sections:</label>
-            <div>
-                <label>
-                <input
-                    type="checkbox"
-                    name="contact"
-                    checked={data.contact}
-                    onChange={() => handleCheckboxChange('contact')}
-                />
-                Contact Info
-                </label>
+            <button onClick={handleGrammarCheck}>Check Grammar</button>
 
-                <label>
-                <input
-                    type="checkbox"
-                    name="socials"
-                    checked={data.socials}
-                    onChange={() => handleCheckboxChange('socials')}
-                />
-                Social Media & Website
-                </label>
+          {grammarSuggestions.length > 0 && (
+    <div className="grammar-suggestions-container">
+        <h3>Grammar Suggestions</h3>
+        <ul className="grammar-suggestions-list">
+            {grammarSuggestions.map((suggestion, index) => (
+                <li key={index}>
+                    <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
+                    {suggestion.replacements.length > 0 && (
+                        <div>
+                            Suggestion: 
+                            <span className="suggestion-replacement"
+                                  dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
+                            </span>
+                        </div>
+                    )}
+                </li>
+            ))}
+        </ul>
+    </div>
+)}
 
-                <label>
-                <input
-                    type="checkbox"
-                    name="about"
-                    checked={data.about}
-                    onChange={() => handleCheckboxChange('about')}
-                />
-                About
-                </label>
-                
-                <label>
-                <input
-                    type="checkbox"
-                    name="education"
-                    checked={data.education}
-                    onChange={() => handleCheckboxChange('education')}
-                />
-                Education
-                </label>
-
-                <label>
-                <input
-                    type="checkbox"
-                    name="courses"
-                    checked={data.courses}
-                    onChange={() => handleCheckboxChange('courses')}
-                />
-                Courses
-                </label>
-
-                <label>
-                <input
-                    type="checkbox"
-                    name="certifications"
-                    checked={data.certifications}
-                    onChange={() => handleCheckboxChange('certifications')}
-                />
-                Certifications
-                </label>
-
-                <label>
-                <input
-                    type="checkbox"
-                    name="publications"
-                    checked={data.publications}
-                    onChange={() => handleCheckboxChange('publications')}
-                />
-                Publications
-                </label>
-
-                <label>
-                <input
-                    type="checkbox"
-                    name="languages"
-                    checked={data.languages}
-                    onChange={() => handleCheckboxChange('languages')}
-                />
-                Languages
-                </label>
-
-                <label>
-                <input
-                    type="checkbox"
-                    name="projects"
-                    checked={data.projects}
-                    onChange={() => handleCheckboxChange('projects')}
-                />
-                Projects
-                </label>
-
-                <label>
-                <input
-                    type="checkbox"
-                    name="experience"
-                    checked={data.experience}
-                    onChange={() => handleCheckboxChange('experience')}
-                />
-                Experience
-                </label>
-
-
-                <label>
-                <input
-                    type="checkbox"
-                    name="skills"
-                    checked={data.skills}
-                    onChange={() => handleCheckboxChange('skills')}
-                />
-                Skills
-                </label>
-            </div>
         </div>
-)};
+    );
+}
 
 export default ResumeSelections;
-    

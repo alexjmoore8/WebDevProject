@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-
+import "../css/results.css"
 function ResumeCourses({ data, handleChange }) {
   const [courses, setCourses] = useState(data.courses || [{}]);
+  const [grammarSuggestions, setGrammarSuggestions] = useState([]);
 
   const handleAddCourse = () => {
     if (courses.length < 25) {
@@ -20,6 +21,31 @@ function ResumeCourses({ data, handleChange }) {
     updatedCourses[index][field] = value;
     setCourses(updatedCourses);
   };
+const handleGrammarCheck = async () => {
+  try {
+    let textToCheck = courses.map(course => 
+      `${data.sectionHeading || ''} ${course.title || ''} ${course.school || ''} ${course.tags?.join(', ') || ''}`
+    ).join('. ');
+
+    const response = await fetch('https://api.languagetool.org/v2/check', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    setGrammarSuggestions(result.matches);
+  } catch (error) {
+    console.error('Error fetching grammar check data:', error);
+    alert('Error fetching grammar check data. See console for details.');
+  }
+};
 
   return (
     <div>
@@ -72,6 +98,28 @@ function ResumeCourses({ data, handleChange }) {
       {courses.length < 25 && (
         <button onClick={handleAddCourse}>Add Course</button>
       )}
+     <button onClick={handleGrammarCheck}>Check Grammar</button>
+
+      {grammarSuggestions.length > 0 && (
+    <div className="grammar-suggestions-container">
+        <h3>Grammar Suggestions</h3>
+        <ul className="grammar-suggestions-list">
+            {grammarSuggestions.map((suggestion, index) => (
+                <li key={index}>
+                    <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
+                    {suggestion.replacements.length > 0 && (
+                        <div>
+                            Suggestion: 
+                            <span className="suggestion-replacement"
+                                  dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
+                            </span>
+                        </div>
+                    )}
+                </li>
+            ))}
+        </ul>
+    </div>
+)}
     </div>
   );
 }

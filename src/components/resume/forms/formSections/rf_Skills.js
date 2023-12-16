@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
+import "../css/results.css"
 
 function ResumeSkills({ data, handleChange }) {
     const initialSkills = data.skills || [{}];
-  const [skills, setSkills] = useState(initialSkills);
-
+    const [skills, setSkills] = useState(initialSkills);
+    const [grammarSuggestions, setGrammarSuggestions] = useState([]);
+  
   const handleAddSkill = () => {
     if (skills.length < 40) {
       setSkills([...skills, {}]);
     }
   };
 
-  const handleRemoveSkill = (index) => {
-    const updatedSkills = [...skills];
-    updatedSkills.splice(index, 1);
-    setSkills(updatedSkills);
-  };
+    const handleRemoveSkill = (index) => {
+        const updatedSkills = [...skills];
+        updatedSkills.splice(index, 1);
+        setSkills(updatedSkills);
+    };
 
     const handleInputChange = (index, field, value) => {
         const updatedSkills = [...skills];
@@ -22,64 +24,124 @@ function ResumeSkills({ data, handleChange }) {
         setSkills(updatedSkills);
     }
 
-  const skillLevels = ['Beginner', 'Intermediate', 'Advanced', 'Other'];
+    const skillLevels = ['Beginner', 'Intermediate', 'Advanced', 'Other'];
+
+    const handleGrammarCheck = async () => {
+    try {
+        let textToCheck = skills
+            .map(skill => `${data.sectionHeading || ''} ${skill.skill || ''} ${skill.level === 'Other' ? skill.otherLevel : skill.level || ''}`)
+            .join('. ');
+
+        const response = await fetch('https://api.languagetool.org/v2/check', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        setGrammarSuggestions(result.matches);
+    } catch (error) {
+        console.error('Error fetching grammar check data:', error);
+    }
+};
+
+    const handleNextClick = () => {
+    // Checking if all required fields are filled out
+    if (!data.sectionHeading || !data.skill.skill|| !data.skill.level ) {
+        alert('Please fill out all fields before proceeding.');
+        return;
+    }
+
+};
 
 
-  return (
-    <div>
-      <h2>Skill</h2>
-      <label>Section Title</label>
-      <input
-        type="text"
-        name="sectionHeading"
-        value={data.sectionHeading}
-        placeholder="Section title to display on resume"
-        onChange={(e) => handleChange('ResumeSkill', e.target.name, e.target.value)}
-      />
-
-      {skills.map((skill, index) => (
-        <div key={index}>
-          <label>Skill Name</label>
-          <input
-            type="text"
-            name={`skills[${index}].skill`}
-            value={skill.skill}
-            placeholder="Skill"
-            onChange={(e) => handleInputChange(index, 'skill', e.target.value)}
-          />
-
-          <label>Level</label>
-          <select
-            name={`skills[${index}].level`}
-            value={skill.level}
-            onChange={(e) => handleInputChange(index, 'level', e.target.value)}
-          >
-            {skillLevels.map((level) => (
-                <option key={level} value={level}>
-                    {level}
-                </option>
-                ))}
-            </select>
-
-            {skill.level === 'Other' && (
+    return (
+        <div>
+            <h2>Skills</h2>
+            <label>Section Title</label>
             <input
-              type="text"
-              placeholder="Other Level"
-              value={skill.otherLevel || ''}
-              onChange={(e) => handleInputChange(index, 'otherLevel', e.target.value)}
+                type="text"
+                name="sectionHeading"
+                value={data.sectionHeading}
+                placeholder="Section title to display on resume"
+                onChange={(e) => handleChange('ResumeSkills', e.target.name, e.target.value)}
             />
-          )}
 
-          <button onClick={() => handleRemoveSkill(index)}>Remove</button>
-        </div>
-      ))}
+            {skills.map((skill, index) => (
+                <div key={index}>
+                    <label>Skill Name</label>
+                    <input
+                        type="text"
+                        name={`skills[${index}].skill`}
+                        value={skill.skill}
+                        placeholder="Skill"
+                        onChange={(e) => handleInputChange(index, 'skill', e.target.value)}
+                    />
 
-      {skills.length < 40 && (
-        <button onClick={handleAddSkill}>Add Skill</button>
-      )}
-    </div>
-  );
+                    <label>Level</label>
+                    <select
+                        name={`skills[${index}].level`}
+                        value={skill.level}
+                        onChange={(e) => handleInputChange(index, 'level', e.target.value)}
+                    >
+                        {skillLevels.map((level) => (
+                            <option key={level} value={level}>{level}</option>
+                        ))}
+                    </select>
+
+                    {skill.level === 'Other' && (
+                        <input
+                            type="text"
+                            placeholder="Other Level"
+                            value={skill.otherLevel || ''}
+                            onChange={(e) => handleInputChange(index, 'otherLevel', e.target.value)}
+                        />
+                    )}
+
+                    <button onClick={() => handleRemoveSkill(index)}>Remove</button>
+//                 </div>
+//             ))}
+
+//             {skills.length < 20 && (
+//                 <button onClick={handleAddSkill}>Add Skill</button>
+//             )}
+
+//              <button onClick={handleNextClick}>Next</button>
+//             <button onClick={handleGrammarCheck}>Check Grammar</button>
+
+//            {grammarSuggestions.length > 0 && (
+//     <div className="grammar-suggestions-container">
+//         <h3>Grammar Suggestions</h3>
+//         <ul className="grammar-suggestions-list">
+//             {grammarSuggestions.map((suggestion, index) => (
+//                 <li key={index}>
+//                     <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
+//                     {suggestion.replacements.length > 0 && (
+//                         <div>
+//                             Suggestion: 
+//                             <span className="suggestion-replacement"
+//                                   dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
+//                             </span>
+//                         </div>
+//                     )}
+//                 </li>
+//             ))}
+//         </ul>
+
+//       {skills.length < 40 && (
+//         <button onClick={handleAddSkill}>Add Skill</button>
+//       )}
+
+//     </div>
+// )}
+//         </div>
+//     );
 }
-
 
 export default ResumeSkills;

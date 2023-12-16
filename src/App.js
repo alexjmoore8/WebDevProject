@@ -13,7 +13,6 @@ import { JobPostList } from './components/jobPostList.js';
 import SalaryCalculator from './salaryCalculator/salaryCalculator.js';
 import SalaryMetric from './salaryCalculator/salaryMetric.js';
 
-
 function App() {
   return (
     <AuthProvider> {/* Wrap the application with AuthProvider */}
@@ -45,6 +44,7 @@ function App() {
           } />
           <Route path="/salaryCalculator" element={<SalaryCalculator />} />
           <Route path="/salaryMetric" element={<SalaryMetric />} />
+          <Route path = "/jobsearch" element={<JobSearchEngine/>}/>
         </Routes>
       </Router>
     </AuthProvider>
