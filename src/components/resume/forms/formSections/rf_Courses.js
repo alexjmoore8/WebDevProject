@@ -5,7 +5,7 @@ function ResumeCourses({ data, handleChange }) {
   const [grammarSuggestions, setGrammarSuggestions] = useState([]);
 
   const handleAddCourse = () => {
-    if (courses.length < 12) {
+    if (courses.length < 25) {
       setCourses([...courses, {}]);
     }
   };
@@ -95,7 +95,7 @@ const handleGrammarCheck = async () => {
         </div>
       ))}
 
-      {courses.length < 12 && (
+      {courses.length < 25 && (
         <button onClick={handleAddCourse}>Add Course</button>
       )}
      <button onClick={handleGrammarCheck}>Check Grammar</button>

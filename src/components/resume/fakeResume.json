@@ -1,8 +1,8 @@
 {
   "controller": {
     "resumeTitle": "Internship Resume",
-    "layout": "layout3",
-    "style": "style3",
+    "layout": "layout1",
+    "style": "style1",
     "sections": {
       "contact": true,
       "socials": true,
@@ -38,6 +38,21 @@
       },
       {
         "name": "https://github.com/JohnDoe",
+        "link": "https://github.com/JohnDoe",
+        "platformType": "GitHub"
+      },
+      {
+        "name": "https://github.com/JohnDoe",
+        "link": "https://github.com/JohnDoe",
+        "platformType": "GitHub"
+      },
+      {
+        "name": "https://notgithub.com/JohnDoe",
+        "link": "https://github.com/JohnDoe",
+        "platformType": "GitHub"
+      },
+      {
+        "name": "https://totallynotgithub.com/JohnDoe",
         "link": "https://github.com/JohnDoe",
         "platformType": "GitHub"
       }
@@ -97,7 +112,17 @@
         "tags": ["Web Development", "Programming"]
       },
       {
+        "title": "Advanced Web Development2",
+        "school": "Online Course Platform",
+        "tags": ["Web Development", "Programming"]
+      },
+      {
         "title": "Advanced Web Development4",
+        "school": "Online Course Platform",
+        "tags": ["Web Development", "Programming"]
+      },
+      {
+        "title": "Advanced Web Development2",
         "school": "Online Course Platform",
         "tags": ["Web Development", "Programming"]
       }
@@ -113,6 +138,12 @@
         "tags": ["Web Development", "Certification"]
       },
       {
+        "name": "Certified Web Developer3",
+        "organization": "Tech Certification Institute",
+        "date": "2023-01-15",
+        "tags": ["Web Development", "Certification"]
+      },
+      {
         "name": "Certified Web Developer1",
         "organization": "Tech Certification Institute",
         "date": "2023-01-15",
@@ -122,10 +153,34 @@
         "name": "Certified Web Developer2",
         "organization": "Tech Certification Institute",
         "date": "2023-01-15",
+        "tags": ["Web Development", "Certification", "things"]
+      },
+      {
+        "name": "Certified Web Developer1",
+        "organization": "Tech Certification Institute",
+        "date": "2023-01-15",
+        "tags": ["Web Development", "Certification", "otherStuff"]
+      },
+      {
+        "name": "Certified Web Developer2",
+        "organization": "Tech Certification Institute",
+        "date": "2023-01-15",
+        "tags": [
+          "Web Development",
+          "Certification",
+          "stuff",
+          "things",
+          "otherStuff"
+        ]
+      },
+      {
+        "name": "Certified Web Developer1",
+        "organization": "Tech Certification Institute",
+        "date": "2023-01-15",
         "tags": ["Web Development", "Certification"]
       },
       {
-        "name": "Certified Web Developer3",
+        "name": "Certified Web Developer1",
         "organization": "Tech Certification Institute",
         "date": "2023-01-15",
         "tags": ["Web Development", "Certification"]
@@ -162,6 +217,13 @@
         "date": "2022-12-01",
         "link": "https://example.com/article",
         "tags": ["Technology", "Innovation"]
+      },
+      {
+        "title": "Exploring New Frontiers in Technology2",
+        "publisher": "Tech Journal",
+        "date": "2022-12-01",
+        "link": "https://example.com/article",
+        "tags": ["Technology", "Innovation"]
       }
     ]
   },
@@ -192,6 +254,12 @@
         "description": "Developed an a project for this resume.",
         "link": "https://github.com/johndoe/-random-project",
         "tags": ["random", "project"]
+      },
+      {
+        "title": "Smart Home Automation System",
+        "description": "Developed an IoT-based system for home automation.",
+        "link": "https://github.com/johndoe/smart-home",
+        "tags": ["IoT", "Home Automation"]
       }
     ]
   },
@@ -274,6 +342,10 @@
         "level": "Advanced"
       },
       {
+        "skill": "SQL",
+        "level": "Advanced"
+      },
+      {
         "skill": "Java",
         "level": "Advanced"
       },
@@ -283,6 +355,18 @@
       },
       {
         "skill": "SQL",
+        "level": "Advanced"
+      },
+      {
+        "skill": "JavaScript",
+        "level": "Advanced"
+      },
+      {
+        "skill": "Java",
+        "level": "Advanced"
+      },
+      {
+        "skill": "Python",
         "level": "Advanced"
       }
     ]

@@ -7,7 +7,7 @@ function ResumeProjects({ data, handleChange }) {
   const [grammarSuggestions, setGrammarSuggestions] = useState([]);
 
   const handleAddProject = () => {
-    if (projects.length < 6) {
+    if (projects.length < 20) {
       setProjects([...projects, {}]);
     }
   };
@@ -104,7 +104,7 @@ function ResumeProjects({ data, handleChange }) {
         </div>
       ))}
 
-      {projects.length < 6 && (
+      {projects.length < 20 && (
         <button onClick={handleAddProject}>Add Project</button>
       )}
 

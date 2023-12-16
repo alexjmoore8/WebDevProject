@@ -5,12 +5,12 @@ function ResumeSkills({ data, handleChange }) {
     const initialSkills = data.skills || [{}];
     const [skills, setSkills] = useState(initialSkills);
     const [grammarSuggestions, setGrammarSuggestions] = useState([]);
-
-    const handleAddSkill = () => {
-        if (skills.length < 20) {
-            setSkills([...skills, {}]);
-        }
-    };
+  
+  const handleAddSkill = () => {
+    if (skills.length < 40) {
+      setSkills([...skills, {}]);
+    }
+  };
 
     const handleRemoveSkill = (index) => {
         const updatedSkills = [...skills];
@@ -105,38 +105,43 @@ function ResumeSkills({ data, handleChange }) {
                     )}
 
                     <button onClick={() => handleRemoveSkill(index)}>Remove</button>
-                </div>
-            ))}
+//                 </div>
+//             ))}
 
-            {skills.length < 20 && (
-                <button onClick={handleAddSkill}>Add Skill</button>
-            )}
+//             {skills.length < 20 && (
+//                 <button onClick={handleAddSkill}>Add Skill</button>
+//             )}
 
-             <button onClick={handleNextClick}>Next</button>
-            <button onClick={handleGrammarCheck}>Check Grammar</button>
+//              <button onClick={handleNextClick}>Next</button>
+//             <button onClick={handleGrammarCheck}>Check Grammar</button>
 
-           {grammarSuggestions.length > 0 && (
-    <div className="grammar-suggestions-container">
-        <h3>Grammar Suggestions</h3>
-        <ul className="grammar-suggestions-list">
-            {grammarSuggestions.map((suggestion, index) => (
-                <li key={index}>
-                    <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
-                    {suggestion.replacements.length > 0 && (
-                        <div>
-                            Suggestion: 
-                            <span className="suggestion-replacement"
-                                  dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
-                            </span>
-                        </div>
-                    )}
-                </li>
-            ))}
-        </ul>
-    </div>
-)}
-        </div>
-    );
+//            {grammarSuggestions.length > 0 && (
+//     <div className="grammar-suggestions-container">
+//         <h3>Grammar Suggestions</h3>
+//         <ul className="grammar-suggestions-list">
+//             {grammarSuggestions.map((suggestion, index) => (
+//                 <li key={index}>
+//                     <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
+//                     {suggestion.replacements.length > 0 && (
+//                         <div>
+//                             Suggestion: 
+//                             <span className="suggestion-replacement"
+//                                   dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
+//                             </span>
+//                         </div>
+//                     )}
+//                 </li>
+//             ))}
+//         </ul>
+
+//       {skills.length < 40 && (
+//         <button onClick={handleAddSkill}>Add Skill</button>
+//       )}
+
+//     </div>
+// )}
+//         </div>
+//     );
 }
 
 export default ResumeSkills;

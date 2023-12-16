@@ -9,8 +9,11 @@ function ResumeExperience({ data, handleChange }) {
   const [grammarSuggestions, setGrammarSuggestions] = useState([]);
 
   const handleAddExperience = () => {
-    if (experience.length < 10) {
-      setExperience([...experience, { location: { state: '' }, position: '', organization: '', city: '', startDateMonth: '', startDateYear: '', endDateMonth: '', endDateYear: '', bullets: '', tags: '' }]);
+    if (experience.length < 20) {
+      setExperience([
+        ...experience,
+        { location: { selectedState: '' } }
+      ]);
     }
   };
 
@@ -75,7 +78,8 @@ function ResumeExperience({ data, handleChange }) {
           )}
         </div>
       ))}
-      {experience.length < 10 && (
+
+      {experience.length < 20 && (
         <button onClick={handleAddExperience}>Add Experience</button>
       )}
 
