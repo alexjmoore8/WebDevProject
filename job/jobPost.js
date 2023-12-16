@@ -7,7 +7,6 @@ export const addJobPosting = async (
     companyName,
     title,
     description,
-    requirements,
     city,
     state,
     salary,
@@ -15,7 +14,6 @@ export const addJobPosting = async (
     userId
 ) => {
     checkString(title)
-    checkString(requirements)
     checkString(city)
     checkNumber(salary)
     checkStringArray(tags)
@@ -31,11 +29,10 @@ export const addJobPosting = async (
         companyName: companyName,
         title: title,
         description: description,
-        requirements: [],
         city: city,
         state: state,
         salary: salary,
-        tags: tags
+        tags: []
     }
 
 

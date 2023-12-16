@@ -5,7 +5,6 @@ const LanguagesSection = ({ languages }) => {
     return <div className="languages-section">No language data available.</div>;
   }
 
-  // TODO add tag comparison
   const limitedLanguages = languages.languages.slice(0, 4);
 
   return (

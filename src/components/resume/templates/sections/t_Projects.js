@@ -1,21 +1,23 @@
 import React from 'react';
+import { processItems } from '../../../../helper/ComparisonFunctions.js';
 
 const ProjectsSection = ({ projects }) => {
   if (!projects || !projects.project || !Array.isArray(projects.project)) {
     return <div className="projects-section">No project data available.</div>;
   }
 
-  const uniqueNames = {};
-  const filteredProjects = projects.project.filter((project, index) => {
-    if (!uniqueNames[project.title]) {
-        uniqueNames[project.title] = true;
-        return true;
-      }
-      return false;
-    });
+  const jobTags = [
+    'React',
+    'JavaScript',
+    'HTML',
+    'CSS',
+    'otherStuff', 
+    'stuff',
+    'things'
+  ];
 
-  // TODO add tag comparison
-  const limitedProjects = filteredProjects.slice(0, 5);
+  const sortedProjects = processItems(projects.project, jobTags, 'title');
+  const limitedProjects = sortedProjects.slice(0, 5);
 
   return (
     <div className="projects-section">

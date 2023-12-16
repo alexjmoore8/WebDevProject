@@ -41,10 +41,6 @@ export function JobPostList() {
                             <p>
                                 {job.description}
                             </p>
-                            <p>
-                                {job.requirements}
-                            </p>
-
                         </div>
                     </li>;
 

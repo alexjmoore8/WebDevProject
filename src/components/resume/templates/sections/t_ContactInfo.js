@@ -14,7 +14,6 @@ const ContactInfoSection = ({ contact, socialsData }) => {
     return false;
   });
 
-  // TODO add tag comparison
   const limitedSocials = filteredSocials.slice(0, 3);
 
   return (

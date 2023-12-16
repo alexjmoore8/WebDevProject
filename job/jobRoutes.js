@@ -5,7 +5,7 @@ const router = Router()
 // Handling form submission
 router.post('/postJob', async (req, res) => {
   const formData = req.body;
-  const { company, title, desc, requirements, city, state, salary, tags } = formData
+  const { company, title, desc, city, state, salary, tags } = formData
 
   try {
 
@@ -13,7 +13,6 @@ router.post('/postJob', async (req, res) => {
       company,
       title,
       desc,
-      requirements,
       city,
       state,
       salary,

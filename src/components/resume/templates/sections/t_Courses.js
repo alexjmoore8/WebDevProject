@@ -1,21 +1,24 @@
 import React from 'react';
+import { processItems } from '../../../../helper/ComparisonFunctions.js';
 
 const CoursesSection = ({ courses }) => {
   if (!courses || !courses.course || !Array.isArray(courses.course)) {
     return <div className="courses-section">No course data available.</div>;
   }
 
-  const uniqueTitles = {};
-  const filteredCourses = courses.course.filter((course, index) => {
-    if (!uniqueTitles[course.title]) {
-        uniqueTitles[course.title] = true;
-        return true;
-      }
-      return false;
-    });
+  const jobTags = [
+    'React',
+    'JavaScript',
+    'HTML',
+    'CSS',
+    'otherStuff', 
+    'stuff',
+    'things'
+  ];
 
-  // TODO add tag comparison
-  const limitedCourses = filteredCourses.slice(0, 10);
+  const sortedCourses = processItems(courses.course, jobTags, 'title');
+
+  const limitedCourses = sortedCourses.slice(0, 10);
 
   return (
     <div className="courses-section">

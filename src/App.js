@@ -15,6 +15,7 @@ import JobSearchEngine from './components/jobsearch.js';
 import SalaryCalculator from './salaryCalculator/salaryCalculator.js';
 import SalaryMetric from './salaryCalculator/salaryMetric.js';
 import { MyJobs } from './components/myJobs.js';
+import RankedJobs from './components/applicant/rankedJobs.js';
 
 
 function App() {
@@ -25,7 +26,6 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/not-authorized" element={<NotAuthorized />} />
-          
           <Route path="/Home" element={<ProtectedRoute role="applicant"><Home />
             </ProtectedRoute>
           } />
@@ -34,12 +34,8 @@ function App() {
               <HomeA />
             </ProtectedRoute>
           } />
-          <Route path = "/resume/form" element={
-          <ResumeForm/>
-          } />
-          <Route path = "/resume/layout" element={
-          <DynamicResume/>
-          } />
+          <Route path = "/resume/form" element={<ResumeForm/>} />
+          <Route path = "/resume/layout" element={<DynamicResume/>} />
           <Route path="/jobPost" element={
             <ProtectedRoute role="employer">
               <JobPost />
@@ -50,12 +46,11 @@ function App() {
               <MyJobs />
             </ProtectedRoute>
           } />
-          <Route path="/jobList" element={
-            <JobPostList />
-          } />
+          <Route path="/jobList" element={<JobPostList />} />
           <Route path="/salaryCalculator" element={<SalaryCalculator />} />
           <Route path="/salaryMetric" element={<SalaryMetric />} />
           <Route path = "/jobsearch" element={<JobSearchEngine/>}/>
+          <Route path="/applicant/rankedJobs" element={<RankedJobs />} />
         </Routes>
       </Router>
     </AuthProvider>

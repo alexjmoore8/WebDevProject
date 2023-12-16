@@ -9,7 +9,7 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
     const [errors, setErrors] = useState({});
 
     const validateField = (name, value) => {
-        if (!value) {
+        if (!value && name !== 'pronouns') {
             return 'This field is required';
         }
         if (name === 'email' && !/\S+@\S+\.\S+/.test(value)) {
@@ -60,6 +60,7 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
                 placeholder="First Name"
                 onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
+            {errors.firstName && <div className="error-message">{errors.firstName}</div>}
 
             <label>Last Name</label>
             <input
@@ -69,6 +70,7 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
                 placeholder="Last Name"
                 onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
+            {errors.lastName && <div className="error-message">{errors.lastName}</div>}
 
             <label>Email Address</label>
             <input
@@ -78,6 +80,7 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
                 placeholder="Email Address"
                 onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
+            {errors.email && <div className="error-message">{errors.email}</div>}
 
             <label>City</label>
             <input
@@ -87,6 +90,7 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
                 placeholder="City"
                 onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
+            {errors['location.city'] && <div className="error-message">{errors['location.city']}</div>}
 
             <label>State</label>
             <StateDropdown value={selectedState} onChange={handleStateChange} />
@@ -109,26 +113,26 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
 
             <button onClick={handleGrammarCheck}>Check Grammar</button>
 
-          {grammarSuggestions.length > 0 && (
-    <div className="grammar-suggestions-container">
-        <h3>Grammar Suggestions</h3>
-        <ul className="grammar-suggestions-list">
-            {grammarSuggestions.map((suggestion, index) => (
-                <li key={index}>
-                    <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
-                    {suggestion.replacements.length > 0 && (
-                        <div>
-                            Suggestion: 
-                            <span className="suggestion-replacement"
-                                  dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
-                            </span>
-                        </div>
-                    )}
-                </li>
-            ))}
-        </ul>
-    </div>
-)}
+            {grammarSuggestions.length > 0 && (
+                <div className="grammar-suggestions-container">
+                    <h3>Grammar Suggestions</h3>
+                    <ul className="grammar-suggestions-list">
+                        {grammarSuggestions.map((suggestion, index) => (
+                            <li key={index}>
+                                <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
+                                {suggestion.replacements.length > 0 && (
+                                    <div>
+                                        Suggestion: 
+                                        <span className="suggestion-replacement"
+                                            dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
+                                        </span>
+                                    </div>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 }

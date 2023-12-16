@@ -9,7 +9,6 @@ export function JobPost() {
     const [company, setCompany] = useState('');
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
-    const [requirements, setRequirements] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [salary, setSalary] = useState('');
@@ -24,7 +23,6 @@ export function JobPost() {
             company,
             title,
             desc,
-            requirements,
             city,
             state,
             salary,
@@ -80,14 +78,6 @@ export function JobPost() {
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
             placeholder="Description"
-        /><br /><br />
-
-        <label for="requirements">Requirements:</label><br />
-        <textarea
-            rows="4" cols="50"
-            value={requirements}
-            onChange={(e) => setRequirements(e.target.value)}
-            placeholder="Requirements"
         /><br /><br />
 
         <label for="city">City:</label>

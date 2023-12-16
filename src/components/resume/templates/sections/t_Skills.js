@@ -1,4 +1,5 @@
 import React from 'react';
+import { processItems } from '../../../../helper/ComparisonFunctions.js';
 
 const SkillsSection = ({ skills }) => {
   if (!skills || !skills.skills || !Array.isArray(skills.skills)) {
@@ -14,7 +15,6 @@ const uniqueNames = {};
       return false;
     });
 
-  // TODO add tag comparison
   const limitedSkills = filteredSkills.slice(0, 10);
 
   return (

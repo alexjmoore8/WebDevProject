@@ -3,6 +3,7 @@ import React from 'react';
 
 function PronounsDropdown({ value, onChange, customPronouns, onCustomPronounsChange }) {
     const pronounOptions = [
+        'Select Pronouns',
         'she/her/hers',
         'he/him/his',
         'they/them/theirs',

@@ -1,21 +1,23 @@
 import React from 'react';
+import { processItems } from '../../../../helper/ComparisonFunctions.js';
 
 const PublicationsSection = ({ publications }) => {
   if (!publications || !publications.publication || !Array.isArray(publications.publication)) {
     return <div className="publications-section">No publication data available.</div>;
   }
 
-  const uniqueNames = {};
-  const filteredPublications = publications.publication.filter((publication, index) => {
-    if (!uniqueNames[publication.title]) {
-        uniqueNames[publication.title] = true;
-        return true;
-      }
-      return false;
-    });
+  const jobTags = [
+    'React',
+    'JavaScript',
+    'HTML',
+    'CSS',
+    'otherStuff', 
+    'stuff',
+    'things'
+  ];
 
-  // TODO add tag comparison
-  const limitedPublications = filteredPublications.slice(0, 5);
+  const sortedPublications = processItems(publications.publication, jobTags, 'title');
+  const limitedPublications = sortedPublications.slice(0, 5);
 
   return (
     <div className="publications-section">

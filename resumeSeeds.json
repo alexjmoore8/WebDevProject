@@ -1,0 +1,1352 @@
+[
+  {
+    "controller": {
+      "resumeTitle": "Software Engineer Resume",
+      "layout": "layout2",
+      "style": "style2",
+      "sections": {
+        "contact": true,
+        "socials": true,
+        "about": true,
+        "education": true,
+        "courses": true,
+        "certifications": true,
+        "skills": true,
+        "publications": true,
+        "languages": true,
+        "projects": true,
+        "experience": true
+      }
+    },
+    "contact": {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@example.com",
+      "location": {
+        "city": "Techville",
+        "state": "Stateland",
+        "country": "Countrytopia"
+      },
+      "phone": "+1 987-654-3210",
+      "pronouns": "she/her/hers"
+    },
+    "socials": {
+      "profile": [
+        {
+          "name": "https://linkedin.com/janesmith",
+          "link": "https://linkedin.com/janesmith",
+          "platformType": "LinkedIn"
+        },
+        {
+          "name": "https://github.com/janesmith",
+          "link": "https://github.com/janesmith",
+          "platformType": "GitHub"
+        }
+      ]
+    },
+    "about": {
+      "sectionHeading": "About Me",
+      "summary": "Experienced software engineer with a passion for developing innovative web applications."
+    },
+    "education": {
+      "sectionHeading": "Education",
+      "school": [
+        {
+          "institution": "Tech University",
+          "degree": "Bachelor of Science",
+          "major": "Computer Engineering",
+          "startDate": "2017-09",
+          "endDate": "2021-05",
+          "location": {
+            "city": "Techville",
+            "state": "Stateland",
+            "country": "Countrytopia"
+          },
+          "gpa": "3.9"
+        }
+      ]
+    },
+    "courses": {
+      "sectionHeading": "Courses",
+      "course": [
+        {
+          "title": "Machine Learning Fundamentals",
+          "school": "Online Course Platform",
+          "tags": ["Machine Learning", "Data Science"]
+        },
+        {
+          "title": "Advanced Database Management",
+          "school": "Tech University",
+          "tags": ["Database Management", "SQL"]
+        }
+      ]
+    },
+    "certifications": {
+      "sectionHeading": "Certifications",
+      "certification": [
+        {
+          "name": "Certified Web Developer",
+          "organization": "Tech Certification Institute",
+          "date": "2022-03-10",
+          "tags": ["Web Development", "Certification"]
+        }
+      ]
+    },
+    "publications": {
+      "sectionHeading": "Publications",
+      "publication": [
+        {
+          "title": "The Future of AI in Healthcare",
+          "publisher": "Tech Insights",
+          "date": "2021-12-15",
+          "link": "https://example.com/article1",
+          "tags": ["AI", "Healthcare"]
+        }
+      ]
+    },
+    "languages": {
+      "sectionHeading": "Languages",
+      "languages": [
+        {
+          "language": "English",
+          "level": "Native"
+        },
+        {
+          "language": "French",
+          "level": "Intermediate"
+        }
+      ]
+    },
+    "projects": {
+      "sectionHeading": "Projects",
+      "project": [
+        {
+          "title": "E-commerce Website Redesign",
+          "description": "Led the redesign of a popular e-commerce website, resulting in a 30% increase in user engagement.",
+          "link": "https://github.com/janesmith/ecommerce-redesign",
+          "tags": ["Web Development", "UI/UX Design"]
+        }
+      ]
+    },
+    "experience": {
+      "sectionHeading": "Work Experience",
+      "job": [
+        {
+          "position": "Software Engineer",
+          "organization": "Tech Innovators",
+          "location": {
+            "city": "Techville",
+            "state": "Stateland",
+            "country": "Countrytopia"
+          },
+          "startDate": "2021-06",
+          "endDate": "Present",
+          "bullets": [
+            "Developing scalable web applications.",
+            "Collaborating with cross-functional teams."
+          ],
+          "tags": ["Software Engineering", "Web Development"]
+        },
+        {
+          "position": "Software Developer Intern",
+          "organization": "Tech Solutions",
+          "location": {
+            "city": "Techville",
+            "state": "Stateland",
+            "country": "Countrytopia"
+          },
+          "startDate": "2020-05",
+          "endDate": "2020-08",
+          "bullets": [
+            "Assisted in software development projects.",
+            "Participated in code reviews and testing."
+          ],
+          "tags": ["Internship", "Software Development"]
+        }
+      ]
+    },
+    "skills": {
+      "sectionHeading": "Skills",
+      "skills": [
+        {
+          "skill": "Python",
+          "level": "Advanced"
+        },
+        {
+          "skill": "JavaScript",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Java",
+          "level": "Intermediate"
+        },
+        {
+          "skill": "SQL",
+          "level": "Intermediate"
+        }
+      ]
+    }
+  },
+  {
+    "controller": {
+      "resumeTitle": "Marketing Specialist Resume",
+      "layout": "layout3",
+      "style": "style1",
+      "sections": {
+        "contact": true,
+        "socials": true,
+        "about": true,
+        "education": true,
+        "courses": false,
+        "certifications": false,
+        "skills": true,
+        "publications": false,
+        "languages": true,
+        "projects": true,
+        "experience": true
+      }
+    },
+    "contact": {
+      "firstName": "Sarah",
+      "lastName": "Johnson",
+      "email": "sarah.johnson@example.com",
+      "location": {
+        "city": "Marketingville",
+        "state": "Promotionland",
+        "country": "Advertopia"
+      },
+      "phone": "+1 555-123-4567",
+      "pronouns": "she/her/hers"
+    },
+    "socials": {
+      "profile": [
+        {
+          "name": "https://linkedin.com/sarahjohnson",
+          "link": "https://linkedin.com/sarahjohnson",
+          "platformType": "LinkedIn"
+        },
+        {
+          "name": "https://twitter.com/sarah_j",
+          "link": "https://twitter.com/sarah_j",
+          "platformType": "Twitter"
+        }
+      ]
+    },
+    "about": {
+      "sectionHeading": "About Me",
+      "summary": "Experienced marketing specialist with a track record of successful campaigns and brand promotions."
+    },
+    "education": {
+      "sectionHeading": "Education",
+      "school": [
+        {
+          "institution": "Marketing University",
+          "degree": "Bachelor of Business Administration",
+          "major": "Marketing",
+          "startDate": "2016-09",
+          "endDate": "2020-05",
+          "location": {
+            "city": "Marketingville",
+            "state": "Promotionland",
+            "country": "Advertopia"
+          },
+          "gpa": "3.7"
+        }
+      ]
+    },
+    "languages": {
+      "sectionHeading": "Languages",
+      "languages": [
+        {
+          "language": "English",
+          "level": "Native"
+        },
+        {
+          "language": "Spanish",
+          "level": "Fluent"
+        }
+      ]
+    },
+    "projects": {
+      "sectionHeading": "Projects",
+      "project": [
+        {
+          "title": "Digital Marketing Campaign for Product Launch",
+          "description": "Led a team to execute a successful digital marketing campaign resulting in a 40% increase in product sales.",
+          "link": "https://example.com/campaign",
+          "tags": ["Digital Marketing", "Product Launch"]
+        }
+      ]
+    },
+    "experience": {
+      "sectionHeading": "Work Experience",
+      "job": [
+        {
+          "position": "Marketing Specialist",
+          "organization": "Advert Strategies",
+          "location": {
+            "city": "Marketingville",
+            "state": "Promotionland",
+            "country": "Advertopia"
+          },
+          "startDate": "2020-06",
+          "endDate": "Present",
+          "bullets": [
+            "Developing and implementing marketing strategies.",
+            "Analyzing market trends and consumer behavior."
+          ],
+          "tags": ["Marketing", "Campaign Management"]
+        },
+        {
+          "position": "Marketing Intern",
+          "organization": "Promo Solutions",
+          "location": {
+            "city": "Marketingville",
+            "state": "Promotionland",
+            "country": "Advertopia"
+          },
+          "startDate": "2019-05",
+          "endDate": "2019-08",
+          "bullets": [
+            "Assisted in the planning and execution of marketing campaigns.",
+            "Conducted market research and competitor analysis."
+          ],
+          "tags": ["Internship", "Marketing"]
+        }
+      ]
+    },
+    "skills": {
+      "sectionHeading": "Skills",
+      "skills": [
+        {
+          "skill": "Marketing Strategy",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Digital Advertising",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Market Research",
+          "level": "Intermediate"
+        },
+        {
+          "skill": "Content Creation",
+          "level": "Intermediate"
+        }
+      ]
+    }
+  },
+  {
+    "controller": {
+      "resumeTitle": "Project Manager Resume",
+      "layout": "layout1",
+      "style": "style3",
+      "sections": {
+        "contact": true,
+        "socials": true,
+        "about": true,
+        "education": true,
+        "courses": false,
+        "certifications": false,
+        "skills": true,
+        "publications": false,
+        "languages": true,
+        "projects": true,
+        "experience": true
+      }
+    },
+    "contact": {
+      "firstName": "Emily",
+      "lastName": "Smith",
+      "email": "emily.smith@example.com",
+      "location": {
+        "city": "Projectville",
+        "state": "Managementland",
+        "country": "Organizationia"
+      },
+      "phone": "+1 456-789-0123",
+      "pronouns": "she/her/hers"
+    },
+    "socials": {
+      "profile": [
+        {
+          "name": "https://linkedin.com/emilysmith",
+          "link": "https://linkedin.com/emilysmith",
+          "platformType": "LinkedIn"
+        },
+        {
+          "name": "https://twitter.com/emilys",
+          "link": "https://twitter.com/emilys",
+          "platformType": "Twitter"
+        }
+      ]
+    },
+    "about": {
+      "sectionHeading": "About Me",
+      "summary": "Experienced project manager with a track record of successfully leading cross-functional teams to deliver projects on time and within budget."
+    },
+    "education": {
+      "sectionHeading": "Education",
+      "school": [
+        {
+          "institution": "Management University",
+          "degree": "Master of Business Administration",
+          "major": "Project Management",
+          "startDate": "2016-09",
+          "endDate": "2018-05",
+          "location": {
+            "city": "Projectville",
+            "state": "Managementland",
+            "country": "Organizationia"
+          },
+          "gpa": "3.9"
+        }
+      ]
+    },
+    "languages": {
+      "sectionHeading": "Languages",
+      "languages": [
+        {
+          "language": "English",
+          "level": "Native"
+        },
+        {
+          "language": "Spanish",
+          "level": "Fluent"
+        },
+        {
+          "language": "German",
+          "level": "Intermediate"
+        }
+      ]
+    },
+    "projects": {
+      "sectionHeading": "Projects",
+      "project": [
+        {
+          "title": "New Product Launch",
+          "description": "Led a cross-functional team to successfully launch a new product, exceeding sales targets by 20%.",
+          "link": "https://example.com/new-product-launch",
+          "tags": ["Project Management", "Product Launch"]
+        },
+        {
+          "title": "IT Infrastructure Upgrade",
+          "description": "Managed the upgrade of the company's IT infrastructure, improving efficiency and reducing downtime.",
+          "link": "https://example.com/it-infrastructure-upgrade",
+          "tags": ["Project Management", "IT"]
+        },
+        {
+          "title": "Office Expansion",
+          "description": "Oversaw the expansion of office facilities, ensuring a smooth transition for employees.",
+          "link": "https://example.com/office-expansion",
+          "tags": ["Project Management", "Office Expansion"]
+        }
+      ]
+    },
+    "experience": {
+      "sectionHeading": "Work Experience",
+      "job": [
+        {
+          "position": "Project Manager",
+          "organization": "Project Management Solutions",
+          "location": {
+            "city": "Projectville",
+            "state": "Managementland",
+            "country": "Organizationia"
+          },
+          "startDate": "2018-06",
+          "endDate": "Present",
+          "bullets": [
+            "Leading project teams in planning and execution.",
+            "Monitoring project budgets and timelines."
+          ],
+          "tags": ["Project Management", "Leadership"]
+        },
+        {
+          "position": "Assistant Project Manager",
+          "organization": "Project Management Associates",
+          "location": {
+            "city": "Projectville",
+            "state": "Managementland",
+            "country": "Organizationia"
+          },
+          "startDate": "2017-01",
+          "endDate": "2018-06",
+          "bullets": [
+            "Assisting in project planning and coordination.",
+            "Communicating project status to stakeholders."
+          ],
+          "tags": ["Project Management", "Coordination"]
+        },
+        {
+          "position": "Project Coordinator",
+          "organization": "Project Management Co.",
+          "location": {
+            "city": "Projectville",
+            "state": "Managementland",
+            "country": "Organizationia"
+          },
+          "startDate": "2016-04",
+          "endDate": "2017-01",
+          "bullets": [
+            "Coordinating project tasks and resources.",
+            "Maintaining project documentation."
+          ],
+          "tags": ["Project Management", "Administration"]
+        }
+      ]
+    },
+    "skills": {
+      "sectionHeading": "Skills",
+      "skills": [
+        {
+          "skill": "Project Planning",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Team Leadership",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Budget Management",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Stakeholder Communication",
+          "level": "Intermediate"
+        }
+      ]
+    }
+  },
+  {
+    "controller": {
+      "resumeTitle": "Data Scientist Resume",
+      "layout": "layout1",
+      "style": "style2",
+      "sections": {
+        "contact": true,
+        "socials": true,
+        "about": true,
+        "education": true,
+        "courses": true,
+        "certifications": true,
+        "skills": true,
+        "publications": true,
+        "languages": true,
+        "projects": true,
+        "experience": true
+      }
+    },
+    "contact": {
+      "firstName": "Michael",
+      "lastName": "Johnson",
+      "email": "michael.johnson@example.com",
+      "location": {
+        "city": "Dataville",
+        "state": "Scienceland",
+        "country": "Analysisland"
+      },
+      "phone": "+1 123-555-7890",
+      "pronouns": "he/him/his"
+    },
+    "socials": {
+      "profile": [
+        {
+          "name": "https://linkedin.com/michaeljohnson",
+          "link": "https://linkedin.com/michaeljohnson",
+          "platformType": "LinkedIn"
+        },
+        {
+          "name": "https://github.com/michaeljohnson",
+          "link": "https://github.com/michaeljohnson",
+          "platformType": "GitHub"
+        }
+      ]
+    },
+    "about": {
+      "sectionHeading": "About Me",
+      "summary": "Data scientist with expertise in machine learning and predictive analytics. Passionate about solving complex problems with data-driven solutions."
+    },
+    "education": {
+      "sectionHeading": "Education",
+      "school": [
+        {
+          "institution": "Science University",
+          "degree": "Master of Science",
+          "major": "Data Science",
+          "startDate": "2018-09",
+          "endDate": "2020-05",
+          "location": {
+            "city": "Dataville",
+            "state": "Scienceland",
+            "country": "Analysisland"
+          },
+          "gpa": "4.0"
+        }
+      ]
+    },
+    "courses": {
+      "sectionHeading": "Courses",
+      "course": [
+        {
+          "title": "Machine Learning Fundamentals",
+          "school": "Online Course Platform",
+          "tags": ["Machine Learning", "Data Science"]
+        },
+        {
+          "title": "Advanced Data Analysis",
+          "school": "Science University",
+          "tags": ["Data Analysis", "Statistics"]
+        },
+        {
+          "title": "Natural Language Processing",
+          "school": "Online Course Platform",
+          "tags": ["NLP", "Machine Learning"]
+        },
+        {
+          "title": "Deep Learning",
+          "school": "Science University",
+          "tags": ["Deep Learning", "Neural Networks"]
+        }
+      ]
+    },
+    "certifications": {
+      "sectionHeading": "Certifications",
+      "certification": [
+        {
+          "name": "Certified Data Scientist",
+          "organization": "Data Science Institute",
+          "date": "2022-04-15",
+          "tags": ["Data Science", "Certification"]
+        },
+        {
+          "name": "Machine Learning Specialist",
+          "organization": "Tech Certification Institute",
+          "date": "2022-03-01",
+          "tags": ["Machine Learning", "Certification"]
+        },
+        {
+          "name": "Data Analyst Certification",
+          "organization": "Analytic Academy",
+          "date": "2021-12-10",
+          "tags": ["Data Analysis", "Certification"]
+        },
+        {
+          "name": "Natural Language Processing",
+          "organization": "Tech Certification Institute",
+          "date": "2021-11-20",
+          "tags": ["NLP", "Certification"]
+        }
+      ]
+    },
+    "publications": {
+      "sectionHeading": "Publications",
+      "publication": [
+        {
+          "title": "Predictive Modeling in Healthcare",
+          "publisher": "Health Analytics Journal",
+          "date": "2022-10-01",
+          "link": "https://example.com/article1",
+          "tags": ["Healthcare", "Predictive Modeling"]
+        },
+        {
+          "title": "Natural Language Processing in Customer Service",
+          "publisher": "Customer Insights Magazine",
+          "date": "2022-08-15",
+          "link": "https://example.com/article2",
+          "tags": ["NLP", "Customer Service"]
+        },
+        {
+          "title": "Machine Learning for Financial Forecasting",
+          "publisher": "Finance Trends",
+          "date": "2022-06-20",
+          "link": "https://example.com/article3",
+          "tags": ["Machine Learning", "Financial Forecasting"]
+        }
+      ]
+    },
+    "languages": {
+      "sectionHeading": "Languages",
+      "languages": [
+        {
+          "language": "English",
+          "level": "Native"
+        },
+        {
+          "language": "Spanish",
+          "level": "Fluent"
+        },
+        {
+          "language": "French",
+          "level": "Intermediate"
+        }
+      ]
+    },
+    "projects": {
+      "sectionHeading": "Projects",
+      "project": [
+        {
+          "title": "Customer Churn Prediction",
+          "description": "Developed a machine learning model to predict customer churn, resulting in a 15% reduction in churn rate.",
+          "link": "https://github.com/michaeljohnson/customer-churn-prediction",
+          "tags": ["Machine Learning", "Customer Churn"]
+        },
+        {
+          "title": "Sentiment Analysis for Social Media",
+          "description": "Built a sentiment analysis system for monitoring social media sentiment trends.",
+          "link": "https://github.com/michaeljohnson/sentiment-analysis",
+          "tags": ["NLP", "Sentiment Analysis"]
+        },
+        {
+          "title": "Recommendation Engine",
+          "description": "Developed a recommendation engine using collaborative filtering techniques.",
+          "link": "https://github.com/michaeljohnson/recommendation-engine",
+          "tags": ["Recommendation Systems", "Machine Learning"]
+        }
+      ]
+    },
+    "experience": {
+      "sectionHeading": "Work Experience",
+      "job": [
+        {
+          "position": "Data Scientist",
+          "organization": "Data Insights Co.",
+          "location": {
+            "city": "Dataville",
+            "state": "Scienceland",
+            "country": "Analysisland"
+          },
+          "startDate": "2020-06",
+          "endDate": "Present",
+          "bullets": [
+            "Developing predictive models for business analytics.",
+            "Collaborating with cross-functional teams on data-driven projects."
+          ],
+          "tags": ["Data Science", "Predictive Modeling"]
+        },
+        {
+          "position": "Data Analyst",
+          "organization": "Data Analytics Solutions",
+          "location": {
+            "city": "Dataville",
+            "state": "Scienceland",
+            "country": "Analysisland"
+          },
+          "startDate": "2019-03",
+          "endDate": "2020-06",
+          "bullets": [
+            "Analyzed data to extract meaningful insights.",
+            "Created data visualizations for reporting."
+          ],
+          "tags": ["Data Analysis", "Reporting"]
+        },
+        {
+          "position": "Machine Learning Intern",
+          "organization": "AI Research Lab",
+          "location": {
+            "city": "Dataville",
+            "state": "Scienceland",
+            "country": "Analysisland"
+          },
+          "startDate": "2018-06",
+          "endDate": "2018-12",
+          "bullets": [
+            "Assisted in machine learning research projects.",
+            "Developed prototype machine learning models."
+          ],
+          "tags": ["Internship", "Machine Learning"]
+        }
+      ]
+    },
+    "skills": {
+      "sectionHeading": "Skills",
+      "skills": [
+        {
+          "skill": "Python",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Machine Learning",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Data Analysis",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Natural Language Processing",
+          "level": "Intermediate"
+        },
+        {
+          "skill": "R",
+          "level": "Intermediate"
+        },
+        {
+          "skill": "SQL",
+          "level": "Intermediate"
+        }
+      ]
+    }
+  },
+  {
+    "controller": {
+      "resumeTitle": "Movie Character Resume",
+      "layout": "layout2",
+      "style": "style1",
+      "sections": {
+        "contact": true,
+        "socials": false,
+        "about": true,
+        "education": true,
+        "courses": false,
+        "certifications": true,
+        "skills": true,
+        "publications": false,
+        "languages": false,
+        "projects": true,
+        "experience": true
+      }
+    },
+    "contact": {
+      "firstName": "Indiana",
+      "lastName": "Jones",
+      "email": "indy@example.com",
+      "location": {
+        "city": "Adventureland",
+        "state": "Archaeologyland",
+        "country": "Explorationia"
+      },
+      "phone": "+1 555-123-4567",
+      "pronouns": "he/him/his"
+    },
+    "about": {
+      "sectionHeading": "About Me",
+      "summary": "Adventurous archaeologist and professor with a passion for ancient artifacts and daring expeditions."
+    },
+    "education": {
+      "sectionHeading": "Education",
+      "school": [
+        {
+          "institution": "Marshall College",
+          "degree": "Ph.D. in Archaeology",
+          "major": "Archaeology",
+          "startDate": "1931-09",
+          "endDate": "1935-05",
+          "location": {
+            "city": "Adventureland",
+            "state": "Archaeologyland",
+            "country": "Explorationia"
+          },
+          "gpa": "4.0"
+        },
+        {
+          "institution": "University of Chicago",
+          "degree": "Master of Arts in Linguistics",
+          "major": "Linguistics",
+          "startDate": "1925-09",
+          "endDate": "1931-05",
+          "location": {
+            "city": "Chicago",
+            "state": "Illinois",
+            "country": "United States"
+          },
+          "gpa": "3.9"
+        }
+      ]
+    },
+    "certifications": {
+      "sectionHeading": "Certifications",
+      "certification": [
+        {
+          "name": "Certified Archaeologist",
+          "organization": "Archaeology Association",
+          "date": "1935-10-15",
+          "tags": ["Archaeology", "Certification"]
+        },
+        {
+          "name": "Whip Handling Expert",
+          "organization": "Adventurer's Guild",
+          "date": "1937-03-20",
+          "tags": ["Adventure", "Certification"]
+        }
+      ]
+    },
+    "experience": {
+      "sectionHeading": "Adventure Experience",
+      "job": [
+        {
+          "position": "Adventurer",
+          "organization": "Various Expeditions",
+          "location": {
+            "city": "Adventureland",
+            "state": "Archaeologyland",
+            "country": "Explorationia"
+          },
+          "startDate": "1936-05",
+          "endDate": "Present",
+          "bullets": [
+            "Recovered the Ark of the Covenant.",
+            "Discovered the Holy Grail."
+          ],
+          "tags": ["Adventure", "Archaeology"]
+        },
+        {
+          "position": "Professor",
+          "organization": "Marshall College",
+          "location": {
+            "city": "Adventureland",
+            "state": "Archaeologyland",
+            "country": "Explorationia"
+          },
+          "startDate": "1925-09",
+          "endDate": "1936-05",
+          "bullets": [
+            "Taught archaeology and ancient civilizations.",
+            "Inspired students to explore history."
+          ],
+          "tags": ["Education", "Archaeology"]
+        }
+      ]
+    },
+    "skills": {
+      "sectionHeading": "Skills",
+      "skills": [
+        {
+          "skill": "Artifact Recovery",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Whip Handling",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Survival Instincts",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Foreign Language Proficiency",
+          "level": "Intermediate"
+        }
+      ]
+    },
+    "projects": {
+      "sectionHeading": "Expedition Projects",
+      "project": [
+        {
+          "title": "Quest for the Lost City",
+          "description": "Led a team on a perilous journey to uncover the secrets of the Lost City of Atlantis.",
+          "link": "https://example.com/lost-city-expedition",
+          "tags": ["Adventure", "Atlantis"]
+        },
+        {
+          "title": "Search for the Sankara Stones",
+          "description": "Embarked on a quest to find the mystical Sankara Stones to prevent their misuse.",
+          "link": "https://example.com/sankara-stones-expedition",
+          "tags": ["Adventure", "Artifacts"]
+        }
+      ]
+    }
+  },
+  {
+    "controller": {
+      "resumeTitle": "Movie Character Resume",
+      "layout": "layout1",
+      "style": "style3",
+      "sections": {
+        "contact": true,
+        "socials": false,
+        "about": true,
+        "education": true,
+        "courses": true,
+        "certifications": true,
+        "skills": true,
+        "publications": true,
+        "languages": true,
+        "projects": true,
+        "experience": true
+      }
+    },
+    "contact": {
+      "firstName": "Sherlock",
+      "lastName": "Holmes",
+      "email": "sherlock@example.com",
+      "location": {
+        "city": "London",
+        "state": "England",
+        "country": "United Kingdom"
+      },
+      "phone": "+44 20 1234 5678",
+      "pronouns": "he/him/his"
+    },
+    "about": {
+      "sectionHeading": "About Me",
+      "summary": "Brilliant detective with exceptional deductive reasoning skills and a knack for solving complex mysteries."
+    },
+    "education": {
+      "sectionHeading": "Education",
+      "school": [
+        {
+          "institution": "University of London",
+          "degree": "Bachelor of Science in Chemistry",
+          "major": "Chemistry",
+          "startDate": "1880-09",
+          "endDate": "1884-05",
+          "location": {
+            "city": "London",
+            "state": "England",
+            "country": "United Kingdom"
+          },
+          "gpa": "4.0"
+        }
+      ]
+    },
+    "courses": {
+      "sectionHeading": "Courses",
+      "course": [
+        {
+          "title": "Criminal Investigation Techniques",
+          "school": "Baker Street Academy",
+          "tags": ["Investigation", "Forensics"]
+        },
+        {
+          "title": "Logical Reasoning",
+          "school": "University of London",
+          "tags": ["Reasoning", "Analysis"]
+        },
+        {
+          "title": "Chemistry and Toxicology",
+          "school": "University of London",
+          "tags": ["Chemistry", "Toxicology"]
+        },
+        {
+          "title": "Fencing and Self-Defense",
+          "school": "Baker Street Academy",
+          "tags": ["Fencing", "Self-Defense"]
+        },
+        {
+          "title": "Advanced Deductive Reasoning",
+          "school": "Baker Street Academy",
+          "tags": ["Reasoning", "Analysis"]
+        },
+        {
+          "title": "Criminal Psychology",
+          "school": "University of London",
+          "tags": ["Psychology", "Criminal Profiling"]
+        }
+      ]
+    },
+    "certifications": {
+      "sectionHeading": "Certifications",
+      "certification": [
+        {
+          "name": "Certified Detective",
+          "organization": "Baker Street Detective Agency",
+          "date": "1884-08-15",
+          "tags": ["Detective", "Certification"]
+        },
+        {
+          "name": "Forensic Expert",
+          "organization": "Scotland Yard",
+          "date": "1885-02-10",
+          "tags": ["Forensics", "Certification"]
+        },
+        {
+          "name": "Master of Deductive Reasoning",
+          "organization": "Baker Street Academy",
+          "date": "1885-06-20",
+          "tags": ["Reasoning", "Certification"]
+        }
+      ]
+    },
+    "skills": {
+      "sectionHeading": "Skills",
+      "skills": [
+        {
+          "skill": "Deductive Reasoning",
+          "level": "Expert"
+        },
+        {
+          "skill": "Forensic Analysis",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Chemistry",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Criminal Profiling",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Fencing",
+          "level": "Intermediate"
+        }
+      ]
+    },
+    "publications": {
+      "sectionHeading": "Publications",
+      "publication": [
+        {
+          "title": "The Art of Deduction",
+          "publisher": "Baker Street Press",
+          "date": "1886-04-01",
+          "link": "https://example.com/deduction-book",
+          "tags": ["Deduction", "Analysis"]
+        },
+        {
+          "title": "A Study in Scarlet",
+          "publisher": "Baker Street Press",
+          "date": "1887-03-01",
+          "link": "https://example.com/scarlet-book",
+          "tags": ["Investigation", "Mystery"]
+        },
+        {
+          "title": "The Hound of the Baskervilles",
+          "publisher": "Baker Street Press",
+          "date": "1902-08-01",
+          "link": "https://example.com/baskervilles-book",
+          "tags": ["Mystery", "Detective"]
+        }
+      ]
+    },
+    "languages": {
+      "sectionHeading": "Languages",
+      "languages": [
+        {
+          "language": "English",
+          "level": "Native"
+        },
+        {
+          "language": "French",
+          "level": "Fluent"
+        },
+        {
+          "language": "German",
+          "level": "Intermediate"
+        }
+      ]
+    },
+    "projects": {
+      "sectionHeading": "Investigation Projects",
+      "project": [
+        {
+          "title": "The Case of the Missing Diamond",
+          "description": "Solved the mysterious disappearance of a priceless diamond from the British Museum.",
+          "link": "https://example.com/missing-diamond-case",
+          "tags": ["Investigation", "Mystery"]
+        },
+        {
+          "title": "The Adventure of the Speckled Band",
+          "description": "Uncovered the truth behind a deadly snake and a locked room mystery.",
+          "link": "https://example.com/speckled-band-case",
+          "tags": ["Investigation", "Mystery"]
+        },
+        {
+          "title": "The Final Problem",
+          "description": "Engaged in a life-or-death struggle with the infamous Professor Moriarty.",
+          "link": "https://example.com/final-problem-case",
+          "tags": ["Investigation", "Mystery"]
+        }
+      ]
+    },
+    "experience": {
+      "sectionHeading": "Detective Work",
+      "job": [
+        {
+          "position": "Consulting Detective",
+          "organization": "Baker Street Detective Agency",
+          "location": {
+            "city": "London",
+            "state": "England",
+            "country": "United Kingdom"
+          },
+          "startDate": "1884-08",
+          "endDate": "Present",
+          "bullets": [
+            "Solved numerous high-profile cases.",
+            "Provided consulting services to Scotland Yard."
+          ],
+          "tags": ["Detective", "Consulting"]
+        }
+      ]
+    }
+  },
+  {
+    "controller": {
+      "resumeTitle": "Movie Character Resume",
+      "layout": "layout1",
+      "style": "style1",
+      "sections": {
+        "contact": true,
+        "socials": false,
+        "about": true,
+        "education": true,
+        "courses": true,
+        "certifications": true,
+        "skills": true,
+        "publications": false,
+        "languages": false,
+        "projects": true,
+        "experience": true
+      }
+    },
+    "contact": {
+      "firstName": "Jordan",
+      "lastName": "Taylor",
+      "email": "jordan@example.com",
+      "location": {
+        "city": "Hollywood",
+        "state": "California",
+        "country": "United States"
+      },
+      "phone": "+1 123-456-7890",
+      "pronouns": "they/them/theirs"
+    },
+    "about": {
+      "sectionHeading": "About Me",
+      "summary": "Passionate actor and performer with a diverse range of talents and a commitment to representing marginalized voices in cinema."
+    },
+    "education": {
+      "sectionHeading": "Education",
+      "school": [
+        {
+          "institution": "Hollywood Performing Arts School",
+          "degree": "Bachelor of Fine Arts in Acting",
+          "major": "Performing Arts",
+          "startDate": "2016-09",
+          "endDate": "2020-05",
+          "location": {
+            "city": "Hollywood",
+            "state": "California",
+            "country": "United States"
+          },
+          "gpa": "3.9"
+        }
+      ]
+    },
+    "courses": {
+      "sectionHeading": "Acting Courses",
+      "course": [
+        {
+          "title": "Method Acting",
+          "school": "Hollywood Performing Arts School",
+          "tags": ["Acting", "Method"]
+        },
+        {
+          "title": "Character Development",
+          "school": "Hollywood Performing Arts School",
+          "tags": ["Acting", "Character"]
+        },
+        {
+          "title": "Voice and Movement",
+          "school": "Hollywood Performing Arts School",
+          "tags": ["Acting", "Voice"]
+        },
+        {
+          "title": "Improvisation",
+          "school": "Hollywood Performing Arts School",
+          "tags": ["Acting", "Improvisation"]
+        },
+        {
+          "title": "Scene Study",
+          "school": "Hollywood Performing Arts School",
+          "tags": ["Acting", "Scene Study"]
+        }
+      ]
+    },
+    "certifications": {
+      "sectionHeading": "Certifications",
+      "certification": [
+        {
+          "name": "Certified Actor",
+          "organization": "Actors Guild",
+          "date": "2020-07-15",
+          "tags": ["Acting", "Certification"]
+        }
+      ]
+    },
+    "skills": {
+      "sectionHeading": "Skills",
+      "skills": [
+        {
+          "skill": "Acting",
+          "level": "Expert"
+        },
+        {
+          "skill": "Voice Control",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Character Transformation",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Improvisation",
+          "level": "Advanced"
+        },
+        {
+          "skill": "Script Analysis",
+          "level": "Intermediate"
+        }
+      ]
+    },
+    "projects": {
+      "sectionHeading": "Filmography",
+      "project": [
+        {
+          "title": "Breaking Barriers",
+          "description": "Lead role in a groundbreaking film that explores the challenges faced by non-binary individuals.",
+          "tags": ["Drama", "Representation"]
+        },
+        {
+          "title": "The Spotlight",
+          "description": "Supporting role in a critically acclaimed movie that highlights diversity in the entertainment industry.",
+          "tags": ["Drama", "Inclusion"]
+        },
+        {
+          "title": "Finding Identity",
+          "description": "Co-starred in a film that addresses the journey of self-discovery for LGBTQ+ individuals.",
+          "tags": ["Drama", "Identity"]
+        }
+      ]
+    },
+    "experience": {
+      "sectionHeading": "Performance Experience",
+      "job": [
+        {
+          "position": "Stage Actor",
+          "organization": "Hollywood Theater Company",
+          "location": {
+            "city": "Hollywood",
+            "state": "California",
+            "country": "United States"
+          },
+          "startDate": "2021-03",
+          "endDate": "Present",
+          "bullets": [
+            "Performed in various theater productions.",
+            "Advocated for diversity and inclusion in casting."
+          ],
+          "tags": ["Theater", "Diversity"]
+        },
+        {
+          "position": "Film Actor",
+          "organization": "Hollywood Studios",
+          "location": {
+            "city": "Hollywood",
+            "state": "California",
+            "country": "United States"
+          },
+          "startDate": "2020-09",
+          "endDate": "Present",
+          "bullets": [
+            "Acted in films that promote LGBTQ+ representation.",
+            "Collaborated with directors and fellow actors."
+          ],
+          "tags": ["Film", "Representation"]
+        }
+      ]
+    }
+  }
+]
