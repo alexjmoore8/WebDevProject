@@ -7,7 +7,6 @@ function ResumeSelections({data, handleChange, handleSectionChange}) {
         handleChange('ResumeSelections', name, !data[name]);
     };
 
-    
     return (
         <div>
             <h2>Resume Selections</h2>
@@ -17,7 +16,7 @@ function ResumeSelections({data, handleChange, handleSectionChange}) {
                 type="text"
                 name="resumeTitle"
                 value={data.resumeTitle}
-                placeholder="Title is required"
+                placeholder="Resume Title is required"
                 onChange={(e) => handleChange('ResumeSelections', e.target.name, e.target.value)}
             />
 

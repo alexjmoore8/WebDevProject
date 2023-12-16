@@ -8,6 +8,24 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
     const [selectedState, setSelectedState] = useState('');
     const [errors, setErrors] = useState({});
 
+    const formatPhoneNumber = (input) => {
+        const numericInput = input.replace(/\D/g, '');
+
+        let formattedPhoneNumber = '';
+        for (let i = 0; i < numericInput.length; i++) {
+        if (i === 0) {
+            formattedPhoneNumber += `(${numericInput[i]}`;
+        } else if (i === 3) {
+            formattedPhoneNumber += `) - ${numericInput[i]}`;
+        } else if (i === 6) {
+            formattedPhoneNumber += ` - ${numericInput[i]}`;
+        } else {
+            formattedPhoneNumber += numericInput[i];
+        }
+        }
+        return formattedPhoneNumber;
+    };
+
     const validateField = (name, value) => {
         if (!value && name !== 'pronouns') {
             return 'This field is required';
@@ -18,6 +36,9 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
         if ((name === 'firstName' || name === 'lastName' || name === 'location.city') && /\d/.test(value)) {
             return 'This field cannot contain numbers';
         }
+        if (name === 'phone' && !/^\(\d{3}\) - \d{3} - \d{4}$/.test(value)) {
+            return 'Invalid phone number';
+        }
         return '';
     };
 
@@ -27,8 +48,11 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
     };
 
     const handleInputChange = (name, value) => {
+        if (name === 'phone') {
+            value = formatPhoneNumber(value);
+        }
         const error = validateField(name, value);
-        setErrors(prevErrors => ({ ...prevErrors, [name]: error }));
+        setErrors(prevErrors => ({ ...prevErrors, [name]: error || '' }));
         handleChange('ResumeContactInfo', name, value);
     };
 
@@ -103,6 +127,7 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
                 placeholder="Phone"
                 onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
+            {errors.phone && <div className="error-message">{errors.phone}</div>}
 
             <PronounsDropdown
                 value={data.pronouns}

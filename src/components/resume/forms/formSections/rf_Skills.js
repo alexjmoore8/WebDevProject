@@ -5,10 +5,16 @@ function ResumeSkills({ data, handleChange }) {
     const initialSkills = data.skills || [{}];
     const [skills, setSkills] = useState(initialSkills);
     const [grammarSuggestions, setGrammarSuggestions] = useState([]);
-  
+    const [includeCustomTitle, setIncludeCustomTitle] = useState(false);
+
   const handleAddSkill = () => {
     if (skills.length < 40) {
       setSkills([...skills, {}]);
+      if (skills[skills.length - 1].level && skills[skills.length - 1].level !== 'Select Skill Level') {
+      setSkills([...skills, {}]);
+        } else {
+        alert('Please select a valid skill level for the previous skill entry.');
+        }
     }
   };
 
@@ -24,7 +30,7 @@ function ResumeSkills({ data, handleChange }) {
         setSkills(updatedSkills);
     }
 
-    const skillLevels = ['Beginner', 'Intermediate', 'Advanced', 'Other'];
+    const skillLevels = ['Select Skill Level', 'Beginner', 'Intermediate', 'Advanced', 'Other'];
 
     const handleGrammarCheck = async () => {
     try {
@@ -51,27 +57,32 @@ function ResumeSkills({ data, handleChange }) {
     }
 };
 
-    const handleNextClick = () => {
-    // Checking if all required fields are filled out
-    if (!data.sectionHeading || !data.skill.skill|| !data.skill.level ) {
-        alert('Please fill out all fields before proceeding.');
-        return;
-    }
-
-};
-
+  const getDefaultSectionTitle = () => {
+      return includeCustomTitle ? data.sectionHeading || 'Skills' : 'Skills';
+  };
 
     return (
         <div>
             <h2>Skills</h2>
             <label>Section Title</label>
+            <label>
             <input
-                type="text"
-                name="sectionHeading"
-                value={data.sectionHeading}
-                placeholder="Section title to display on resume"
-                onChange={(e) => handleChange('ResumeSkills', e.target.name, e.target.value)}
+            type="checkbox"
+            name="includeCustomTitle"
+            checked={includeCustomTitle}
+            onChange={(e) => setIncludeCustomTitle(e.target.checked)}
             />
+            Include Custom Section Title
+        </label>
+
+        <input
+            type="text"
+            name="sectionHeading"
+            value={getDefaultSectionTitle()}
+            placeholder="Section title to display on resume"
+            onChange={(e) => handleChange('ResumeSkills', e.target.name, e.target.value)}
+            disabled={!includeCustomTitle}
+        />
 
             {skills.map((skill, index) => (
                 <div key={index}>
@@ -111,8 +122,6 @@ function ResumeSkills({ data, handleChange }) {
              {skills.length < 20 && (
                  <button onClick={handleAddSkill}>Add Skill</button>
              )}
-
-              <button onClick={handleNextClick}>Next</button>
              <button onClick={handleGrammarCheck}>Check Grammar</button>
 
             {grammarSuggestions.length > 0 && (

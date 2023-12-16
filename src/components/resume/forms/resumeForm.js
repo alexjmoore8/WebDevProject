@@ -143,11 +143,17 @@ function ResumeForm() {
     }
   };
 
-  const handleSelectionChange = (sectionName, isSelected) => {
-    handleChange('ResumeSelections', sectionName, isSelected);
-    handleSectionSelection(sectionName, isSelected);
-  };
+const maxSelectedSections = 3;
 
+const handleSelectionChange = (sectionName, isSelected) => {
+  if (isSelected && selectedSections.length < maxSelectedSections) {
+    setSelectedSections((prevSections) => [...prevSections, sectionName]);
+  } else if (!isSelected) {
+    setSelectedSections((prevSections) =>
+      prevSections.filter((section) => section !== sectionName)
+    );
+  }
+};
 
   const [currentStep, setCurrentStep] = useState(1);
 

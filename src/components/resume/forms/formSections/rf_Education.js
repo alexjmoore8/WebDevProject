@@ -8,15 +8,21 @@ import "../css/form.css"
 function ResumeEducation({ data, handleChange }) {
   const [educations, setEducations] = useState(data.educations || [{}]);
   const [grammarSuggestions, setGrammarSuggestions] = useState([]);
-  const [selectedState, setSelectedState] = useState('');
-  const [selectedDegree, setSelectedDegree] = useState('');
+  const [selectedState, setselectedState] = useState(Array(educations.length).fill(''));
+  const [selectedDegrees, setSelectedDegrees] = useState(Array(educations.length).fill(''));
+  const [includeCustomTitle, setIncludeCustomTitle] = useState(false);
 
-  const handleStateChange = (e) => {
-    setSelectedState(e.target.value);
+
+  const handleStateChange = (e, index) => {
+    const newselectedState = [...selectedState];
+    newselectedState[index] = e.target.value;
+    setselectedState(newselectedState);
   };
 
-  const handleDegreeChange = (e) => {
-    setSelectedDegree(e.target.value);
+  const handleDegreeChange = (e, index) => {
+    const newSelectedDegrees = [...selectedDegrees];
+    newSelectedDegrees[index] = e.target.value;
+    setSelectedDegrees(newSelectedDegrees);
   };
 
   const handleAddEducation = () => {
@@ -65,30 +71,36 @@ const handleInputChange = (index, field, value) => {
     const result = await response.json();
     setGrammarSuggestions(result.matches);
   };
-  const handleNextClick = () => {
-    // Checking if all required fields are filled out
-    if (!data.sectionHeading || !data.style ||!data.education.institution || !data.education.major || !data.education.location ||!data.education.gpa  ) {
-        alert('Please fill out all fields before proceeding.');
-        return;
-    }
-};
 
-
+  const getDefaultSectionTitle = () => {
+      return includeCustomTitle ? data.sectionHeading || 'Education' : 'Education';
+  };
 
   return (
     <div>
       <h2>Education</h2>
 
+      <label>
+        <input
+          type="checkbox"
+          name="includeCustomTitle"
+          checked={includeCustomTitle}
+          onChange={(e) => setIncludeCustomTitle(e.target.checked)}
+        />
+        Include Custom Section Title
+      </label>
+
       <input
         type="text"
         name="sectionHeading"
-        value={data.sectionHeading}
+        value={getDefaultSectionTitle()}
         placeholder="Section title to display on resume"
         onChange={(e) => handleChange('ResumeEducation', e.target.name, e.target.value)}
+        disabled={!includeCustomTitle}
       />
 
       {educations.map((education, index) => (
-        <div key={index}>
+      <div key={index}>
           <input
             type="text"
             name={`educations[${index}].institution`}
@@ -105,8 +117,8 @@ const handleInputChange = (index, field, value) => {
             onChange={(e) => handleInputChange(index, 'location.city', e.target.value)}
           />
 
-          <StateDropdown value={selectedState} onChange={handleStateChange} />
-          <DegreeDropdown value={selectedDegree} onChange={handleDegreeChange} />
+          <StateDropdown value={selectedState[index]} onChange={(e) => handleStateChange(e, index)} />
+          <DegreeDropdown value={selectedDegrees[index]} onChange={(e) => handleDegreeChange(e, index)} />
 
           <input
             type="text"
@@ -116,24 +128,63 @@ const handleInputChange = (index, field, value) => {
             onChange={(e) => handleInputChange(index, 'major', e.target.value)}
           />
 
-          <MonthDropdown
-            value={education.startDateMonth || ''}
-            onChange={(e) => handleInputChange(index, 'startDateMonth', e.target.value)}
+        <label>
+          <input
+            type="checkbox"
+            name={`educations[${index}].includeStartDate`}
+            checked={education.includeStartDate || false}
+            onChange={(e) => handleInputChange(index, 'includeStartDate', e.target.checked)}
           />
-          <YearDropdown
-            value={education.startDateYear || ''}
-            onChange={(e) => handleInputChange(index, 'startDateYear', e.target.value)}
-          />
+          Include Start Date
+        </label>
 
-          <MonthDropdown
-            value={education.endDateMonth || ''}
-            onChange={(e) => handleInputChange(index, 'endDateMonth', e.target.value)}
-          />
-          <YearDropdown
-            value={education.endDateYear || ''}
-            onChange={(e) => handleInputChange(index, 'endDateYear', e.target.value)}
-          />
+        {education.includeStartDate && (
+          <>
+            <MonthDropdown
+              value={education.startDateMonth || ''}
+              onChange={(e) => handleInputChange(index, 'startDateMonth', e.target.value)}
+            />
+            <YearDropdown
+              value={education.startDateYear || ''}
+              onChange={(e) => handleInputChange(index, 'startDateYear', e.target.value)}
+            />
+          </>
+        )}
 
+        <label>
+          <input
+            type="checkbox"
+            name={`educations[${index}].includeEndDate`}
+            checked={education.includeEndDate || false}
+            onChange={(e) => handleInputChange(index, 'includeEndDate', e.target.checked)}
+          />
+          Include End Date
+        </label>
+
+        {education.includeEndDate && (
+          <>
+            <MonthDropdown
+              value={education.endDateMonth || ''}
+              onChange={(e) => handleInputChange(index, 'endDateMonth', e.target.value)}
+            />
+            <YearDropdown
+              value={education.endDateYear || ''}
+              onChange={(e) => handleInputChange(index, 'endDateYear', e.target.value)}
+            />
+          </>
+        )}
+
+        <label>
+          <input
+            type="checkbox"
+            name={`educations[${index}].includeGPA`}
+            checked={education.includeGPA || false}
+            onChange={(e) => handleInputChange(index, 'includeGPA', e.target.checked)}
+          />
+          Include GPA
+        </label>
+
+        {education.includeGPA && (
           <input
             type="text"
             name={`educations[${index}].gpa`}
@@ -141,6 +192,7 @@ const handleInputChange = (index, field, value) => {
             placeholder="GPA"
             onChange={(e) => handleInputChange(index, 'gpa', e.target.value)}
           />
+        )}
           <button onClick={() => handleRemoveEducation(index)}>Remove</button>
         </div>
       ))}
@@ -149,7 +201,6 @@ const handleInputChange = (index, field, value) => {
         <button onClick={handleAddEducation}>Add Education</button>
       )}
 
-       <button onClick={handleNextClick}>Next</button>
       <button onClick={handleGrammarCheck}>Check Grammar</button>
 
     {grammarSuggestions.length > 0 && (
