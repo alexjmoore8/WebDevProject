@@ -33,7 +33,7 @@ export function checkLocation(location, field) {
 }
 
 export function checkNumber(salary, field) {
-  salary = salary.trim();
+  salary = salary.trim().replace(',','')
   if (salary.length === 0)
     throw `Error: ${field} cannot be an empty string or string with just spaces`;
 

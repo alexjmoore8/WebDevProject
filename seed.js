@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import collectionUsers from './mongo.js';
+import collection from './mongo.js';
+
 
 mongoose.connect("mongodb://localhost:27017/react-login")
   .then(() => {
@@ -14,16 +15,44 @@ const sampleUsers = [
   { firstName: 'John', lastName: 'Doe', email: 'applicant@example.com', password: 'Pass0rd123!', role: 'applicant' },
   { firstName: 'Jane', lastName: 'Doe', email: 'employer@example.com', password: 'Passw0rd123!', role: 'employer' },
   // Add more sample users as needed
-  // Passords are not hidden for the seed users. Please make a new user to test full functionality
+  // Passwords are not hidden for the seed users. Please make a new user to test full functionality
 ];
+
+const sampleJobs = [
+  {
+    companyName: "Google",
+    employerId: "12345",  // Replace with an actual employer ID
+    title: "Software Engineer",
+    description: "Developing and maintaining web applications",
+    city: "New York",
+    state: "NY",
+    salary: "80000",
+    tags: ["engineering", "full-time"]
+  },
+  {
+    companyName: "Meta",
+    employerId: "67890",  // Replace with an actual employer ID
+    title: "Software Engineer",
+    description: "Developing and maintaining web applications",
+    city: "Mountain View",
+    state: "CA",
+    salary: "100000",
+    tags: ["engineering", "full-time"]
+  },
+  // Add more sample jobs as needed
+];
+
 
 async function seedDatabase() {
   try {
     // Clear the existing users
-    await collectionUsers.deleteMany({});
+    await collection.collectionUsers.deleteMany({});
+    await collection.collectionPosts.deleteMany({});
+
 
     // Insert the sample data
-    await collectionUsers.insertMany(sampleUsers);
+    await collection.collectionUsers.insertMany(sampleUsers);
+    await collection.collectionPosts.insertMany(sampleJobs);
 
     console.log('Database seeded!');
   } catch (error) {

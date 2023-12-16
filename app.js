@@ -7,7 +7,23 @@ import session from 'express-session'; // Import express-session
 import JobRoutes from './job/jobRoutes.js'
 import jobSearchRoutes from './job/jobSearchRoutes.js';
 
+import helmet from 'helmet';
+import xss from 'xss-clean';
+
+
+
 const app = express();
+
+app.use(helmet());
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+    }
+}));
+app.use(xss());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(cors({
@@ -21,12 +37,27 @@ app.use(session({
     secret: 'your_secret_key',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false } // Set to `true` in production with HTTPS
+    cookie: { secure: false }, // Set to `true` in production with HTTPS
+    httpOnly: true // Prevents client side JS from reading the cookie 
 }));
 
 app.get("/", (req, res) => {
     // res.render
 })
+
+app.get("/verify-auth", (req, res) => {
+    if (req.session && req.session.user) {
+        res.json({ 
+            status: "authenticated", 
+            user: {
+                id: req.session.user.id,
+                role: req.session.user.role
+            }
+        });
+    } else {
+        res.status(401).json({ status: "not-authenticated", message: "User is not authenticated" });
+    }
+});
 
 app.post("/signup", async (req, res) => {
     const { firstName, lastName, email, password, role } = req.body;
@@ -89,6 +120,54 @@ app.post("/", async (req, res) => {
     }
 });
 
+app.post('/jobs', async (req, res) => {
+    if (!req.session || !req.session.user) {
+        return res.status(401).json({ message: 'Unauthorized: No session found' });
+    }
+
+    const { companyName, title, description, city, state, salary, tags } = req.body;
+    const employerId = req.session.user.id; 
+
+    if (!salary || isNaN(Number(salary))) {
+        return res.status(400).json({ message: 'Invalid salary: must be a number.' });
+    }
+
+    if (!Array.isArray(tags) || tags.some(tag => typeof tag !== 'string' || tag.trim() === '')) {
+        return res.status(400).json({ message: 'Invalid tags: must be an array of non-empty strings.' });
+    }
+
+    try {
+        const newJob = new collection.collectionPosts({ companyName, title, description, city, state, salary, tags, employerId });
+        await newJob.save();
+        res.status(201).json(newJob);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
+app.get('/jobs', async (req, res) => {
+    try {
+        const jobs = await collection.collectionPosts.find();
+        res.json(jobs);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+app.get('/myJobs', async (req, res) => {
+    if (!req.session || !req.session.user) {
+        return res.status(401).json({ message: 'Unauthorized: No session found' });
+    }
+
+    const employerId = req.session.user.id;
+
+    try {
+        const myJobs = await collection.collectionPosts.find({ employerId: employerId });
+        res.json(myJobs);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 // Logout endpoint to destroy session
 app.get('/logout', (req, res) => {
@@ -108,6 +187,7 @@ app.get('/logout', (req, res) => {
 
 app.use(JobRoutes);
 app.use(jobSearchRoutes);
+
 
 app.listen(3000, () => {
     console.log("Server is listening on port 3000");
