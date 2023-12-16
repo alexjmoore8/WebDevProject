@@ -7,8 +7,10 @@ import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
 
-    const { logout } = useAuth();
+    const { logout, auth } = useAuth();
     const navigate = useNavigate();
+
+    console.log(auth)
 
     const handleLogout = () => {
         logout(); // Reset the authentication state
@@ -20,6 +22,17 @@ const Navbar = () => {
             <ul className="nav-links">
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
+
+                {
+                    auth.role === 'employer' && (
+                        <>
+                            <li><Link to="/jobPost">Job Post</Link></li>
+                            <li><Link to="/myJobs">My Job Posts</Link></li>
+                        </>
+                    )
+                }
+
+
                 <li><Link to="/signup">Signup</Link></li>
                 <li><Link to="/jobsearch">jobsearch</Link></li>
                 <li><Link to="/jobPost">Job Post</Link></li>
@@ -30,7 +43,7 @@ const Navbar = () => {
 
             </ul>
 
-            
+
 
         </nav>
     );

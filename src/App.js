@@ -10,8 +10,11 @@ import ResumeForm from './components/resume/forms/resumeForm.js';
 import DynamicResume from './components/resume/dynamicResume.js';
 import { JobPost } from './components/jobPost.js';
 import { JobPostList } from './components/jobPostList.js';
+
 import SalaryCalculator from './salaryCalculator/salaryCalculator.js';
 import SalaryMetric from './salaryCalculator/salaryMetric.js';
+import { MyJobs } from './components/myJobs.js';
+
 
 function App() {
   return (
@@ -37,6 +40,11 @@ function App() {
           <Route path="/jobPost" element={
             <ProtectedRoute role="employer">
               <JobPost />
+            </ProtectedRoute>
+          } />
+          <Route path="/myJobs" element={
+            <ProtectedRoute role="employer">
+              <MyJobs />
             </ProtectedRoute>
           } />
           <Route path="/jobList" element={
