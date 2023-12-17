@@ -35,9 +35,8 @@ function JobSearchEngine() {
   };
 
   return (
-    <>
-      <Navbar />
-      <div>
+      <div className="jobContainer">
+        <div className="form-box">
         <h1>Job Search Engine</h1>
         <form onSubmit={handleFormSubmit} id="jobSearchForm">
           <label htmlFor="keywords">Keywords:</label>
@@ -60,7 +59,7 @@ function JobSearchEngine() {
             required
           />
 
-          <button type="submit">Search Jobs</button>
+          <button className="searchButton" type="submit">Search</button>
         </form>
 
         <div id="jobResults">
@@ -79,8 +78,8 @@ function JobSearchEngine() {
             <p>No jobs found.</p>
           )}
         </div>
+        </div>
       </div>
-    </>
   );
 }
 

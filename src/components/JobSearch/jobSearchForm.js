@@ -88,20 +88,20 @@ export function JobSearchForm() {
   };
 
   return (
-      <div className="container">
+      <div className="jobContainer">
         <div className="form-box">
           <h1>Job Search</h1>
           <form onSubmit={handleSubmit}>
             {/* Form fields */}
             {/* Company */}
             <label htmlFor="company">Company:</label>
-            <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Optional" />
+            <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company Name" />
             {/* Title */}
             <label htmlFor="title">Title:</label>
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Optional" />
+            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Job Title" />
             {/* City */}
             <label htmlFor="city">City:</label>
-            <input type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Required" />
+            <input type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="City" />
             {/* State */}
             <label htmlFor="state">State:</label>
             <select value={state} onChange={(e) => setState(e.target.value)} required>
@@ -160,14 +160,14 @@ export function JobSearchForm() {
           <label htmlFor="keyWords">Key Words:</label>
           <input type="text" value={keyWords} onChange={(e) => setKeyWords(e.target.value)} placeholder="Optional" />
           <label htmlFor="salary">Salary:</label>
-          <input type="text" value={salary} onChange={(e) => setSalary(e.target.value)} placeholder="Required: Minimum Annual Salary in USD" />
+          <input type="text" value={salary} onChange={(e) => setSalary(e.target.value)} placeholder="Desired Salary" />
 
-          <button type="submit">Search</button>
+          <button className="searchButton" type="submit">Search</button>
         </form>
         {Message && <p className={`message error-message`}>{Message}</p>}
         {successMessage && <p className={`message success-message`}>{successMessage}</p>}
 
-          <button className="view-jobs-button" onClick={redirectToRecommendedJobs}>
+          <button className="rec-jobs-button" onClick={redirectToRecommendedJobs}>
           View Recommended Jobs
         </button>
         
