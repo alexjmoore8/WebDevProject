@@ -201,7 +201,7 @@ const SalaryMetric = () => {
           </select>
         </label>
         <br />
-        <button type="submit">Calculate</button>
+        <button className="met-calc-button" type="submit">Calculate</button>
         <button type="button" onClick={handleReset}>Reset</button>
       </form>
       <br />

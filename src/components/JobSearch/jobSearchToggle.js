@@ -20,12 +20,6 @@ function ToggleButton() {
         </button>
         {jobSearchToggle ? <JobSearchForm /> : <JobSearchEngine />}
       </div>
-      <div className="toggle-group">
-        <button className="toggle-button" onClick={() => setSalaryCalculatorToggle(!salaryCalculatorToggle)}>
-          {salaryCalculatorToggle ? 'Salary Calculator Off' : 'Salary Calculator On'}
-        </button>
-        {salaryCalculatorToggle ? <SalaryToggle /> : <></>}
-      </div>
     </div>
     </>
   );

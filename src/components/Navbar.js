@@ -40,6 +40,7 @@ const Navbar = () => {
                 }
                 <li><Link to="/jobsearch">jobsearch</Link></li>
                 <li><Link to="/jobList">Job List</Link></li>
+                <li><Link to="/salaryChecks">Salary Tools</Link></li>
 
                 <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
 
