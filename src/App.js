@@ -18,12 +18,15 @@ import { MyJobs } from './components/jobPost/myJobs.js';
 import RankedJobs from './components/JobSearch/rankedJobs.js';
 import ToggleButton from './components/JobSearch/jobSearchToggle.js';
 import MyResumes from './components/resume/forms/myResumes.js';
+import { ResumeProvider } from './components/resume/ResumeContext.js';
 
 
 function App() {
   return (
 
     <AuthProvider> {/* Wrap the application with AuthProvider */}
+    <ResumeProvider>
+
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -39,6 +42,7 @@ function App() {
           <Route path = "/resume/form" element={
             <ProtectedRoute role="applicant"><ResumeForm />
             </ProtectedRoute>}/>
+          
           <Route path = "/resume/layout" element={
             <ProtectedRoute role="applicant"><DynamicResume/>
             </ProtectedRoute>} />
@@ -66,6 +70,7 @@ function App() {
           <Route path="job/search" element={<ToggleButton />} />
         </Routes>
       </Router>
+    </ResumeProvider>
     </AuthProvider>
   );
 }

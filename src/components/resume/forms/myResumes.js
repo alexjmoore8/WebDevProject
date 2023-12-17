@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './css/myResumes.css';
+import { ResumeContext } from '../ResumeContext.js';
 
 function UserResumes() {
     const [resumes, setResumes] = useState([]);
     const [error, setError] = useState('');
-    const [expandedResumeId, setExpandedResumeId] = useState(null);
+    const { setResumeData } = useContext(ResumeContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,12 +23,9 @@ function UserResumes() {
         fetchResumes();
     }, []);
 
-    const handleResumeClick = (id) => {
-        setExpandedResumeId(expandedResumeId === id ? null : id);
-    };
-
-    const handleBackClick = () => {
-        navigate(-1);
+    const handleTitleClick = (resume) => {
+        setResumeData(resume); // Set the selected resume data in the context
+        navigate('/resume/layout'); // Navigate to the DynamicResume route
     };
 
     if (error) {
@@ -39,25 +37,14 @@ function UserResumes() {
             <h1>My Resumes</h1>
             <ul>
                 {resumes.map((resume) => (
-                    <li key={resume._id} className="resumeItem" onClick={() => handleResumeClick(resume._id)}>
-                        <div>
-                            <div className="resumeListItem">
-                                <div className={`caret ${expandedResumeId === resume._id ? 'expanded' : ''}`}>&#9660;</div>
-                                <h2>{resume.controller?.resumeTitle}</h2>
-                            </div>
-                            {expandedResumeId === resume._id && (
-                                <div>
-                                    {/* Render more details of the resume here */}
-                                    <p>Contact: {resume.contact?.email}</p>
-                                    <p>About: {resume.about?.summary}</p>
-                                    {/* Add more fields as per your schema */}
-                                </div>
-                            )}
+                    <li key={resume._id} className="resumeItem">
+                        <div className="resumeListItem">
+                            <h2 onClick={() => handleTitleClick(resume)}>{resume.controller?.resumeTitle}</h2>
                         </div>
                     </li>
                 ))}
             </ul>
-            <button onClick={handleBackClick} className="back-button">Back</button>
+            <button onClick={() => navigate(-1)} className="back-button">Back</button>
         </div>
     );
 }
