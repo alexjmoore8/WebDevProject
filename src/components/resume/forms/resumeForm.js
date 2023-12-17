@@ -227,7 +227,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
   const [message, setMessage] = useState(''); // For displaying error messages
 
   async function handleSubmit(e) {
-    console.log('button')
+    console.log("Cookies:", document.cookie);
 
     e.preventDefault();
 

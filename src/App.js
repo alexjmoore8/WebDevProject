@@ -17,6 +17,7 @@ import SalaryToggle from './components/salaryCalculator/salaryToggle.js';
 import { MyJobs } from './components/jobPost/myJobs.js';
 import RankedJobs from './components/JobSearch/rankedJobs.js';
 import ToggleButton from './components/JobSearch/jobSearchToggle.js';
+import MyResumes from './components/resume/forms/myResumes.js';
 
 
 function App() {
@@ -41,6 +42,11 @@ function App() {
           <Route path = "/resume/layout" element={
             <ProtectedRoute role="applicant"><DynamicResume/>
             </ProtectedRoute>} />
+
+            <Route path = "/resume/myResume" element={
+            <ProtectedRoute role="applicant"><MyResumes/>
+            </ProtectedRoute>} />
+
           <Route path="/job/post" element={
             <ProtectedRoute role="employer">
               <JobPost />
