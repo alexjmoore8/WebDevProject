@@ -61,6 +61,7 @@ function Signup() {
             <div className="form-box">
                 <h1>Sign Up</h1>
                 <form onSubmit={handleSubmit}>
+                    <div className="info">
                     <input 
                         type="text"
                         value={firstName}
@@ -68,6 +69,8 @@ function Signup() {
                         placeholder="First Name" 
                         required 
                     />
+                    </div>
+                    <div className="info">
                     <input 
                         type="text"
                         value={lastName}
@@ -75,6 +78,8 @@ function Signup() {
                         placeholder="Last Name" 
                         required 
                     />
+                    </div>
+                    <div className="info">
                     <input 
                         type="email" 
                         value={email}
@@ -82,6 +87,7 @@ function Signup() {
                         placeholder="Email" 
                         required 
                     />
+                    </div>
                     <input 
                         type="password" 
                         value={password}
