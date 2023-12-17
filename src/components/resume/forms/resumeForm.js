@@ -233,7 +233,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
 
     try {
         const transformedData = transformFormDataForMongoDB(formData);
-        const response = await axios.post("http://localhost:3000/resume/form", transformedData);
+        const response = await axios.post("http://localhost:3000/resume/form", transformedData, {withCredentials: true});
 
         if (response.data === "Resume submission successful") {
             navigate("/home");
