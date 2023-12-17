@@ -25,6 +25,8 @@ const Navbar = () => {
                         <>
                             <li><Link to="/Home">Home</Link></li>
                             <li><Link to="/resume/form">Create a Resume</Link></li>
+                            <li><Link to="/resume/myResume">View my resumes</Link></li>
+
                         </>
                     )
                 }
@@ -32,15 +34,15 @@ const Navbar = () => {
                 {
                     auth.role === 'employer' && (
                         <>
-                            <li><Link to="/jobPost">Job Post</Link></li>
-                            <li><Link to="/myJobs">My Job Posts</Link></li>
                             <li><Link to="/HomeA">Home</Link></li>
+                            <li><Link to="/job/post">Create Job Post</Link></li>
+                            <li><Link to="/job/myJobs">My Job Posts</Link></li>
                         </>
                     )
                 }
-                <li><Link to="/jobsearch">Job Search</Link></li>
-                <li><Link to="/jobList">Job List</Link></li>
-                <li><Link to="/salaryChecks">Salary Tools</Link></li>
+                <li><Link to="/job/search">Job Search</Link></li>
+                <li><Link to="/job/List">Job List</Link></li>
+                <li><Link to="/tools/salaryChecks">Salary Tools</Link></li>
 
                 <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
 

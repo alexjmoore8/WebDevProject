@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from 'react';
+import { ResumeContext } from './ResumeContext.js';
 import html2pdf from 'html2pdf.js';
 import { Button, Container } from 'semantic-ui-react';
 import ResumeLayout1 from './templates/layouts/layout1.js';
 import ResumeLayout2 from './templates/layouts/layout2.js';
 import ResumeLayout3 from './templates/layouts/layout3.js';
-import fakeResume from "./fakeResume.json";
+// import fakeResume from "./fakeResume.json";
 
 const generatePdf = () => {
     const element = document.getElementById('layout');
@@ -25,14 +26,14 @@ const LayoutComponents = {
 };
 
 const Controller = () => {
-    const [resumeData, setResumeData] = useState(null);
+    const { resumeData } = useContext(ResumeContext);
 
     useEffect(() => {
-        setResumeData(fakeResume);
-
-    }, []);
-
-    console.log(resumeData);
+        if (resumeData) {
+            // Now `resumeData` contains the selected resume data
+            // Process it as needed
+        }
+    }, [resumeData]);
 
     if (!resumeData) {
         return <div>Loading...</div>;

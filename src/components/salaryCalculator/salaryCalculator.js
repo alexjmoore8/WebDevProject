@@ -16,10 +16,17 @@ class SalaryCalculator extends Component {
     };
   }
 
-  handleSalaryChange = (e) => {
-    const inputSalary = e.target.value.replace(/^0+/, '').replace('$', '');
-    this.setState({ salaryAmount: inputSalary });
-  }
+handleSalaryChange = (e) => {
+  const inputSalary = e.target.value.replace(/[^0-9.,]/g, '');
+  const formattedSalary = this.formatSalary(inputSalary);
+
+  this.setState({ salaryAmount: formattedSalary });
+}
+
+formatSalary = (input) => {
+  let salary = input.replace(/[^0-9.]/g, '');
+  return salary;
+}
 
   handleFrequencyChange = (e) => {
     const newFrequency = e.target.value;
