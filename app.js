@@ -191,9 +191,7 @@ app.get('/my-resumes', async (req, res) => {
     if (!req.session.user) {
         return res.status(401).json({ message: 'Unauthorized: No session found' });
     }
-
     const userId = req.session.user.id;
-
     try {
         const userResumes = await collection.collectionResumes.find({ applicantId: userId });
 
@@ -209,7 +207,6 @@ app.get('/resumes', async (req, res) => {
     try {
         // Find all resumes in the database
         const resumes = await collection.collectionResumes.find({});
-
         // Send the resumes back to the client
         res.status(200).json(resumes);
     } catch (error) {
