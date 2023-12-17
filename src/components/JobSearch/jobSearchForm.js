@@ -88,7 +88,7 @@ export function JobSearchForm() {
   };
 
   return (
-      <div className="container">
+      <div className="jobContainer">
         <div className="form-box">
           <h1>Job Search</h1>
           <form onSubmit={handleSubmit}>
@@ -162,12 +162,12 @@ export function JobSearchForm() {
           <label htmlFor="salary">Salary:</label>
           <input type="text" value={salary} onChange={(e) => setSalary(e.target.value)} placeholder="Required: Minimum Annual Salary in USD" />
 
-          <button type="submit">Search</button>
+          <button className="searchButton" type="submit">Search</button>
         </form>
         {Message && <p className={`message error-message`}>{Message}</p>}
         {successMessage && <p className={`message success-message`}>{successMessage}</p>}
 
-          <button className="view-jobs-button" onClick={redirectToRecommendedJobs}>
+          <button className="rec-jobs-button" onClick={redirectToRecommendedJobs}>
           View Recommended Jobs
         </button>
         

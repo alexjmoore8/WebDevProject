@@ -1,4 +1,4 @@
-.container {
+/* .container {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -6,7 +6,7 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
+} */
 
 h1 {
   text-align: center;
@@ -21,7 +21,6 @@ h1 {
 }
 
 .toggle-button {
-  background-color: #007bff;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -49,6 +48,14 @@ label {
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
+}
+
+.searchButton {
+  margin: 20px !important;
+}
+
+.rec-jobs-button {
+  max-width: 50%;
 }
 
 input[type="text"],

@@ -1,28 +1,34 @@
+.jobContainer {
+  min-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .search-results {
-    width: 100%; /* Set width to match the container */
-    max-width: 348px; /* Match the form width */
-    margin-top: 20px;
-    overflow-y: auto; /* Enable vertical scrolling */
-    max-height: none; /* Remove the maximum height limit */
+  width: 100%; /* Set width to match the container */
+  max-width: 348px; /* Match the form width */
+  margin-top: 20px;
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: none; /* Remove the maximum height limit */
 }
 
 .job-result {
-    background: #fff;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
-    padding: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2); /* Adding a subtle shadow for depth */
-    display: block; /* Ensure each result is a block element */
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Adding a subtle shadow for depth */
+  display: block; /* Ensure each result is a block element */
 }
 
 .job-result p {
-    margin: 5px 0;
-    font-size: 14px; /* Adjust font size as needed */
+  margin: 5px 0;
+  font-size: 14px; /* Adjust font size as needed */
 }
 
 /* Optional: Add a hover effect for interactivity */
 .job-result:hover {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    border-color: #0366d6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-color: #0366d6;
 }
