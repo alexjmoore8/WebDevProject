@@ -246,8 +246,6 @@ const handleSelectionChange = (sectionName, isSelected) => {
     }
 }
   
-  
-
   const renderForm = () => {
     switch (currentStep) {
       case 1:
@@ -390,18 +388,20 @@ const handleSelectionChange = (sectionName, isSelected) => {
   };
 
   return (
-    <div>
+    <div className='resume-form-container'>
       {renderForm()}
-      {currentStep != 1 && <button onClick={handlePrev} disabled={currentStep === 1}>
-        Back
-      </button>}
+
       {currentStep < 13 && <button
+        className="button"
         onClick={handleNext}
         disabled={currentStep === 1 && formData.ResumeSelections.resumeTitle.trim() === ''}
       >
         Next
       </button>}
-      {currentStep === 13 && <button onClick={handleSubmit}>Submit</button>}
+      {currentStep != 1 && <button className="button" onClick={handlePrev} disabled={currentStep === 1}>
+        Back
+      </button>}
+      {currentStep === 13 && <button className="button" onClick={handleSubmit}>Submit</button>}
     </div>
   );
   }

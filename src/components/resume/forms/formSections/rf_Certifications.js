@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import MonthDropdown from './sectionComponents/month.js';
 import YearDropdown from './sectionComponents/year.js';
+import GrammarCheck from '../../../grammarCheck/grammarCheck.js';
+import FormSectionHeader from './sectionComponents/SectionHeader.js'; 
+import NameOrgInput from './sectionComponents/NameAndOrg.js';
+import DatePicker from './sectionComponents/datePicker.js';
+import TagsInput from './sectionComponents/tags.js';
 import "../css/results.css"
 
 
 function ResumeCertifications({ data, handleChange, handleNext }) {
-  const [includeCustomTitle, setIncludeCustomTitle] = useState(false);
   const initialCertifications = Array.isArray(data.certifications)
     ? data.certifications.map(cert => ({
         ...cert,
@@ -15,7 +19,6 @@ function ResumeCertifications({ data, handleChange, handleNext }) {
     : [{}];
 
   const [certifications, setCertifications] = useState(initialCertifications);
-  const [grammarSuggestions, setGrammarSuggestions] = useState([]);
   const [errors, setErrors] = useState({});
 
   const validateField = (index, field, value) => {
@@ -46,128 +49,42 @@ function ResumeCertifications({ data, handleChange, handleNext }) {
     setCertifications(updatedCertifications);
   };
 
-  const handleGrammarCheck = async () => {
-    let textToCheck = certifications.map(cert => `${cert.name || ''} ${cert.organization || ''} ${cert.tags?.join(', ') || ''}`).join('. ');
-    const response = await fetch('https://api.languagetool.org/v2/check', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
-    });
-
-    const result = await response.json();
-    setGrammarSuggestions(result.matches);
-  };
-
-
-  const getDefaultSectionTitle = () => {
-    return includeCustomTitle ? data.sectionHeading || 'Certifications' : 'Certifications';
-  };
-
   return (
     <div>
-      <h2>Certifications</h2>
-
-      <label>
-        <input
-        type="checkbox"
-        name="includeCustomTitle"
-        checked={includeCustomTitle}
-        onChange={(e) => setIncludeCustomTitle(e.target.checked)}
-        />
-        Include Custom Section Title
-      </label>
-
-        <input
-          type="text"
-          name="sectionHeading"
-          value={getDefaultSectionTitle()}
-          placeholder="Section title to display on resume"
-          onChange={(e) => handleChange('ResumeCertifications', e.target.name, e.target.value)}
-          disabled={!includeCustomTitle}
-        />
-
+      <FormSectionHeader sectionName="Certifications" data={data} handleChange={handleChange} />
       {certifications.map((certification, index) => (
         <div key={index}>
-          <label>Certification Name</label>
-          <input
-            type="text"
-            name={`certifications[${index}].name`}
-            value={certification.name || ''}
-            placeholder="Certification Name"
-            onChange={(e) => handleInputChange(index, 'name', e.target.value)}
+          <NameOrgInput
+            index={index}
+            data={certification}
+            handleChange={handleInputChange}
+            label="Certification"
           />
-          {errors[`${index}-name`] && <p className="error">{errors[`${index}-name`]}</p>}
-
-          <label>Organization</label>
-          <input
-            type="text"
-            name={`certifications[${index}].organization`}
-            value={certification.organization || ''}
-            placeholder="Organization"
-            onChange={(e) => handleInputChange(index, 'organization', e.target.value)}
-          />
-          {errors[`${index}-organization`] && <p className="error">{errors[`${index}-organization`]}</p>}
-
-          <label>Date</label>
-          <div>
-            <MonthDropdown 
-              value={certification.dateMonth} 
-              onChange={(e) => handleInputChange(index, 'dateMonth', e.target.value)} 
-            />
-            <YearDropdown 
-              value={certification.dateYear} 
-              onChange={(e) => handleInputChange(index, 'dateYear', e.target.value)} 
-              startYear={2000} 
-              endYear={2030} 
-            />
-          </div>
-
-          <label>Tags</label>
-          <input
-            type="text"
-            name={`certifications[${index}].tags`}
-            value={certification.tags ? certification.tags.join(', ') : ''}
-            placeholder="Tags (comma-separated)"
-            onChange={(e) => {
-              const tagsArray = e.target.value.split(', ').filter((tag) => tag.trim() !== '');
-              handleInputChange(index, 'tags', tagsArray);
+          <DatePicker
+            dateValue={{
+              year: certification.dateYear,
+              month: certification.dateMonth,
+            }}
+            onChange={(value) => {
+              handleInputChange(index, 'dateYear', value.year);
+              handleInputChange(index, 'dateMonth', value.month);
             }}
           />
-          {errors[`${index}-tags`] && <p className="error">{errors[`${index}-tags`]}</p>}
 
-          <button onClick={() => handleRemoveCertification(index)}>Remove</button>
+           <TagsInput
+            value={certification.tags || []}
+            onChange={(tagsArray) => handleInputChange(index, 'tags', tagsArray)}
+            label="Certification"
+          />
+
+          <button className="button" onClick={() => handleRemoveCertification(index)}>Remove</button>
         </div>
       ))}
 
       {certifications.length < 15 && (
-        <button onClick={handleAddCertification}>Add Certification</button>
+        <button className="button" onClick={handleAddCertification}>Add Certification</button>
       )}      
-      <button onClick={handleGrammarCheck}>Check Grammar</button>
-
-      {grammarSuggestions.length > 0 && (
-    <div className="grammar-suggestions-container">
-        <h3>Grammar Suggestions</h3>
-        <ul className="grammar-suggestions-list">
-            {grammarSuggestions.map((suggestion, index) => (
-                <li key={index}>
-                    <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
-                    {suggestion.replacements.length > 0 && (
-                        <div>
-                            Suggestion: 
-                            <span className="suggestion-replacement"
-                                  dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
-                            </span>
-                        </div>
-                    )}
-                </li>
-            ))}
-        </ul>
-    </div>
-)}
-
-     
+        <GrammarCheck data={data} handleChange={handleChange} />
     </div>
   );
 }

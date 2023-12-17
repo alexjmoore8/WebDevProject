@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import GrammarCheck from '../../../grammarCheck/grammarCheck.js';
 import "../css/results.css"
 
 function ResumePublications({ data, handleChange }) {
   const [publications, setPublications] = useState(data.publications || [{}]);
-  const [grammarSuggestions, setGrammarSuggestions] = useState([]);
   const [includeCustomTitle, setIncludeCustomTitle] = useState(false);
 
   const handleAddPublication = () => {
@@ -22,35 +22,6 @@ function ResumePublications({ data, handleChange }) {
     const updatedPublications = [...publications];
     updatedPublications[index][field] = value;
     setPublications(updatedPublications);
-  };
-
-  const handleGrammarCheck = async () => {
-    try {
-      let textToCheck = publications
-        .map((publication) =>
-          `${data.sectionHeading || ''} ${publication.title  || ''} ${publication.publisher || ''} ${publication.link || ''} ${
-            publication.tags ? publication.tags.join(', ') : ''
-          }`
-        )
-        .join('. ');
-
-      const response = await fetch('https://api.languagetool.org/v2/check', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      setGrammarSuggestions(result.matches);
-    } catch (error) {
-      console.error('Error fetching grammar check data:', error);
-    }
   };
 
   const getDefaultSectionTitle = () => {
@@ -131,29 +102,7 @@ function ResumePublications({ data, handleChange }) {
       {publications.length < 20 && (
         <button onClick={handleAddPublication}>Add Publication</button>
       )}
-
-      <button onClick={handleGrammarCheck}>Check Grammar</button>
-
-      {grammarSuggestions.length > 0 && (
-    <div className="grammar-suggestions-container">
-        <h3>Grammar Suggestions</h3>
-        <ul className="grammar-suggestions-list">
-            {grammarSuggestions.map((suggestion, index) => (
-                <li key={index}>
-                    <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
-                    {suggestion.replacements.length > 0 && (
-                        <div>
-                            Suggestion: 
-                            <span className="suggestion-replacement"
-                                  dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
-                            </span>
-                        </div>
-                    )}
-                </li>
-            ))}
-        </ul>
-    </div>
-)}
+     <GrammarCheck data={data} handleChange={handleChange} />
     </div>
   );
 }

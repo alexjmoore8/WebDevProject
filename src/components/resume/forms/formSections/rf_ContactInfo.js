@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import StateDropdown from './sectionComponents/state.js';
+import CityStateInput from './sectionComponents/cityState.js';
 import PronounsDropdown from './sectionComponents/pronouns.js';
+import GrammarCheck from '../../../grammarCheck/grammarCheck.js';
 import "../css/results.css"
 
 function ResumeContactInfo({ data, handleChange, handleNextClick }) {
-    const [grammarSuggestions, setGrammarSuggestions] = useState([]);
     const [selectedState, setSelectedState] = useState('');
     const [errors, setErrors] = useState({});
 
@@ -56,22 +56,6 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
         handleChange('ResumeContactInfo', name, value);
     };
 
-    const handleGrammarCheck = async () => {
-        const textFields = ['location.city'];
-        const textToCheck = textFields.map(field => data[field]).join(' ');
-
-        const response = await fetch('https://api.languagetool.org/v2/check', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: `language=en-US&text=${encodeURIComponent(textToCheck)}`,
-        });
-
-        const result = await response.json();
-        setGrammarSuggestions(result.matches);
-    };
-
     return (
         <div>
             <h2>Contact Info</h2>
@@ -106,26 +90,20 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
             />
             {errors.email && <div className="error-message">{errors.email}</div>}
 
-            <label>City</label>
-            <input
-                type="text"
-                name="location.city"
-                value={data.location.city}
-                placeholder="City"
-                onChange={(e) => handleInputChange(e.target.name, e.target.value)}
+           <CityStateInput
+            cityValue={data.location.city}
+            onCityChange={(e) => handleInputChange('location.city', e.target.value)}
+            stateValue={data.location.state}
+            onStateChange={(state) => handleInputChange('location.state', state)}
             />
-            {errors['location.city'] && <div className="error-message">{errors['location.city']}</div>}
-
-            <label>State</label>
-            <StateDropdown value={selectedState} onChange={handleStateChange} />
 
             <label>Phone</label>
             <input
-                type="text"
-                name="phone"
-                value={data.phone}
-                placeholder="Phone"
-                onChange={(e) => handleInputChange(e.target.name, e.target.value)}
+              type="text"
+              name="phone"
+              value={data.phone}
+              placeholder="Phone"
+              onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             />
             {errors.phone && <div className="error-message">{errors.phone}</div>}
 
@@ -136,28 +114,7 @@ function ResumeContactInfo({ data, handleChange, handleNextClick }) {
                 onCustomPronounsChange={(value) => handleInputChange('customPronouns', value)}
             />
 
-            <button onClick={handleGrammarCheck}>Check Grammar</button>
-
-            {grammarSuggestions.length > 0 && (
-                <div className="grammar-suggestions-container">
-                    <h3>Grammar Suggestions</h3>
-                    <ul className="grammar-suggestions-list">
-                        {grammarSuggestions.map((suggestion, index) => (
-                            <li key={index}>
-                                <span>{suggestion.message}</span> - Found: <span className="suggestion-context">"{suggestion.context.text}"</span>
-                                {suggestion.replacements.length > 0 && (
-                                    <div>
-                                        Suggestion: 
-                                        <span className="suggestion-replacement"
-                                            dangerouslySetInnerHTML={{ __html: `"${suggestion.replacements.map(rep => rep.value).join(', ')}"` }}>
-                                        </span>
-                                    </div>
-                                )}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+            <GrammarCheck data={data} handleChange={handleChange} />
         </div>
     );
 }

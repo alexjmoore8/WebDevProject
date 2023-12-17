@@ -45,3 +45,50 @@ button {
 button:hover {
   background-color: #005a8c;
 }
+
+.resume-form-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.next-button {
+  max-width: 50%;
+}
+
+.button {
+  background-color: #0073b1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Add these styles to your CSS file */
+
+/* Style for highlighted word */
+.highlighted-word {
+  background-color: yellow !important;
+  cursor: pointer !important;
+}
+
+/* Style for popup */
+.popup {
+  position: absolute !important;
+  background-color: white !important;
+  border: 1px solid #ccc !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  padding: 10px;
+  z-index: 1;
+}
+
+.popup-close-button {
+  position: absolute !important;
+  top: 5px !important;
+  right: 5px !important;
+  cursor: pointer !important;
+}
