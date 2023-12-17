@@ -1,0 +1,50 @@
+/* ToggleSwitch.css */
+
+/* Container for the switch */
+.toggle-switch {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  transition: background-color 0.3s;
+}
+
+/* The actual slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2196f3;
+  border-radius: 15px;
+  transition: transform 0.3s;
+}
+
+/* Styling for when the switch is toggled */
+.toggle-switch.active .slider {
+  transform: translateX(30px); /* Move the slider to the right */
+}
+
+/* Styling for the toggle button inside the slider */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+/* Styling for when the switch is toggled */
+.toggle-switch.active .slider:before {
+  transform: translateX(
+    30px
+  ); /* Move the button inside the slider to the right */
+}
