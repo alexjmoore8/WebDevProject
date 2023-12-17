@@ -18,6 +18,7 @@ import { MyJobs } from './components/jobPost/myJobs.js';
 import RankedJobs from './components/JobSearch/rankedJobs.js';
 import ToggleButton from './components/JobSearch/jobSearchToggle.js';
 import MyResumes from './components/resume/forms/myResumes.js';
+import ApplyJob from './components/applyJob/applyJob.js';
 
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
           {/* <Route path = "/outsideJobSearch" element={<JobSearchEngine/>}/> */}
           <Route path="/applicant/rankedJobs" element={<RankedJobs />} />
           <Route path="job/search" element={<ToggleButton />} />
+          <Route path="/job/apply" element={<ApplyJob />} />
         </Routes>
       </Router>
     </AuthProvider>

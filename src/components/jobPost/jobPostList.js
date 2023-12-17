@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import ApplyButton from '../applyJob/applyButton.js';
 import './css/jobPost.css'; // Import your CSS file for styles
 
 export function JobPostList() {
@@ -51,6 +52,7 @@ export function JobPostList() {
                                     <p>State: {job.state}</p>
                                     <p>Salary: {job.salary}</p>
                                     <p>Tags: {job.tags.join(', ')}</p>
+                                    <ApplyButton jobId={job._id} job={job}/>
                                 </div>
                             )}
                         </div>
