@@ -11,6 +11,7 @@ function SalaryToggle() {
     <Navbar />
     <div className="container">
     <div className="toggle-group">
+      <label>Change Tools:</label>
       <button className="toggle-button" onClick={() => setToggle(!toggle)}>
         {toggle ? 'Fair Salary Metric' : 'Salary Tax Calculator'}
         </button>

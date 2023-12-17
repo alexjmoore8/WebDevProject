@@ -15,8 +15,9 @@ function ToggleButton() {
     <Navbar />
     <div className="container">
       <div className="toggle-group">
+        <label>Change Tools:</label>
         <button className="toggle-button" onClick={() => setJobSearchToggle(!jobSearchToggle)}>
-          {jobSearchToggle ? 'Outside Job Search' : 'Site Job Search'}
+          {jobSearchToggle ? 'Full Internet Job Search' : 'Members Only Job Search'}
         </button>
         {jobSearchToggle ? <JobSearchForm /> : <JobSearchEngine />}
       </div>
