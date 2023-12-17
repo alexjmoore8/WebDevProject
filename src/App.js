@@ -30,12 +30,15 @@ function App() {
             </ProtectedRoute>
           } />
           <Route path="/HomeA" element={
-            <ProtectedRoute role="employer">
-              <HomeA />
+            <ProtectedRoute role="employer"><HomeA />
             </ProtectedRoute>
           } />
-          <Route path = "/resume/form" element={<ResumeForm/>} />
-          <Route path = "/resume/layout" element={<DynamicResume/>} />
+          <Route path = "/resume/form" element={
+            <ProtectedRoute role="applicant"><ResumeForm />
+            </ProtectedRoute>}/>
+          <Route path = "/resume/layout" element={
+            <ProtectedRoute role="applicant"><DynamicResume/>
+            </ProtectedRoute>} />
           <Route path="/jobPost" element={
             <ProtectedRoute role="employer">
               <JobPost />

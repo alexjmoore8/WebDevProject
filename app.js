@@ -6,7 +6,6 @@ import bcrypt from 'bcrypt';
 import session from 'express-session'; // Import express-session
 import JobRoutes from './job/jobRoutes.js'
 import jobSearchRoutes from './job/jobSearchRoutes.js';
-
 import helmet from 'helmet';
 import xss from 'xss-clean';
 
