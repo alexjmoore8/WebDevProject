@@ -95,7 +95,8 @@ const sampleJobs = [
     city: "Cityville",
     state: "NJ",
     salary: 80000,
-    tags: ["Software Engineering", "Full-time"]
+    tags: ["Software Engineering", "Full-time"],
+    employerId: "67890",  // Replace with an actual employer ID
   },
   {
     companyName: "Awesome Startup",
@@ -104,27 +105,30 @@ const sampleJobs = [
     city: "Techville",
     state: "CA",
     salary: 75000,
-    tags: ["Web Development", "Full-time"]
+    tags: ["Web Development", "Full-time"],
+    employerId: "67890",  // Replace with an actual employer ID
+
   },
   {
     companyName: "Google",
-    // employerId: "12345",  // Replace with an actual employer ID
     title: "Software Engineer",
     description: "Developing and maintaining web applications",
     city: "New York",
     state: "NY",
     salary: "80000",
-    tags: ["engineering", "full-time"]
+    tags: ["engineering", "full-time"],
+    employerId: "67890",  // Replace with an actual employer ID
+
   },
   {
     companyName: "Meta",
-    // employerId: "67890",  // Replace with an actual employer ID
     title: "Software Engineer",
     description: "Developing and maintaining web applications",
     city: "Mountain View",
     state: "CA",
     salary: "100000",
-    tags: ["engineering", "full-time"]
+    tags: ["engineering", "full-time"],
+    employerId: "67890",  // Replace with an actual employer ID
   },
   {
     companyName: "InnovateTech",
@@ -133,7 +137,8 @@ const sampleJobs = [
     city: "Datatown",
     state: "WI",
     salary: 90000,
-    tags: ["Data Science", "Full-time"]
+    tags: ["Data Science", "Full-time"],
+    employerId: "67890",  // Replace with an actual employer ID
   },
   {
     companyName: "Digital Creations",
@@ -142,7 +147,8 @@ const sampleJobs = [
     city: "Designville",
     state: "TX",
     salary: 70000,
-    tags: ["UI/UX Design", "Full-time"]
+    tags: ["UI/UX Design", "Full-time"],
+    employerId: "67890",  // Replace with an actual employer ID
   },
   {
     companyName: "EcoTech Solutions",
@@ -151,7 +157,8 @@ const sampleJobs = [
     city: "Greenville",
     state: "NJ",
     salary: 80000,
-    tags: ["Environmental Science", "Full-time"]
+    tags: ["Environmental Science", "Full-time"],
+    employerId: "67890",  // Replace with an actual employer ID
   },
   {
     companyName: "Tech Innovators",
@@ -160,7 +167,8 @@ const sampleJobs = [
     city: "Cityville",
     state: "CA",
     salary: 100000,
-    tags: ["Software Engineering", "Full-time"]
+    tags: ["Software Engineering", "Full-time"],
+    employerId: "67890",  // Replace with an actual employer ID
   },
   {
     companyName: "Awesome Startup",
@@ -169,7 +177,8 @@ const sampleJobs = [
     city: "Techville",
     state: "NJ",
     salary: 85000,
-    tags: ["Web Development", "Full-time"]
+    tags: ["Web Development", "Full-time"],
+    employerId: "67890",  // Replace with an actual employer ID
   },
   {
     companyName: "InnovateTech",
@@ -178,7 +187,8 @@ const sampleJobs = [
     city: "Datatown",
     state: "TX",
     salary: 95000,
-    tags: ["Data Science", "Full-time"]
+    tags: ["Data Science", "Full-time"],
+    employerId: "67890",  // Replace with an actual employer ID
   },
   {
     companyName: "Digital Creations",
@@ -187,7 +197,8 @@ const sampleJobs = [
     city: "Designville",
     state: "WI",
     salary: 75000,
-    tags: ["UI/UX Design", "Full-time"]
+    tags: ["UI/UX Design", "Full-time"],
+    employerId: "67890",  // Replace with an actual employer ID
   },
   {
     companyName: "EcoTech Solutions",
@@ -196,7 +207,8 @@ const sampleJobs = [
     city: "Greenville",
     state: "TX",
     salary: 85000,
-    tags: ["Environmental Science", "Full-time"]
+    tags: ["Environmental Science", "Full-time"],
+    employerId: "67890",  // Replace with an actual employer ID
   }
 ];
 

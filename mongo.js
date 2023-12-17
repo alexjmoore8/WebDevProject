@@ -79,7 +79,11 @@ const jobSchema = new mongoose.Schema({
     tags: {
         type: Array,
         required: true,
-    }
+    },
+    employerId: {
+        type: String,
+        required: true
+    },
 
 })
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from '../AuthContext.js'; // Adjust the path according to your file structure
+import { useAuth } from '../AuthContext.js';
 import './css/Login.css';
 
 function Login() {
