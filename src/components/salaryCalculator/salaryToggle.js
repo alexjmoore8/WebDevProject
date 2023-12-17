@@ -6,8 +6,8 @@ function SalaryToggle() {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <div>
-      <button onClick={() => setToggle(!toggle)}>
+    <div className="toggle-group">
+      <button className="toggle-button" onClick={() => setToggle(!toggle)}>
         {toggle ? 'Salary Tax Calculator' : 'Fair Salary Metric'}
         </button>
       {toggle ? <SalaryCalculator /> : <SalaryMetric />}
@@ -16,3 +16,4 @@ function SalaryToggle() {
 }
 
 export default SalaryToggle;
+

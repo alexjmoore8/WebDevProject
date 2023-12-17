@@ -13,7 +13,7 @@ import { JobPost } from './components/jobPost/jobPost.js';
 import { JobPostList } from './components/jobPost/jobPostList.js';
 import NotAuthorized from './components/NotAuthorized.js';
 // import JobSearchEngine from './components/JobSearch/jobsearch.js';
-import SalaryToggle from './salaryCalculator/salaryToggle.js';
+import SalaryToggle from './components/salaryCalculator/salaryToggle.js';
 import { MyJobs } from './components/jobPost/myJobs.js';
 import RankedJobs from './components/JobSearch/rankedJobs.js';
 import ToggleButton from './components/JobSearch/jobSearchToggle.js';
