@@ -18,8 +18,10 @@ import SalaryMetric from './salaryCalculator/salaryMetric.js';
 import { MyJobs } from './components/jobPost/myJobs.js';
 import RankedJobs from './components/applicant/rankedJobs.js';
 
+
 function App() {
   return (
+
     <AuthProvider> {/* Wrap the application with AuthProvider */}
       <Router>
         <Routes>

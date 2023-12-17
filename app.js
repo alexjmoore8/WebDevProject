@@ -8,11 +8,13 @@ import JobRoutes from './job/jobRoutes.js'
 import jobSearchRoutes from './job/jobSearchRoutes.js';
 import helmet from 'helmet';
 import xss from 'xss-clean';
+import bodyParser from 'body-parser';
+
 
 
 
 const app = express();
-
+app.use(bodyParser.json());
 app.use(helmet());
 app.use(helmet.contentSecurityPolicy({
     directives: {
@@ -35,7 +37,7 @@ const saltRounds = 15;
 app.use(session({
     secret: 'your_secret_key',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: { secure: false }, // Set to `true` in production with HTTPS
     httpOnly: true // Prevents client side JS from reading the cookie 
 }));
@@ -127,10 +129,6 @@ app.post('/jobs', async (req, res) => {
     const { companyName, title, description, city, state, salary, tags } = req.body;
     const employerId = req.session.user.id; 
 
-    if (!salary || isNaN(Number(salary))) {
-        return res.status(400).json({ message: 'Invalid salary: must be a number.' });
-    }
-
     if (!Array.isArray(tags) || tags.some(tag => typeof tag !== 'string' || tag.trim() === '')) {
         return res.status(400).json({ message: 'Invalid tags: must be an array of non-empty strings.' });
     }
@@ -167,6 +165,97 @@ app.get('/myJobs', async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
+
+app.post("/resume/form", async (req, res) => {
+    const resumeData = req.body; 
+
+    try {
+        const newResume = new collection.collectionResumes(resumeData);
+        await newResume.save();
+        res.status(200).json("Resume submission successful");
+    } catch (error) {
+        console.error("Error in resume submission:", error);
+        res.status(500).json({ message: "Error submitting resume", error: error.message });
+    }
+});
+
+
+// app.post('/resume/form', async (req, res) => {
+//     // Check if the user is authenticated and has a session
+//     if (!req.session || !req.session.user) {
+//         return res.status(401).json({ message: 'Unauthorized: No session found' });
+//     }
+
+//     // Extract data from request body
+//     const resumeData = req.body;
+//     const userId = req.session.user.id; // Get user ID from session
+
+//     // Create a new resume document
+//     const newResume = new db.collectionResumes({
+//         userId: userId, // Attach the user's ID to the resume
+//         controller: resumeData.controller,
+//         contact: resumeData.contact,
+//         socials: resumeData.socials,
+//         about: resumeData.about,
+//         education: resumeData.education,
+//         courses: resumeData.courses,
+//         certifications: resumeData.certifications,
+//         publications: resumeData.publications,
+//         languages: resumeData.languages,
+//         projects: resumeData.projects,
+//         experience: resumeData.experience,
+//         skills: resumeData.skills
+//     });
+
+//     try {
+//         // Save the resume document to the database
+//         await newResume.save();
+
+//         // Send a success response
+//         res.status(200).json({ message: 'Resume uploaded successfully', resumeId: newResume._id });
+//     } catch (error) {
+//         // Handle any errors during the save operation
+//         console.error('Error uploading resume:', error);
+//         res.status(500).json({ message: 'Error uploading resume', error: error.message });
+//     }
+// });
+
+// app.get('/my-resumes', async (req, res) => {
+//     // Check if the user is authenticated and has a session
+//     if (!req.session || !req.session.user) {
+//         return res.status(401).json({ message: 'Unauthorized: No session found' });
+//     }
+
+//     const userId = req.session.user.id;
+
+//     try {
+//         // Find all resumes that belong to the user
+//         const resumes = await db.collectionResumes.find({ userId: userId });
+
+//         // Send the resumes back to the client
+//         res.status(200).json(resumes);
+//     } catch (error) {
+//         console.error("Error fetching resumes:", error);
+//         res.status(500).json({ message: "Error retrieving resumes", error: error.message });
+//     }
+// });
+
+
+app.get('/resumes', async (req, res) => {
+    try {
+        // Find all resumes in the database
+        const resumes = await collection.collectionResumes.find({});
+
+        // Send the resumes back to the client
+        res.status(200).json(resumes);
+    } catch (error) {
+        // Handle any errors during the fetch operation
+        console.error("Error fetching resumes:", error);
+        res.status(500).json({ message: "Error retrieving resumes", error: error.message });
+    }
+});
+
 
 // Logout endpoint to destroy session
 app.get('/logout', (req, res) => {
