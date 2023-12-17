@@ -95,7 +95,7 @@ const sampleJobs = [
     city: "Cityville",
     state: "NJ",
     salary: 80000,
-    tags: ["Software Engineering", "Full-time"],
+    tags: ["Software Engineering", "Full-time", "Web Development", "Certification"],
     employerId: "67890",  // Replace with an actual employer ID
   },
   {
@@ -105,7 +105,7 @@ const sampleJobs = [
     city: "Techville",
     state: "CA",
     salary: 75000,
-    tags: ["Web Development", "Full-time"],
+    tags: ["Web Development", "Full-time", "Web Development", "Certification"],
     employerId: "67890",  // Replace with an actual employer ID
 
   },
@@ -116,7 +116,7 @@ const sampleJobs = [
     city: "New York",
     state: "NY",
     salary: "80000",
-    tags: ["engineering", "full-time"],
+    tags: ["engineering", "full-time", "Web Development", "Certification"],
     employerId: "67890",  // Replace with an actual employer ID
 
   },
@@ -127,7 +127,7 @@ const sampleJobs = [
     city: "Mountain View",
     state: "CA",
     salary: "100000",
-    tags: ["engineering", "full-time"],
+    tags: ["engineering", "full-time", "Digital Marketing", "Product Launch"],
     employerId: "67890",  // Replace with an actual employer ID
   },
   {
@@ -137,7 +137,7 @@ const sampleJobs = [
     city: "Datatown",
     state: "WI",
     salary: 90000,
-    tags: ["Data Science", "Full-time"],
+    tags: ["Data Science", "Full-time", "Project Management", "Office Expansion"],
     employerId: "67890",  // Replace with an actual employer ID
   },
   {
@@ -157,7 +157,7 @@ const sampleJobs = [
     city: "Greenville",
     state: "NJ",
     salary: 80000,
-    tags: ["Environmental Science", "Full-time"],
+    tags: ["Environmental Science", "Full-time", "Deep Learning", "Neural Networks"],
     employerId: "67890",  // Replace with an actual employer ID
   },
   {
@@ -207,7 +207,7 @@ const sampleJobs = [
     city: "Greenville",
     state: "TX",
     salary: 85000,
-    tags: ["Environmental Science", "Full-time"],
+    tags: ["Environmental Science", "Full-time", "Adventure", "Archaeology", "Chemistry", "Toxicology"],
     employerId: "67890",  // Replace with an actual employer ID
   }
 ];

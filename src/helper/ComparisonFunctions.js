@@ -38,7 +38,7 @@ export function removeDuplicateItems(items, key) {
   return uniqueItems;
 }
 
-// aggregate resume tags, languages, skills for one resume
+// aggregate resume tags, languages, skills for multiple resumes
 export function extractUniqueTagsFromResume(resume) {
   const allResumeTags = [];
 
@@ -71,45 +71,34 @@ export function extractUniqueTagsFromResume(resume) {
   return allResumeTags;
 }
 
-// process resume items to remove duplicates and rank by relevance
 export function processItems(items, jobTags, key) {
   const rankedItems = rankItems(items, jobTags);
   const uniqueItems = removeDuplicateItems(rankedItems, key);
   return uniqueItems;
 }
 
-// aggregate resume tags, languages and skills for multiple resumes
 export function extractUniqueTagsFromMultipleResumes(resumes) {
   const allTags = [];
   resumes.forEach((resume) => {
-    Object.keys(resume).forEach((section) => {
-      if (resume[section] && resume[section].length > 0) {
-        if (Array.isArray(resume[section][0].tags)) {
-          const lowercaseTags = resume[section][0].tags.map((tag) => tag.toLowerCase());
+    if (resume && typeof resume === 'object') {
+      Object.keys(resume).forEach((section) => {
+        if (section === 'languages' && Array.isArray(resume[section])) {
+          resume[section].forEach((languageObj) => {
+            const lowercaseLanguage = languageObj?.language?.toLowerCase();
+            if (lowercaseLanguage && !allTags.includes(lowercaseLanguage)) {
+              allTags.push(lowercaseLanguage);
+            }
+          });
+        } else if (resume[section] && Array.isArray(resume[section])) {
+          const lowercaseTags = resume[section][0]?.tags?.map((tag) => tag.toLowerCase()) || [];
           lowercaseTags.forEach((tag) => {
             if (!allTags.includes(tag)) {
               allTags.push(tag);
             }
           });
         }
-      }
-      if (section === 'skills' && resume[section][0].skills) {
-        resume[section][0].skills.forEach((skill) => {
-          const lowercaseSkill = skill.skill.toLowerCase();
-          if (!allTags.includes(lowercaseSkill)) {
-            allTags.push(lowercaseSkill);
-          }
-        });
-      }
-      if (section === 'languages' && resume[section][0].languages) {
-        resume[section][0].languages.forEach((language) => {
-          const lowercaseLanguage = language.language.toLowerCase();
-          if (!allTags.includes(lowercaseLanguage)) {
-            allTags.push(lowercaseLanguage);
-          }
-        });
-      }
-    });
+      });
+    }
   });
   return allTags;
 }
