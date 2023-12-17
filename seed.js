@@ -93,7 +93,7 @@ const sampleJobs = [
     title: "Software Engineer",
     description: "Join our dynamic team and work on cutting-edge web applications.",
     city: "Cityville",
-    state: "Stateville",
+    state: "NJ",
     salary: 80000,
     tags: ["Software Engineering", "Full-time"],
     employerId: "67890",  // Replace with an actual employer ID
@@ -103,7 +103,7 @@ const sampleJobs = [
     title: "Frontend Developer",
     description: "Create beautiful and user-friendly interfaces for our web applications.",
     city: "Techville",
-    state: "Innovationland",
+    state: "CA",
     salary: 75000,
     tags: ["Web Development", "Full-time"],
     employerId: "67890",  // Replace with an actual employer ID
@@ -135,7 +135,7 @@ const sampleJobs = [
     title: "Data Scientist",
     description: "Harness the power of data to drive innovation and insights.",
     city: "Datatown",
-    state: "Analytica",
+    state: "WI",
     salary: 90000,
     tags: ["Data Science", "Full-time"],
     employerId: "67890",  // Replace with an actual employer ID
@@ -145,7 +145,7 @@ const sampleJobs = [
     title: "UI/UX Designer",
     description: "Craft visually appealing and intuitive user interfaces for our digital products.",
     city: "Designville",
-    state: "Creativityland",
+    state: "TX",
     salary: 70000,
     tags: ["UI/UX Design", "Full-time"],
     employerId: "67890",  // Replace with an actual employer ID
@@ -155,7 +155,7 @@ const sampleJobs = [
     title: "Environmental Scientist",
     description: "Contribute to the preservation and sustainability of our environment.",
     city: "Greenville",
-    state: "EcoLand",
+    state: "NJ",
     salary: 80000,
     tags: ["Environmental Science", "Full-time"],
     employerId: "67890",  // Replace with an actual employer ID
@@ -165,7 +165,7 @@ const sampleJobs = [
     title: "Senior Software Engineer",
     description: "Lead our engineering team in developing cutting-edge web applications.",
     city: "Cityville",
-    state: "Stateville",
+    state: "CA",
     salary: 100000,
     tags: ["Software Engineering", "Full-time"],
     employerId: "67890",  // Replace with an actual employer ID
@@ -175,7 +175,7 @@ const sampleJobs = [
     title: "Backend Developer",
     description: "Build robust server-side components for our web applications.",
     city: "Techville",
-    state: "Innovationland",
+    state: "NJ",
     salary: 85000,
     tags: ["Web Development", "Full-time"],
     employerId: "67890",  // Replace with an actual employer ID
@@ -185,7 +185,7 @@ const sampleJobs = [
     title: "Machine Learning Engineer",
     description: "Develop machine learning models to improve our data analysis algorithms.",
     city: "Datatown",
-    state: "Analytica",
+    state: "TX",
     salary: 95000,
     tags: ["Data Science", "Full-time"],
     employerId: "67890",  // Replace with an actual employer ID
@@ -195,7 +195,7 @@ const sampleJobs = [
     title: "UI Designer",
     description: "Design visually stunning user interfaces for our digital products.",
     city: "Designville",
-    state: "Creativityland",
+    state: "WI",
     salary: 75000,
     tags: ["UI/UX Design", "Full-time"],
     employerId: "67890",  // Replace with an actual employer ID
@@ -205,7 +205,7 @@ const sampleJobs = [
     title: "Environmental Analyst",
     description: "Analyze environmental data to support our sustainability initiatives.",
     city: "Greenville",
-    state: "EcoLand",
+    state: "TX",
     salary: 85000,
     tags: ["Environmental Science", "Full-time"],
     employerId: "67890",  // Replace with an actual employer ID

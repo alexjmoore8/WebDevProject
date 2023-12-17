@@ -71,7 +71,6 @@ export function extractUniqueTagsFromResume(resume) {
   return allResumeTags;
 }
 
-
 // process resume items to remove duplicates and rank by relevance
 export function processItems(items, jobTags, key) {
   const rankedItems = rankItems(items, jobTags);

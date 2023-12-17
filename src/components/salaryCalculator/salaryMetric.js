@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import './css/salary.css';
 
 const stateSalaries = {
   "Alabama": 50620,
@@ -107,31 +108,38 @@ const stateCostOfLiving = {
 };
 
 const SalaryMetric = () => {
-  const [userSalary, setUserSalary] = useState(0);
-  const [selectedState, setSelectedState] = useState('Alabama');
+  const [salaryAmount, setsalaryAmount] = useState('');
+  const [selectedState, setSelectedState] = useState('');
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [popUpColor, setPopUpColor] = useState('');
+
+  const inputRef = useRef(null);
 
   const handleSalaryChange = (event) => {
-    setUserSalary(parseFloat(event.target.value));
+    const formattedValue = event.target.value.replace(/,/g, '');
+    setsalaryAmount(formattedValue);
+    setShowPopUp(false);
   };
 
   const handleStateChange = (event) => {
     setSelectedState(event.target.value);
+    setShowPopUp(false);
   };
 
   const calculatePercentageDifference = () => {
     const stateAverageSalary = stateSalaries[selectedState];
     if (stateAverageSalary) {
-      const percentageDifference = ((userSalary - stateAverageSalary) / stateAverageSalary) * 100;
-      return percentageDifference.toFixed(2); 
+      const percentageDifference = ((salaryAmount - stateAverageSalary) / stateAverageSalary) * 100;
+      return percentageDifference.toFixed(2);
     }
-    return 'N/A'; 
+    return 'N/A';
   };
 
   const selectedStateCostOfLiving = stateCostOfLiving[selectedState];
 
   const calculateDisposableIncome = () => {
-    if (selectedStateCostOfLiving && userSalary > 0) {
-      const disposableIncome = userSalary - selectedStateCostOfLiving;
+    if (selectedStateCostOfLiving && salaryAmount > 0) {
+      const disposableIncome = salaryAmount - selectedStateCostOfLiving;
       return disposableIncome.toFixed(2);
     }
     return 'N/A';
@@ -141,30 +149,74 @@ const SalaryMetric = () => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
+  const checkSalaryStatus = () => {
+    if (salaryAmount > stateSalaries[selectedState]) {
+      setShowPopUp(true);
+      setPopUpColor('green');
+    } else {
+      setShowPopUp(true);
+      setPopUpColor('red');
+    }
+  };
+
+  const handleSubmit = (event) => {
+    if (salaryAmount === '' || selectedState === '') {
+      alert('Please enter a salary and select a state.');
+      return;
+    }
+    event.preventDefault(); 
+    checkSalaryStatus();
+  };
+
+  const handleReset = () => {
+    setsalaryAmount('');
+    setSelectedState('');
+    setShowPopUp(false);
+    inputRef.current.focus();
+  };
+
   return (
     <div>
       <h1>Salary Metric</h1>
-      <label>
-        Enter Your Salary:
-        $<input type="number" value={userSalary} onChange={handleSalaryChange} />
-      </label>
-      <br />
-      <label>
-        Select Your State:
-        <select value={selectedState} onChange={handleStateChange}>
-          {Object.keys(stateSalaries).map((state) => (
-            <option key={state} value={state}>
-              {state}
-            </option>
-          ))}
-        </select>
-      </label>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Salary:
+          <input
+            type="text"
+            value={`$${salaryAmount}`}
+            onChange={handleSalaryChange}
+            ref={inputRef}
+          />
+        </label>
+        <br />
+        <label>
+          State:
+          <select value={selectedState} onChange={handleStateChange}>
+            <option value="">Select State</option>
+            {Object.keys(stateSalaries).map((state) => (
+              <option key={state} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
+        </label>
+        <br />
+        <button className="met-calc-button" type="submit">Calculate</button>
+        <button type="button" onClick={handleReset}>Reset</button>
+      </form>
       <br />
       <div>
-        {userSalary > 0 && (
+        {showPopUp && salaryAmount !== '0' && (
+          <div style={{ color: popUpColor }}>
+            {salaryAmount >= stateSalaries[selectedState] ? 'Good Salary!' : 'Low Salary!'}
+          </div>
+        )}
+        {showPopUp && salaryAmount !== '0' && (
           <p>
-            Your salary is {calculatePercentageDifference()}% {userSalary >= stateSalaries[selectedState] ? 'above' : 'below'} the average salary in {selectedState}.
-            The cost of living in ${selectedState} is ${formatNumberWithCommas(selectedStateCostOfLiving)} per year.
+            Your salary is {calculatePercentageDifference()}% {salaryAmount >= stateSalaries[selectedState] ? 'above' : 'below'} the average salary in {selectedState}.
+            <br />
+            The cost of living in {selectedState} is ${formatNumberWithCommas(selectedStateCostOfLiving)} per year.
+            <br />
             Based on your salary, you are likely to have ${formatNumberWithCommas(calculateDisposableIncome())} of disposable income per year.
           </p>
         )}

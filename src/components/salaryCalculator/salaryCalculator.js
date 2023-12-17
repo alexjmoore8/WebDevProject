@@ -1,61 +1,49 @@
 import React, { Component } from 'react';
-
+import './css/salary.css';
 class SalaryCalculator extends Component {
   constructor(props) {
     super(props);
     this.salaryInputRef = React.createRef();
     this.state = {
       salaryAmount: '',
-      frequency: 'hourly',
+      frequency: '',
       hoursPerWeek: 40,
       overtimeHoursPerWeek: 0,
       includeStateTax: false,
-      
       stateTaxRate: 5,
+      takeHomePay: undefined,
+      annualSalary: undefined,
     };
   }
 
   handleSalaryChange = (e) => {
-    let inputSalary = e.target.value;
-
-    if (inputSalary === '' || /^\$?\d+(\.\d{0,2})?$/.test(inputSalary)) {
-      inputSalary = inputSalary.replace(/^0+/, '').replace('$', '');
-      this.setState({ salaryAmount: inputSalary }, this.calculateTakeHomePay);
-    }
+    const inputSalary = e.target.value.replace(/^0+/, '').replace('$', '');
+    this.setState({ salaryAmount: inputSalary });
   }
 
   handleFrequencyChange = (e) => {
     const newFrequency = e.target.value;
-    this.setState({ frequency: newFrequency }, () => {
-      if (newFrequency === 'hourly') {
-        this.setState({
-          hoursPerWeek: 40,
-          overtimeHoursPerWeek: 0,
-        }, this.calculateTakeHomePay);
-      } else {
-        this.calculateTakeHomePay();
-      }
-    });
+    this.setState({ frequency: newFrequency });
   }
 
   handleHoursPerWeekChange = (e) => {
     const hoursPerWeek = parseFloat(e.target.value);
-    this.setState({ hoursPerWeek }, this.calculateTakeHomePay);
+    this.setState({ hoursPerWeek });
   }
 
   handleOvertimeHoursChange = (e) => {
     const overtimeHoursPerWeek = parseFloat(e.target.value);
-    this.setState({ overtimeHoursPerWeek }, this.calculateTakeHomePay);
+    this.setState({ overtimeHoursPerWeek });
   }
 
   handleIncludeStateTaxChange = (e) => {
     const includeStateTax = e.target.checked;
-    this.setState({ includeStateTax }, this.calculateTakeHomePay);
+    this.setState({ includeStateTax });
   }
 
   handleStateTaxRateChange = (e) => {
     const stateTaxRate = parseFloat(e.target.value);
-    this.setState({ stateTaxRate }, this.calculateTakeHomePay);
+    this.setState({ stateTaxRate });
   }
 
   calculateTaxes = (annualSalary) => {
@@ -89,8 +77,13 @@ class SalaryCalculator extends Component {
     return federalTax + stateTax;
   }
 
-  calculateTakeHomePay = () => {
+  handleCalculate = () => {
     const { salaryAmount, frequency, hoursPerWeek, overtimeHoursPerWeek } = this.state;
+
+    if (!salaryAmount || isNaN(parseFloat(salaryAmount)) || frequency === '') {
+      alert("Please enter a valid salary amount and frequency.");
+      return; 
+    }
 
     let annualSalary = 0;
 
@@ -123,11 +116,11 @@ class SalaryCalculator extends Component {
   handleReset = () => {
     this.setState({
       salaryAmount: '',
-      frequency: 'hourly',
+      frequency: '',
       hoursPerWeek: 40,
       overtimeHoursPerWeek: 0,
       includeStateTax: false,
-      stateTaxRate: 5, 
+      stateTaxRate: 5,
       takeHomePay: undefined,
       annualSalary: undefined,
     });
@@ -138,15 +131,6 @@ class SalaryCalculator extends Component {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  calculateSalaryPercentageDifference(userSalary, stateAverageSalary) {
-      const userSalaryValue = parseFloat(userSalary.replace(/[\$,]/g, ''));
-      const stateAverageSalaryValue = parseFloat(stateAverageSalary.replace(/[\$,]/g, ''));
-
-      const percentageDifference = ((userSalaryValue - stateAverageSalaryValue) / stateAverageSalaryValue) * 100;
-
-      return percentageDifference;
-  }
-
   render() {
     const { salaryAmount, frequency, takeHomePay, annualSalary, hoursPerWeek, overtimeHoursPerWeek, includeStateTax, stateTaxRate } = this.state;
 
@@ -155,10 +139,10 @@ class SalaryCalculator extends Component {
         <h1>Salary Calculator</h1>
         <div>
           <label>
-            Enter Salary Amount:
+            Salary:
             <input
               type="text"
-              placeholder="0"
+              placeholder="$0"
               value={`$${salaryAmount}`}
               onChange={this.handleSalaryChange}
               ref={this.salaryInputRef}
@@ -167,13 +151,14 @@ class SalaryCalculator extends Component {
         </div>
         <div>
           <label>
-            Select Frequency:
-            <select value={frequency} onChange={this.handleFrequencyChange}>
-              <option value="hourly">Hourly</option>
-              <option value="bi-weekly">Bi-Weekly</option>
-              <option value="monthly">Monthly</option>
-              <option value="yearly">Yearly</option>
-            </select>
+          Frequency:
+          <select value={frequency} onChange={this.handleFrequencyChange}>
+            <option value="" disabled>Select Frequency</option>
+            <option value="hourly">Hourly</option>
+            <option value="bi-weekly">Bi-Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+          </select>
           </label>
         </div>
         {frequency === 'hourly' && (
@@ -203,6 +188,10 @@ class SalaryCalculator extends Component {
           )}
         </div>
         <div>
+          <button onClick={this.handleCalculate}>Calculate</button>
+          <button onClick={this.handleReset}>Reset</button>
+        </div>
+        <div>
           <h2>Take-Home Pay Information</h2>
           <ul>
             <li>Salary: ${annualSalary ? this.formatNumberWithCommas(annualSalary) : 0}</li>
@@ -214,7 +203,6 @@ class SalaryCalculator extends Component {
             {includeStateTax && <li>State Income Tax: ${annualSalary ? this.formatNumberWithCommas((annualSalary * stateTaxRate / 100).toFixed(2)) : 0}</li>}
           </ul>
         </div>
-        <button onClick={this.handleReset}>Reset</button>
       </div>
     );
   }
