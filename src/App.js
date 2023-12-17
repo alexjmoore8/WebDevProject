@@ -39,26 +39,23 @@ function App() {
           <Route path = "/resume/layout" element={
             <ProtectedRoute role="applicant"><DynamicResume/>
             </ProtectedRoute>} />
-          <Route path="/jobPost" element={
+          <Route path="/job/post" element={
             <ProtectedRoute role="employer">
               <JobPost />
             </ProtectedRoute>
           } />
-          <Route path="/jobList" element={
-            <JobPostList />
-          } />
           {/* <Route path="/jobSearch" element={<JobSearchForm />} /> */}
 
-          <Route path="/myJobs" element={
+          <Route path="job/myJobs" element={
             <ProtectedRoute role="employer">
               <MyJobs />
             </ProtectedRoute>
           } />
-          <Route path="/jobList" element={<JobPostList />} />
-          <Route path="/salaryChecks" element={<SalaryToggle />} />
+          <Route path="/job/list" element={<JobPostList />} />
+          <Route path="tools/salaryChecks" element={<SalaryToggle />} />
           {/* <Route path = "/outsideJobSearch" element={<JobSearchEngine/>}/> */}
           <Route path="/applicant/rankedJobs" element={<RankedJobs />} />
-          <Route path="/jobSearch" element={<ToggleButton />} />
+          <Route path="job/search" element={<ToggleButton />} />
         </Routes>
       </Router>
     </AuthProvider>

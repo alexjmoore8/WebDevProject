@@ -1,60 +1,57 @@
-
 import './loginRegister/css/jobList.css';
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from './AuthContext.js';
 
-
-
 export function JobPostList() {
-
-    const [jobs, setJobs] = useState([])
+    const [jobs, setJobs] = useState([]);
     const [message, setMessage] = useState('');
 
-
     useEffect(() => {
-        getJobs()
-    }, [])
+        getJobs();
+    }, []);
 
-    async function getJobs(e) {
-
+    async function getJobs() {
         try {
-            const response = await axios.get("http://localhost:3000/getJobPosts", { withCredentials: true });
-            console.log(response.data);
-            setJobs(response.data)
-
+            const response = await axios.get("/jobs");
+            const sortedJobs = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
+            const jobsWithExpanded = sortedJobs.map(job => ({ ...job, expanded: false }));
+            setJobs(jobsWithExpanded);
         } catch (error) {
             setMessage("Error during login");
         }
     }
 
-    return (
+    const toggleJobExpansion = (jobId) => {
+    if (expandedJobId === jobId) {
+      setExpandedJobId(null);
+    } else {
+      setExpandedJobId(jobId);
+    }
+  };
 
-        <div className='jobList'>
-        <><h1> Available Job Listings</h1>
-            <ul>
-                {jobs.map((job, i) => {
-                    return <li key={i}>
-                        <div>
-                            <h1>
-                                {job.title} -  {job.companyName}
-                            </h1>
-                            <p>
-                                {job.description}
-                            </p>
-                        </div>
-                    </li>;
-
-                })}
-                {message && <p className={`message error-message`}>{message}</p>}
-                <p className="helper-text">
-                    Want to go back? <Link to="/HomeA">Home</Link>
-                </p>
-            </ul></>
+  return (
+    <div>
+      <h1>Available Job Listings</h1>
+      <ul>
+        {jobPosts.map((job) => (
+          <li key={job._id}>
+            <div onClick={() => toggleJobExpansion(job._id)}>
+              <strong>{job.title}</strong> - {job.company}
             </div>
-    );
-
-}
-
-//if login = user make link to /Home, if login = employer make link /HomeA
+            {expandedJobId === job._id && (
+              <div>
+                <p>Description: {job.description}</p>
+                <p>City: {job.city}</p>
+                <p>State: {job.state}</p>
+                <p>Salary: {job.salary}</p>
+                <p>Tags: {job.tags.join(', ')}</p>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
