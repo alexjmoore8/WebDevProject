@@ -18,8 +18,10 @@ import { MyJobs } from './components/jobPost/myJobs.js';
 import RankedJobs from './components/JobSearch/rankedJobs.js';
 import ToggleButton from './components/JobSearch/jobSearchToggle.js';
 
+
 function App() {
   return (
+
     <AuthProvider> {/* Wrap the application with AuthProvider */}
       <Router>
         <Routes>

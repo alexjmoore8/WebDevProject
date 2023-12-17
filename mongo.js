@@ -37,6 +37,12 @@ const userSchema = new mongoose.Schema({
 })
 
 const resumeSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId, // Specifies the type as an ObjectId
+        required: false, // Makes this field mandatory
+        ref: 'users' // This should match the name you used in mongoose.model for User
+
+    },
     controller: subSchema.controllerSchema,
     contact: subSchema.contactInfoSchema,
     socials: subSchema.socialsSchema,

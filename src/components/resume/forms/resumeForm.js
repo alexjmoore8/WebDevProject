@@ -227,11 +227,13 @@ const handleSelectionChange = (sectionName, isSelected) => {
   const [message, setMessage] = useState(''); // For displaying error messages
 
   async function handleSubmit(e) {
+    console.log('button')
+
     e.preventDefault();
 
     try {
         const transformedData = transformFormDataForMongoDB(formData);
-        const response = await axios.post("http://localhost:3000/resume/form", transformedData);
+        const response = await axios.post("http://localhost:3000/resume/form", transformedData, {withCredentials: true});
 
         if (response.data === "Resume submission successful") {
             navigate("/home");

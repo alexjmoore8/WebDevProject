@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 // Shared Schema for Section Heading
-const sectionHeadingSchema = { sectionHeading: { type: String, required: true } };
+const sectionHeadingSchema = { sectionHeading: { type: String, required: false } };
 
 // Sections Schema
 export const sectionsSchema = new mongoose.Schema({
