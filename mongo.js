@@ -37,9 +37,9 @@ const userSchema = new mongoose.Schema({
 })
 
 const resumeSchema = new mongoose.Schema({
-    userId: {
+    applicantId: {
         type: mongoose.Schema.Types.ObjectId, // Specifies the type as an ObjectId
-        required: false, // Makes this field mandatory
+        required: true, // Makes this field mandatory
         ref: 'users' // This should match the name you used in mongoose.model for User
 
     },

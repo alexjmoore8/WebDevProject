@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './css/jobPost.css';
+import Navbar from '../Navbar.js';
+
 
 export function JobPost() {
     const navigate = useNavigate();
@@ -13,17 +15,15 @@ export function JobPost() {
     const [salary, setSalary] = useState('');
     const [tags, setTags] = useState('');
     const [message, setMessage] = useState('');
+    const [error, setError] = useState('');
 
     async function handleSubmit(e) {
         e.preventDefault();
+        setMessage('');
+        setError('');
 
-        if (isNaN(salary) || salary.trim() === '') {
-            setMessage("Salary must be a number.");
-            return;
-        }
-
-        if (!tags.includes(',')) {
-            setMessage("Tags should be comma-separated.");
+        if (!salary.match(/^\d+$/)) {
+            setError('Salary must be a number.');
             return;
         }
 
@@ -43,17 +43,29 @@ export function JobPost() {
                 setMessage("Job posted successfully.");
                 setTimeout(() => navigate('/HomeA'), 2000);
             } else {
-                setMessage("Error posting job: " + response.data.message);
+                setError("Error posting job: " + response.data.message);
             }
         } catch (error) {
             console.error("Error posting job", error);
-            setMessage("Error posting job: " + error.message);
+            setError("Error posting job: " + (error.response?.data?.message || error.message));
         }
     }
 
     function handleBackClick() {
         navigate(-1);
     }
+
+    const handleTagChange = (e) => {
+        setTags(e.target.value);
+    };
+
+    const handleTagKeyDown = (e) => {
+        if (e.key === ' ') {
+            e.preventDefault(); // Prevent default space behavior
+            const value = tags.trim() + ', '; // Add comma and space after the tag
+            setTags(value);
+        }
+    };
 
     return (
         <div className="container">
@@ -165,13 +177,15 @@ export function JobPost() {
                     <input
                         type="text"
                         value={tags}
-                        onChange={(e) => setTags(e.target.value)}
+                        onChange={handleTagChange}
+                        onKeyDown={handleTagKeyDown}
                         placeholder="Tags"
                         required
                     />
                     <button type="submit">Submit</button>
                 </form>
                 {message && <p className="message">{message}</p>}
+                {error && <p className="error">{error}</p>} {/* Display error messages */}
                 <button onClick={handleBackClick} className="back-button">Back</button>
             </div>
         </div>

@@ -1,0 +1,105 @@
+.resumeList {
+    max-width: 70%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    box-shadow: 0 1px 0 gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .resumeItem {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .caret {
+    margin-right: 20px;
+    margin-top: 22px;
+    font-size: 20px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
+  .expanded {
+    transform: rotate(-90deg);
+  }
+  
+  .resumeListItem {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  
+  .resumeDetails {
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+  }
+  
+  .resumeDetails p {
+    margin: 5px 0;
+    line-height: 1.6;
+  }
+  
+  .back-button {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    max-width: 50%;
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .message.error-message {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+  
+  .helper-text {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .helper-text a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .helper-text a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .resumeDetails {
+      width: 100%;
+    }
+  }
+  
