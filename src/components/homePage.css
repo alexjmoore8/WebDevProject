@@ -1,0 +1,61 @@
+.homepage {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.home-link-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px; 
+    background-color: #4CAF50; 
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.home-link-button:hover, .home-link-button:focus {
+    background-color: #45a049; 
+    transform: scale(1.05); 
+}
+
+.applicant-buttons .home-link-button {
+    background-color: #2196F3; 
+}
+
+.employer-buttons .home-link-button {
+    background-color: #f44336; 
+}
+
+.applicant-buttons .home-link-button:hover, 
+.employer-buttons .home-link-button:hover {
+    transform: scale(1.1); 
+}
+
+.navbar .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar .nav-links li {
+    margin: 0 15px;
+}
+
+.logout-button {
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.logout-button:hover {
+    background-color: #666;
+}

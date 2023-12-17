@@ -34,9 +34,9 @@ const Navbar = () => {
                 {
                     auth.role === 'employer' && (
                         <>
-                            <li><Link to="/job/post">Job Post</Link></li>
-                            <li><Link to="/job/myJobs">My Job Posts</Link></li>
                             <li><Link to="/HomeA">Home</Link></li>
+                            <li><Link to="/job/post">Create Job Post</Link></li>
+                            <li><Link to="/job/myJobs">My Job Posts</Link></li>
                         </>
                     )
                 }

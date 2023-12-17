@@ -116,10 +116,17 @@ const SalaryMetric = () => {
   const inputRef = useRef(null);
 
   const handleSalaryChange = (event) => {
-    const formattedValue = event.target.value.replace(/,/g, '');
-    setsalaryAmount(formattedValue);
+    const inputSalary = event.target.value.replace(/[^0-9.,]/g, '');
+    const formattedSalary = formatSalary(inputSalary);
+    setsalaryAmount(formattedSalary);
     setShowPopUp(false);
   };
+  const formatSalary = (input) => {
+    let salary = input.replace(/[^0-9.]/g, '');
+    return salary;
+  };
+  
+  
 
   const handleStateChange = (event) => {
     setSelectedState(event.target.value);
