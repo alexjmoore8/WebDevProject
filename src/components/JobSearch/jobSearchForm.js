@@ -5,6 +5,7 @@ import './css/jobSearchResults.css'; // This is where you import your CSS file
 import { useAuth } from '../AuthContext.js'; // Adjust the path according to your file structure
 import { useNavigate } from 'react-router-dom';
 import RankedJobs from './rankedJobs.js';
+import ApplyButton from '../applyJob/applyButton.js';
 import { set } from 'mongoose';
 
 export function JobSearchForm() {
@@ -185,6 +186,7 @@ export function JobSearchForm() {
                     <p><strong>State:</strong> {job.state}</p>
                     <p><strong>Salary:</strong> {job.salary}</p>
                     <p><strong>Keywords:</strong> {job.tags.join(', ')}</p>
+                    <ApplyButton jobId={job._id} job={job}/>
                 </div>
             ))}
       </div>

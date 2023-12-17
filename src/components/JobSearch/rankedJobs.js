@@ -18,7 +18,7 @@ const RankedJobs = () => {
     };
     const fetchResumes = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/resumes');
+        const response = await axios.get('http://localhost:3000/my-resumes');
         setResumeData(response.data);
         console.log('response.data', response.data);
       } catch (error) {
@@ -29,7 +29,6 @@ const RankedJobs = () => {
     fetchResumes();
   }, []);
 
-  
 
 const calculateJobPostRelevance = (jobPost) => {
   const jobTags = jobPost.tags;
