@@ -12,7 +12,7 @@ function SalaryToggle() {
     <div className="container">
     <div className="toggle-group">
       <button className="toggle-button" onClick={() => setToggle(!toggle)}>
-        {toggle ? 'Salary Tax Calculator' : 'Fair Salary Metric'}
+        {toggle ? 'Fair Salary Metric' : 'Salary Tax Calculator'}
         </button>
       {toggle ? <SalaryCalculator /> : <SalaryMetric />}
     </div>
