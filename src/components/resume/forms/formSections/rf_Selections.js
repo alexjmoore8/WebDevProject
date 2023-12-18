@@ -1,4 +1,5 @@
 import React from "react";
+import { CheckboxSection } from "./sectionComponents/selectionCheckbox.js";
 // import axios from "axios";
 // import { useNavigate, Link } from "react-router-dom";
 
@@ -44,120 +45,76 @@ function ResumeSelections({data, handleChange, handleSectionChange}) {
 
             <label>Sections:</label>
             <div>
-                <label>
-                <input
-                    type="checkbox"
+                <CheckboxSection
                     name="contact"
                     checked={data.contact}
                     onChange={() => handleCheckboxChange("contact")}
-                    disabled 
+                    disabled={true}
                 />
-                Contact Info
-                </label>
 
-                <label>
-                <input
-                    type="checkbox"
+                <CheckboxSection
                     name="socials"
                     checked={data.socials}
-                    onChange={() => handleCheckboxChange('socials')}
+                    onChange={() => handleCheckboxChange("socials")}
                 />
-                Social Media & Website
-                </label>
 
-                <label>
-                <input
-                    type="checkbox"
+                <CheckboxSection
                     name="about"
                     checked={data.about}
-                    onChange={() => handleCheckboxChange('about')}
+                    onChange={() => handleCheckboxChange("about")}
                 />
-                About
-                </label>
-                
-                <label>
-                <input
-                    type="checkbox"
-                    name="education"
+
+                <CheckboxSection
+                    name="educations"
                     checked={data.education}
                     onChange={() => handleCheckboxChange("education")}
-                    disabled 
+                    disabled={true}
                 />
-                Education
-                </label>
 
-                <label>
-                <input
-                    type="checkbox"
+                <CheckboxSection
                     name="courses"
                     checked={data.courses}
-                    onChange={() => handleCheckboxChange('courses')}
+                    onChange={() => handleCheckboxChange("courses")}
                 />
-                Courses
-                </label>
 
-                <label>
-                <input
-                    type="checkbox"
+                <CheckboxSection
                     name="certifications"
                     checked={data.certifications}
-                    onChange={() => handleCheckboxChange('certifications')}
+                    onChange={() => handleCheckboxChange("certifications")} 
                 />
-                Certifications
-                </label>
 
-                <label>
-                <input
-                    type="checkbox"
+                <CheckboxSection
                     name="publications"
                     checked={data.publications}
-                    onChange={() => handleCheckboxChange('publications')}
+                    onChange={() => handleCheckboxChange("publications")}
                 />
-                Publications
-                </label>
 
-                <label>
-                <input
-                    type="checkbox"
+                <CheckboxSection
                     name="languages"
                     checked={data.languages}
-                    onChange={() => handleCheckboxChange('languages')}
+                    onChange={() => handleCheckboxChange("languages")}
                 />
-                Languages
-                </label>
 
-                <label>
-                <input
-                    type="checkbox"
+                <CheckboxSection
                     name="projects"
                     checked={data.projects}
-                    onChange={() => handleCheckboxChange('projects')}
+                    onChange={() => handleCheckboxChange("projects")}
                 />
-                Projects
-                </label>
 
-                <label>
-                <input
-                    type="checkbox"
+                <CheckboxSection
                     name="experience"
                     checked={data.experience}
                     onChange={() => handleCheckboxChange("experience")}
-                    disabled 
+                    disabled={true}
                 />
-                Experience
-                </label>
 
-
-                <label>
-                <input
-                    type="checkbox"
+                <CheckboxSection
                     name="skills"
                     checked={data.skills}
-                    onChange={() => handleCheckboxChange('skills')}
+                    onChange={() => handleCheckboxChange("skills")}
                 />
-                Skills
-                </label>
             </div>
+
         </div>
 )};
 

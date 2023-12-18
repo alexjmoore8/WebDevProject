@@ -68,27 +68,7 @@ button:hover {
   margin-top: 10px;
 }
 
-/* Add these styles to your CSS file */
-
-/* Style for highlighted word */
-.highlighted-word {
-  background-color: yellow !important;
-  cursor: pointer !important;
-}
-
-/* Style for popup */
-.popup {
-  position: absolute !important;
-  background-color: white !important;
-  border: 1px solid #ccc !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
-  padding: 10px;
-  z-index: 1;
-}
-
-.popup-close-button {
-  position: absolute !important;
-  top: 5px !important;
-  right: 5px !important;
-  cursor: pointer !important;
+.form-button {
+  width: 100px;
+  float: top !important;
 }

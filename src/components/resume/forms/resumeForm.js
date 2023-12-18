@@ -45,11 +45,7 @@ function ResumeForm() {
         pronouns: '',
       },
       ResumeSocialMedia: {
-        profile: {
-          name: '',
-          link: '',
-          platformType: ''
-        }
+        profiles: [{}]
       },
       ResumeAbout: {
         sectionHeading: '',
@@ -57,32 +53,15 @@ function ResumeForm() {
       },
       ResumeEducation: {
         sectionHeading: '',
-        school: {
-          institution: '',
-          location: '',
-          degree: '',
-          major: '',
-          startDate: '',
-          endDate: '',
-          gpa: '',
-        }
+        school: [{}]
       },
       ResumeCourses: {
         sectionHeading: '',
-        course: {
-          title: '',
-          school: '',
-          tags: []
-        }
+        course: [{}]
       },
       ResumeCertifications: {
         sectionHeading: '',
-        certification: {
-          name: '',
-          organization: '',
-          date: '',
-          tags: []
-        }
+        certification:[{}]
       },
       ResumePublications: {
         sectionHeading: '',
@@ -123,13 +102,17 @@ function ResumeForm() {
         }
       },
       ResumeSkills: {
-        sectionHeading: '',
-        skill: {
-          skill: '',
-          level: '',
-      }
+    sectionHeading: '',
+    skills: []
     }
   });
+
+  const updateFormData = (section, field, value) => {
+    const updatedFormData = { ...formData };
+    updatedFormData[section][field] = value;
+    setFormData(updatedFormData);
+  };
+
 
   const [selectedSections, setSelectedSections] = useState([]);
 
@@ -191,7 +174,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
         transformedData.contact = { ...formData.ResumeContactInfo };
     }
     if (selections.socials) {
-        transformedData.socials = formData.ResumeSocialMedia.profile;
+        transformedData.socials = formData.ResumeSocialMedia;
     }
     if (selections.about) {
         transformedData.about = formData.ResumeAbout;
@@ -200,27 +183,27 @@ const handleSelectionChange = (sectionName, isSelected) => {
         transformedData.education = formData.ResumeEducation;
     }
     if (selections.courses) {
-        transformedData.courses = formData.ResumeCourses.course;
+        transformedData.courses = formData.ResumeCourses;
     }
     if (selections.certifications) {
-        transformedData.certifications = formData.ResumeCertifications.certification;
+        transformedData.certifications = formData.ResumeCertifications;
     }
     if (selections.publications) {
-        transformedData.publications = formData.ResumePublications.publication;
+        transformedData.publications = formData.ResumePublications;
     }
     if (selections.languages) {
-        transformedData.languages = formData.ResumeLanguages.language;
+        transformedData.languages = formData.ResumeLanguages;
     }
     if (selections.projects) {
-        transformedData.projects = formData.ResumeProjects.project;
+        transformedData.projects = formData.ResumeProjects;
     }
     if (selections.experience) {
-        transformedData.experience = formData.ResumeExperience.job;
+        transformedData.experience = formData.ResumeExperience;
     }
     if (selections.skills) {
-        transformedData.skills = formData.ResumeSkills.skill;
+        transformedData.skills = formData.ResumeSkills;
     }
-
+    console.log("Transformed Data:", transformedData); 
     return transformedData;
 };
   
@@ -251,7 +234,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
       case 1:
         return (
           <ResumeSelections
-            handleChange={handleChange}
+            handleChange={updateFormData}
             data={formData.ResumeSelections}
           />
         );
@@ -259,7 +242,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
         if (formData.ResumeSelections.contact) {
           return (
             <ResumeContactInfo
-              handleChange={handleChange}
+              handleChange={updateFormData}
               data={formData.ResumeContactInfo}
             />
           );
@@ -270,7 +253,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
         if (formData.ResumeSelections.socials) {
           return (
             <ResumeSocialMedia
-              handleChange={handleChange}
+              handleChange={updateFormData}
               data={formData.ResumeSocialMedia}
             />
           );
@@ -281,7 +264,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
         if (formData.ResumeSelections.about) {
           return (
             <ResumeAbout
-              handleChange={handleChange}
+              handleChange={updateFormData}
               data={formData.ResumeAbout}
             />
           );
@@ -292,7 +275,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
         if (formData.ResumeSelections.education) {
           return (
             <ResumeEducation
-              handleChange={handleChange}
+              handleChange={updateFormData}
               data={formData.ResumeEducation}
             />
           );
@@ -303,7 +286,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
         if (formData.ResumeSelections.courses) {
           return (
             <ResumeCourses
-              handleChange={handleChange}
+              handleChange={updateFormData}
               data={formData.ResumeCourses}
             />
           );
@@ -314,7 +297,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
       if (formData.ResumeSelections.certifications) {
         return (
           <ResumeCertifications
-            handleChange={handleChange}
+            handleChange={updateFormData}
             data={formData.ResumeCertifications}
           />
         );
@@ -325,7 +308,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
       if (formData.ResumeSelections.publications) {
         return (
           <ResumePublications
-            handleChange={handleChange}
+            handleChange={updateFormData}
             data={formData.ResumePublications}
           />
         );
@@ -336,7 +319,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
       if (formData.ResumeSelections.languages) {
         return (
           <ResumeLanguages
-            handleChange={handleChange}
+            handleChange={updateFormData}
             data={formData.ResumeLanguages}
           />
         );
@@ -347,7 +330,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
       if (formData.ResumeSelections.projects) {
         return (
           <ResumeProjects
-            handleChange={handleChange}
+            handleChange={updateFormData}
             data={formData.ResumeProjects}
           />
         );
@@ -358,7 +341,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
       if (formData.ResumeSelections.experience) {
         return (
           <ResumeExperience
-            handleChange={handleChange}
+            handleChange={updateFormData}
             data={formData.ResumeExperience}
           />
         );
@@ -369,7 +352,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
       if (formData.ResumeSelections.skills) { 
         return (
           <ResumeSkills
-            handleChange={handleChange}
+            handleChange={updateFormData}
             data={formData.ResumeSkills}
           />
         );
@@ -388,22 +371,29 @@ const handleSelectionChange = (sectionName, isSelected) => {
   };
 
   return (
-    <div className='resume-form-container'>
+    <div className="resume-form-container">
       {renderForm()}
-
-      {currentStep < 13 && <button
-        className="button"
-        onClick={handleNext}
-        disabled={currentStep === 1 && formData.ResumeSelections.resumeTitle.trim() === ''}
-      >
-        Next
-      </button>}
-      {currentStep != 1 && <button className="button" onClick={handlePrev} disabled={currentStep === 1}>
-        Back
-      </button>}
-      {currentStep === 13 && <button className="button" onClick={handleSubmit}>Submit</button>}
+      {currentStep !== 1 && (
+        <button className="form-button" onClick={handlePrev} disabled={currentStep === 1}>
+          Back
+        </button>
+      )}
+      {currentStep < 13 && (
+        <button
+          className="form-button"
+          onClick={handleNext}
+          disabled={currentStep === 1 && formData.ResumeSelections.resumeTitle.trim() === ''}
+        >
+          Next
+        </button>
+      )}
+      {currentStep === 13 && (
+        <button className="form-button" onClick={handleSubmit}>
+          Submit
+        </button>
+      )}
     </div>
   );
-  }
+}
 
 export default ResumeForm;

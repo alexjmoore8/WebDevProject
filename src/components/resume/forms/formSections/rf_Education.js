@@ -5,7 +5,7 @@ import CityStateInput from './sectionComponents/cityState.js';
 import DatePicker from './sectionComponents/datePicker.js';
 import GrammarCheck from '../../../grammarCheck/grammarCheck.js';
 
-import "../css/form.css"
+import "../css/list.css"
 
 function ResumeEducation({ data, handleChange }) {
   const [educations, setEducations] = useState(data.educations || [{}]);
@@ -101,12 +101,12 @@ const handleInputChange = (index, field, value) => {
             onChange={(e) => handleInputChange(index, 'gpa', e.target.value)}
           />
         )}
-          <button onClick={() => handleRemoveEducation(index)}>Remove</button>
+          <button className='list-button' onClick={() => handleRemoveEducation(index)}>Remove</button>
         </div>
       ))}
 
       {educations.length < 5 && (
-        <button onClick={handleAddEducation}>Add Education</button>
+        <button className='list-button' onClick={handleAddEducation}>Add</button>
       )}
     <GrammarCheck data={data} handleChange={handleChange} />
 

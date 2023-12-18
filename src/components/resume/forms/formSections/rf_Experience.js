@@ -5,6 +5,7 @@ import CityStateInput from './sectionComponents/cityState.js';
 import DatePicker from './sectionComponents/datePicker.js';
 import TagsInput from './sectionComponents/tags.js';
 import GrammarCheck from '../../../grammarCheck/grammarCheck.js';
+import ListManager from './sectionComponents/ListManager.js';
 import "../css/results.css"
 
 function ResumeExperience({ data, handleChange }) {
@@ -71,13 +72,13 @@ function ResumeExperience({ data, handleChange }) {
           />
 
           {experience.length > 1 && (
-            <button onClick={() => handleRemoveExperience(index)}>Remove</button>
+            <button className="list-button" onClick={() => handleRemoveExperience(index)}>Remove</button>
           )}
         </div>
       ))}
 
       {experience.length < 20 && (
-        <button onClick={handleAddExperience}>Add Experience</button>
+        <button className="list-button"  onClick={handleAddExperience}>Add</button>
       )}
       <GrammarCheck data={data} handleChange={handleChange} />
     </div>

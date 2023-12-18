@@ -1,65 +1,63 @@
-import React, { useState } from 'react';
-import PlatformDropdown from './sectionComponents/platform.js';
+import React, { useState, useEffect } from 'react';
+import ListManager from './sectionComponents/ListManager.js';
 
 function ResumeSocialMedia({ data, handleChange }) {
+  const [socialMediaData, setSocialMediaData] = useState(data);
   const [profiles, setProfiles] = useState(data.profiles || [{ name: '', link: '', platformType: '' }]);
+  
+  useEffect(() => {
+    setSocialMediaData(data);
+  }, [data]);
 
-  const handleAddProfile = () => {
-    if (profiles.length < 3) {
-      setProfiles([...profiles, { name: '', link: '', platformType: '' }]);
-    }
+  const handleInputChange = (field, value) => {
+    const updatedData = { ...socialMediaData, [field]: value };
+    setSocialMediaData(updatedData);
+    handleChange(updatedData);
   };
 
-  const handleRemoveProfile = (index) => {
-    const updatedProfiles = [...profiles];
-    updatedProfiles.splice(index, 1);
-    setProfiles(updatedProfiles);
+  const handleItemChange = (newItems) => {
+    setProfiles(newItems);
   };
 
-  const handleInputChange = (index, field, value) => {
+  const renderFields = (item, index) => (
+    <>
+      <label>Display Name or Link</label>
+      <input
+        type="text"
+        value={item.name}
+        onChange={(e) => handleFieldChange(index, 'name', e.target.value)}
+      />
+
+      <label>Link</label>
+      <input
+        type="text"
+        value={item.link}
+        onChange={(e) => handleFieldChange(index, 'link', e.target.value)}
+      />
+
+      <label>Type</label>
+      <input
+        type="text"
+        value={item.platformType}
+        onChange={(e) => handleFieldChange(index, 'platformType', e.target.value)}
+      />
+    </>
+  );
+
+  const handleFieldChange = (index, field, value) => {
     const updatedProfiles = [...profiles];
     updatedProfiles[index][field] = value;
-    setProfiles(updatedProfiles);
+    handleItemChange(updatedProfiles);
   };
 
   return (
-    <div>
-      <h2>Social Media Profiles</h2>
-      {profiles.map((profile, index) => (
-        <div key={index}>
-          <label>Display Name or Link</label>
-          <input
-            type="text"
-            name="name"
-            value={profile.name}
-            placeholder="linkedin.com/in/yourname"
-            onChange={(e) => handleInputChange(index, 'name', e.target.value)}
-          />
-
-          <label>Link</label>
-          <input
-            type="text"
-            name="link"
-            value={profile.link}
-            placeholder="Profile Link"
-            onChange={(e) => handleInputChange(index, 'link', e.target.value)}
-          />
-
-          <label>Type</label>
-          <div>
-            <PlatformDropdown
-              value={profile.platformType}
-              handleChange={(e) => handleInputChange(index, 'platformType', e.target.value)}
-            />
-          </div>
-          <button onClick={() => handleRemoveProfile(index)}>Remove</button>
-        </div>
-      ))}
-
-      {profiles.length < 3 && (
-        <button onClick={handleAddProfile}>Add Profile</button>
-      )}
-    </div>
+    <ListManager
+      items={profiles}
+      onItemChange={handleItemChange}
+      itemType="Social Media Profile"
+      limit={3}
+      renderFields={renderFields}
+    />
   );
 }
 

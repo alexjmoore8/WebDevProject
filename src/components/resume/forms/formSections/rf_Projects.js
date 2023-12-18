@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import GrammarCheck from '../../../grammarCheck/grammarCheck.js';
-import "../css/results.css"
+import FormSectionHeader from './sectionComponents/SectionHeader.js';
+import TagsInput from './sectionComponents/tags.js';
+import "../css/list.css"
 
 function ResumeProjects({ data, handleChange }) {
   const initialProjects = data.projects || [{}];
@@ -31,25 +33,7 @@ function ResumeProjects({ data, handleChange }) {
 
   return (
     <div>
-      <h2>Projects</h2>
-      <label>
-        <input
-          type="checkbox"
-          name="includeCustomTitle"
-          checked={includeCustomTitle}
-          onChange={(e) => setIncludeCustomTitle(e.target.checked)}
-        />
-        Include Custom Section Title
-      </label>
-
-      <input
-        type="text"
-        name="sectionHeading"
-        value={getDefaultSectionTitle()}
-        placeholder="Section title to display on resume"
-        onChange={(e) => handleChange('ResumeProjects', e.target.name, e.target.value)}
-        disabled={!includeCustomTitle}
-      />
+      <FormSectionHeader sectionName="Projects" data={data} handleChange={handleChange} />
 
       {projects.map((project, index) => (
         <div key={index}>
@@ -79,23 +63,20 @@ function ResumeProjects({ data, handleChange }) {
             onChange={(e) => handleInputChange(index, 'link', e.target.value)}
           />
 
-          <label>Tags</label>
-          <input
-            type="text"
-            name={`projects[${index}].tags`}
-            value={project.tags ? project.tags.join(', ') : ''}
-            placeholder="Tags (comma-separated)"
-            onChange={(e) => handleInputChange(index, 'tags', e.target.value.split(', '))}
+          <TagsInput
+            value={project.tags || []}
+            onChange={(tagsArray) => handleInputChange(index, 'tags', tagsArray)}
+            label="Projects"
           />
 
           {projects.length > 1 && (
-            <button onClick={() => handleRemoveProject(index)}>Remove</button>
+            <button className='list-button' onClick={() => handleRemoveProject(index)}>Remove</button>
           )}
         </div>
       ))}
 
       {projects.length < 20 && (
-        <button onClick={handleAddProject}>Add Project</button>
+        <button className='list-button' onClick={handleAddProject}>Add</button>
       )}
      <GrammarCheck data={data} handleChange={handleChange} />
     </div>

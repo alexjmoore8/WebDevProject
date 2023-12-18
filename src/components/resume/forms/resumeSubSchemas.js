@@ -42,9 +42,13 @@ export const contactInfoSchema = new mongoose.Schema({
 
 // Socials Schema
 export const socialsSchema = new mongoose.Schema({
-    name: String,
-    link: String,
-    platformType: String
+    profiles: [{
+    profile:{
+        name: String,
+        link: String,
+        platformType: String
+    }
+    }]
 });
 
 // About Schema

@@ -1,0 +1,22 @@
+.list-button {
+  background-color: blueviolet !important;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100px;
+  justify-self: left;
+}
+.grammar-button {
+  background-color: rgb(10, 184, 77) !important;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: auto;
+  float: right;
+  margin-bottom: 20px;
+}

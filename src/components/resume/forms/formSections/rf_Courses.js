@@ -3,7 +3,8 @@ import GrammarCheck from '../../../grammarCheck/grammarCheck.js';
 import FormSectionHeader from './sectionComponents/SectionHeader.js';
 import NameOrgInput from './sectionComponents/NameAndOrg.js';
 import TagsInput from './sectionComponents/tags.js';
-import "../css/results.css"
+import ListManager from './sectionComponents/ListManager.js';
+import "../css/list.css"
 
 function ResumeCourses({ data, handleChange }) {
   const [courses, setCourses] = useState(data.courses || [{}]);
@@ -50,12 +51,12 @@ function ResumeCourses({ data, handleChange }) {
             label="Courses"
           />
 
-          <button onClick={() => handleRemoveCourse(index)}>Remove</button>
+          <button className='list-button' onClick={() => handleRemoveCourse(index)}>Remove</button>
         </div>
       ))}
 
       {courses.length < 25 && (
-        <button onClick={handleAddCourse}>Add Course</button>
+        <button className='list-button' onClick={handleAddCourse}>Add</button>
       )}
       <GrammarCheck data={data} handleChange={handleChange} />
     </div>

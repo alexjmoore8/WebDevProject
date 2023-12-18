@@ -6,7 +6,8 @@ import FormSectionHeader from './sectionComponents/SectionHeader.js';
 import NameOrgInput from './sectionComponents/NameAndOrg.js';
 import DatePicker from './sectionComponents/datePicker.js';
 import TagsInput from './sectionComponents/tags.js';
-import "../css/results.css"
+import ListManager from './sectionComponents/ListManager.js';
+import "../css/list.css"
 
 
 function ResumeCertifications({ data, handleChange, handleNext }) {
@@ -77,12 +78,12 @@ function ResumeCertifications({ data, handleChange, handleNext }) {
             label="Certification"
           />
 
-          <button className="button" onClick={() => handleRemoveCertification(index)}>Remove</button>
+          <button className="list-button" onClick={() => handleRemoveCertification(index)}>Remove</button>
         </div>
       ))}
 
       {certifications.length < 15 && (
-        <button className="button" onClick={handleAddCertification}>Add Certification</button>
+        <button className="list-button" onClick={handleAddCertification}>Add</button>
       )}      
         <GrammarCheck data={data} handleChange={handleChange} />
     </div>
