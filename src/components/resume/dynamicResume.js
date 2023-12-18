@@ -6,7 +6,7 @@ import ResumeLayout1 from './templates/layouts/layout1.js';
 import ResumeLayout2 from './templates/layouts/layout2.js';
 import ResumeLayout3 from './templates/layouts/layout3.js';
 // import fakeResume from "./fakeResume.json";
-
+import Navbar from '../Navbar.js';
 const generatePdf = () => {
     const element = document.getElementById('layout');
     const opt = {
@@ -50,6 +50,7 @@ const Controller = () => {
 
     return (
         <div>
+            <Navbar/>
             {SelectedLayout ? (
                 <Container>
                     <div id="layout">

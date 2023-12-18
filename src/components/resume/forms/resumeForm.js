@@ -1,4 +1,3 @@
-// TODO: fix back button when section is removed
 import React, { useState } from 'react';
 import ResumeSelections from './formSections/rf_Selections.js';
 import ResumeContactInfo from './formSections/rf_ContactInfo.js';
@@ -16,6 +15,8 @@ import './css/form.css';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import './css/form.css';
+import Navbar from '../../Navbar.js';
+
 
 function ResumeForm() {
     const navigate = useNavigate();
@@ -391,6 +392,7 @@ const handleSelectionChange = (sectionName, isSelected) => {
 
   return (
     <div>
+      <Navbar/>
       {renderForm()}
       {currentStep != 1 && <button onClick={handlePrev} disabled={currentStep === 1}>
         Back

@@ -1,13 +1,13 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import ResumeDropdown from './resumeDropdown.js';
+import Navbar from '../Navbar.js';
 
 const ApplyJobPage = () => {
   const location = useLocation();
   const { job } = location.state || {};
 
 
-  // TODO handle submit button click
   const handleSubmitClick = () => {
     // limit number of clicks to 1
     // send resume to backend
@@ -19,6 +19,7 @@ const ApplyJobPage = () => {
 
   return (
     <div>
+      <Navbar/>
       <div className='jobInfo'>
       <h1>Job Application</h1>
       {job ? (

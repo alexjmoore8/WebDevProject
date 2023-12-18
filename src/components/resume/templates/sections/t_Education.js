@@ -1,4 +1,3 @@
-// TODO gpa tag?
 import React from 'react';
 import { Container, Segment } from 'semantic-ui-react';
 const EducationSection = ({ education }) => {

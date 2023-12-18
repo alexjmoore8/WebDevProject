@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ApplyButton from '../applyJob/applyButton.js';
 import './css/jobPost.css'; // Import your CSS file for styles
+import Navbar from '../Navbar.js';
 
 export function JobPostList() {
     const navigate = useNavigate();
@@ -36,6 +37,7 @@ export function JobPostList() {
 
     return (
         <div className='jobList'>
+            <Navbar/>
             <h1>Available Job Listings</h1>
             <ul>
                 {jobs.map((job) => (

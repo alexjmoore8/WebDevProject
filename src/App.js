@@ -65,6 +65,7 @@ function App() {
               <MyJobs />
             </ProtectedRoute>
           } />
+
           <Route path="/job/list" element={<JobPostList />} />
           <Route path="tools/salaryChecks" element={<SalaryToggle />} />
           {/* <Route path = "/outsideJobSearch" element={<JobSearchEngine/>}/> */}
