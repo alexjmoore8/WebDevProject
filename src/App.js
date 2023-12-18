@@ -20,7 +20,7 @@ import ToggleButton from './components/JobSearch/jobSearchToggle.js';
 import MyResumes from './components/resume/forms/myResumes.js';
 import { ResumeProvider } from './components/resume/ResumeContext.js';
 import ApplyJob from './components/applyJob/applyJob.js';
-
+import ResumeList from './components/resumeListView.js';
 
 
 function App() {
@@ -65,6 +65,8 @@ function App() {
               <MyJobs />
             </ProtectedRoute>
           } />
+
+          <Route path="/resumeList" element={<ResumeList />} />
 
           <Route path="/job/list" element={<JobPostList />} />
           <Route path="tools/salaryChecks" element={<SalaryToggle />} />
