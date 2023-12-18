@@ -66,7 +66,7 @@ function App() {
             </ProtectedRoute>
           } />
 
-          <Route path="/resumeList" element={<ResumeList />} />
+          <Route path="/resumeList" element={<ProtectedRoute role="emplyer"><ResumeList /></ProtectedRoute>} />
 
           <Route path="/job/list" element={<JobPostList />} />
           <Route path="tools/salaryChecks" element={<SalaryToggle />} />
